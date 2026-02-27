@@ -1,0 +1,28 @@
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Output and data
+output/
+data/nltk_data/
+
+# IDE and OS
+.idea/
+.vscode/
+.DS_Store
+
+# Logs and temp
+*.log
+*.tmp

@@ -18,6 +18,9 @@ build/
 output/
 data/nltk_data/
 
+# ECPA source corpus (external dataset; obtain separately)
+ECPA/
+
 # IDE and OS
 .idea/
 .vscode/

@@ -7,8 +7,7 @@ Uses the same extraction logic as sample/extract_sample.py.
 import sys
 from pathlib import Path
 
-# Project root (parent of batch/). Ensures the sample package is importable regardless
-# of how the script is invoked (e.g. python batch/extract_batch.py or python -m batch.extract_batch).
+# Project root .
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))

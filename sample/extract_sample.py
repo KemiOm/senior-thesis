@@ -11,8 +11,7 @@ from lxml import etree
 # All TEI elements are in this namespace; XPath and find() require the full namespace URI.
 TEI_NS = "http://www.tei-c.org/ns/1.0"
 
-# Project root (parent of sample/). Paths resolve relative to project root so scripts
-# work when run from sample/ or from the project root.
+# Project root 
 ROOT = Path(__file__).resolve().parent.parent
 
 
@@ -99,7 +98,7 @@ def main():
         if poem is None:
             continue
 
-    # Print extracted structure to verify stanza/line boundaries.
+
     print("=" * 60)
     print(f"ID:     {poem['id']}")
     print(f"Author: {poem['author']}")

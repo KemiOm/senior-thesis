@@ -9,8 +9,8 @@ Batch optimizations: parallelism, no espeak fallback, long-line truncation, prog
 import os
 os.environ["POESY_DEBUG"] = "0"
 os.environ["PHONOLOGY_BATCH"] = "1"   # disables espeak fallback
-os.environ["MAX_LINE_CHARS"] = "150"   # truncate lines before Poesy to avoid 30s timeouts
-os.environ["MAX_POEM_LINES"] = "150"  # skip Poesy for poems >150 lines (phonology-only)
+os.environ["MAX_LINE_CHARS"] = "80"    # truncate long lines; verse rarely >80 chars; prose blocks hit 30s timeout
+os.environ["MAX_POEM_LINES"] = "500"  # skip Poesy for poems >500 lines (phonology-only)
 
 import sys
 import argparse
@@ -43,13 +43,43 @@ def _annotate_one(json_path_str: str):
         return ("fail", (Path(json_path_str).name, str(e)))
 
 
+def _poem_ids_with_valid_meter(corpus_path: Path, min_stress_len: int = 5) -> set:
+    """Poem IDs that have at least one line with valid 01 stress pattern."""
+    import sqlite3
+    if not corpus_path.exists():
+        return set()
+    conn = sqlite3.connect(corpus_path)
+    rows = conn.execute(
+        "SELECT DISTINCT poem_id FROM lines WHERE stress IS NOT NULL AND LENGTH(TRIM(stress)) >= ? "
+        "AND TRIM(stress) GLOB '[01]*' AND TRIM(stress) NOT GLOB '*[^01]*'",
+        (min_stress_len,),
+    ).fetchall()
+    conn.close()
+    return {r[0] for r in rows}
+
+
 def main():
     parser = argparse.ArgumentParser(description="Batch-annotate poems with phonology")
     parser.add_argument("--limit", "-n", type=int, default=0, help="Process only first N poems (0=all)")
     parser.add_argument("--skip-existing", action="store_true", help="Skip poems that already have output")
+    parser.add_argument(
+        "--meter-only",
+        action="store_true",
+        help="Only process poems that have valid 01 binary stress in corpus.db (requires prior annotation + export)",
+    )
     args = parser.parse_args()
 
     json_files = sorted(INPUT_DIR.glob("*.json"))
+
+    if args.meter_only:
+        corpus_db = ROOT / "output" / "corpus.db"
+        valid_ids = _poem_ids_with_valid_meter(corpus_db)
+        if not valid_ids:
+            print("No poems with valid 01 meter in corpus.db. Run export_sqlite.py first.")
+            return
+        json_files = [p for p in json_files if p.stem in valid_ids]
+        print(f"Meter-only: {len(json_files)} poems with valid 01 stress (of {len(valid_ids)} in corpus)")
+
     if args.skip_existing:
         json_files = [p for p in json_files if not (OUTPUT_DIR / p.name).exists()]
         print(f"Skipping existing: {len(list(INPUT_DIR.glob('*.json')))} input, {len(json_files)} to process")
@@ -63,7 +93,10 @@ def main():
     mode = f"parallel ({MAX_WORKERS} workers)" if USE_PARALLEL else "sequential"
     limit_note = f" [limit={args.limit}]" if args.limit else ""
     skip_note = " [skip-existing]" if args.skip_existing else ""
-    print(f"Mode: {mode} | espeak off | lines≤150 chars | skip Poesy if >150 lines{limit_note}{skip_note}")
+    meter_note = " [meter-only]" if args.meter_only else ""
+    max_lines = os.environ.get("MAX_POEM_LINES", "150")
+    max_line_chars = os.environ.get("MAX_LINE_CHARS", "0")
+    print(f"Mode: {mode} | espeak off | truncate lines >{max_line_chars} chars | skip Poesy if >{max_lines} lines{limit_note}{skip_note}{meter_note}")
     print("-" * 50)
 
     ok = 0

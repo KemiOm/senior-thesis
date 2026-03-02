@@ -7,8 +7,7 @@ import sys
 import json
 from pathlib import Path
 
-# Project root (parent of batch/). Ensures the sample package is importable regardless
-# of how the script is invoked.
+# Project root
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))

@@ -369,8 +369,12 @@ def annotate_with_poesy(poem: dict) -> dict:
                         bps = list(bps) if bps else []
                         bp = bps[0] if bps else None
                     break
-            meter = getattr(bp, "meter_str", None) or getattr(bp, "parse_meter", None) or (str(bp) if bp else parse_str)
-            stress = getattr(bp, "stress_str", None) or getattr(bp, "parse_stress", None) or getattr(bp, "parse_stress_str", None)
+            m_raw = getattr(bp, "parse_meter", None) or getattr(bp, "meter_str", None)
+            _m = getattr(bp, "meter", None)
+            if _m is not None and isinstance(_m, str):
+                m_raw = m_raw or _m
+            meter = m_raw if (m_raw is not None and isinstance(m_raw, str)) else parse_str
+            stress = getattr(bp, "stress", None) or getattr(bp, "stress_str", None) or getattr(bp, "parse_stress", None) or getattr(bp, "parse_stress_str", None)
             if callable(stress):
                 stress = stress()
             prosodic_list.append((meter, stress))
@@ -383,8 +387,12 @@ def annotate_with_poesy(poem: dict) -> dict:
                     ann[(si, li)]["rhyme_group"] = rhymes_list[pos]
                 if pos < len(prosodic_list):
                     m, s = prosodic_list[pos]
-                    ann[(si, li)]["meter"] = m
-                    ann[(si, li)]["stress"] = s
+                    m_str = None if m is None else (m if isinstance(m, str) else str(m))
+                    ann[(si, li)]["meter"] = m_str
+                    s_str = None if s is None else (s if isinstance(s, str) else str(s))
+                    if not s_str and m_str and "|" in m_str:
+                        s_str = _parse_str_to_stress(m_str)
+                    ann[(si, li)]["stress"] = s_str or None
                 pos += 1
         non_empty_rhymes = sum(1 for v in ann.values() if v.get("rhyme_group") and str(v.get("rhyme_group", "")).strip() not in ("", "?"))
         _log_poesy(f"ann built: {len(ann)} entries, {non_empty_rhymes} non-empty rhyme_groups")
@@ -422,6 +430,15 @@ def annotate_with_poesy(poem: dict) -> dict:
 STANZA_NAMES = {2: "couplet", 4: "quatrain", 6: "sestet", 8: "octet", 3: "tercet", 5: "cinquain"}
 
 
+def _parse_str_to_stress(parse_str: str) -> str:
+    """Convert Prosodic parse_str (e.g. 'if|ERE|the|MO|ment') to +/- stress pattern.
+    Uppercase = stressed (+), lowercase = unstressed (-)."""
+    if not parse_str or not isinstance(parse_str, str):
+        return ""
+    parts = parse_str.split("|")
+    return "".join("+" if any(c.isupper() for c in p if c.isalpha()) else "-" for p in parts if p.strip())
+
+
 def _rhyme_pairs(rhyme_groups: list) -> list:
     """Pairs of line indices that rhyme, e.g. [(0,1)] for couplet, [(0,2),(1,3)] for abab."""
     groups = {}
@@ -452,6 +469,11 @@ def annotate_poem(poem: dict) -> dict:
         "title": poem["title"],
         "stanzas": [],
     }
+    # Track sources: Poesy vs fallback (phonology/CMU)
+    src = {"stress_poesy": 0, "stress_empty": 0, "meter_poesy": 0, "meter_phonology": 0,
+           "rhyme_poesy": 0, "rhyme_empty": 0, "meter_type_poesy": 0, "meter_type_phonology": 0}
+    track_sources = os.environ.get("ANNOTATION_SOURCES", "1") == "1"
+
     for si, stanza in enumerate(poem["stanzas"]):
         lines = []
         rhyme_groups = []
@@ -478,11 +500,26 @@ def annotate_poem(poem: dict) -> dict:
             rec["meter"] = pa.get("meter")
             rec["stress"] = pa.get("stress")
             syll, stress_pattern, meter_type_fallback = line_meter_from_phonology(phon)
+            if track_sources:
+                if rg: src["rhyme_poesy"] += 1
+                else: src["rhyme_empty"] += 1
+                if rec["stress"]: src["stress_poesy"] += 1
+                else: src["stress_empty"] += 1
             if rec["meter"] is None or rec["meter"] == "":
                 rec["meter"] = stress_pattern or ""
-            if rec["stress"] is None or rec["stress"] == "":
-                rec["stress"] = stress_pattern or ""
+                if track_sources:
+                    src["meter_phonology"] += 1
+            else:
+                if track_sources:
+                    src["meter_poesy"] += 1
+        
+            # When Poesy/Prosodic fails, leave stress empty; meter_only training filters these out.
             rec["meter_type"] = poesy_meter_type if poesy_meter_type else meter_type_fallback
+            if track_sources:
+                if poesy_meter_type:
+                    src["meter_type_poesy"] += 1
+                else:
+                    src["meter_type_phonology"] += 1
             lines.append(rec)
         n = len(stanza)
         stanza_type = STANZA_NAMES.get(n, f"{n}_line" if n else "variable")
@@ -495,6 +532,8 @@ def annotate_poem(poem: dict) -> dict:
             "rhyme_pairs": pairs,
             "lines": lines,
         })
+    if track_sources:
+        out["annotation_sources"] = src
     return out
 
 

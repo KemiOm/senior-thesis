@@ -77,6 +77,10 @@ pip install -r requirements.txt
 │   ├── extract_batch.py
 │   ├── normalize_batch.py
 │   └── phonology_batch.py
+├── notebooks/               # Training data prep, evaluation metrics, SFT overview
+├── scripts/                 # HPC/CLI scripts (e.g. run_prompt_baseline)
+├── evaluation/              # Metrics, splits, baselines, experiment docs
+├── docs/                    # Data overview, debug transcripts
 ├── export_sqlite.py         # Export annotated JSON → SQLite
 ├── quality_checks.py        # Report corpus statistics and coverage
 ├── requirements.txt
@@ -176,6 +180,5 @@ Key libraries:
 
 ---
 
-## License
 
-Code in this repository is available. ECPA source data is CC BY-SA. See ECPA repository for full terms.
+

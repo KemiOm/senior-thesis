@@ -18,8 +18,8 @@ Source: The poetry comes from the Eighteenth-Century Poetry Archive (ECPA), a pe
 https://github.com/alhuber1502/ECPA. The project expects a local copy in the project root so poem files live at ECPA/web/works/<poem_id>/<poem_id>.xml.
 
 TEI(Text Encoding Initiative) ECPA encodes poems in TEI P5. TEI is a standard for representing literary and linguistic texts in XML so that structure (stanzas, lines, metadata) is machine-readable. Each poem file is a TEI document with a root <TEI> element, inside it we use:
-- <title>, <author> 
-- <body> 
+- <title>, author
+- body
 - <lg> line group—a stanza which is a group of lines together in poem; each <lg> contains one or more lines 
 - <l> line—a single verse line, some of the line text may be wrapped in elements like <w> (word) or <pc> (punctuation), or appear as a direct text. 
 

@@ -34,7 +34,7 @@ python3 evaluation/run_baseline.py
 
 ## Syncing results to your machine
 
-Baseline runs live on the cluster. To pull them to your Mac (replace with your cluster user/host if different):
+Baseline runs live on the cluster. To pull them I used.
 
 ```bash
 rsync -avz span9810_ato22@bouchet.ycrc.yale.edu:~/Senior-Thesis/evaluation/results/ "/Users/kemiomoniyi/Senior Thesis/evaluation/results/"

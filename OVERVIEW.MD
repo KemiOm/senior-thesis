@@ -112,7 +112,7 @@ After normalization, each poem is annotated with **phonology** (the sound form o
 **Why these metrics?** We need to know whether the model got meter and rhyme right. Our pipeline (Poesy + CMU) gives us stress pattern, meter type, and rhyme labels per line—so we use those. We score a line as correct only when the *entire* stress or rhyme string matches the gold; one wrong syllable means the whole line is wrong (de la Rosa et al.). Researchers have shown that LLMs tend to be overly regular—e.g. more strictly iambic and more often rhyming than human poets (Heuser 2025). Our metrics let us measure that and compare baseline vs fine-tuned models: we run each model on the same test prompts, get its output lines, and compare them to the gold stress/rhyme from our pipeline (e.g. stress-match rate, rhyme rate); we do this for prompt-only baselines and for fine-tuned models so we can see whether training improves adherence or changes how regular the output is. Other studies of poetry and LLMs use the same kind of measures (stress, rhyme rate), so we can compare our results to theirs (Haider 2021; Walsh et al.). End_stopped, enjambment, and caesura capture how lines break and pause, for optional analysis.
 
 **Output structure:** Implemented in sample/phonology_sample.py (single poem) and batch/phonology_batch.py (full corpus). Reads output/poems_normalized/<id>.json, writes output/poems_annotated/<id>.json. Shape:
-
+```
 annotated poem (dict)
 ├── id, author, title   (unchanged)
 ├── stanzas             → list of stanza objects
@@ -127,7 +127,8 @@ annotated poem (dict)
 │       ├── stress      → "+-+-..." from Poesy only (empty if no parse)
 │       └── meter_type  → e.g. "iambic pentameter" (Poesy poem-level or per-line from phonology)
 └── annotation_sources  → { stress_poesy, stress_empty, meter_poesy, meter_phonology, ... }  (optional)
-
+```
+```json
 {
   "normalized": "Tired Nature's sweet restorer, balmy Sleep!",
   "phonology": [
@@ -144,7 +145,7 @@ annotated poem (dict)
   "caesura": 4,
   "enjambment": false
 }
-
+```
 #### Final Checks
 Export to SQLite (`export_sqlite.py`), then run quality checks (`quality_checks.py`) on the corpus. This gives a single database and summary stats before building training data and evaluation splits.
 

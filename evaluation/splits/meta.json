@@ -1,0 +1,13 @@
+{
+  "random_seed": 42,
+  "train_frac": 0.7,
+  "dev_frac": 0.15,
+  "test_frac": 0.15,
+  "counts": {
+    "train": 2380,
+    "dev": 510,
+    "test": 511,
+    "held_out_poets": 217,
+    "held_out_poems": 100
+  }
+}

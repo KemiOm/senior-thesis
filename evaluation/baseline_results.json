@@ -1,0 +1,140 @@
+{
+  "full_corpus": {
+    "n_lines": 320887,
+    "meter_coverage": {
+      "n_with_meter": 57166,
+      "pct": 17.814994063330705
+    },
+    "rhyme_coverage": {
+      "n_with_rhyme": 104128,
+      "pct": 32.45005251069691
+    },
+    "cmu_coverage": {
+      "n_full_cmu": 167416,
+      "pct": 52.17288328913293
+    },
+    "end_stopped": {
+      "n": 225824,
+      "pct": 70.3749294923135
+    },
+    "caesura": {
+      "n": 130585,
+      "pct": 40.69501101633909
+    }
+  },
+  "train": {
+    "n_lines": 206956,
+    "meter_coverage": {
+      "n_with_meter": 32751,
+      "pct": 15.82510292042753
+    },
+    "rhyme_coverage": {
+      "n_with_rhyme": 61227,
+      "pct": 29.584549372813544
+    },
+    "cmu_coverage": {
+      "n_full_cmu": 105107,
+      "pct": 50.787123833085296
+    },
+    "end_stopped": {
+      "n": 145552,
+      "pct": 70.3299252014921
+    },
+    "caesura": {
+      "n": 82157,
+      "pct": 39.69781016254663
+    }
+  },
+  "dev": {
+    "n_lines": 42831,
+    "meter_coverage": {
+      "n_with_meter": 7082,
+      "pct": 16.534752865914875
+    },
+    "rhyme_coverage": {
+      "n_with_rhyme": 17596,
+      "pct": 41.08239359342532
+    },
+    "cmu_coverage": {
+      "n_full_cmu": 22476,
+      "pct": 52.47601036632346
+    },
+    "end_stopped": {
+      "n": 29426,
+      "pct": 68.70257523756158
+    },
+    "caesura": {
+      "n": 17178,
+      "pct": 40.106464943615606
+    }
+  },
+  "test": {
+    "n_lines": 43535,
+    "meter_coverage": {
+      "n_with_meter": 9645,
+      "pct": 22.154588262317674
+    },
+    "rhyme_coverage": {
+      "n_with_rhyme": 12372,
+      "pct": 28.41851383943953
+    },
+    "cmu_coverage": {
+      "n_full_cmu": 22899,
+      "pct": 52.59905822901114
+    },
+    "end_stopped": {
+      "n": 31387,
+      "pct": 72.09601470081543
+    },
+    "caesura": {
+      "n": 18378,
+      "pct": 42.21431032502584
+    }
+  },
+  "held_out_poets": {
+    "n_lines": 19504,
+    "meter_coverage": {
+      "n_with_meter": 5727,
+      "pct": 29.36320754716981
+    },
+    "rhyme_coverage": {
+      "n_with_rhyme": 9668,
+      "pct": 49.56931911402789
+    },
+    "cmu_coverage": {
+      "n_full_cmu": 12087,
+      "pct": 61.97190319934372
+    },
+    "end_stopped": {
+      "n": 13547,
+      "pct": 69.45754716981132
+    },
+    "caesura": {
+      "n": 9163,
+      "pct": 46.980106644790816
+    }
+  },
+  "held_out_poems": {
+    "n_lines": 8061,
+    "meter_coverage": {
+      "n_with_meter": 1961,
+      "pct": 24.32700657486664
+    },
+    "rhyme_coverage": {
+      "n_with_rhyme": 3265,
+      "pct": 40.50365959558368
+    },
+    "cmu_coverage": {
+      "n_full_cmu": 4847,
+      "pct": 60.129016251085474
+    },
+    "end_stopped": {
+      "n": 5912,
+      "pct": 73.34077657858826
+    },
+    "caesura": {
+      "n": 3709,
+      "pct": 46.01166108423273
+    }
+  }
+}

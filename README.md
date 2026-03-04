@@ -6,7 +6,7 @@ A pipeline for extracting, normalizing, and annotating English poetry from the E
 
 ## Documentation
 
-- **[OVERVIEW.MD](OVERVIEW.MD)** — Full project description: pipeline stages, terminology (meter, stress, rhyme, TEI), phonology tools (Poesy, Prosodic, CMU), evaluation workflow (splits → prepare data → run baselines → compute metrics → choose model), and HPC usage. Start here if you need context from “zero poetry assumptions.”
+- **[OVERVIEW.MD](OVERVIEW.MD)** — Full project description: pipeline stages, terminology (meter, stress, rhyme, TEI), phonology tools (Poesy, Prosodic, CMU), evaluation workflow (splits → prepare data → run baselines → compute metrics → choose model), and HPC usage.
 - **Evaluation** — Splits, metrics, and prompt-only baselines: see [evaluation/README.md](evaluation/README.md) and the “Evaluation and choosing a model” section in OVERVIEW.MD.
 
 ---
@@ -155,7 +155,7 @@ Reports: poem/line counts, meter distribution, rhyme coverage, phonology (CMU) c
 
 ## Evaluation and baselines
 
-After the corpus is built you can (1) create train/dev/test splits, (2) prepare task-specific test data (natural_text, meter_only, rhyme_only, combined), (3) run prompt-only baselines on candidate models (e.g. via Slurm on HPC), (4) compute metrics and compare to gold, (5) choose a model for fine-tuning. Details and code paths are in **OVERVIEW.MD** (“Evaluation and choosing a model” and “Running on HPC (summary)”).
+After the corpus is built  (1) create train/dev/test splits, (2) prepare task-specific test data (natural_text, meter_only, rhyme_only, combined), (3) run prompt-only baselines on candidate models (e.g. via Slurm on HPC), (4) compute metrics and compare to gold, (5) choose a model for fine-tuning. Details and code paths are in **OVERVIEW.MD** (“Evaluation and choosing a model” and “Running on HPC (summary)”).
 
 **Quick check** that each model has all four task outputs:
 

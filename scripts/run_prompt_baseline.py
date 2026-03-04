@@ -2,9 +2,14 @@
 """
 Run prompt-only baseline: load test lines, build prompts, call models, save outputs.
 
+Supports:
+  - Encoder-decoder (seq2seq): T5, FLAN-T5, BART, PEGASUS, etc. (--model_type seq2seq, default)
+  - Decoder-only (causal): GPT-2, Pythia, LLaMA, Mistral, etc. (--model_type causal)
+
 Usage:
   python scripts/run_prompt_baseline.py --model google/flan-t5-large --prompt zero_shot --task meter_only
-  python scripts/run_prompt_baseline.py --model google/flan-t5-base --prompt one_shot --task meter_only --n 100
+  python scripts/run_prompt_baseline.py --model facebook/bart-large --prompt zero_shot --task meter_only
+  python scripts/run_prompt_baseline.py --model gpt2-medium --model_type causal --prompt zero_shot --task meter_only --n 100
 
 Requires: pip install transformers torch (or pip install transformers accelerate)
 
@@ -120,8 +125,10 @@ def build_prompt(item: dict, task: str, prompt_type: str) -> str:
     return template.format(input=line)
 
 
-def run_inference(prompts: list, model_id: str, max_new_tokens: int = 64, device: int = -1) -> list:
-    """Run T5/FLAN-T5 on prompts. device=-1 means CPU, 0+ means GPU."""
+def run_inference_seq2seq(
+    prompts: list, model_id: str, max_new_tokens: int = 64, device: int = -1
+) -> list:
+    """Encoder-decoder (T5, BART, PEGASUS, etc.): prompt as encoder input, decode output."""
     try:
         from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
         import torch
@@ -148,9 +155,58 @@ def run_inference(prompts: list, model_id: str, max_new_tokens: int = 64, device
     return outputs
 
 
+def run_inference_causal(
+    prompts: list, model_id: str, max_new_tokens: int = 64, device: int = -1, max_input_length: int = 512
+) -> list:
+    """Decoder-only (GPT-2, Pythia, LLaMA, etc.): prompt as context, return only the generated continuation."""
+    try:
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+        import torch
+    except ImportError:
+        raise ImportError("Install transformers: pip install transformers torch")
+
+    dev = torch.device("cuda", device) if device >= 0 else torch.device("cpu")
+    tokenizer = AutoTokenizer.from_pretrained(model_id)
+    model = AutoModelForCausalLM.from_pretrained(model_id)
+    model.to(dev)
+    model.eval()
+
+    # Many causal LMs need a padding side for batch decode; left-pad so we decode only new tokens
+    if getattr(tokenizer, "pad_token", None) is None:
+        tokenizer.pad_token = tokenizer.eos_token
+
+    outputs = []
+    for p in prompts:
+        enc = tokenizer(
+            p,
+            return_tensors="pt",
+            truncation=True,
+            max_length=max_input_length,
+        ).to(dev)
+        input_ids = enc["input_ids"]
+        with torch.no_grad():
+            generated = model.generate(
+                **enc,
+                max_new_tokens=max_new_tokens,
+                do_sample=False,
+                pad_token_id=tokenizer.pad_token_id,
+            )
+        # Decode only the new tokens (continuation), not the prompt
+        new_ids = generated[0][input_ids.shape[1] :]
+        text = tokenizer.decode(new_ids, skip_special_tokens=True).strip()
+        outputs.append(text)
+    return outputs
+
+
 def main():
     parser = argparse.ArgumentParser(description="Run prompt-only baseline on test data")
     parser.add_argument("--model", default="google/flan-t5-large", help="Hugging Face model ID")
+    parser.add_argument(
+        "--model_type",
+        choices=["seq2seq", "causal"],
+        default="seq2seq",
+        help="seq2seq = encoder-decoder (T5, BART, etc.); causal = decoder-only (GPT-2, LLaMA, etc.)",
+    )
     parser.add_argument(
         "--prompt",
         choices=["zero_shot", "one_shot", "few_shot"],
@@ -176,16 +232,37 @@ def main():
     print(f"Loaded {len(data)} samples for task={args.task}, prompt={args.prompt}")
 
     prompts = [build_prompt(item, args.task, args.prompt) for item in data]
-    print(f"Running {args.model}...")
-    outputs = run_inference(prompts, args.model, max_new_tokens=args.max_tokens, device=args.device)
+    print(f"Running {args.model} ({args.model_type})...")
+    if args.model_type == "causal":
+        outputs = run_inference_causal(
+            prompts, args.model, max_new_tokens=args.max_tokens, device=args.device
+        )
+    else:
+        outputs = run_inference_seq2seq(
+            prompts, args.model, max_new_tokens=args.max_tokens, device=args.device
+        )
+
+    def strip_prompt_echo(raw_out: str, prompt_used: str) -> str:
+        """If the model echoed the prompt (or a prefix of it), strip it so we keep only the answer."""
+        if not prompt_used or not raw_out:
+            return raw_out
+        if raw_out.startswith(prompt_used):
+            return raw_out[len(prompt_used) :].strip()
+        # Find longest prefix of prompt that output starts with (handles truncated echo, e.g. BART)
+        for end in range(min(len(prompt_used), len(raw_out)), 0, -1):
+            if raw_out.startswith(prompt_used[:end]):
+                return raw_out[end:].strip()
+        return raw_out
 
     results = []
     for i, item in enumerate(data):
+        raw_out = outputs[i] if i < len(outputs) else ""
+        raw_out = strip_prompt_echo(raw_out, prompts[i])
         results.append({
             "input": item.get("input", item.get("line", "")),
             "gold_target": item.get("target", ""),
             "prompt": prompts[i],
-            "model_output": outputs[i] if i < len(outputs) else "",
+            "model_output": raw_out,
         })
 
     out_dir = RESULTS_DIR / slug(args.model)

@@ -2,7 +2,10 @@
 #SBATCH --job-name=poetry-baseline-all
 #SBATCH --account=span9810
 #SBATCH --partition=day
-#SBATCH --time=4:00:00
+# YCRC Bouchet `day` QoS often enforces a 4h walltime cap even when the partition MaxTime is longer.
+# Match that here so expectations match sacct. For longer limits: sbatch --time=12:00:00 ...
+#SBATCH --time=04:00:00
+# submit_all_model_baselines.sh now defaults to SPLIT_TASKS=1 and N=10000 so each job usually finishes within this window.
 #SBATCH --mem=32G
 #SBATCH --cpus-per-task=4
 #SBATCH --output=poetry_baseline_all_%j.out
@@ -13,6 +16,15 @@
 #
 # Submit from project root:
 #   sbatch --chdir=$(pwd) scripts/run_prompt_baseline_all_tasks.slurm
+#
+# Run ALL candidate models in parallel (one job per model):
+#   rm -rf evaluation/results/baselines/prompt_only/*   # optional: clear old JSONs
+#   ./scripts/submit_all_model_baselines.sh
+#   # Full test (no line cap — needs long walltime / SPLIT_TASKS=1 strongly recommended):  N=0 ./scripts/submit_all_model_baselines.sh
+#   # or with a sample cap:  N=500 ./scripts/submit_all_model_baselines.sh
+#   # or:  PROMPT=few_shot N=500 ./scripts/submit_all_model_baselines.sh
+#   # or:  PROMPTS="zero_shot one_shot few_shot" N=500 ./scripts/submit_all_model_baselines.sh
+#
 # Optional env vars (defaults shown):
 #   MODEL=google/flan-t5-base  PROMPT=zero_shot  N=500  MODEL_TYPE=seq2seq
 #   MODEL=gpt2-medium  MODEL_TYPE=causal  N=500   # decoder-only (GPT-2, LLaMA, etc.)
@@ -28,21 +40,47 @@ fi
 
 if [ -d "venv" ]; then
   source venv/bin/activate
-  pip install --quiet transformers torch 2>/dev/null || true
 elif command -v conda &>/dev/null; then
   conda activate base
+fi
+# Some models (e.g. certain tokenizers / phi) need extras; install quietly if missing.
+pip install --quiet transformers torch accelerate sentencepiece tiktoken 2>/dev/null || true
+
+# Optional shared model cache on cluster (set before sbatch: export THESIS_HF_HOME=/path/to/scratch/hf_cache)
+if [ -n "${THESIS_HF_HOME:-}" ]; then
+  export HF_HOME="$THESIS_HF_HOME"
+  export TRANSFORMERS_CACHE="${THESIS_HF_HOME}/transformers"
+  mkdir -p "$TRANSFORMERS_CACHE" 2>/dev/null || true
+  echo "Using HF_HOME=$HF_HOME"
+fi
+if [ -n "${HF_TOKEN:-}" ]; then
+  echo "HF_TOKEN is set (authenticated Hub requests)"
+else
+  echo "Note: export HF_TOKEN on the login node before submit for higher Hub rate limits (optional)."
 fi
 
 MODEL=${MODEL:-google/flan-t5-base}
 PROMPT=${PROMPT:-zero_shot}
 MODEL_TYPE=${MODEL_TYPE:-seq2seq}
-# N empty = full test set; set N=500 for a quick run
+# N from submit script (default 10000). Empty = full test. N=0 = full test (passed as --n 0; see run_prompt_baseline.py).
 N=${N:-}
+# STRICT_EVAL=1 (default): only lines in reliable 4-line stanzas + regold from corpus.db (see run_prompt_baseline.py --strict-eval)
+STRICT_EVAL=${STRICT_EVAL:-1}
 
 EXTRA_ARGS=()
 [ "$MODEL_TYPE" = "causal" ] && EXTRA_ARGS+=(--model_type causal)
+if [ "${STRICT_EVAL:-0}" = "1" ]; then
+  EXTRA_ARGS+=(--strict-eval)
+fi
 
-for TASK in meter_only rhyme_only natural_text combined; do
+# If BASELINE_TASK is set (e.g. SPLIT_TASKS=1 submit), run only that task (smaller jobs / easier retries).
+if [ -n "${BASELINE_TASK:-}" ]; then
+  TASK_LIST=("$BASELINE_TASK")
+else
+  TASK_LIST=(meter_only rhyme_only natural_text combined)
+fi
+
+for TASK in "${TASK_LIST[@]}"; do
   echo "=============================================="
   echo "Running $MODEL | $PROMPT | $TASK | $MODEL_TYPE"
   echo "=============================================="

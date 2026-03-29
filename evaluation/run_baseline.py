@@ -5,16 +5,17 @@ Runs the evaluation metrics (meter, rhyme, CMU coverage, lineation, caesura) on:
 - Full corpus
 - Each split (train, dev, test, held_out_poets, held_out_poems)
 
-Saves results to evaluation/baseline_results.json. These values serve as the
-reference when evaluating model outputs: the corpus represents the upper bound
+Saves results to evaluation/baseline_results.json. 
+Values are a reference when evaluating model outputs: 
+the corpus represents the upper bound
 of what the annotation pipeline can produce, and held-out splits show how
 coverage varies across poets and poems.
 
 Run from project root: python evaluation/run_baseline.py
 
 Prerequisites:
-- output/corpus.db (from export_sqlite.py)
-- evaluation/splits/*.json (from evaluation/splits.py)
+- output/corpus.db from export_sqlite.py
+- evaluation/splits/*.json from evaluation/splits.py
 """
 
 import sys

@@ -13,13 +13,14 @@ A pipeline for extracting, normalizing, and annotating English poetry from the E
 
 ## Source Data
 
-This project uses the **Eighteenth-Century Poetry Archive (ECPA)**, a peer-reviewed digital archive of English-language poetry from the long eighteenth century (1660–1800).
+**Primary corpus:** **Eighteenth-Century Poetry Archive (ECPA)** — English-language poetry from the long eighteenth century (1660–1800).
 
 - **ECPA GitHub repository:** https://github.com/alhuber1502/ECPA  
 - **ECPA website:** https://www.eighteenthcenturypoetry.org/  
 - **License:** CC BY-SA (Creative Commons Attribution-ShareAlike)
 
-The pipeline expects TEI P5 XML files under `ECPA/web/works/<poem_id>/<poem_id>.xml`. Clone or download the ECPA repository and place it in the project root so that the `ECPA/` directory contains `web/works/` with poem subdirectories.
+The pipeline expects TEI P5 XML files under `ECPA/web/works/<poem_id>/<poem_id>.xml`. Clone or download the ECPA repository and place it in the project root.
+
 
 ---
 

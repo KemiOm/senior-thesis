@@ -56,7 +56,7 @@ Example JSON:
 }
 ```
 
-The sample script runs this on a few fixed poem IDs for verification; the batch script runs extract_poem() on every XML and writes one JSON per poem to output/poems/<id>.json. That is the raw extracted corpus: line and stanza boundaries are fixed; normalization is a separate step.
+The sample script runs this on a few fixed poem IDs for verification; the batch script runs extract_poem() on every XML and writes one JSON per poem to output/poems/<id>.json. That is the raw extracted corpus: line and stanza boundaries are fixed; normalization is a separate step. **Incremental runs:** Extract, normalize, and annotate batch scripts all skip work that is already done: if output/poems/<id>.json (or the normalized/annotated counterpart) exists, that poem is skipped. Use `--force` (or `-f`) when calling a batch script to reprocess everything.
 
 ### Normalization
 Raw TEI text has curly quotes, smart apostrophes, em dashes, and inconsistent spacing. I kept both the raw and normalized text per line so nothing is discarded and we can always trace back to the source. 
@@ -231,7 +231,7 @@ with open(OUT_DIR / "meter_only" / "test.json", "w") as f:
 
 **Step 3 — Run prompt-only baselines.** We run each candidate model on the *same* test prompts (with an optional sample size, e.g. 500 lines, for speed). Script: `scripts/run_prompt_baseline.py` (single task) or `scripts/run_prompt_baseline_all_tasks.slurm` (all four tasks per model). Each run loads the model, builds prompts from the task template, generates outputs, and saves them with the gold targets to `evaluation/results/baselines/prompt_only/<model_slug>/`
 
-*How a baseline run works.* The Python script (1) loads test data from `output/training_data/{task}/test.json`, (2) builds one prompt per row from the task’s template (e.g. meter_only zero_shot: “Given this line of poetry, output its metrical stress pattern… Line: {line}”), (3) calls the model to generate an output for each prompt, (4) zips each `input`, `gold_target`, `prompt`, and `model_output` into a result dict, (5) writes a single JSON to `evaluation/results/baselines/prompt_only/<model_slug>/{prompt_type}_{task}.json` containing metadata (model, prompt_type, task, n_samples) and the list of results. That JSON is what Step 4 uses to compute stress-match rate, rhyme match, etc.
+*How a baseline run works.* The Python script (1) loads test data from `output/training_data/{task}/test.json`, (2) builds one prompt per row from the task’s template (e.g. meter_only zero_shot: “Given this line of poetry, output its metrical stress pattern… Line: {line}”). **Few-shot** prompts prepend a full example **quatrain** (four lines) with per-line labels in the same format as the task (from `corpus.db`), then a separator and the query line. (3) calls the model to generate an output for each prompt, (4) zips each `input`, `gold_target`, `prompt`, and `model_output` into a result dict, (5) writes a single JSON to `evaluation/results/baselines/prompt_only/<model_slug>/{prompt_type}_{task}.json` containing metadata (model, prompt_type, task, n_samples) and the list of results. That JSON is what Step 4 uses to compute stress-match rate, rhyme match, etc.
 
 **Saved baseline JSON shape:**
 
@@ -305,6 +305,8 @@ json.dump(results, open("evaluation/baseline_results.json", "w"))
 ---
 
 **Running on HPC (summary).** Steps 1 (splits), 2 (prepare training data), and 4 (compute metrics / corpus baseline) run on your **local machine or the login node**—they use the database and the split/training JSONs and do not need a GPU. Step 3 (prompt-only baselines) is run **on the HPC compute nodes** because each model loads weights and runs inference. Workflow: (1) On your machine or login: run `export_sqlite.py`, then `evaluation/splits.py`, then `notebooks/01_prepare_training_data.ipynb` so `output/training_data/*/test.json` and `evaluation/splits/*.json` exist. (2) Sync your project (and `output/`, `evaluation/splits/`) to the cluster. (3) On the cluster, from project root: submit one Slurm job per model, e.g. `MODEL=google/flan-t5-base N=500 sbatch --chdir=$(pwd) scripts/run_prompt_baseline_all_tasks.slurm`. For causal models: `MODEL=microsoft/phi-2 MODEL_TYPE=causal N=500 sbatch --chdir=$(pwd) scripts/run_prompt_baseline_all_tasks.slurm`. (4) Monitor with `squeue -u $USER`; when a job finishes, results are in `evaluation/results/baselines/prompt_only/<model_slug>/`. (5) Back on your machine or login: run `python evaluation/run_baseline.py` for the corpus baseline; then compute per-model metrics from the baseline JSONs and fill `model_comparison.csv` to choose a model. Logs for job 12345 are in `poetry_baseline_all_12345.out` in the directory from which you ran `sbatch`.
+
+**Bouchet / YCRC details** (walltime vs `#SBATCH --time`, `HF_TOKEN`, `STAGGER_SEC`, `SPLIT_TASKS`, rsync): see header comments in **`scripts/submit_all_model_baselines.sh`** and **`scripts/run_prompt_baseline_all_tasks.slurm`**.
 
 
 

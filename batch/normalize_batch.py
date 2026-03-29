@@ -1,10 +1,12 @@
 """
 Batch-normalize extracted poems.
 Reads from output/poems/, applies normalize_poem, writes to output/poems_normalized/.
+By default skips poems that already have normalized output (use --force to reprocess).
 """
 
-import sys
+import argparse
 import json
+import sys
 from pathlib import Path
 
 # Project root
@@ -19,9 +21,25 @@ OUTPUT_DIR = ROOT / "output/poems_normalized"
 
 
 def main():
-    json_files = list(INPUT_DIR.glob("*.json"))
+    parser = argparse.ArgumentParser(description="Batch-normalize extracted poems")
+    parser.add_argument(
+        "--force", "-f",
+        action="store_true",
+        help="Reprocess all poems even if normalized output already exists",
+    )
+    args = parser.parse_args()
+    skip_existing = not args.force
+
+    all_files = list(INPUT_DIR.glob("*.json"))
+    if skip_existing:
+        json_files = [p for p in all_files if not (OUTPUT_DIR / p.name).exists()]
+        if len(json_files) < len(all_files):
+            print(f"Skipping {len(all_files) - len(json_files)} already normalized; processing {len(json_files)}")
+    else:
+        json_files = all_files
+
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    print(f"Found {len(json_files)} poem JSONs")
+    print(f"Found {len(json_files)} poem JSONs to process")
     print(f"Input:  {INPUT_DIR.resolve()}")
     print(f"Output: {OUTPUT_DIR.resolve()}")
     print("-" * 50)

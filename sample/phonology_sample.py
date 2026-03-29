@@ -282,16 +282,42 @@ def get_end_stopped(line_text: str) -> bool:
     return (s[-1] if s else "") in END_STOP_PUNCT
 
 
-def get_caesura(line_text: str):
+def get_caesura(line_text: str) -> dict:
     """
-    Index of first strong mid-line punctuation (comma, semicolon, colon, em-dash).
-    Returns 0-based word index or None if no caesura.
+    First strong mid-line pause and local lexical context.
+    Returns:
+      {
+        "index": <0-based word index before the pause> or None,
+        "punct": <pause punctuation token> or None,
+        "before": <word before pause> or None,
+        "after": <word after pause> or None,
+      }
     """
-    words = re.findall(r"[\w']+|[^\w\s]", line_text)
-    for i, tok in enumerate(words):
-        if tok in ",;:—-" and i > 0 and i < len(words) - 1:
-            return i
-    return None
+    toks = re.findall(r"[\w']+|[^\w\s]", line_text)
+    word_i = -1
+    for i, tok in enumerate(toks):
+        if re.match(r"[\w']+$", tok):
+            word_i += 1
+            continue
+        if tok not in ",;:—-":
+            continue
+        # find neighboring words around punctuation
+        before = after = None
+        b = i - 1
+        while b >= 0:
+            if re.match(r"[\w']+$", toks[b]):
+                before = toks[b]
+                break
+            b -= 1
+        a = i + 1
+        while a < len(toks):
+            if re.match(r"[\w']+$", toks[a]):
+                after = toks[a]
+                break
+            a += 1
+        if before and after:
+            return {"index": word_i, "punct": tok, "before": before, "after": after}
+    return {"index": None, "punct": None, "before": None, "after": None}
 
 
 def build_poem_string(poem: dict) -> str:
@@ -377,6 +403,8 @@ def annotate_with_poesy(poem: dict) -> dict:
             stress = getattr(bp, "stress", None) or getattr(bp, "stress_str", None) or getattr(bp, "parse_stress", None) or getattr(bp, "parse_stress_str", None)
             if callable(stress):
                 stress = stress()
+            if not stress and parse_str and isinstance(parse_str, str) and "|" in parse_str:
+                stress = _parse_str_to_stress(parse_str)
             prosodic_list.append((meter, stress))
         ann = {}
         pos = 0
@@ -490,7 +518,11 @@ def annotate_poem(poem: dict) -> dict:
             rg = pa.get("rhyme_group")
             rg = rg if rg and str(rg).strip() and str(rg).strip() != "?" else None
             rec["end_stopped"] = end_stopped
-            rec["caesura"] = get_caesura(norm)
+            c = get_caesura(norm)
+            rec["caesura"] = c["index"]
+            rec["caesura_punct"] = c["punct"]
+            rec["caesura_before"] = c["before"]
+            rec["caesura_after"] = c["after"]
             rec["enjambment"] = not end_stopped
             phon = get_phonology_for_line(norm)
             rec["phonology"] = phon
@@ -577,7 +609,13 @@ def main():
             for line in stanza["lines"]:
                 li = line["line_index"]
                 print(f"  [{li + 1}] {line['normalized']}")
-                print(f"      rhyme_word: {line.get('rhyme_word')} | rhyme: {line['rhyme_group']} | meter_type: {line.get('meter_type', 'N/A')} | meter: {line.get('meter', 'N/A')} | end_stopped: {line['end_stopped']} | caesura: {line['caesura']} | enjambment: {line['enjambment']}")
+                print(
+                    f"      rhyme_word: {line.get('rhyme_word')} | rhyme: {line['rhyme_group']} "
+                    f"| meter_type: {line.get('meter_type', 'N/A')} | meter: {line.get('meter', 'N/A')} "
+                    f"| end_stopped: {line['end_stopped']} | caesura: {line['caesura']} "
+                    f"({line.get('caesura_before')} {line.get('caesura_punct')} {line.get('caesura_after')}) "
+                    f"| enjambment: {line['enjambment']}"
+                )
                 ph = line['phonology'][:5]
                 print(f"      phonology: {ph}")
         print("\n" + "=" * 60)

@@ -2,8 +2,11 @@
 Batch-extract 18th-c. poems from ECPA TEI XML.
 Finds all poem XMLs in ECPA/web/works/, extracts each, and saves to output/poems/.
 Uses the same extraction logic as sample/extract_sample.py.
+By default skips poems that already have output (use --force to reprocess).
 """
 
+import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -19,13 +22,26 @@ OUTPUT_DIR = ROOT / "output/poems"
 
 
 def main():
-    # Find all XML files in subdirs 
-    # Exclude tei_all.rnc schema file and any other non-poem XMLs
-    xml_files = list(ECPA_ROOT.glob("*/*.xml"))
-    xml_files = [p for p in xml_files if p.name != "tei_all.rnc"]
+    parser = argparse.ArgumentParser(description="Batch-extract poems from ECPA TEI XML")
+    parser.add_argument(
+        "--force", "-f",
+        action="store_true",
+        help="Reprocess all poems even if output already exists",
+    )
+    args = parser.parse_args()
+    skip_existing = not args.force
+
+    # Find all XML files in subdirs; exclude tei_all.rnc
+    all_xml = [p for p in ECPA_ROOT.glob("*/*.xml") if p.name != "tei_all.rnc"]
+    if skip_existing:
+        xml_files = [p for p in all_xml if not (OUTPUT_DIR / f"{p.stem}.json").exists()]
+        if len(xml_files) < len(all_xml):
+            print(f"Skipping {len(all_xml) - len(xml_files)} already extracted; processing {len(xml_files)}")
+    else:
+        xml_files = all_xml
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    print(f"Found {len(xml_files)} poem XMLs")
+    print(f"Found {len(xml_files)} poem XMLs to process")
     print(f"Output dir: {OUTPUT_DIR.resolve()}")
     print("-" * 50)
 

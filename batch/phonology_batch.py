@@ -9,7 +9,7 @@ Batch optimizations: parallelism, no espeak fallback, long-line truncation, prog
 import os
 os.environ["POESY_DEBUG"] = "0"
 os.environ["PHONOLOGY_BATCH"] = "1"   # disables espeak fallback
-os.environ["MAX_LINE_CHARS"] = "80"    # truncate long lines; verse rarely >80 chars; prose blocks hit 30s timeout
+os.environ["MAX_LINE_CHARS"] = "0"     # no truncation; full lines to Poesy (long prose blocks may timeout)
 os.environ["MAX_POEM_LINES"] = "500"  # skip Poesy for poems >500 lines (phonology-only)
 
 import sys
@@ -61,13 +61,14 @@ def _poem_ids_with_valid_meter(corpus_path: Path, min_stress_len: int = 5) -> se
 def main():
     parser = argparse.ArgumentParser(description="Batch-annotate poems with phonology")
     parser.add_argument("--limit", "-n", type=int, default=0, help="Process only first N poems (0=all)")
-    parser.add_argument("--skip-existing", action="store_true", help="Skip poems that already have output")
+    parser.add_argument("--force", "-f", action="store_true", help="Reprocess all poems (default: skip already annotated)")
     parser.add_argument(
         "--meter-only",
         action="store_true",
         help="Only process poems that have valid 01 binary stress in corpus.db (requires prior annotation + export)",
     )
     args = parser.parse_args()
+    skip_existing = not args.force
 
     json_files = sorted(INPUT_DIR.glob("*.json"))
 
@@ -80,9 +81,10 @@ def main():
         json_files = [p for p in json_files if p.stem in valid_ids]
         print(f"Meter-only: {len(json_files)} poems with valid 01 stress (of {len(valid_ids)} in corpus)")
 
-    if args.skip_existing:
+    if skip_existing:
         json_files = [p for p in json_files if not (OUTPUT_DIR / p.name).exists()]
-        print(f"Skipping existing: {len(list(INPUT_DIR.glob('*.json')))} input, {len(json_files)} to process")
+        if len(json_files) < len(list(INPUT_DIR.glob("*.json"))):
+            print(f"Skipping existing: {len(list(INPUT_DIR.glob('*.json'))) - len(json_files)} already annotated; processing {len(json_files)}")
     if args.limit > 0:
         json_files = json_files[: args.limit]
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -92,7 +94,7 @@ def main():
     print(f"Output: {OUTPUT_DIR.resolve()}")
     mode = f"parallel ({MAX_WORKERS} workers)" if USE_PARALLEL else "sequential"
     limit_note = f" [limit={args.limit}]" if args.limit else ""
-    skip_note = " [skip-existing]" if args.skip_existing else ""
+    skip_note = " [skip existing]" if skip_existing else " [force]"
     meter_note = " [meter-only]" if args.meter_only else ""
     max_lines = os.environ.get("MAX_POEM_LINES", "150")
     max_line_chars = os.environ.get("MAX_LINE_CHARS", "0")

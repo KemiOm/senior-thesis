@@ -56,6 +56,9 @@ def main():
             stress TEXT,
             end_stopped INTEGER,
             caesura INTEGER,
+            caesura_punct TEXT,
+            caesura_before TEXT,
+            caesura_after TEXT,
             enjambment INTEGER,
             phonology TEXT
         )
@@ -130,8 +133,9 @@ def main():
                 phon = json.dumps(line.get("phonology", [])) if line.get("phonology") else None
                 conn.execute(
                     """INSERT INTO lines (poem_id, stanza_index, line_index, raw, normalized,
-                       rhyme_word, rhyme_group, meter_type, meter, stress, end_stopped, caesura, enjambment, phonology)
-                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                       rhyme_word, rhyme_group, meter_type, meter, stress, end_stopped, caesura,
+                       caesura_punct, caesura_before, caesura_after, enjambment, phonology)
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                     (
                         pid, si, li,
                         line.get("raw"), line.get("normalized"),
@@ -139,6 +143,9 @@ def main():
                         line.get("meter_type"), line.get("meter"), line.get("stress"),
                         1 if line.get("end_stopped") else 0,
                         line.get("caesura") if line.get("caesura") is not None else None,
+                        line.get("caesura_punct"),
+                        line.get("caesura_before"),
+                        line.get("caesura_after"),
                         1 if line.get("enjambment") else 0,
                         phon,
                     ),

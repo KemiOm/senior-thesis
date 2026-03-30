@@ -1,21 +1,16 @@
 """
-Run baseline evaluation: compute constraint-adherence metrics on corpus ground truth.
+Baseline pass: run corpus coverage metrics on ground-truth labels.
 
-Runs the evaluation metrics (meter, rhyme, CMU coverage, lineation, caesura) on:
-- Full corpus
-- Each split (train, dev, test, held_out_poets, held_out_poems)
+Computes meter, rhyme, CMU coverage, end-stopping, and caesura for the full corpus
+and for each split (train, dev, test, held_out_poets, held_out_poems) when those files exist.
 
-Saves results to evaluation/baseline_results.json. 
-Values are a reference when evaluating model outputs: 
-the corpus represents the upper bound
-of what the annotation pipeline can produce, and held-out splits show how
-coverage varies across poets and poems.
+Writes `evaluation/baseline_results.json`. Those numbers describe how complete the
+annotations are; they are a useful baseline before comparing model generations.
 
 Run from project root: python evaluation/run_baseline.py
 
-Prerequisites:
-- output/corpus.db from export_sqlite.py
-- evaluation/splits/*.json from evaluation/splits.py
+Needs `output/corpus.db` (from `python scripts/export_sqlite.py`) and
+`evaluation/splits/*.json` (from `evaluation/splits.py`).
 """
 
 import sys
@@ -41,7 +36,7 @@ def main():
     """
     if not DB_PATH.exists():
         print(f"Database not found: {DB_PATH}")
-        print("Run export_sqlite.py first.")
+        print("Run: python scripts/export_sqlite.py")
         return
 
     conn = sqlite3.connect(DB_PATH)

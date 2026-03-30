@@ -1,0 +1,1209 @@
+{
+  "model": "Qwen/Qwen2-7B-Instruct",
+  "prompt_type": "zero_shot",
+  "task": "combined",
+  "split": "test",
+  "n_samples": 200,
+  "results": [
+    {
+      "input": "\" When the cock crew, he wept, \" - smote by that eye,",
+      "gold_target": "meter:unknown|rhyme:S B T|end:1|caesura:5",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: \" When the cock crew, he wept, \" - smote by that eye,\n",
+      "model_output": "which saw his own beauty in a pool.\n\n- meter: iambic tetrameter\n- rhyme: monorhyme (oo)\n- end: 1\n- caesura: 6\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed"
+    },
+    {
+      "input": "Which looks on me, on all: that Power who bids",
+      "gold_target": "meter:unknown|rhyme:P HH B|end:0|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Which looks on me, on all: that Power who bids\n",
+      "model_output": "Answer: meter:XX|rhyme:Y|end:0|caesura:-"
+    },
+    {
+      "input": "This midnight sentinel, with clarion shrill,",
+      "gold_target": "meter:unknown|rhyme:W K R|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: This midnight sentinel, with clarion shrill,\n",
+      "model_output": "Meter: Iambic tetrameter | Rhyme: ABABCB | End: 0 | Caesura: 9\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed by a stressed syllable, and there are four feet per line."
+    },
+    {
+      "input": "( Emblem of that which shall awake the dead, )",
+      "gold_target": "meter:unknown|rhyme:L W D|end:1|caesura:9",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: ( Emblem of that which shall awake the dead, )\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:--|end:1|caesura:9"
+    },
+    {
+      "input": "Rouse souls from slumber, into thoughts of heaven.",
+      "gold_target": "meter:unknown|rhyme:T V HH|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Rouse souls from slumber, into thoughts of heaven.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:V|end:1|caesura:6"
+    },
+    {
+      "input": "Shall I too weep? Where then is fortitude?",
+      "gold_target": "meter:unknown|rhyme:N Z F|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Shall I too weep? Where then is fortitude?\n",
+      "model_output": "Output: meter:XX|rhyme:XX|end:0|caesura:-"
+    },
+    {
+      "input": "And, fortitude abandon'd, where is man?",
+      "gold_target": "meter:unknown|rhyme:W Z M|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And, fortitude abandon'd, where is man?\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:an|end:1|caesura:6"
+    },
+    {
+      "input": "I know the terms on which he sees the light:",
+      "gold_target": "meter:unknown|rhyme:HH S L|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: I know the terms on which he sees the light:\n",
+      "model_output": "Answer:\n\nmeter:XX|rhyme:light|end:0|caesura:6"
+    },
+    {
+      "input": "He that is born is listed; life is war,",
+      "gold_target": "meter:unknown|rhyme:L Z W|end:1|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: He that is born is listed; life is war,\n",
+      "model_output": "Meter: Iambic Pentameter | Rhyme: Monorhyme | End: 1 | Caesura: 5\n\nExplanation:\n- Meter: Iambic Pentameter refers to a rhythmic structure in poetry where each line consists of five pairs of syllables, with the stress falling on"
+    },
+    {
+      "input": "Eternal war with woe. Who bears it best,",
+      "gold_target": "meter:unknown|rhyme:B T B|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Eternal war with woe. Who bears it best,\n",
+      "model_output": "I know not; but I feel\nThat he's the blest who makes\nHis life his latest book.\n\nOutput: meter:XX|rhyme:XX|end:0|caesura:-"
+    },
+    {
+      "input": "Deserves it least. - On other themes I'll dwell.",
+      "gold_target": "meter:1|rhyme:IY1 L D|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Deserves it least. - On other themes I'll dwell.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:YY|end:1|caesura:-"
+    },
+    {
+      "input": "Lorenzo! let me turn my thoughts on thee,",
+      "gold_target": "meter:1|rhyme:IY1|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Lorenzo! let me turn my thoughts on thee,\n",
+      "model_output": "Meter:XX|rhyme:YY|end:0|caesura:5\n\nExplanation:\n- Meter: The pattern of stressed and unstressed syllables. Here, each pair of syllables is stressed-unstressed, indicated by 'XX'.\n- Rhyme: The phonemes that sound alike at the"
+    },
+    {
+      "input": "And thine on themes may profit; profit there",
+      "gold_target": "meter:1|rhyme:IY1 M P P|end:0|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And thine on themes may profit; profit there\n",
+      "model_output": "Answer: meter:XX|rhyme:YY|end:0|caesura:-"
+    },
+    {
+      "input": "Where most thy need: themes, too, the genuine growth",
+      "gold_target": "meter:1|rhyme:IY1 T D G|end:0|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Where most thy need: themes, too, the genuine growth\n",
+      "model_output": "Answer: meter:XX|rhyme:XX|end:0|caesura:-"
+    },
+    {
+      "input": "Of dear Philander's dust. He thus, though dead,",
+      "gold_target": "meter:unknown|rhyme:HH S D|end:1|caesura:7",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Of dear Philander's dust. He thus, though dead,\n",
+      "model_output": "Meter: 8|rhyme: 2|end: 1|caesura: 5\n\nExplanation:\n- Meter: The line has 8 syllables, which is an iambic meter (unstressed, stressed) in English poetry.\n- Rhyme: There are two rhymes in"
+    },
+    {
+      "input": "May still befriend. - What themes? Time's wondrous price,",
+      "gold_target": "meter:1|rhyme:IY1 T W P|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: May still befriend. - What themes? Time's wondrous price,\n",
+      "model_output": "Meter: 8|rhyme: 2|end: 1|caesura: 9\n\nExplanation:\n- Meter: The line has 8 syllables, which is an iambic meter (unstressed, stressed) in English poetry.\n- Rhyme: There are two rhymes in"
+    },
+    {
+      "input": "Death, friendship, and Philander's final scene.",
+      "gold_target": "meter:unknown|rhyme:F F S|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Death, friendship, and Philander's final scene.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:en|end:1|caesura:5\n\nExplanation:\n- Meter: The line has a regular iambic rhythm, with each foot consisting of an unstressed syllable followed by a stressed syllable. Since there are three feet in the line, it can"
+    },
+    {
+      "input": "So could I touch these themes as might obtain",
+      "gold_target": "meter:11|rhyme:IY1 Z M B|end:0|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: So could I touch these themes as might obtain\n",
+      "model_output": "Answer in the specified format:\nmeter:XX|rhyme:YY|end:0|caesura:-"
+    },
+    {
+      "input": "Thine ear, nor leave thy heart quite disengaged,",
+      "gold_target": "meter:1|rhyme:IY1 N L HH K D|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Thine ear, nor leave thy heart quite disengaged,\n",
+      "model_output": "Meter: Iambic tetrameter | Rhyme: ABABCB | End: 0 | Caesura: 6\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed by a stressed syllable, and there are four feet per line.\n-"
+    },
+    {
+      "input": "The good deed would delight me; half-impress",
+      "gold_target": "meter:unknown|rhyme:M HH M|end:0|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: The good deed would delight me; half-impress\n",
+      "model_output": "Answer: meter:XX|rhyme:II|end:1|caesura:6"
+    },
+    {
+      "input": "On my dark cloud an Iris; and from grief",
+      "gold_target": "meter:unknown|rhyme:N F G|end:0|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: On my dark cloud an Iris; and from grief\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:II|end:1|caesura:6"
+    },
+    {
+      "input": "Call glory. - Dost thou mourn Philander's fate?",
+      "gold_target": "meter:unknown|rhyme:M F F|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Call glory. - Dost thou mourn Philander's fate?\n",
+      "model_output": "Answer: meter:XX|rhyme:AE|end:1|caesura:6\nExplanation:\n- Meter: The line has a regular iambic pattern, with each foot consisting of an unstressed syllable followed by a stressed one. Since there are two feet in the line, it is \""
+    },
+    {
+      "input": "I know thou say'st it: says thy life the same?",
+      "gold_target": "meter:unknown|rhyme:S L S|end:1|caesura:5",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: I know thou say'st it: says thy life the same?\n",
+      "model_output": "Answer: meter:XX|rhyme:AE|end:1|caesura:6\nExplanation:\n- Meter: The line has a regular iambic tetrameter pattern, with each foot consisting of an unstressed syllable followed by a stressed one. Thus, it is \"XX\" (un"
+    },
+    {
+      "input": "- He mourns the dead who lives as they desire.",
+      "gold_target": "meter:unknown|rhyme:L Z D|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: - He mourns the dead who lives as they desire.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:Y|end:0|caesura:-"
+    },
+    {
+      "input": "Where is that thrift, that avarice of TIME,",
+      "gold_target": "meter:unknown|rhyme:V V T|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Where is that thrift, that avarice of TIME,\n",
+      "model_output": "Meter: X|rhyme: Y|end: Z|caesura: C\n\nTo analyze the given line of poetry:\n\n1. **Meter**: The meter refers to the stress pattern or type of rhythm in the line. In English poetry, common meters include iambic, trochaic, anapest"
+    },
+    {
+      "input": "( O glorious avarice! ) thought of death inspires,",
+      "gold_target": "meter:unknown|rhyme:V D N|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: ( O glorious avarice! ) thought of death inspires,\n",
+      "model_output": "Meter: 8|rhyme: 2|end: 1|caesura: 13\n\nExplanation:\n- Meter: The line has 8 syllables.\n- Rhyme: The last word \"inspires\" rhymes with the word \"aversion\" in the previous line, so it"
+    },
+    {
+      "input": "As rumour'd robberies endear our gold?",
+      "gold_target": "meter:unknown|rhyme:R N G|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: As rumour'd robberies endear our gold?\n",
+      "model_output": "Meter: Iambic pentameter | Rhyme: Monosyllabic consonant rhyme | End: 1 | Caesura: 5\n\nExplanation:\n- Meter: Iambic pentameter refers to a line of verse that has ten syllables, with an unstressed syllable followed by a"
+    },
+    {
+      "input": "O Time! than gold more sacred; more a load",
+      "gold_target": "meter:unknown|rhyme:S M L|end:0|caesura:7",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: O Time! than gold more sacred; more a load\n",
+      "model_output": "of weight to me than lead, than lead more lead.\n\nAnswer: meter:XX|rhyme:AA|end:1|caesura:-"
+    },
+    {
+      "input": "Than lead to fools; and fools reputed wise.",
+      "gold_target": "meter:unknown|rhyme:F R W|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Than lead to fools; and fools reputed wise.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:XX|end:1|caesura:6"
+    },
+    {
+      "input": "What moment granted man without account?",
+      "gold_target": "meter:unknown|rhyme:M W K|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: What moment granted man without account?\n",
+      "model_output": "Answer: meter:XX|rhyme:V|end:1|caesura:5\nExplanation:\n- Meter: The line has a regular pattern of stressed and unstressed syllables, with two stresses per foot. This is represented as XX.\n- Rhyme: The line does not rhyme with any other"
+    },
+    {
+      "input": "What years are squander'd, Wisdom's debt unpaid!",
+      "gold_target": "meter:unknown|rhyme:W D N|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: What years are squander'd, Wisdom's debt unpaid!\n",
+      "model_output": "Answer: meter:XX|rhyme:Y|end:1|caesura:6\nExplanation:\n- Meter: The line has a regular iambic tetrameter pattern, with each foot consisting of an unstressed syllable followed by a stressed one. Thus, it is \"XX\" (un"
+    },
+    {
+      "input": "Our wealth in days all due to that discharge.",
+      "gold_target": "meter:unknown|rhyme:T T D|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Our wealth in days all due to that discharge.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:AABB|end:0|caesura:-"
+    },
+    {
+      "input": "Haste, haste, he lies in wait, he's at the door,",
+      "gold_target": "meter:unknown|rhyme:HH T D|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Haste, haste, he lies in wait, he's at the door,\n",
+      "model_output": "Haste, haste, he'll soon be there, he's on the floor.\n\nStep 1: Analyze the meter\nThe meter of a line refers to the rhythmic structure. In English poetry, it is often described by the number and position of stressed syllables. Here, both lines have a consistent pattern"
+    },
+    {
+      "input": "Insidious Death! should his strong hand arrest,",
+      "gold_target": "meter:unknown|rhyme:S HH R|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Insidious Death! should his strong hand arrest,\n",
+      "model_output": "Meter: iambic tetrameter | rhyme: monosyllabic | end: 1 | caesura: 5\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed by a stressed syllable, and there are four feet in the line."
+    },
+    {
+      "input": "No composition sets the prisoner free.",
+      "gold_target": "meter:unknown|rhyme:S P F|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: No composition sets the prisoner free.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:ee|end:1|caesura:-"
+    },
+    {
+      "input": "Eternity's inexorable chain",
+      "gold_target": "meter:unknown|rhyme:T N T|end:0|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Eternity's inexorable chain\n",
+      "model_output": "meter:XX|rhyme:Y|end:0|caesura:6\n\nExplanation:\n- Meter: The line has a regular pattern of stressed and unstressed syllables. \"Inexorable\" is the only stressed syllable in the first half, followed by an unstressed syllable (\"in\")"
+    },
+    {
+      "input": "Fast binds; and vengeance claims the full arrear.",
+      "gold_target": "meter:unknown|rhyme:K F R|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Fast binds; and vengeance claims the full arrear.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:arrear|end:0|caesura:6"
+    },
+    {
+      "input": "How late I shudder'd on the brink! how late",
+      "gold_target": "meter:unknown|rhyme:B HH L|end:0|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: How late I shudder'd on the brink! how late\n",
+      "model_output": "Answer: meter:XX|rhyme:YY|end:0|caesura:6"
+    },
+    {
+      "input": "Life call'd for her last refuge in despair!",
+      "gold_target": "meter:unknown|rhyme:R N D|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Life call'd for her last refuge in despair!\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:AA|end:0|caesura:6"
+    },
+    {
+      "input": "That time is mine, O Mead, to thee I owe;",
+      "gold_target": "meter:1|rhyme:IY1|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: That time is mine, O Mead, to thee I owe;\n",
+      "model_output": "Meter: iambic tetrameter | Rhyme: open syllable rhyme | End: 1 | Caesura: 4\n\nExplanation:\n- Meter: iambic tetrameter means the line has four feet, each foot consisting of an unstressed syllable followed by a stressed syllable. The"
+    },
+    {
+      "input": "Fain would I pay thee with eternity.",
+      "gold_target": "meter:1|rhyme:IY1 W T|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Fain would I pay thee with eternity.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:YY|end:0|caesura:-"
+    },
+    {
+      "input": "But ill my genius answers my desire;",
+      "gold_target": "meter:unknown|rhyme:N M D|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: But ill my genius answers my desire;\n",
+      "model_output": "Answer: meter:XX|rhyme:II|end:1|caesura:6"
+    },
+    {
+      "input": "My sickly song is mortal, past thy cure.",
+      "gold_target": "meter:unknown|rhyme:M P K|end:1|caesura:5",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: My sickly song is mortal, past thy cure.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:oo|end:1|caesura:6"
+    },
+    {
+      "input": "Accept the will; - it dies not with my strain.",
+      "gold_target": "meter:unknown|rhyme:W M S|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Accept the will; - it dies not with my strain.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:an|end:1|caesura:6"
+    },
+    {
+      "input": "For what calls thy disease, Lorenzo? Not",
+      "gold_target": "meter:unknown|rhyme:D L N|end:0|caesura:5",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: For what calls thy disease, Lorenzo? Not\n",
+      "model_output": "meter:XX|rhyme:NN|end:1|caesura:6\n\nExplanation:\n- Meter: The line has a regular pattern of stressed and unstressed syllables. \"For\" is unstressed, \"what\" is stressed, \"calls\" is unstressed, \"thy\" is stressed,"
+    },
+    {
+      "input": "For Aesculapian, but for moral aid.",
+      "gold_target": "meter:1|rhyme:IY1 B F M D|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: For Aesculapian, but for moral aid.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:ad|end:1|caesura:6"
+    },
+    {
+      "input": "Thou think'st it folly to be wise too soon.",
+      "gold_target": "meter:unknown|rhyme:W T S|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Thou think'st it folly to be wise too soon.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:unstressed syllable|end:0|caesura:6\n\nExplanation:\n- Meter: The line has a regular iambic rhythm, with each foot consisting of an unstressed syllable followed by a stressed syllable. Since there are two feet in the"
+    },
+    {
+      "input": "Youth is not rich in time, it may be poor;",
+      "gold_target": "meter:unknown|rhyme:M B P|end:1|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Youth is not rich in time, it may be poor;\n",
+      "model_output": "Meter: iambic tetrameter | Rhyme: monosyllabic | End: 1 | Caesura: 5\n\nExplanation:\n- Meter: Iambic tetrameter means the line has four feet, each foot consisting of an unstressed syllable followed by a stressed syllable. The"
+    },
+    {
+      "input": "Part with it as with money, sparing; pay",
+      "gold_target": "meter:unknown|rhyme:M S P|end:0|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Part with it as with money, sparing; pay\n",
+      "model_output": "Answer: meter:XX|rhyme:Y|end:0|caesura:-"
+    },
+    {
+      "input": "No moment but in purchase of its worth;",
+      "gold_target": "meter:unknown|rhyme:V T W|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: No moment but in purchase of its worth;\n",
+      "model_output": "Meter: iambic pentameter | Rhyme: monosyllabic consonant | End: 1 | Caesura: 5\n\nExplanation:\n- Meter: Iambic pentameter refers to a rhythmic structure in poetry where each line consists of five pairs of syllables, with the stress"
+    },
+    {
+      "input": "And what its worth, ask death-beds; they can tell.",
+      "gold_target": "meter:unknown|rhyme:B K T|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And what its worth, ask death-beds; they can tell.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:|end:1|caesura:6"
+    },
+    {
+      "input": "Part with it as with life, reluctant; big",
+      "gold_target": "meter:unknown|rhyme:L R B|end:0|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Part with it as with life, reluctant; big\n",
+      "model_output": "Answer: meter:XX|rhyme:G|end:0|caesura:5\n\nExplanation:\n- Meter: The line has a regular pattern of stressed and unstressed syllables. \"Part\" and \"reluctant\" are stressed, while \"with\" and \"as\" are unstressed."
+    },
+    {
+      "input": "With holy hope of nobler time to come;",
+      "gold_target": "meter:unknown|rhyme:T T K|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: With holy hope of nobler time to come;\n",
+      "model_output": "Meter: Iambic pentameter | Rhyme: Monosyllabic consonant | End: 1 | Caesura: 5\n\nExplanation:\n- Meter: Iambic pentameter refers to a rhythmic structure in poetry where each line consists of five pairs of syllables, with the stress"
+    },
+    {
+      "input": "Time higher-aim'd, still nearer the great mark",
+      "gold_target": "meter:unknown|rhyme:N G M|end:0|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Time higher-aim'd, still nearer the great mark\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:XX|end:0|caesura:-"
+    },
+    {
+      "input": "Of men and angels, virtue more divine.",
+      "gold_target": "meter:unknown|rhyme:V M D|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Of men and angels, virtue more divine.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:II|end:0|caesura:6"
+    },
+    {
+      "input": "Is this our duty, wisdom, glory, gain?",
+      "gold_target": "meter:unknown|rhyme:W G G|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Is this our duty, wisdom, glory, gain?\n",
+      "model_output": "Answer: meter:XX|rhyme:Y|end:1|caesura:5\nExplanation:\n- Meter: The stress pattern is 'XX', indicating a trochaic tetrameter.\n- Rhyme: The line does not rhyme phonetically, so it's 'Y'.\n- End: The"
+    },
+    {
+      "input": "( These Heaven benign in vital union binds: )",
+      "gold_target": "meter:1|rhyme:IY1 HH B N V Y B|end:1|caesura:8",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: ( These Heaven benign in vital union binds: )\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:-|end:1|caesura:8"
+    },
+    {
+      "input": "And sport we like the natives of the bough,",
+      "gold_target": "meter:unknown|rhyme:N V B|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And sport we like the natives of the bough,\n",
+      "model_output": "Meter: Iambic tetrameter | Rhyme: ABAB | End: 0 | Caesura: 5\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed by a stressed syllable, and there are four feet in the line.\n-"
+    },
+    {
+      "input": "When vernal suns inspire? Amusement reigns",
+      "gold_target": "meter:unknown|rhyme:N M R|end:0|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: When vernal suns inspire? Amusement reigns\n",
+      "model_output": "Answer: meter:XX|rhyme:AA|end:0|caesura:6\n\nExplanation:\n- Meter: The line has a regular pattern of stressed and unstressed syllables. \"Ver\" is stressed, \"spr\" is unstressed, \"ins\" is stressed, \"ins\" is unst"
+    },
+    {
+      "input": "Man's great demand: to trifle is to live:",
+      "gold_target": "meter:unknown|rhyme:Z T L|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Man's great demand: to trifle is to live:\n",
+      "model_output": "meter:XX|rhyme:YY|end:0|caesura:6\n\nExplanation:\n\n- Meter: The stress pattern is \"XX\", indicating a trochaic meter where the first syllable is stressed and followed by an unstressed syllable.\n- Rhyme: There is no direct rhyme in this"
+    },
+    {
+      "input": "And is it then a trifle, too, to die?",
+      "gold_target": "meter:unknown|rhyme:T T D|end:1|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And is it then a trifle, too, to die?\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:YY|end:0|caesura:-"
+    },
+    {
+      "input": "Thou say'st I preach, Lorenzo! 'T is confess'd.",
+      "gold_target": "meter:unknown|rhyme:T Z K|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Thou say'st I preach, Lorenzo! 'T is confess'd.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:XX|end:0|caesura:6"
+    },
+    {
+      "input": "What, if, for once, I preach thee quite awake?",
+      "gold_target": "meter:1|rhyme:IY1 K W|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: What, if, for once, I preach thee quite awake?\n",
+      "model_output": "Answer: meter:XX|rhyme:XX|end:0|caesura:4\nExplanation:\n- Meter: The line has a regular iambic rhythm, with each foot consisting of an unstressed syllable followed by a stressed one. Since there are two feet per half-rhyme, the"
+    },
+    {
+      "input": "Who wants amusement in the flame of battle?",
+      "gold_target": "meter:unknown|rhyme:F V B|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Who wants amusement in the flame of battle?\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:MM|end:0|caesura:-"
+    },
+    {
+      "input": "Is it not treason to the soul immortal,",
+      "gold_target": "meter:unknown|rhyme:T S M|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Is it not treason to the soul immortal,\n",
+      "model_output": "To seek a life of ease and worldly gold?\n\nStep 1: Identify meter\nThe line has an iambic rhythm, with unstressed syllables followed by stressed ones. The pattern is unstressed-stressed (U-S) repeated throughout the line.\n\nStep 2: Identify rhyme\nThe last word in each"
+    },
+    {
+      "input": "Her foes in arms, eternity the prize?",
+      "gold_target": "meter:unknown|rhyme:M T P|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Her foes in arms, eternity the prize?\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:Y|end:1|caesura:6"
+    },
+    {
+      "input": "Will toys amuse when medicines cannot cure?",
+      "gold_target": "meter:unknown|rhyme:M K K|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Will toys amuse when medicines cannot cure?\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:NN|end:1|caesura:-"
+    },
+    {
+      "input": "When spirits ebb, when life's enchanting scenes",
+      "gold_target": "meter:unknown|rhyme:L N S|end:0|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: When spirits ebb, when life's enchanting scenes\n",
+      "model_output": "Answer: meter:XX|rhyme:Y|end:0|caesura:-"
+    },
+    {
+      "input": "Their lustre lose, and lessen in our sight,",
+      "gold_target": "meter:unknown|rhyme:L N S|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Their lustre lose, and lessen in our sight,\n",
+      "model_output": "Meter: Iambic Pentameter | Rhyme: Monorhyme | End: 1 | Caesura: 5\n\nExplanation:\n- Meter: Iambic Pentameter refers to a rhythmic structure where each foot is an unstressed syllable followed by a stressed syllable, and there"
+    },
+    {
+      "input": "( As lands and cities with their glittering spires,",
+      "gold_target": "meter:unknown|rhyme:W G S|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: ( As lands and cities with their glittering spires,\n",
+      "model_output": "Meter: 8|rhyme: 0|end: 0|caesura: 12\nExplanation:\n- Meter: The line has 8 syllables.\n- Rhyme: There is no specific rhyme in the line as it doesn't follow a traditional rhyme scheme.\n- End: The line"
+    },
+    {
+      "input": "To the poor shatter'd bark, by sudden storm",
+      "gold_target": "meter:unknown|rhyme:B S S|end:0|caesura:5",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: To the poor shatter'd bark, by sudden storm\n",
+      "model_output": "Answer: meter:XX|rhyme:MM|end:0|caesura:6"
+    },
+    {
+      "input": "- Thrown off to sea, and soon to perish there, )",
+      "gold_target": "meter:unknown|rhyme:S T P|end:1|caesura:5",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: - Thrown off to sea, and soon to perish there, )\n",
+      "model_output": "- meter: iambic pentameter | rhyme: monosyllabic consonant | end: 1 | caesura: 5\n- meter: iambic pentameter | rhyme: monosyllabic consonant | end: 1 | caesura: 5"
+    },
+    {
+      "input": "Will toys amuse? No; thrones will then be toys,",
+      "gold_target": "meter:unknown|rhyme:N B T|end:1|caesura:5",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Will toys amuse? No; thrones will then be toys,\n",
+      "model_output": "Meter: Iambic tetrameter | Rhyme: Monosyllabic | End: 1 | Caesura: 4\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed by a stressed syllable, and there are four feet in the line"
+    },
+    {
+      "input": "And earth and skies seem dust upon the scale.",
+      "gold_target": "meter:unknown|rhyme:D P S|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And earth and skies seem dust upon the scale.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:XX|end:0|caesura:-"
+    },
+    {
+      "input": "Redeem we time? - Its loss we dearly buy.",
+      "gold_target": "meter:unknown|rhyme:W D B|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Redeem we time? - Its loss we dearly buy.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:Y|end:1|caesura:6"
+    },
+    {
+      "input": "What pleads Lorenzo for his high-prized sports?",
+      "gold_target": "meter:unknown|rhyme:HH P S|end:1|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: What pleads Lorenzo for his high-prized sports?\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:Y|end:0|caesura:-"
+    },
+    {
+      "input": "He pleads time's numerous blanks; he loudly pleads",
+      "gold_target": "meter:unknown|rhyme:HH L P|end:0|caesura:5",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: He pleads time's numerous blanks; he loudly pleads\n",
+      "model_output": "Answer: meter:XX|rhyme:XX|end:0|caesura:9"
+    },
+    {
+      "input": "The straw-like trifles on life's common stream.",
+      "gold_target": "meter:unknown|rhyme:L K S|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: The straw-like trifles on life's common stream.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:em|end:0|caesura:9\n\nExplanation:\n- Meter: XX indicates a trochaic meter, where the stress falls on the second syllable of each foot. In this case, there are two feet per word, so it's a trocha"
+    },
+    {
+      "input": "From whom those blanks and trifles but from thee?",
+      "gold_target": "meter:1|rhyme:IY1|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: From whom those blanks and trifles but from thee?\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:ee|end:0|caesura:-"
+    },
+    {
+      "input": "No blank, no trifle, Nature made, or meant.",
+      "gold_target": "meter:unknown|rhyme:N M M|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: No blank, no trifle, Nature made, or meant.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:nt|end:0|caesura:-"
+    },
+    {
+      "input": "Virtue, or purposed virtue, still be thine;",
+      "gold_target": "meter:unknown|rhyme:S B N|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Virtue, or purposed virtue, still be thine;\n",
+      "model_output": "Answer: meter:XX|rhyme:in|end:0|caesura:8"
+    },
+    {
+      "input": "This cancels thy complaint at once; this leaves",
+      "gold_target": "meter:unknown|rhyme:W S L|end:0|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: This cancels thy complaint at once; this leaves\n",
+      "model_output": "meter:XX|rhyme:CC|end:0|caesura:6\n\nExplanation:\n- Meter: The line has a regular pattern of stressed and unstressed syllables. \"This\" is unstressed, \"cancels\" is stressed, \"thy\" is unstressed, \"complaint\""
+    },
+    {
+      "input": "In act no trifle, and no blank in time.",
+      "gold_target": "meter:unknown|rhyme:B N T|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: In act no trifle, and no blank in time.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:XX|end:0|caesura:-"
+    },
+    {
+      "input": "This greatens, fills, immortalizes all;",
+      "gold_target": "meter:unknown|rhyme:F M L|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: This greatens, fills, immortalizes all;\n",
+      "model_output": "Output: meter:XX|rhyme:all|end:1|caesura:5\n\nExplanation:\n- Meter: The line has a regular pattern of stressed and unstressed syllables. \"This\" is unstressed, \"greatens\" is stressed, \"fills\" is unstressed, \"immortal"
+    },
+    {
+      "input": "This the blest art of turning all to gold;",
+      "gold_target": "meter:unknown|rhyme:L T G|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: This the blest art of turning all to gold;\n",
+      "model_output": "Answer: meter:XX|rhyme:Gg|end:1|caesura:8"
+    },
+    {
+      "input": "This the good heart's prerogative to raise",
+      "gold_target": "meter:unknown|rhyme:P T R|end:0|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: This the good heart's prerogative to raise\n",
+      "model_output": "This line of poetry has the following characteristics:\n\n- Meter: The meter of this line is iambic tetrameter. Each foot consists of an unstressed syllable followed by a stressed syllable, and there are four feet in the line.\n- Rhyme: The rhyme scheme for this line is not specified,"
+    },
+    {
+      "input": "A royal tribute from the poorest hours;",
+      "gold_target": "meter:unknown|rhyme:F P Z|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: A royal tribute from the poorest hours;\n",
+      "model_output": "Meter: Iambic tetrameter | Rhyme: Monosyllabic | End: 1 | Caesura: 8\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed by a stressed syllable, and there are four feet per line."
+    },
+    {
+      "input": "Immense revenue! every moment pays.",
+      "gold_target": "meter:unknown|rhyme:V M P|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Immense revenue! every moment pays.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:YY|end:1|caesura:-"
+    },
+    {
+      "input": "If nothing more than purpose in thy power,",
+      "gold_target": "meter:unknown|rhyme:P N P|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: If nothing more than purpose in thy power,\n",
+      "model_output": "Meter: Iambic Pentameter | Rhyme: Monorhyme | End: 0 | Caesura: 5\n\nExplanation:\n- Meter: Iambic Pentameter refers to a rhythmic structure where each foot is an unstressed syllable followed by a stressed syllable, and there"
+    },
+    {
+      "input": "Thy purpose firm is equal to the deed:",
+      "gold_target": "meter:1|rhyme:IY1 T D|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Thy purpose firm is equal to the deed:\n",
+      "model_output": "meter:XX|rhyme:YY|end:0|caesura:-"
+    },
+    {
+      "input": "Who does the best his circumstance allows,",
+      "gold_target": "meter:unknown|rhyme:HH S L|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Who does the best his circumstance allows,\n",
+      "model_output": "Meter: 8|rhyme: 2|end: 0|caesura: 9\n\nExplanation:\n- Meter: The line has a total of 8 syllables, which is an iambic meter (unstressed, stressed) in English poetry.\n- Rhyme: There are two"
+    },
+    {
+      "input": "Does well, acts nobly; angels could no more.",
+      "gold_target": "meter:unknown|rhyme:K N M|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Does well, acts nobly; angels could no more.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:O|end:1|caesura:5"
+    },
+    {
+      "input": "Our outward act, indeed, admits restraint;",
+      "gold_target": "meter:unknown|rhyme:N D R|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Our outward act, indeed, admits restraint;\n",
+      "model_output": "Meter: iambic pentameter | Rhyme: monosyllabic | End: 1 | Caesura: 5\n\nExplanation:\n- Meter: Iambic pentameter refers to a rhythmic structure in poetry where each line consists of five pairs of syllables, with the stress falling on"
+    },
+    {
+      "input": "'T is not in things o'er thought to domineer.",
+      "gold_target": "meter:unknown|rhyme:T T D|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: 'T is not in things o'er thought to domineer.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:er|end:0|caesura:8"
+    },
+    {
+      "input": "Guard well thy thought; our thoughts are heard in heaven.",
+      "gold_target": "meter:unknown|rhyme:HH N HH|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Guard well thy thought; our thoughts are heard in heaven.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:V|end:0|caesura:6"
+    },
+    {
+      "input": "On all-important time, through every age,",
+      "gold_target": "meter:unknown|rhyme:R V D|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: On all-important time, through every age,\n",
+      "model_output": "Meter: Iambic tetrameter | Rhyme: AABBCC | End: 0 | Caesura: 8\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed by a stressed syllable, and there are four feet per line.\n- Rh"
+    },
+    {
+      "input": "Though much, and warm, the wise have urged, the man",
+      "gold_target": "meter:unknown|rhyme:HH D M|end:0|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Though much, and warm, the wise have urged, the man\n",
+      "model_output": "Answer: meter:XX|rhyme:0|end:0|caesura:6"
+    },
+    {
+      "input": "Is yet unborn who duly weighs an hour.",
+      "gold_target": "meter:unknown|rhyme:D W N|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Is yet unborn who duly weighs an hour.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:O|end:1|caesura:6"
+    },
+    {
+      "input": "\" I've lost a day \" - the prince who nobly cried,",
+      "gold_target": "meter:unknown|rhyme:HH N K|end:1|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: \" I've lost a day \" - the prince who nobly cried,\n",
+      "model_output": "Meter: 8|rhyme: 2|end: 1|caesura: 6\n\nExplanation:\n- Meter: The line has 8 syllables.\n- Rhyme: The last word of each stanza rhymes, so it's a class rhyme. There are two distinct rhyming words"
+    },
+    {
+      "input": "Had been an emperor without his crown;",
+      "gold_target": "meter:unknown|rhyme:W HH K|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Had been an emperor without his crown;\n",
+      "model_output": "Meter: iambic pentameter | Rhyme: monosyllabic | End: 1 | Caesura: 6\n\nExplanation:\n- Meter: Iambic pentameter refers to a rhythmic structure in poetry where each line consists of five pairs of syllables, with the stress falling on"
+    },
+    {
+      "input": "\" Of Rome? \" say, rather, lord of human race:",
+      "gold_target": "meter:unknown|rhyme:V HH R|end:1|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: \" Of Rome? \" say, rather, lord of human race:\n",
+      "model_output": "meter:XX|rhyme:-|end:1|caesura:5\n\nExplanation:\n\n- Meter: The line has a regular pattern of stressed and unstressed syllables. In this case, it's a simple dactylic meter (XX) where the first syllable is stressed and the second is"
+    },
+    {
+      "input": "He spoke as if deputed by mankind.",
+      "gold_target": "meter:unknown|rhyme:D B M|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: He spoke as if deputed by mankind.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:Y|end:0|caesura:6"
+    },
+    {
+      "input": "So should all speak: so Reason speaks in all.",
+      "gold_target": "meter:unknown|rhyme:S N L|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: So should all speak: so Reason speaks in all.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:all|end:0|caesura:-"
+    },
+    {
+      "input": "From the soft whispers of that god in man,",
+      "gold_target": "meter:unknown|rhyme:G N M|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: From the soft whispers of that god in man,\n",
+      "model_output": "Meter: Iambic tetrameter | Rhyme: Monosyllabic | End: 1 | Caesura: 6\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed by a stressed syllable, and there are four feet per line."
+    },
+    {
+      "input": "Why fly to Folly, why to Frenzy fly,",
+      "gold_target": "meter:unknown|rhyme:T F F|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Why fly to Folly, why to Frenzy fly,\n",
+      "model_output": "Why seek the sun when shadows lie?\n\nAnswer: meter:XX|rhyme:YY|end:1|caesura:5\nExplanation:\n- Meter: The line has a regular iambic rhythm, with each foot consisting of an unstressed syllable followed by a stressed one. Since there are two"
+    },
+    {
+      "input": "For rescue from the blessing we possess?",
+      "gold_target": "meter:unknown|rhyme:B W P|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: For rescue from the blessing we possess?\n",
+      "model_output": "Answer: meter:XX|rhyme:XX|end:1|caesura:-"
+    },
+    {
+      "input": "Time, the supreme! - time is eternity;",
+      "gold_target": "meter:unknown|rhyme:T Z T|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Time, the supreme! - time is eternity;\n",
+      "model_output": "Meter: Iambic tetrameter | Rhyme: Monosyllabic | End: 1 | Caesura: 4\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed by a stressed syllable, and there are four feet in the line"
+    },
+    {
+      "input": "Pregnant with all eternity can give;",
+      "gold_target": "meter:unknown|rhyme:T K G|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Pregnant with all eternity can give;\n",
+      "model_output": "Meter: 8|rhyme: 2|end: 1|caesura: 9\n\nExplanation:\n- Meter: The line has 8 syllables and follows a pattern of stressed-unstressed syllables, which is typical for iambic meter in English.\n- Rhyme: The last"
+    },
+    {
+      "input": "Pregnant with all that makes archangels smile.",
+      "gold_target": "meter:unknown|rhyme:M T S|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Pregnant with all that makes archangels smile.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:ill|end:0|caesura:-"
+    },
+    {
+      "input": "Who murders time, he crushes in the birth",
+      "gold_target": "meter:unknown|rhyme:K N B|end:0|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Who murders time, he crushes in the birth\n",
+      "model_output": "meter:XX|rhyme:YY|end:0|caesura:-"
+    },
+    {
+      "input": "A power ethereal, only not adored.",
+      "gold_target": "meter:1|rhyme:IY1 N N D|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: A power ethereal, only not adored.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:0|end:1|caesura:6"
+    },
+    {
+      "input": "Ah! how unjust to Nature and himself",
+      "gold_target": "meter:unknown|rhyme:N N HH|end:0|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Ah! how unjust to Nature and himself\n",
+      "model_output": "Answer: meter:XX|rhyme:Y|end:1|caesura:6"
+    },
+    {
+      "input": "Is thoughtless, thankless, inconsistent man!",
+      "gold_target": "meter:unknown|rhyme:K N M|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Is thoughtless, thankless, inconsistent man!\n",
+      "model_output": "Answer: meter:XX|rhyme:an|end:0|caesura:6\nExplanation:\n- Meter: The stress pattern is 'XX', indicating a trochaic tetrameter.\n- Rhyme: The line rhymes on the word 'man'.\n- End: There is no punctuation at"
+    },
+    {
+      "input": "Like children babbling nonsense in their sports,",
+      "gold_target": "meter:unknown|rhyme:N N S|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Like children babbling nonsense in their sports,\n",
+      "model_output": "Meter: 8|rhyme: 2|end: 1|caesura: 13\n\nExplanation:\n- Meter: The line has a total of 8 syllables, which is an iambic meter (unstressed, stressed).\n- Rhyme: There are two rhymes in"
+    },
+    {
+      "input": "We censure Nature for a span too short;",
+      "gold_target": "meter:unknown|rhyme:S T T|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: We censure Nature for a span too short;\n",
+      "model_output": "Meter: iambic tetrameter | Rhyme: monosyllabic | End: 1 | Caesura: 4\n\nExplanation:\n- Meter: Iambic tetrameter means the line has four feet, each foot consisting of an unstressed syllable followed by a stressed syllable. The"
+    },
+    {
+      "input": "That span too short we tax as tedious too;",
+      "gold_target": "meter:unknown|rhyme:Z T T|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: That span too short we tax as tedious too;\n",
+      "model_output": "Meter: Iambic pentameter | Rhyme: Monorhyme | End: 1 | Caesura: 5\n\nExplanation:\n- Meter: Iambic pentameter refers to a rhythmic structure in poetry where each line consists of five pairs of syllables, with the stress falling on"
+    },
+    {
+      "input": "Torture invention, all expedients tire,",
+      "gold_target": "meter:unknown|rhyme:L K T|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Torture invention, all expedients tire,\n",
+      "model_output": "meter:XX|rhyme:YY|end:0|caesura:-"
+    },
+    {
+      "input": "To lash the lingering moments into speed,",
+      "gold_target": "meter:unknown|rhyme:M N S|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: To lash the lingering moments into speed,\n",
+      "model_output": "Meter: Iambic tetrameter | Rhyme: ABAB | End: 1 | Caesura: 6\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed by a stressed syllable, and there are four feet per line. \n-"
+    },
+    {
+      "input": "And whirl us ( happy riddance! ) from ourselves.",
+      "gold_target": "meter:unknown|rhyme:R F S|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And whirl us ( happy riddance! ) from ourselves.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:r|end:1|caesura:5"
+    },
+    {
+      "input": "Art, brainless Art! our furious charioteer,",
+      "gold_target": "meter:unknown|rhyme:T F T|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Art, brainless Art! our furious charioteer,\n",
+      "model_output": "Meter: iambic tetrameter | rhyme: monosyllabic | end: 1 | caesura: 9\n\nExplanation:\n- Meter: Iambic tetrameter means the line has four feet, each foot consisting of an unstressed syllable followed by a stressed syllable. The pattern"
+    },
+    {
+      "input": "( For Nature's voice unstifled would recall, )",
+      "gold_target": "meter:unknown|rhyme:N W R|end:1|caesura:7",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: ( For Nature's voice unstifled would recall, )\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:0|end:1|caesura:8"
+    },
+    {
+      "input": "Drives headlong towards the precipice of death;",
+      "gold_target": "meter:unknown|rhyme:P V D|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Drives headlong towards the precipice of death;\n",
+      "model_output": "Meter: iambic pentameter | Rhyme: no rhyme | End: 1 | Caesura: 9\n\nExplanation:\n- Meter: Iambic pentameter refers to a rhythmic structure in poetry where each line consists of five pairs of syllables, with an unstressed syllable followed"
+    },
+    {
+      "input": "Death, most our dread; death thus more dreadful made.",
+      "gold_target": "meter:unknown|rhyme:M D M|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Death, most our dread; death thus more dreadful made.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:AA|end:0|caesura:6\n\nExplanation:\n- Meter: The line follows a simple meter where each word has one stress. \"Death\" and \"dread\" have the stress on the first syllable, while \"thus\" and \"made\""
+    },
+    {
+      "input": "O what a riddle of absurdity!",
+      "gold_target": "meter:unknown|rhyme:R V B|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: O what a riddle of absurdity!\n",
+      "model_output": "Answer: meter:XX|rhyme:Y|end:1|caesura:6"
+    },
+    {
+      "input": "Leisure is pain; takes off our chariot-wheels;",
+      "gold_target": "meter:unknown|rhyme:F T W|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Leisure is pain; takes off our chariot-wheels;\n",
+      "model_output": "meter:XX|rhyme:AA|end:0|caesura:8\n\nExplanation:\n- Meter: The line has a regular pattern of stressed and unstressed syllables. \"Leisure\" and \"pain\" have the same stress pattern, while \"takes\" and \"off\" are unstressed."
+    },
+    {
+      "input": "How heavily we drag the load of life!",
+      "gold_target": "meter:unknown|rhyme:L V L|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: How heavily we drag the load of life!\n",
+      "model_output": "Answer: meter:XX|rhyme:IV|end:1|caesura:6\nExplanation:\n- Meter: XX indicates a trochaic tetrameter, where each foot has a stressed-unstressed syllable pattern. In this case, there are four feet in the line.\n- Rhyme"
+    },
+    {
+      "input": "Blest leisure is our curse; like that of Cain,",
+      "gold_target": "meter:unknown|rhyme:T V K|end:1|caesura:5",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Blest leisure is our curse; like that of Cain,\n",
+      "model_output": "Meter: Iambic tetrameter | Rhyme: ABABCB | End: 1 | Caesura: 4\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed by a stressed syllable, and there are four feet per line.\n-"
+    },
+    {
+      "input": "It makes us wander; wander earth around",
+      "gold_target": "meter:unknown|rhyme:W W R|end:0|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: It makes us wander; wander earth around\n",
+      "model_output": "Answer: meter:XX|rhyme:2nd|end:0|caesura:5\n\nExplanation:\n- Meter: The line has a regular pattern of stressed and unstressed syllables. \"It\" is unstressed, \"makes\" is stressed, \"us\" is unstressed, \"wander"
+    },
+    {
+      "input": "To fly that tyrant, Thought. As Atlas groan'd",
+      "gold_target": "meter:unknown|rhyme:Z T G|end:0|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: To fly that tyrant, Thought. As Atlas groan'd\n",
+      "model_output": "Answer in the format: meter:X|rhyme:Y|end:Z|caesura:C\n\nmeter:XX|rhyme:YY|end:0|caesura:5"
+    },
+    {
+      "input": "The world beneath, we groan beneath an hour.",
+      "gold_target": "meter:unknown|rhyme:G B N|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: The world beneath, we groan beneath an hour.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:oo|end:1|caesura:6"
+    },
+    {
+      "input": "We cry for mercy to the next amusement;",
+      "gold_target": "meter:unknown|rhyme:T N M|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: We cry for mercy to the next amusement;\n",
+      "model_output": "Meter: 8|rhyme: 2|end: 1|caesura: 9\n\nExplanation:\n- Meter: The line has eight syllables and follows a pattern of stressed-unstressed syllables, which is typical of iambic meter in English.\n- Rhyme: There are two"
+    },
+    {
+      "input": "The next amusement mortgages our fields;",
+      "gold_target": "meter:unknown|rhyme:M M F|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: The next amusement mortgages our fields;\n",
+      "model_output": "Answer: meter:XX|rhyme:|end:1|caesura:6"
+    },
+    {
+      "input": "Slight inconvenience! Prisons hardly frown,",
+      "gold_target": "meter:unknown|rhyme:P HH F|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Slight inconvenience! Prisons hardly frown,\n",
+      "model_output": "Meter:XX|rhyme:YY|end:1|caesura:5\n\nExplanation:\n- Meter: The pattern of stressed and unstressed syllables. Here, each pair of words has a stressed syllable followed by an unstressed one, hence XX.\n- Rhyme: The phonemes that sound"
+    },
+    {
+      "input": "From hateful time if prisons set us free.",
+      "gold_target": "meter:unknown|rhyme:S S F|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: From hateful time if prisons set us free.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:YY|end:0|caesura:-"
+    },
+    {
+      "input": "Yet when Death kindly tenders us relief,",
+      "gold_target": "meter:unknown|rhyme:T S R|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Yet when Death kindly tenders us relief,\n",
+      "model_output": "Meter: Iambic tetrameter | Rhyme: ABABCB | End: 1 | Caesura: 6\n\nExplanation:\n- Meter: Iambic tetrameter means the line has four feet, each foot consisting of an unstressed syllable followed by a stressed syllable. The pattern"
+    },
+    {
+      "input": "We call him cruel: years to moments shrink,",
+      "gold_target": "meter:unknown|rhyme:T M R|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: We call him cruel: years to moments shrink,\n",
+      "model_output": "Meter: 8|rhyme:2|end:0|caesura:6\n\nExplanation:\n- Meter: The line has 8 syllables, with the stress pattern being \"We call him cruel: years to moments shrink,\" which follows a pattern of unstressed-stressed syllables. This is an"
+    },
+    {
+      "input": "Ages to years. The telescope is turn'd.",
+      "gold_target": "meter:unknown|rhyme:T Z T|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Ages to years. The telescope is turn'd.\n",
+      "model_output": "Output: meter:XX|rhyme:Y|end:1|caesura:-"
+    },
+    {
+      "input": "To man's false optics ( from his folly false )",
+      "gold_target": "meter:unknown|rhyme:HH F F|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: To man's false optics ( from his folly false )\n",
+      "model_output": "To analyze the given line of poetry, we need to break it down into its components:\n\n1. Meter: The meter refers to the stress pattern or type of rhythm in the line. In English poetry, meter is typically described using a combination of feet (each foot consisting of one stressed syllable followed by an unstressed"
+    },
+    {
+      "input": "Time, in advance, behind him hides his wings,",
+      "gold_target": "meter:unknown|rhyme:HH HH W|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Time, in advance, behind him hides his wings,\n",
+      "model_output": "Meter: Iambic tetrameter | Rhyme: Monosyllabic | End: 1 | Caesura: 6\n\nExplanation:\n- Meter: Iambic tetrameter means the line has four feet, each foot consisting of an unstressed syllable followed by a stressed syllable. The"
+    },
+    {
+      "input": "And seems to creep, decrepit with his age.",
+      "gold_target": "meter:unknown|rhyme:W HH D|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And seems to creep, decrepit with his age.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:Gg|end:1|caesura:6"
+    },
+    {
+      "input": "Behold him, when pass'd by; what then is seen",
+      "gold_target": "meter:unknown|rhyme:N Z S|end:0|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Behold him, when pass'd by; what then is seen\n",
+      "model_output": "Answer in the specified format:\nmeter:XX-X|rhyme:Y|end:0|caesura:6\n\nExplanation:\n- Meter: The line has a pattern of stressed and unstressed syllables. \"Behold\" and \"pass'd\" are stressed, while \"by\" and \"what\""
+    },
+    {
+      "input": "But his broad pinions, swifter than the winds?",
+      "gold_target": "meter:unknown|rhyme:S N W|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: But his broad pinions, swifter than the winds?\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:0|end:1|caesura:6"
+    },
+    {
+      "input": "And all mankind, in contradiction strong,",
+      "gold_target": "meter:unknown|rhyme:N K S|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And all mankind, in contradiction strong,\n",
+      "model_output": "Meter:XX|rhyme:YY|end:0|caesura:6\n\nExplanation:\n- Meter: The meter is \"XX\", indicating a trochaic tetrameter. Each foot has a stressed syllable followed by an unstressed one.\n- Rhyme: There is no specific rhyme in the"
+    },
+    {
+      "input": "Rueful, aghast, cry out on his career.",
+      "gold_target": "meter:unknown|rhyme:N HH K|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Rueful, aghast, cry out on his career.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:Y|end:0|caesura:6"
+    },
+    {
+      "input": "Leave to thy foes these errors, and these ills;",
+      "gold_target": "meter:11|rhyme:IY1 L|end:1|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Leave to thy foes these errors, and these ills;\n",
+      "model_output": "Answer: meter:XX|rhyme:LL|end:0|caesura:6"
+    },
+    {
+      "input": "To Nature just, their cause and cure explore.",
+      "gold_target": "meter:unknown|rhyme:N K K|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: To Nature just, their cause and cure explore.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:ER|end:1|caesura:6"
+    },
+    {
+      "input": "Not short Heaven's bounty, boundless our expense;",
+      "gold_target": "meter:unknown|rhyme:B B K|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Not short Heaven's bounty, boundless our expense;\n",
+      "model_output": "Answer: meter:XX|rhyme:XX|end:0|caesura:-"
+    },
+    {
+      "input": "No niggard, Nature; men are prodigals.",
+      "gold_target": "meter:unknown|rhyme:N M P|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: No niggard, Nature; men are prodigals.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:AA|end:0|caesura:-"
+    },
+    {
+      "input": "We waste, not use, our time; we breathe, not live.",
+      "gold_target": "meter:unknown|rhyme:B N L|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: We waste, not use, our time; we breathe, not live.\n",
+      "model_output": "Output: meter:XX|rhyme:II|end:0|caesura:5\n\nExplanation:\n- Meter: XX indicates a trochaic meter, where the stress falls on the second syllable of each foot. In this case, there are two feet in the line, so it's XX/"
+    },
+    {
+      "input": "Time wasted is existence, used is life.",
+      "gold_target": "meter:unknown|rhyme:Y Z L|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Time wasted is existence, used is life.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:XX|end:0|caesura:-"
+    },
+    {
+      "input": "And bare existence man, to live ordain'd,",
+      "gold_target": "meter:unknown|rhyme:T L D|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And bare existence man, to live ordain'd,\n",
+      "model_output": "Meter: Iambic Pentameter | Rhyme: Monorhyme | End: 1 | Caesura: 5\n\nExplanation:\n- Meter: Iambic Pentameter refers to a rhythmic structure in poetry where each line consists of five pairs of syllables, with the stress falling on"
+    },
+    {
+      "input": "Wrings and oppresses with enormous weight.",
+      "gold_target": "meter:unknown|rhyme:W N W|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Wrings and oppresses with enormous weight.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:-|end:0|caesura:-"
+    },
+    {
+      "input": "And why? Since time was given for use, not waste,",
+      "gold_target": "meter:unknown|rhyme:Y N W|end:1|caesura:9",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And why? Since time was given for use, not waste,\n",
+      "model_output": "Answer: meter:XX|rhyme:Y|end:0|caesura:-"
+    },
+    {
+      "input": "Enjoin'd to fly, with tempest, tide, and stars,",
+      "gold_target": "meter:unknown|rhyme:T N S|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Enjoin'd to fly, with tempest, tide, and stars,\n",
+      "model_output": "Meter: Iambic pentameter | Rhyme: Monorhyme | End: 0 | Caesura: 6\n\nExplanation:\n- Meter: Iambic pentameter refers to a rhythmic structure in poetry where each line consists of five pairs of syllables, with the stress falling on"
+    },
+    {
+      "input": "To keep his speed, nor ever wait for man;",
+      "gold_target": "meter:unknown|rhyme:W F M|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: To keep his speed, nor ever wait for man;\n",
+      "model_output": "Answer: meter:XX|rhyme:an|end:1|caesura:6"
+    },
+    {
+      "input": "Time's use was doom'd a pleasure; waste, a pain;",
+      "gold_target": "meter:unknown|rhyme:P W P|end:1|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Time's use was doom'd a pleasure; waste, a pain;\n",
+      "model_output": "Answer: meter:XX|rhyme:AA|end:0|caesura:6"
+    },
+    {
+      "input": "That man might feel his error, if unseen;",
+      "gold_target": "meter:unknown|rhyme:R F N|end:1|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: That man might feel his error, if unseen;\n",
+      "model_output": "Meter: iambic tetrameter | Rhyme: monosyllabic | End: 1 | Caesura: 5\n\nExplanation:\n- Meter: Iambic tetrameter means the line has four feet, each foot consisting of an unstressed syllable followed by a stressed syllable. The"
+    },
+    {
+      "input": "And, feeling, fly to labour for his cure;",
+      "gold_target": "meter:unknown|rhyme:F HH K|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And, feeling, fly to labour for his cure;\n",
+      "model_output": "Answer: meter:XX|rhyme:ur|end:1|caesura:6"
+    },
+    {
+      "input": "Not, blundering, split on idleness for ease.",
+      "gold_target": "meter:1|rhyme:IY1|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Not, blundering, split on idleness for ease.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:XX|end:0|caesura:-"
+    },
+    {
+      "input": "Life's cares are comforts; such by Heaven design'd;",
+      "gold_target": "meter:unknown|rhyme:B HH D|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Life's cares are comforts; such by Heaven design'd;\n",
+      "model_output": "Answer: meter:XX|rhyme:XX|end:0|caesura:8"
+    },
+    {
+      "input": "He that has none, must make them, or be wretched.",
+      "gold_target": "meter:unknown|rhyme:M B R|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: He that has none, must make them, or be wretched.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:XX|end:0|caesura:-"
+    },
+    {
+      "input": "Cares are employments; and without employ",
+      "gold_target": "meter:unknown|rhyme:N W M|end:0|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Cares are employments; and without employ\n",
+      "model_output": "Meter: 8|rhyme: 0|end: 1|caesura: 6\n\nExplanation:\n- Meter: The line has 8 syllables, with the stress pattern being \"da-DUM da-DUM da-DUM da-DUM da-DUM da-DUM da-DUM da"
+    },
+    {
+      "input": "The soul is on a rack; the rack of rest,",
+      "gold_target": "meter:unknown|rhyme:R V R|end:1|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: The soul is on a rack; the rack of rest,\n",
+      "model_output": "Meter: 8|rhyme: 2|end: 0|caesura: 9\n\nExplanation:\n- Meter: The line has eight syllables and follows an iambic pattern, with each foot consisting of an unstressed syllable followed by a stressed one. \n- Rhyme: There"
+    },
+    {
+      "input": "To souls most adverse; action all their joy.",
+      "gold_target": "meter:unknown|rhyme:K L D|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: To souls most adverse; action all their joy.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:Y|end:1|caesura:6"
+    },
+    {
+      "input": "Here, then, the riddle, mark'd above, unfolds:",
+      "gold_target": "meter:unknown|rhyme:M B N|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Here, then, the riddle, mark'd above, unfolds:\n",
+      "model_output": "Meter: X|rhyme: Y|end: Z|caesura: C\n\nTo analyze the given line of poetry:\n\n1. **Meter**: The meter refers to the stress pattern or type of rhythm in the line. In English poetry, common meters include iambic pentameter, trochaic"
+    },
+    {
+      "input": "Then time turns torment, when man turns a fool.",
+      "gold_target": "meter:unknown|rhyme:M T F|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Then time turns torment, when man turns a fool.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:oo|end:1|caesura:6"
+    },
+    {
+      "input": "We rave, we wrestle with great Nature's plan;",
+      "gold_target": "meter:unknown|rhyme:G N P|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: We rave, we wrestle with great Nature's plan;\n",
+      "model_output": "Meter: Iambic tetrameter | Rhyme: Monosyllabic | End: 1 | Caesura: 4\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed by a stressed syllable, and there are four feet per line."
+    },
+    {
+      "input": "We thwart the Deity; and 't is decreed,",
+      "gold_target": "meter:unknown|rhyme:T Z D|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: We thwart the Deity; and 't is decreed,\n",
+      "model_output": "That we shall be for ever hurl'd from Heaven.\n\nOutput: meter:XX|rhyme:ed|end:1|caesura:6\n\nExplanation:\n- Meter: The line has a regular iambic tetrameter pattern, with each foot consisting of an unstressed syllable followed by a stressed"
+    },
+    {
+      "input": "Who thwart His will shall contradict their own.",
+      "gold_target": "meter:unknown|rhyme:L K N|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Who thwart His will shall contradict their own.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:nn|end:1|caesura:-"
+    },
+    {
+      "input": "Hence our unnatural quarrel with ourselves;",
+      "gold_target": "meter:unknown|rhyme:K W S|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Hence our unnatural quarrel with ourselves;\n",
+      "model_output": "Meter: iambic pentameter | Rhyme: no rhyme | End: 1 | Caesura: 6\n\nExplanation:\n- Meter: Iambic pentameter refers to a line of verse that has ten syllables, with each pair of syllables having an unstressed-stressed rhythm."
+    },
+    {
+      "input": "Our thoughts at enmity; our bosom-broil:",
+      "gold_target": "meter:unknown|rhyme:N B B|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Our thoughts at enmity; our bosom-broil:\n",
+      "model_output": "Meter:XX|rhyme:Y|end:0|caesura:6\n\nExplanation:\n- Meter: The line has a regular iambic tetrameter pattern, with each foot consisting of an unstressed syllable followed by a stressed one. Thus, it's \"XX\" (unstressed"
+    },
+    {
+      "input": "We push Time from us, and we wish him back;",
+      "gold_target": "meter:unknown|rhyme:W HH B|end:1|caesura:5",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: We push Time from us, and we wish him back;\n",
+      "model_output": "Answer: meter:XX|rhyme:AB|end:1|caesura:5"
+    },
+    {
+      "input": "Lavish of lustrums, and yet fond of life;",
+      "gold_target": "meter:unknown|rhyme:F V L|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Lavish of lustrums, and yet fond of life;\n",
+      "model_output": "Meter: iambic pentameter | Rhyme: monosyllabic | End: 0 | Caesura: 5\n\nExplanation:\n- Meter: Iambic pentameter refers to a line of verse that has ten syllables, with an alternating pattern of unstressed and stressed syllables."
+    },
+    {
+      "input": "Life we think long and short; Death seek and shun;",
+      "gold_target": "meter:unknown|rhyme:S N N|end:1|caesura:6",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Life we think long and short; Death seek and shun;\n",
+      "model_output": "Meter: X|rhyme: Y|end: Z|caesura: C\n\nTo analyze the given line of poetry:\n\n1. **Meter**: The meter refers to the stress pattern or type of rhythm in the line. In English poetry, meter is often described using a combination of feet (each foot having"
+    },
+    {
+      "input": "Body and soul, like peevish man and wife,",
+      "gold_target": "meter:unknown|rhyme:M N W|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Body and soul, like peevish man and wife,\n",
+      "model_output": "meter:XX|rhyme:YY|end:0|caesura:8\n\nExplanation:\n- Meter: The line has a regular iambic tetrameter pattern, with each foot consisting of an unstressed syllable followed by a stressed one. Thus, it's represented as XX (unstressed"
+    },
+    {
+      "input": "United jar, and yet are loath to part.",
+      "gold_target": "meter:unknown|rhyme:L T P|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: United jar, and yet are loath to part.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:ar|end:1|caesura:5"
+    },
+    {
+      "input": "O the dark days of vanity! while here",
+      "gold_target": "meter:unknown|rhyme:V W HH|end:0|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: O the dark days of vanity! while here\n",
+      "model_output": "Meter:XX|rhyme:YY|end:0|caesura:5\n\nExplanation:\n- Meter: The stress pattern is 'XX', indicating a trochaic meter where each foot has an unstressed syllable followed by a stressed one.\n- Rhyme: The phoneme rime is 'YY"
+    },
+    {
+      "input": "How tasteless, and how terrible when gone!",
+      "gold_target": "meter:unknown|rhyme:T W G|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: How tasteless, and how terrible when gone!\n",
+      "model_output": "Answer: meter:XX|rhyme:YY|end:1|caesura:6\nExplanation:\n- Meter: The line has a regular iambic tetrameter pattern, with each foot consisting of an unstressed syllable followed by a stressed one. Since there are four such feet in the line"
+    },
+    {
+      "input": "Gone! they ne'er go; when past, they haunt us still;",
+      "gold_target": "meter:unknown|rhyme:HH S S|end:1|caesura:5",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Gone! they ne'er go; when past, they haunt us still;\n",
+      "model_output": "Meter: X|rhyme: Y|end: Z|caesura: C\n\nTo analyze the given line of poetry:\n\n1. **Meter**: The meter refers to the stress pattern or type of rhythm in the line. In this case, the line has a regular iambic tetrameter, which"
+    },
+    {
+      "input": "The spirit walks of every day deceased,",
+      "gold_target": "meter:unknown|rhyme:V D D|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: The spirit walks of every day deceased,\n",
+      "model_output": "Meter: iambic tetrameter | Rhyme: monosyllabic | End: 1 | Caesura: 8\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed by a stressed syllable, and there are four feet in the line"
+    },
+    {
+      "input": "And smiles an angel, or a fury frowns.",
+      "gold_target": "meter:unknown|rhyme:N F F|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And smiles an angel, or a fury frowns.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:f|end:0|caesura:6"
+    },
+    {
+      "input": "Nor death nor life delight us. If time past,",
+      "gold_target": "meter:unknown|rhyme:F T P|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Nor death nor life delight us. If time past,\n",
+      "model_output": "Meter: iambic tetrameter | rhyme: monosyllabic | end: 1 | caesura: 6\n\nExplanation:\n- Meter: Iambic tetrameter means that the line has four feet, each foot consisting of an unstressed syllable followed by a stressed syllable. The"
+    },
+    {
+      "input": "And time possess'd, both pain us, what can please?",
+      "gold_target": "meter:unknown|rhyme:W K P|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And time possess'd, both pain us, what can please?\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:XX|end:0|caesura:-"
+    },
+    {
+      "input": "That which the Deity to please ordain'd, -",
+      "gold_target": "meter:unknown|rhyme:T P D|end:0|caesura:7",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: That which the Deity to please ordain'd, -\n",
+      "model_output": "Step 1: Identify meter\nThe line has a regular pattern of stressed and unstressed syllables. The first word \"That\" is stressed, followed by an unstressed syllable (\"which\"), then another stressed syllable (\"Deity\"), and so on. This pattern continues throughout the line. Therefore, the meter"
+    },
+    {
+      "input": "Time used. The man who consecrates his hours",
+      "gold_target": "meter:unknown|rhyme:K HH Z|end:0|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Time used. The man who consecrates his hours\n",
+      "model_output": "Meter: 8|rhyme:2|end:1|caesura:6\n\nExplanation:\n- Meter: The line has 8 syllables.\n- Rhyme: There are two rhymes in the line, \"hours\" and \"consecrates.\"\n- End: The line ends with a period"
+    },
+    {
+      "input": "By vigorous effort, and an honest aim,",
+      "gold_target": "meter:unknown|rhyme:N N M|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: By vigorous effort, and an honest aim,\n",
+      "model_output": "Meter: 8|rhyme:2|end:0|caesura:6\n\nExplanation:\n- Meter: The line has 8 syllables, with the stress pattern being \"By vig-o-rous ef-fort, and an hon-est aim,\" indicating a trochaic tetrameter."
+    },
+    {
+      "input": "At once he draws the sting of life and death;",
+      "gold_target": "meter:unknown|rhyme:L N D|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: At once he draws the sting of life and death;\n",
+      "model_output": "Meter: Iambic pentameter | Rhyme: Monorhyme | End: 1 | Caesura: 5\n\nExplanation:\n- Meter: Iambic pentameter refers to a rhythmic structure in poetry where each line consists of five pairs of syllables, with an unstressed syll"
+    },
+    {
+      "input": "He walks with Nature, and her paths are peace.",
+      "gold_target": "meter:unknown|rhyme:HH P P|end:1|caesura:4",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: He walks with Nature, and her paths are peace.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:ee|end:0|caesura:6"
+    },
+    {
+      "input": "Our error's cause and cure are seen: see next",
+      "gold_target": "meter:unknown|rhyme:S S N|end:0|caesura:7",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Our error's cause and cure are seen: see next\n",
+      "model_output": "Answer: meter:XX|rhyme:Y|end:1|caesura:6\n\nExplanation:\n- Meter: The line has a regular iambic tetrameter pattern, with each foot consisting of an unstressed syllable followed by a stressed one. This is represented as XX.\n- Rhyme"
+    },
+    {
+      "input": "Time's nature, origin, importance, speed;",
+      "gold_target": "meter:unknown|rhyme:R M S|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Time's nature, origin, importance, speed;\n",
+      "model_output": "Meter: iambic tetrameter | Rhyme: monosyllabic | End: 0 | Caesura: 4\n\nExplanation:\n- Meter: Iambic tetrameter means each foot has an unstressed syllable followed by a stressed syllable, and there are four feet in the line"
+    },
+    {
+      "input": "And thy great gain from urging his career. -",
+      "gold_target": "meter:unknown|rhyme:D HH K|end:0|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And thy great gain from urging his career. -\n",
+      "model_output": "To analyze the given line of poetry, we need to break it down into its components:\n\n1. Meter: The meter refers to the stress pattern or type of the line. In English poetry, meter is typically described using a combination of feet (each foot consisting of one stressed syllable followed by an unstressed syllable"
+    },
+    {
+      "input": "All-sensual man, because untouch'd, unseen,",
+      "gold_target": "meter:unknown|rhyme:B N N|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: All-sensual man, because untouch'd, unseen,\n",
+      "model_output": "Meter: X|rhyme: Y|end: Z|caesura: C\n\nTo analyze the given line of poetry:\n\n1. **Meter**: The meter refers to the stress pattern or type of rhythm in the line. In English poetry, meter is often described using a combination of feet (each foot having"
+    },
+    {
+      "input": "He looks on time as nothing. Nothing else",
+      "gold_target": "meter:unknown|rhyme:N N L|end:0|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: He looks on time as nothing. Nothing else\n",
+      "model_output": "Answer: meter:XX|rhyme:YY|end:0|caesura:-"
+    },
+    {
+      "input": "Is truly man's: 't is Fortune's. - Time's a god.",
+      "gold_target": "meter:unknown|rhyme:F T G|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Is truly man's: 't is Fortune's. - Time's a god.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:YY|end:0|caesura:-"
+    },
+    {
+      "input": "Hast thou ne'er heard of Time's omnipotence?",
+      "gold_target": "meter:unknown|rhyme:V T M|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Hast thou ne'er heard of Time's omnipotence?\n",
+      "model_output": "Answer: meter:XX|rhyme:O|end:1|caesura:6\nExplanation:\n- Meter: The line has a regular iambic tetrameter pattern, with each foot consisting of an unstressed syllable followed by a stressed one. Since there are four such feet in the line"
+    },
+    {
+      "input": "For, or against, what wonders can he do!",
+      "gold_target": "meter:unknown|rhyme:K HH D|end:1|caesura:1",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: For, or against, what wonders can he do!\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:oo|end:1|caesura:5"
+    },
+    {
+      "input": "And will: to stand blank neuter he disdains.",
+      "gold_target": "meter:unknown|rhyme:N HH D|end:1|caesura:2",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: And will: to stand blank neuter he disdains.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:-|end:0|caesura:-"
+    },
+    {
+      "input": "Not on those terms was Time ( Heaven's stranger! ) sent",
+      "gold_target": "meter:unknown|rhyme:HH S S|end:0|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Not on those terms was Time ( Heaven's stranger! ) sent\n",
+      "model_output": "Answer: meter:XX|rhyme:nt|end:1|caesura:6"
+    },
+    {
+      "input": "On his important embassy to man.",
+      "gold_target": "meter:unknown|rhyme:M T M|end:1|caesura:-",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: On his important embassy to man.\n",
+      "model_output": "Answer:\nmeter:XX|rhyme:an|end:1|caesura:6"
+    },
+    {
+      "input": "Lorenzo! no; on the long-destined hour,",
+      "gold_target": "meter:unknown|rhyme:N L D|end:1|caesura:3",
+      "prompt": "Given this line of poetry, output: meter (stress pattern or type), rhyme (phoneme rime or class), end (1 if line ends with punctuation, 0 otherwise), caesura (word index of mid-line pause or -). Format: meter:X|rhyme:Y|end:Z|caesura:C\n\nLine: Lorenzo! no; on the long-destined hour,\n",
+      "model_output": "Meter: 8|rhyme:2|end:1|caesura:6\n\nExplanation:\n- Meter: The line has 8 syllables and follows a pattern of stressed-unstressed syllables, which is typical for iambic meter in English.\n- Rhyme: There are two rhymes"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
-"""Partial metrics for rhyme_only and combined prompt baselines.
+"""Extra metrics for rhyme_only and combined prompt baselines.
 
-Full-string exact match is strict; these aggregate field-level agreement where targets are
-structured (rhyme token; combined meter|rhyme|end|caesura bundles).
+Exact match on the full string is strict; these add field-level scores where the target is
+structured (rhyme token, or combined meter|rhyme|end|caesura bundles).
 """
 
 from __future__ import annotations

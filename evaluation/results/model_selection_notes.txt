@@ -1,0 +1,79 @@
+# Model selection notes (auto-generated)
+
+Exact match = percentage of lines where model_output equals gold_target (after strip; natural_text collapses whitespace).
+Natural-text form columns (when present in CSV): CMU-based stress/syllable/rhyme agreement between gold_target and model_output (`aggregate_natural_text_form_results`); see `nt_form_*` fields.
+Structured partial columns (`st_*`): `rhyme_only` uses case/whitespace-normalized token match; `combined` parses `meter:…|rhyme:…|end:…|caesura:…` and reports per-field and mean-field rates (`evaluation/structured_baseline_metrics.py`).
+
+Primary prompt focus for this file: **`all`** (see `--prompt-type`; use `all` for one section per prompt). `model_comparison.csv` still lists every JSON.
+
+## Prompt type: `zero_shot`
+
+### Warning
+All exact-match rates are 0% for this prompt type. Common for structured targets; use architecture fit, compute constraints, and spot-checks—not rank order.
+
+## Best `zero_shot` by task
+- **meter_only**: HuggingFaceTB_SmolLM-360M-Instruct (0.00%)
+- **rhyme_only**: HuggingFaceTB_SmolLM-360M-Instruct (0.00%)
+- **natural_text**: HuggingFaceTB_SmolLM-360M-Instruct (0.00%)
+- **combined**: HuggingFaceTB_SmolLM-360M-Instruct (0.00%)
+
+## Best mean exact-match (`zero_shot`, models with all four tasks)
+- HuggingFaceTB_SmolLM-360M-Instruct: **0.00%**
+- Qwen_Qwen2-7B-Instruct: **0.00%**
+- facebook_bart-base: **0.00%**
+- facebook_bart-large: **0.00%**
+- google_flan-t5-base: **0.00%**
+- google_flan-t5-large: **0.00%**
+- google_flan-t5-small: **0.00%**
+- gpt2: **0.00%**
+
+## Incomplete folders (`zero_shot`, missing one or more tasks)
+- `mistralai_Mistral-7B-v0_1`: has ['meter_only', 'rhyme_only', 'natural_text'], missing ['combined']
+
+---
+
+## Prompt type: `one_shot`
+
+## Best `one_shot` by task
+- **meter_only**: google_flan-t5-small (6.60%)
+- **rhyme_only**: google_flan-t5-large (2.00%)
+- **natural_text**: facebook_bart-base (0.00%)
+- **combined**: google_flan-t5-small (0.40%)
+
+## Best mean exact-match (`one_shot`, models with all four tasks)
+- google_flan-t5-small: **1.79%**
+- google_flan-t5-large: **1.57%**
+- google_flan-t5-base: **0.41%**
+- facebook_bart-base: **0.00%**
+- facebook_bart-large: **0.00%**
+- gpt2: **0.00%**
+- gpt2-large: **0.00%**
+- gpt2-medium: **0.00%**
+
+---
+
+## Prompt type: `few_shot`
+
+## Best `few_shot` by task
+- **meter_only**: google_flan-t5-large (34.80%)
+- **rhyme_only**: facebook_bart-base (0.00%)
+- **natural_text**: facebook_bart-base (0.00%)
+- **combined**: facebook_bart-base (0.00%)
+
+## Best mean exact-match (`few_shot`, models with all four tasks)
+- google_flan-t5-large: **8.70%**
+- google_flan-t5-small: **1.21%**
+- facebook_bart-base: **0.00%**
+- facebook_bart-large: **0.00%**
+- google_flan-t5-base: **0.00%**
+- gpt2: **0.00%**
+- gpt2-large: **0.00%**
+- gpt2-medium: **0.00%**
+
+## Suggested next step
+1. Pick **one seq2seq** checkpoint for SFT if your pipeline uses encoder–decoder (e.g. FLAN-T5, BART).
+2. Optionally pick **one causal** LM for comparison (e.g. best mean among causal models).
+3. Prefer **few_shot** or **one_shot** summaries when zero_shot is uninformative; see `--prompt-type`.
+4. Tie-break with size, speed, and stability (no repeated OOM on cluster).
+
+**Heuristic default SFT candidate (complete runs, best mean; tie-break: slug sort):** `HuggingFaceTB_SmolLM-360M-Instruct`

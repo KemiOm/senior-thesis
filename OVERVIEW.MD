@@ -147,7 +147,7 @@ annotated poem (dict)
 }
 ```
 #### Final Checks
-Export to SQLite (`export_sqlite.py`), then run quality checks (`quality_checks.py`) on the corpus. This gives a single database and summary stats before building training data and evaluation splits.
+Export to SQLite (`python scripts/export_sqlite.py`), then run quality checks (`python scripts/quality_checks.py`) on the corpus. This gives a single database and summary stats before building training data and evaluation splits.
 
 ---
 
@@ -166,7 +166,7 @@ flowchart LR
     S5["5. Choose model\nCompare tables, pick for fine-tuning"]
   end
   subgraph hpc["HPC compute nodes"]
-    S3["3. Run prompt-only baselines\nsbatch run_prompt_baseline_all_tasks.slurm\n→ results/baselines/prompt_only/<model>/"]
+    S3["3. Run prompt-only baselines\nsbatch scripts/hpc/run_prompt_baseline_all_tasks.slurm\n→ results/baselines/prompt_only/<model>/"]
   end
   S1 --> S2 --> S3 --> S4 --> S5
 ```
@@ -229,7 +229,7 @@ with open(OUT_DIR / "meter_only" / "test.json", "w") as f:
     json.dump(meter_test, f, indent=2)
 ```
 
-**Step 3 — Run prompt-only baselines.** We run each candidate model on the *same* test prompts (with an optional sample size, e.g. 500 lines, for speed). Script: `scripts/run_prompt_baseline.py` (single task) or `scripts/run_prompt_baseline_all_tasks.slurm` (all four tasks per model). Each run loads the model, builds prompts from the task template, generates outputs, and saves them with the gold targets to `evaluation/results/baselines/prompt_only/<model_slug>/`
+**Step 3 — Run prompt-only baselines.** We run each candidate model on the *same* test prompts (with an optional sample size, e.g. 500 lines, for speed). Script: `scripts/run_prompt_baseline.py` (single task) or `scripts/hpc/run_prompt_baseline_all_tasks.slurm` (all four tasks per model). Each run loads the model, builds prompts from the task template, generates outputs, and saves them with the gold targets to `evaluation/results/baselines/prompt_only/<model_slug>/`
 
 *How a baseline run works.* The Python script (1) loads test data from `output/training_data/{task}/test.json`, (2) builds one prompt per row from the task’s template (e.g. meter_only zero_shot: “Given this line of poetry, output its metrical stress pattern… Line: {line}”). **Few-shot** prompts prepend a full example **quatrain** (four lines) with per-line labels in the same format as the task (from `corpus.db`), then a separator and the query line. (3) calls the model to generate an output for each prompt, (4) zips each `input`, `gold_target`, `prompt`, and `model_output` into a result dict, (5) writes a single JSON to `evaluation/results/baselines/prompt_only/<model_slug>/{prompt_type}_{task}.json` containing metadata (model, prompt_type, task, n_samples) and the list of results. That JSON is what Step 4 uses to compute stress-match rate, rhyme match, etc.
 
@@ -283,9 +283,9 @@ json.dump({"model": model_id, "prompt_type": ..., "task": ..., "results": result
 
 *Where it runs:* HPC compute nodes (one Slurm job per model). See **Running on HPC (summary)** below.
 
-**Step 4 — Compute metrics and compare.** Model outputs are compared to gold (same pipeline as in “Why these metrics?”). We compute stress-match rate, rhyme match, etc. on the saved JSONs and aggregate into a summary table (e.g. `evaluation/results/model_comparison.csv`) so we can see which model does best on which task.
+**Step 4 — Compute metrics and compare.** Model outputs are compared to gold (same pipeline as in “Why these metrics?”). We compute stress-match rate, rhyme match, etc. on the saved JSONs and aggregate into a summary table (`evaluation/results/model_comparison.csv`) so we can see which model does best on which task.
 
-*How metrics are computed.* (A) **Corpus baseline:** `evaluation/run_baseline.py` connects to `corpus.db`, loads poem IDs per split from `evaluation/splits/`, and calls `evaluation/metrics.compute_metrics(conn, poem_ids)` for the full corpus and each split. `compute_metrics` counts lines and how many have non-unknown meter_type, non-empty rhyme_group, full CMU coverage, end_stopped, caesura; results go to `evaluation/baseline_results.json`. (B) **Model outputs:** For each baseline JSON in `evaluation/results/baselines/prompt_only/<model_slug>/`, compare `model_output` to `gold_target` (e.g. exact match for stress); aggregate into `model_comparison.csv`.  *Where it runs:* Local or login node after baseline jobs finish. See **Running on HPC (summary)** below.
+*How metrics are computed.* (A) **Corpus baseline:** `evaluation/run_baseline.py` connects to `corpus.db`, loads poem IDs per split from `evaluation/splits/`, and calls `evaluation/metrics.compute_metrics(conn, poem_ids)` for the full corpus and each split. `compute_metrics` counts lines and how many have non-unknown meter_type, non-empty rhyme_group, full CMU coverage, end_stopped, caesura; results go to `evaluation/baseline_results.json`. (B) **Model outputs:** Baseline JSONs are rolled up into a comparison table under `evaluation/results/` (exact string match to gold; optional extra columns for partial credit on structured targets and for phonology-based checks on natural-text generations). **Use the same line cap per task across models** when comparing percentages. *Where it runs:* Local or login node after baseline jobs finish; the aggregator is `evaluation/summarize_prompt_baselines.py`. See **Running on HPC (summary)** below.
 
 ```python
 # evaluation/run_baseline.py (corpus baseline)
@@ -304,9 +304,9 @@ json.dump(results, open("evaluation/baseline_results.json", "w"))
 
 ---
 
-**Running on HPC (summary).** Steps 1 (splits), 2 (prepare training data), and 4 (compute metrics / corpus baseline) run on your **local machine or the login node**—they use the database and the split/training JSONs and do not need a GPU. Step 3 (prompt-only baselines) is run **on the HPC compute nodes** because each model loads weights and runs inference. Workflow: (1) On your machine or login: run `export_sqlite.py`, then `evaluation/splits.py`, then `notebooks/01_prepare_training_data.ipynb` so `output/training_data/*/test.json` and `evaluation/splits/*.json` exist. (2) Sync your project (and `output/`, `evaluation/splits/`) to the cluster. (3) On the cluster, from project root: submit one Slurm job per model, e.g. `MODEL=google/flan-t5-base N=500 sbatch --chdir=$(pwd) scripts/run_prompt_baseline_all_tasks.slurm`. For causal models: `MODEL=microsoft/phi-2 MODEL_TYPE=causal N=500 sbatch --chdir=$(pwd) scripts/run_prompt_baseline_all_tasks.slurm`. (4) Monitor with `squeue -u $USER`; when a job finishes, results are in `evaluation/results/baselines/prompt_only/<model_slug>/`. (5) Back on your machine or login: run `python evaluation/run_baseline.py` for the corpus baseline; then compute per-model metrics from the baseline JSONs and fill `model_comparison.csv` to choose a model. Logs for job 12345 are in `poetry_baseline_all_12345.out` in the directory from which you ran `sbatch`.
+**Running on HPC (summary).** Steps 1 (splits), 2 (prepare training data), and 4 (compute metrics / corpus baseline) run on your **local machine or the login node**—they use the database and the split/training JSONs and do not need a GPU. Step 3 (prompt-only baselines) is run **on the HPC compute nodes** because each model loads weights and runs inference. Workflow: (1) On your machine or login: run `python scripts/export_sqlite.py`, then `evaluation/splits.py`, then `notebooks/01_prepare_training_data.ipynb` so `output/training_data/*/test.json` and `evaluation/splits/*.json` exist. (2) Sync your project (and `output/`, `evaluation/splits/`) to the cluster. (3) On the cluster, from project root: submit one Slurm job per model, e.g. `MODEL=google/flan-t5-base N=500 sbatch --chdir=$(pwd) scripts/hpc/run_prompt_baseline_all_tasks.slurm`. For causal models: `MODEL=microsoft/phi-2 MODEL_TYPE=causal N=500 sbatch --chdir=$(pwd) scripts/hpc/run_prompt_baseline_all_tasks.slurm`. (4) Monitor with `squeue -u $USER`; when a job finishes, results are in `evaluation/results/baselines/prompt_only/<model_slug>/`. (5) Back on your machine or login: run the corpus baseline script, then aggregate prompt baselines with `python evaluation/summarize_prompt_baselines.py`. Keep the same sample size across models when comparing. Logs for job 12345 are in `poetry_baseline_all_12345.out` in the directory from which you ran `sbatch`.
 
-**Bouchet / YCRC details** (walltime vs `#SBATCH --time`, `HF_TOKEN`, `STAGGER_SEC`, `SPLIT_TASKS`, rsync): see header comments in **`scripts/submit_all_model_baselines.sh`** and **`scripts/run_prompt_baseline_all_tasks.slurm`**.
+**Bouchet / YCRC details** (walltime vs `#SBATCH --time`, `HF_TOKEN`, `STAGGER_SEC`, `SPLIT_TASKS`, rsync): see header comments in **`scripts/hpc/submit_all_model_baselines.sh`** and **`scripts/hpc/run_prompt_baseline_all_tasks.slurm`**.
 
 
 

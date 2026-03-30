@@ -1,12 +1,9 @@
 """
-Evaluation metrics for the poetry corpus and model outputs.
+Corpus and model-output metrics: meter, rhyme, CMU phonology coverage,
+end-stopping, and caesura.
 
-module measures constraint adherence: meter, rhyme, CMU phonology coverage,
-end-stopping, and caesura. 
-
-Use it to check how much of the corpus was successfully
-annotated, or to evaluate model outputs after those lines have been annotated
-with the same pipeline and stored in the database.
+Call `compute_metrics` to see how complete annotations are on a set of poems,
+or after model outputs are written back with the same pipeline into the database.
 """
 
 import json
@@ -105,8 +102,7 @@ def compute_metrics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = No
             WHERE (phonology IS NULL OR phonology NOT LIKE '%not_found%')
         """).fetchone()[0]
 
-    # End-stopped: lines with end_stopped = 1 (line ends with sentence-ending punctuation).
-    #from punctuation check in the annotation pipeline.
+    # End-stopped: lines with end_stopped = 1 (sentence-ending punctuation at line end).
     if poem_ids:
         end_stopped = conn.execute(
             f"SELECT COUNT(*) FROM lines WHERE poem_id IN ({placeholders}) AND end_stopped = 1",
@@ -141,11 +137,11 @@ def compute_metrics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = No
 def main():
     """
     Compute metrics on the full corpus and print as JSON.
-    Requires output/corpus.db so run export_sqlite.py first.
+    Requires output/corpus.db; run python scripts/export_sqlite.py first.
     """
     if not DB_PATH.exists():
         print(f"Database not found: {DB_PATH}")
-        print("Run export_sqlite.py first.")
+        print("Run: python scripts/export_sqlite.py")
         return
 
     conn = sqlite3.connect(DB_PATH)

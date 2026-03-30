@@ -1,13 +1,12 @@
 """
-Create evaluation splits for fine-tuning and evaluation.
+Create train/dev/test splits and held-out sets (poets, poems).
 
-Produces train/dev/test splits and held-out sets (poets, poems) to support:
-- Training and early stopping (train, dev)
-- In-domain evaluation (test)
-- Generalization testing (held_out_poets, held_out_poems)
+- train / dev: for training and tuning
+- test: held-out poems for in-domain evaluation
+- held_out_poets / held_out_poems: extra generalization checks
 
-Stores poem IDs as JSON files in evaluation/splits/. Uses a fixed random seed
-for reproducibility. Run from project root after export_sqlite.py has created corpus.db.
+Writes poem IDs under `evaluation/splits/`. Uses a fixed random seed so splits stay stable.
+Run from project root after `python scripts/export_sqlite.py` has created `output/corpus.db`.
 """
 
 import json
@@ -170,7 +169,7 @@ def main():
     """
     if not DB_PATH.exists():
         print(f"Database not found: {DB_PATH}")
-        print("Run export_sqlite.py first.")
+        print("Run: python scripts/export_sqlite.py")
         return
 
     print("Creating evaluation splits...")

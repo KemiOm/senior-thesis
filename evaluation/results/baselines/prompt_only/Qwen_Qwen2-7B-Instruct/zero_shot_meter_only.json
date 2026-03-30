@@ -1,0 +1,1209 @@
+{
+  "model": "Qwen/Qwen2-7B-Instruct",
+  "prompt_type": "zero_shot",
+  "task": "meter_only",
+  "split": "test",
+  "n_samples": 200,
+  "results": [
+    {
+      "input": "Deserves it least. - On other themes I'll dwell.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Deserves it least. - On other themes I'll dwell.\n",
+      "model_output": "+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Lorenzo! let me turn my thoughts on thee,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Lorenzo! let me turn my thoughts on thee,\n",
+      "model_output": "Output: + - + - + + - + - + - + - + - + - + + - + - + - + + - + - + - + - + - + - + + - + - + - + + - + - + - + - + - + - + + - + -"
+    },
+    {
+      "input": "And thine on themes may profit; profit there",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: And thine on themes may profit; profit there\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Where most thy need: themes, too, the genuine growth",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Where most thy need: themes, too, the genuine growth\n",
+      "model_output": "of human nature, and the noblest deeds,\nare found in thee, O mighty, many-tongued\n\nThe output should be:\n+--++-+--++-+--+--++-+--++-+--++-+--++-+--++-+--++-+--++"
+    },
+    {
+      "input": "May still befriend. - What themes? Time's wondrous price,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: May still befriend. - What themes? Time's wondrous price,\n",
+      "model_output": "- A gift to live, to love, to strive.\n\nExample:\n+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "So could I touch these themes as might obtain",
+      "gold_target": "11",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: So could I touch these themes as might obtain\n",
+      "model_output": "Expected output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - +"
+    },
+    {
+      "input": "Thine ear, nor leave thy heart quite disengaged,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Thine ear, nor leave thy heart quite disengaged,\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "That time is mine, O Mead, to thee I owe;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: That time is mine, O Mead, to thee I owe;\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Fain would I pay thee with eternity.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Fain would I pay thee with eternity.\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "For Aesculapian, but for moral aid.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: For Aesculapian, but for moral aid.\n",
+      "model_output": "Output: +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---"
+    },
+    {
+      "input": "( These Heaven benign in vital union binds: )",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: ( These Heaven benign in vital union binds: )\n",
+      "model_output": "Expected output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - +"
+    },
+    {
+      "input": "What, if, for once, I preach thee quite awake?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: What, if, for once, I preach thee quite awake?\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "From whom those blanks and trifles but from thee?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: From whom those blanks and trifles but from thee?\n",
+      "model_output": "Metrical Stress Pattern: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - +"
+    },
+    {
+      "input": "Thy purpose firm is equal to the deed:",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Thy purpose firm is equal to the deed:\n",
+      "model_output": "+ + - - + + - - + + - - + + - - + + - - + + - - + + - - + + - - + + - - + + - - + + - - + + - - + + - - + + - - + + - - + + - -"
+    },
+    {
+      "input": "A power ethereal, only not adored.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: A power ethereal, only not adored.\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Leave to thy foes these errors, and these ills;",
+      "gold_target": "11",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Leave to thy foes these errors, and these ills;\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Not, blundering, split on idleness for ease.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Not, blundering, split on idleness for ease.\n",
+      "model_output": "+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Thy sports? thy pomps? - I grant thee, in a state",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Thy sports? thy pomps? - I grant thee, in a state\n",
+      "model_output": "Of mind most free from all alloy, I feel\nA warm respect for all thy public acts;\nBut, O! the memory of past distress,\nThe wrongs of others, and my own, do press\nSo heavily upon me, that I dare not\nTo think on what might have been, had fortune smiled"
+    },
+    {
+      "input": "O treacherous Conscience! while she seems to sleep",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: O treacherous Conscience! while she seems to sleep\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "While she seems, nodding o'er her charge, to drop",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: While she seems, nodding o'er her charge, to drop\n",
+      "model_output": "Answer:\n\n++-+--+-+-+---++-++-+--+-+---++-++-+--+-+---++-++-+--+-+---++-++-+--+-+---++-++-+--+-+---++-++-+--+-+---++"
+    },
+    {
+      "input": "She reconnoitres Fancy's airy band,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: She reconnoitres Fancy's airy band,\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Thus, with indulgence most severe, she treats",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Thus, with indulgence most severe, she treats\n",
+      "model_output": "her own.\n\n+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+"
+    },
+    {
+      "input": "Unnoted, notes each moment misapplied;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Unnoted, notes each moment misapplied;\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "In every pale delinquent's private ear;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: In every pale delinquent's private ear;\n",
+      "model_output": "Stress Pattern: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "On this great theme kind Nature keeps a school,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: On this great theme kind Nature keeps a school,\n",
+      "model_output": "Answer:\n\n-+---+--++-+---+---+--++-+---+---+--++-+---+---+--++-+---+---+--++-+---+---+--++-+---+---+--++-+---+---+--++"
+    },
+    {
+      "input": "To teach her sons herself. Each night we die;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: To teach her sons herself. Each night we die;\n",
+      "model_output": "Output: + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + +"
+    },
+    {
+      "input": "Each morn are born anew: each day a life!",
+      "gold_target": "11",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Each morn are born anew: each day a life!\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "And shall we kill each day? If trifling kills,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: And shall we kill each day? If trifling kills,\n",
+      "model_output": "Output: +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---"
+    },
+    {
+      "input": "His ardour such for what oppresses thee.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: His ardour such for what oppresses thee.\n",
+      "model_output": "Output: + - + - + + - + - + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + -"
+    },
+    {
+      "input": "Though we from earth, ethereal they that fell.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Though we from earth, ethereal they that fell.\n",
+      "model_output": "+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Is Death at distance? No: he has been on thee;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Is Death at distance? No: he has been on thee;\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "And, dying, they bequeath'd thee small renown.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: And, dying, they bequeath'd thee small renown.\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "A moment, and the world's blown up to thee,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: A moment, and the world's blown up to thee,\n",
+      "model_output": "The poem is written in iambic tetrameter, which means that each line contains four iambs (a metrical foot consisting of an unstressed syllable followed by a stressed syllable). Here is the metrical stress pattern for the given line:\n\n- A + mo - ment, and + the + world"
+    },
+    {
+      "input": "Should not each warning give a strong alarm?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Should not each warning give a strong alarm?\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Should not each dial strike us as we pass,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Should not each dial strike us as we pass,\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Like that the dial speaks; and points to thee,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Like that the dial speaks; and points to thee,\n",
+      "model_output": "Metrical Stress Pattern: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - +"
+    },
+    {
+      "input": "\" O man, thy kingdom is departing from thee;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: \" O man, thy kingdom is departing from thee;\n",
+      "model_output": "+ - + - + - + - + - + - + - + - + - + - + -\n+ - + - + - + - + - + - + - + - + - + - + -\n+ - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "As these are useless when the sun is set;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: As these are useless when the sun is set;\n",
+      "model_output": "Output: + - + - + + - + - + - + + - + - + + - + - + - + + - + - + + - + - + - + + - + - + + - + - + - + + - + - + + - + - + - + + -"
+    },
+    {
+      "input": "E'en age itself. Fresh hopes are hourly sown",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: E'en age itself. Fresh hopes are hourly sown\n",
+      "model_output": "Output: +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---"
+    },
+    {
+      "input": "Thus, at life's latest eve, we keep in store",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Thus, at life's latest eve, we keep in store\n",
+      "model_output": "Expected output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - +"
+    },
+    {
+      "input": "How often thaw'd and shorten'd winter's eve,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: How often thaw'd and shorten'd winter's eve,\n",
+      "model_output": "Answer: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "'T will buy thee benefit; perhaps, renown.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: 'T will buy thee benefit; perhaps, renown.\n",
+      "model_output": "Stress pattern: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "What numbers, sheath'd in erudition, lie,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: What numbers, sheath'd in erudition, lie,\n",
+      "model_output": "Awaiting the touch of a scholar's eye?\n\n+--+--+-+-+-+-+-+-+-+--++-+--+-+-+--+-+-+--++-+--+-+-+--+-+-+--++-+--+-+-+--+-+-+--++-+--+-+-+--+-+-+--++-+--+-+-+"
+    },
+    {
+      "input": "What is she but the means of happiness?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: What is she but the means of happiness?\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Celestial Happiness, whene'er she stoops",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Celestial Happiness, whene'er she stoops\n",
+      "model_output": "To bless the humblest, is the highest good.\n\n+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+"
+    },
+    {
+      "input": "Each other's pillow to repose divine.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Each other's pillow to repose divine.\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "From Friendship, which outlives my former themes,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: From Friendship, which outlives my former themes,\n",
+      "model_output": "I turn to thee, my native land, my home.\n\nOutput: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "That sacred Friendship is their easy prey;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: That sacred Friendship is their easy prey;\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "A friend, but what has found a friend in thee.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: A friend, but what has found a friend in thee.\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "What, if ( since daring on so nice a theme )",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: What, if ( since daring on so nice a theme )\n",
+      "model_output": "The first step is to identify the stressed and unstressed syllables in the line. The line has 14 syllables, with 7 stressed syllables and 7 unstressed syllables. Here's the metrical stress pattern:\n\n+ - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "I show thee Friendship delicate as dear,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: I show thee Friendship delicate as dear,\n",
+      "model_output": "Answer: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Pause, ponder, sift; not eager in the choice,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Pause, ponder, sift; not eager in the choice,\n",
+      "model_output": "But thoughtful, calm, and wise, in all you do.\n\nExample:\n++-+-- ++-+-- +-++-+ --++-+ ++-+-- ++-+-- +-++-+ --++-+ ++-+-- ++-+-- +-++-+ --++-+\n\nNote"
+    },
+    {
+      "input": "Well for thy friend; but nobler far for thee;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Well for thy friend; but nobler far for thee;\n",
+      "model_output": "Output: + - + - + + - + - + - + - + - + - + + - + - + - + + - + - + - + - + - + - + + - + - + - + + - + - + - + + - + - + - + - + -"
+    },
+    {
+      "input": "Think'st thou the theme intoxicates my song?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Think'st thou the theme intoxicates my song?\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "( That eagle genius! ) O, had he let fall",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: ( That eagle genius! ) O, had he let fall\n",
+      "model_output": "The secret of his flight, how many ailing\nStatesmen, in their weakness, would have sought\nHis aid, and, soaring high, have found relief.\n\n+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Strange, the theme most affecting, most sublime,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Strange, the theme most affecting, most sublime,\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "And enter, awed, the temple of my theme.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: And enter, awed, the temple of my theme.\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Philander! he severely frown'd on thee:",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Philander! he severely frown'd on thee:\n",
+      "model_output": "+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "I give thee joy: nor will I take my leave,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: I give thee joy: nor will I take my leave,\n",
+      "model_output": "Until the lark first sings at day's opening stroke.\n\nExample:\n+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Unconscious bears, Bellerophon! like thee,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Unconscious bears, Bellerophon! like thee,\n",
+      "model_output": "Stressed: + - + + - + + - + + - + + - + + -\nExplanation: The first syllable of \"Unconscious\" is stressed (+), followed by an unstressed (-) syllable, and so on. The pattern continues until the end of the line."
+    },
+    {
+      "input": "To share their sweet serene. Man, ill at ease",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: To share their sweet serene. Man, ill at ease\n",
+      "model_output": "Input: share their sweet serene Man ill at ease\n\nOutput: + - + + - + - + - + - + - + + - + - + - + - + - + - + + - + - + - + - + - + - + + - + - + - + - + - +"
+    },
+    {
+      "input": "Is Heaven then kinder to thy flocks than thee?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Is Heaven then kinder to thy flocks than thee?\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Shall sons of Ether, shall the blood of Heaven,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Shall sons of Ether, shall the blood of Heaven,\n",
+      "model_output": "Shall sons of Ether, shall the blood of Heaven,\n\nExample:\n+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Unripen'd these, in this inclement clime,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Unripen'd these, in this inclement clime,\n",
+      "model_output": "They perish soon, or else do strangely climb.\n\nExample:\n++-+-- ++-+-- ++-+-+-+-- ++-+-- ++-+-- ++-+-- ++-+-- ++-+-- ++-+-- ++-+-- ++-+-- ++-+-- ++-+"
+    },
+    {
+      "input": "Should set ere noon, in eastern oceans drown'd;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Should set ere noon, in eastern oceans drown'd;\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Hope, eager Hope, the' assassin of our joy,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Hope, eager Hope, the' assassin of our joy,\n",
+      "model_output": "Hope, eager Hope, the' assassin of our joy,\n\n+--+--+-++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--"
+    },
+    {
+      "input": "Hope turns us o'er to Death alone for ease.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Hope turns us o'er to Death alone for ease.\n",
+      "model_output": "+--+--+-+-+-+-+-+-+-+--++-+--+-+-+--+-+--+-+--+-+--+-+--+-+--+-+--+-+--+-+--+-+--+-+--+-+--+-+--+-+--+-+--+-+--+-+--+-"
+    },
+    {
+      "input": "Man's heart eats all things, and is hungry still:",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Man's heart eats all things, and is hungry still:\n",
+      "model_output": "+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Next moment, she betrays her aim's mistake,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Next moment, she betrays her aim's mistake,\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Thy countryl what to thee? - The Godhead, what,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Thy countryl what to thee? - The Godhead, what,\n",
+      "model_output": "- To thee, is Christ? - The world, what is it to thee?\n\nExample:\n+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - +"
+    },
+    {
+      "input": "( I speak with awe! ) though He should bid thee bleed?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: ( I speak with awe! ) though He should bid thee bleed?\n",
+      "model_output": "+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Mends our ideas of ethereal powers;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Mends our ideas of ethereal powers;\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "These to the soul. And why, if souls expire?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: These to the soul. And why, if souls expire?\n",
+      "model_output": "To solve this problem, we need to identify the stressed and unstressed syllables in the given line of poetry. The metrical pattern of English poetry often follows the iambic meter, which consists of an unstressed syllable followed by a stressed syllable. We will apply this pattern to the given line:\n\n1"
+    },
+    {
+      "input": "And these demonstrate boundless objects too.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: And these demonstrate boundless objects too.\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Nor, Nature through, e'er violates this sweet,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Nor, Nature through, e'er violates this sweet,\n",
+      "model_output": "Expected output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+"
+    },
+    {
+      "input": "Of joy, e'en here. Admit immortal life,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Of joy, e'en here. Admit immortal life,\n",
+      "model_output": "And all the future's bliss, and all the past\nIts happiness restore; and let the soul\nBe everlastingly with God, and He\nWith us in bliss eternal.\n\nExample:\nOf + joy, e+ en here. Admi- t immortal life, And + all the fu+ ture's"
+    },
+    {
+      "input": "Each Virtue brings in hand a golden dower,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Each Virtue brings in hand a golden dower,\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "New, unexpected witnesses against thee?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: New, unexpected witnesses against thee?\n",
+      "model_output": "Metrical Stress Pattern: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - +"
+    },
+    {
+      "input": "Canst thou suspect that these, which make the Soul",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Canst thou suspect that these, which make the Soul\n",
+      "model_output": "Of all the world, are but the atoms of the mind?\n\nExample:\n+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - +"
+    },
+    {
+      "input": "Each much deposes: hear them in their turn.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Each much deposes: hear them in their turn.\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Each villager has his ambition too;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Each villager has his ambition too;\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "To poise our own, to keep an even scale,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: To poise our own, to keep an even scale,\n",
+      "model_output": "To bear the burden of a life that's frail,\nTo strive for truth, to seek the light divine,\nTo love and serve, to find our place in time.\n\nExample:\n+ - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "These delicate moralities of Sense;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: These delicate moralities of Sense;\n",
+      "model_output": "Output: +---+ +++++++- +++++++- +++++++- +++++++- +++++++- +++++++- +++++++- +++++++- +++++++- +++++++- +++++++- +++++++- +++++++- +++++++- +++++++"
+    },
+    {
+      "input": "O how misspent were all these stratagems,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: O how misspent were all these stratagems,\n",
+      "model_output": "To catch the heart of one so coldly wise!\n\nThe metrical stress pattern for the given line of poetry is:\n\nO+ how- misspent+ were- all- these- stratagems,-\nTo- catch- the- heart- of- one- so- coldly- wise- !\n\nExplanation:"
+    },
+    {
+      "input": "These its wild growths so bitter, and so base,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: These its wild growths so bitter, and so base,\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "And falsely promises an Eden here:",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: And falsely promises an Eden here:\n",
+      "model_output": "+--+--+-+-++-+--+-+--++-+--++-+--+-+--++-+--+-+--++-+--+-+--++-+--+-+--++-+--+-+--++-+--+-+--++-+--+-+--"
+    },
+    {
+      "input": "Truth she shall speak for once, though prone to lie,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Truth she shall speak for once, though prone to lie,\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "E'en in the zenith of his earthly bliss.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: E'en in the zenith of his earthly bliss.\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Thus far with thee, Lorenzo, will I close: -",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Thus far with thee, Lorenzo, will I close: -\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Stretch'd out, like eagles' wings, beyond our nest,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Stretch'd out, like eagles' wings, beyond our nest,\n",
+      "model_output": "Stress Pattern: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Ye gentle theologues of calmer kind!",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Ye gentle theologues of calmer kind!\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Like the proud Eastern, struck by Providence,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Like the proud Eastern, struck by Providence,\n",
+      "model_output": "In his own way, is led to do his duty.\n\nExample:\n+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "But these ( like that fallen monarch when reclaim'd )",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: But these ( like that fallen monarch when reclaim'd )\n",
+      "model_output": "Output: +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---"
+    },
+    {
+      "input": "By wanton Eve's debauch, to stroll on earth,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: By wanton Eve's debauch, to stroll on earth,\n",
+      "model_output": "The Son of God was born, to save the lost.\n\nExample:\n+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Stands on my part: the famed Athenian Porch",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Stands on my part: the famed Athenian Porch\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Fable is flat to these high-season'd sires;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Fable is flat to these high-season'd sires;\n",
+      "model_output": "Output: +---+--+-+-+--+-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--"
+    },
+    {
+      "input": "Thus on: - these, and a thousand pleas uncall'd,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Thus on: - these, and a thousand pleas uncall'd,\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "The thorns shoot up! What thorns in every thought!",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: The thorns shoot up! What thorns in every thought!\n",
+      "model_output": "Output: +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---"
+    },
+    {
+      "input": "Now leagued with furies, and with thee Lorenzo. against me.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Now leagued with furies, and with thee Lorenzo. against me.\n",
+      "model_output": "+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "What gains she, but the pang of seeing worth,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: What gains she, but the pang of seeing worth,\n",
+      "model_output": "that she cannot begetting?\n\nThe metrical stress pattern for the given line of poetry is:\n\nWhat+ gai+ ns+ she+, but+ the+ pang+ of+ see+ ing+ wor+ th,+ that+ she+ can+ not+ be+ get+ ting+ ?+\n\nNote: The \"+\""
+    },
+    {
+      "input": "\" Duty! Religion! - These, our duty done,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: \" Duty! Religion! - These, our duty done,\n",
+      "model_output": "Have made us what we are.\"\n\nOutput: \"+-+--++-+--+-+--+--++-+--+-+--+--\"\n\nNote:\n1. The input line will always be in English.\n2. The input line may contain punctuation marks, but they should not be included in the output."
+    },
+    {
+      "input": "\" But not on equal terms with other brutes:",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: \" But not on equal terms with other brutes:\n",
+      "model_output": "+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "\" And why see that? Why Thought? To toil and eat,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: \" And why see that? Why Thought? To toil and eat,\n",
+      "model_output": "To sleep and breathe, and feel the sun's heat.\"\n\nOutput: \"+-+--++-++-+-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++-++"
+    },
+    {
+      "input": "And therefore 't is bestow'd. I thank thee, Reason,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: And therefore 't is bestow'd. I thank thee, Reason,\n",
+      "model_output": "+ + - - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "These glorious orbs, that mortals may compute",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: These glorious orbs, that mortals may compute\n",
+      "model_output": "Output: + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + +"
+    },
+    {
+      "input": "And in an Eden mourn his wither'd joys?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: And in an Eden mourn his wither'd joys?\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "A Thebes, a Babylon, at vast expense",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: A Thebes, a Babylon, at vast expense\n",
+      "model_output": "Example Input: \"The quick brown fox jumps over the lazy dog\"\nExample Output: \"+-+--+-+-+--++-++-+--+-+\"\n\nNote:\n1. The input will always be a single line of poetry.\n2. The input will only contain letters and spaces.\n3. Syllables"
+    },
+    {
+      "input": "And dares Lorenzo smile? - I know thee proud:",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: And dares Lorenzo smile? - I know thee proud:\n",
+      "model_output": "+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "For once let Pride befriend thee: Pride looks pale",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: For once let Pride befriend thee: Pride looks pale\n",
+      "model_output": "Input: For+once+let+Pride+be+frend+thee:+Pride+looks+pale\n\nExplanation:\n- \"For\" has two syllables, both stressed (++).\n- \"once\" has two syllables, both stressed (++).\n- \"let\" has one syllable,"
+    },
+    {
+      "input": "Thine equal? Runs thy taste of pleasure high?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Thine equal? Runs thy taste of pleasure high?\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Ambition, Pleasure, Avarice, persuade thee",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Ambition, Pleasure, Avarice, persuade thee\n",
+      "model_output": "To thyself be true, and in thyself confide.\n\nExample:\n+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - +"
+    },
+    {
+      "input": "Kind is fell Lucifer, compared to thee:",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Kind is fell Lucifer, compared to thee:\n",
+      "model_output": "+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Each blossom fair of Deity destroy'd?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Each blossom fair of Deity destroy'd?\n",
+      "model_output": "Metrical Stress Pattern: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - +"
+    },
+    {
+      "input": "Nothing is dead; nay, nothing sleeps; each soul",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Nothing is dead; nay, nothing sleeps; each soul\n",
+      "model_output": "In some form lives on, and all things are full of grace.\n\nExample:\n++-+-- ++-+-- ++-+-+-+-- ++-+-- ++-+-- ++-+-- ++-+-- ++-+-- ++-+-- ++-+-- ++-+-- ++-+"
+    },
+    {
+      "input": "It shines to thee! ) there's nothing real in it;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: It shines to thee! ) there's nothing real in it;\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Lorenzo, dost thou feel these arguments?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Lorenzo, dost thou feel these arguments?\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Of all these truths thrice-venerable code!",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Of all these truths thrice-venerable code!\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Swept Egypt and her menaces to hell:",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Swept Egypt and her menaces to hell:\n",
+      "model_output": "+--+--+-+-++-+--+-+--++-+--++-+--++-+--+-+--++-+--++-+--++-+--+-+--++-+--++-+--++-+--+-+--++-+--++-+--"
+    },
+    {
+      "input": "Has not each element, in turn, subscribed",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Has not each element, in turn, subscribed\n",
+      "model_output": "To the great chain of being?\n\nMetrical Stress Pattern: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Has not flame, ocean, ether, earthquake, strove",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Has not flame, ocean, ether, earthquake, strove\n",
+      "model_output": "To quench the light of truth, but in vain.\n\n+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "And shall each toy be still a match for heaven?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: And shall each toy be still a match for heaven?\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Is not, Lorenzo, then, imposed on thee",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Is not, Lorenzo, then, imposed on thee\n",
+      "model_output": "To be a man, and to thy father's name\nAdd what it may, still be a Christian?\n\nExample:\nIs + - + -\nnot - + +\nLorenzo, + - + -\nthen, + - +\nTo + - + - + -\nbe + - + - a +\nman, + -"
+    },
+    {
+      "input": "These find employment, and provide for Sense",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: These find employment, and provide for Sense\n",
+      "model_output": "Output: +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---"
+    },
+    {
+      "input": "Erewhile ethereal heights, ) and throw her down,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Erewhile ethereal heights, ) and throw her down,\n",
+      "model_output": "+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "In each recess of space and time at home;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: In each recess of space and time at home;\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Eternity's vast ocean lies before thee;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Eternity's vast ocean lies before thee;\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Why this to thee? - thee yet perhaps in doubt",
+      "gold_target": "11",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Why this to thee? - thee yet perhaps in doubt\n",
+      "model_output": "+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "What has destroy'd it? - Shall I tell thee what?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: What has destroy'd it? - Shall I tell thee what?\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "When that bless'd change arrives, e'en cast aside",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: When that bless'd change arrives, e'en cast aside\n",
+      "model_output": "Input: when+ that+bless'd+change+arrives++ e+en+cast+aside++\n\nNote: The input is a space-separated string of words, where each word represents a syllable in the line. The output is a string of + and - characters, with each character representing a syllable in"
+    },
+    {
+      "input": "'T is easy; it invites thee; it descends",
+      "gold_target": "11",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: 'T is easy; it invites thee; it descends\n",
+      "model_output": "To thy dark place, and takes possession there.'\n\nExample:\n'T + + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "From heaven to woo, and waft thee whence it came:",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: From heaven to woo, and waft thee whence it came:\n",
+      "model_output": "+ + - - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "In proud disdain of what e'en gods adore,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: In proud disdain of what e'en gods adore,\n",
+      "model_output": "Metrical Stress Pattern: +--+--+-+-+--+-++-+--++-+--++-+--+-++-+--++-+--++-+--+-++-+--++-+--++-+--+-++-+--++-+--++-+--+-"
+    },
+    {
+      "input": "Annihilation, I confess, in these.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Annihilation, I confess, in these.\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "E'er wish ( and wish in vain! ) that souls could die?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: E'er wish ( and wish in vain! ) that souls could die?\n",
+      "model_output": "Stress pattern: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Millions of mysteries! each darker far",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Millions of mysteries! each darker far\n",
+      "model_output": "+\n++\n- -\n+ +\n++\n- -\n+ +\n++\n- -\n+ +\n++\n- -\n+ +\n++\n- -\n+ +\n++\n- -\n+ +\n++\n- -\n+ +\n++\n- -\n+ +\n++\n- -\n+ +\n++\n- -\n+ +\n++\n- -\n+ +\n++\n- -\n+ +\n++\n- -"
+    },
+    {
+      "input": "She plans, provides, expatiates, triumphs there;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: She plans, provides, expatiates, triumphs there;\n",
+      "model_output": "Output: + - + + - + - + + - + - + + - + - + + - + - + + - + - + + - + - + + - + - + + - + - + + - + - + + - + - + + - + - + + - + -"
+    },
+    {
+      "input": "And what is Reason? Be she thus defined:",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: And what is Reason? Be she thus defined:\n",
+      "model_output": "+--+--+-++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--"
+    },
+    {
+      "input": "That tyrant, Hope, mark how she domineers:",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: That tyrant, Hope, mark how she domineers:\n",
+      "model_output": "+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "She bids us quit realities for dreams;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: She bids us quit realities for dreams;\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "She bids Ambition quit its taken prize,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: She bids Ambition quit its taken prize,\n",
+      "model_output": "Output: + - + - + + - + - + - + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + -"
+    },
+    {
+      "input": "Like the fair summer evening, mild and sweet!",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Like the fair summer evening, mild and sweet!\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + \n\nExplanation:\n1. Like (+)\n2. the (+)\n3. fair (+)\n4. summer (+)\n5. evening (+)\n6. mild (-)\n7. and (-)\n8. sweet (+)"
+    },
+    {
+      "input": "I chose no trivial or inglorious theme.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: I chose no trivial or inglorious theme.\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Warn'd by the languor of Life's evening ray,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Warn'd by the languor of Life's evening ray,\n",
+      "model_output": "Metrical Stress Pattern: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - +"
+    },
+    {
+      "input": "Which hovers o'er me, quench the' ethereal fire,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Which hovers o'er me, quench the' ethereal fire,\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "\" Profess'd Diversions! cannot these escape? \"",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: \" Profess'd Diversions! cannot these escape? \"\n",
+      "model_output": "Output: \"+-+--++-++-+-++-+\"\n\nExplanation:\n- \"Pro\" is stressed, so it's \"+\"\n- \"fess\" is unstressed, so it's \"-\"\n- \"Diversions\" has the stress pattern \"+-+--\"\n- \"!\" is a punctuation mark"
+    },
+    {
+      "input": "Far from it: these present us with a shroud;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Far from it: these present us with a shroud;\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Earth repossesses part of what she gave,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Earth repossesses part of what she gave,\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Each element partakes our scatter'd spoils;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Each element partakes our scatter'd spoils;\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "I see the mighty shadow: oozy wreath",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: I see the mighty shadow: oozy wreath\n",
+      "model_output": "Example output: +--+--+-+-+--+-+--++-+--+-+--++-+--+-+--++-+--+-+--++-+--+-+--++-+--+-+--++-+--+-+--++-+--+-+--++-+"
+    },
+    {
+      "input": "Reclined, she weeps her desolated realms,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Reclined, she weeps her desolated realms,\n",
+      "model_output": "Answer: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "In vain, to many; not, I trust, to thee.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: In vain, to many; not, I trust, to thee.\n",
+      "model_output": "+--+--+-+-+--+-++-+--+-+-+--+-++-+--+-+-+--+-++-+--+-+-+--+-++-+--+-+-+--+-++-+--+-+-+--+-++-+--+-+-+--+-++-+--+-+-+--+-++"
+    },
+    {
+      "input": "These are let loose, alternate; down they rush,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: These are let loose, alternate; down they rush,\n",
+      "model_output": "+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "And ease Creation of the shocking scene.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: And ease Creation of the shocking scene.\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Amazing period! when each mountain-height",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Amazing period! when each mountain-height\n",
+      "model_output": "Was a new world to some adventurous spirit,\nAnd the first man who grasp'd the flying dart,\nCould claim to all mankind the merit part.\n\nExample:\n+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+"
+    },
+    {
+      "input": "Far other firmament than e'er was seen,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Far other firmament than e'er was seen,\n",
+      "model_output": "Metrical Stress Pattern: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+"
+    },
+    {
+      "input": "Than e'er was thought by man! Far other stars!",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Than e'er was thought by man! Far other stars!\n",
+      "model_output": "Output: +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---"
+    },
+    {
+      "input": "Stars animate, that govern these of fire.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Stars animate, that govern these of fire.\n",
+      "model_output": "+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Full on the confines of our ether, flames:",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Full on the confines of our ether, flames:\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "This strikes, if aught can strike thee; this awakes",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: This strikes, if aught can strike thee; this awakes\n",
+      "model_output": "If a thing can wake thee; this persuades\n\nThis strikes, if aught can strike thee; this awakes\n+ - + - + - + - + - + - + - + - + - + - + -\n\nIf a thing can wake thee; this persuades\n+ - + - + -"
+    },
+    {
+      "input": "I find my inspiration in my theme;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: I find my inspiration in my theme;\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "At thought of thee each sublunary wish",
+      "gold_target": "11",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: At thought of thee each sublunary wish\n",
+      "model_output": "Stress pattern: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Lets go its eager grasp, and drops the world;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Lets go its eager grasp, and drops the world;\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "And catches at each reed of hope in heaven.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: And catches at each reed of hope in heaven.\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "At thought of thee! - And art thou absent then?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: At thought of thee! - And art thou absent then?\n",
+      "model_output": "Stress pattern: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "In thee, in all; deputed Conscience scales",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: In thee, in all; deputed Conscience scales\n",
+      "model_output": "The weight of actions, and doth justly weigh\n\nExample:\n+ - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "As in a theatre, surround this scene,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: As in a theatre, surround this scene,\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Angels look out for thee; for thee, their LORD,",
+      "gold_target": "11",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Angels look out for thee; for thee, their LORD,\n",
+      "model_output": "+ - + - + - + - + - + - + - + - + - + - + -\n+ - + - + - + - + - + - + - + - + - + - + -\n\nExplanation:\n- The first word \"Angels\" has two syllables, with the stress on the"
+    },
+    {
+      "input": "To vindicate His glory; and for thee",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: To vindicate His glory; and for thee\n",
+      "model_output": "Example Input: \"To be or not to be, that is the question.\"\nExample Output: \"+-+--+-+-++-+-+\"\n\nNote:\n1. The input line will always consist of valid words separated by spaces.\n2. Each word in the input line will have at least one syllable.\n3."
+    },
+    {
+      "input": "A sunbeam pointing out each secret thought!",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: A sunbeam pointing out each secret thought!\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Are less obscure: for these may man inquire.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Are less obscure: for these may man inquire.\n",
+      "model_output": "+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Nor in eternity, nor time, I find thee.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Nor in eternity, nor time, I find thee.\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "These, as two monarchs, on their borders meet,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: These, as two monarchs, on their borders meet,\n",
+      "model_output": "Output: +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---"
+    },
+    {
+      "input": "He turns them o'er, Eternity, to thee.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: He turns them o'er, Eternity, to thee.\n",
+      "model_output": "Output: +--+--+-+---++-+--++-+--+-+---++-+--++-+--+-+---++-+--++-+--+-+---++-+--++-+--+-+---++-+--++-+--+-+---++"
+    },
+    {
+      "input": "How often has she knock'd at human hearts!",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: How often has she knock'd at human hearts!\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Down, down she hurls it through the dark profound,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Down, down she hurls it through the dark profound,\n",
+      "model_output": "+--+--+-+-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-+--++-"
+    },
+    {
+      "input": "The whole ethereal! How the concave rings!",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: The whole ethereal! How the concave rings!\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Censure on thee, Lorenzo, I suspend,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Censure on thee, Lorenzo, I suspend,\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Who, without Pain's advice, would e'er be good?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Who, without Pain's advice, would e'er be good?\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "That planted Eden, and high-bloom'd for man",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: That planted Eden, and high-bloom'd for man\n",
+      "model_output": "Example Input: \nLine: The sun sets in the west\nExpected Output:\n+ - + - + - + - + - + - + - + - + - + -\nNote: The input line is case-sensitive and may contain punctuation marks. The output should only consider syllables and ignore punctuation marks.\npython"
+    },
+    {
+      "input": "A fairer Eden, endless, in the skies.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: A fairer Eden, endless, in the skies.\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "All evils natural are moral goods:",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: All evils natural are moral goods:\n",
+      "model_output": "+\n- + -\n+ -\n- + +\n- - + -\n+ - + -\n- + + -\n- - + -\n+ - + -\n- + + -\n- - + -\n+ - + -\n- + + -\n- - + -\n+ - + -\n- + + -\n- - + -\n+ - +"
+    },
+    {
+      "input": "Which courts, each night, dull slumber, for repair,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Which courts, each night, dull slumber, for repair,\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Ills? - There are none! All-Gracious! none from Thee;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Ills? - There are none! All-Gracious! none from Thee;\n",
+      "model_output": "+ I am - thy - servant, - O - Lord! - hear - me!\n\nThe output should be:\n++- +---+ +-- ++- +---+ +-- ++- +---+ +-- ++- +---+ +-- ++- +---+ +-- ++- +---+ +"
+    },
+    {
+      "input": "What rocks are these, on which to build our trust?",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: What rocks are these, on which to build our trust?\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "For all I bless Thee; most, for the severe;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: For all I bless Thee; most, for the severe;\n",
+      "model_output": "Output: +---+ +++++-+ +++++-+ +++++-+ +++++-+ +++++-+ +++++-+ +++++-+ +++++-+ +++++-+ +++++-+ +++++-+ +++++-+ +++++-+ +++++-+ +++++-"
+    },
+    {
+      "input": "The Muse has gain'd, review the paths she trod,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: The Muse has gain'd, review the paths she trod,\n",
+      "model_output": "Answer: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Though still remote; so fruitful is my theme.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Though still remote; so fruitful is my theme.\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "O'er friends deceased full heartily she wept;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: O'er friends deceased full heartily she wept;\n",
+      "model_output": "Output: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Of love Divine the wonders she display'd;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Of love Divine the wonders she display'd;\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "To be discharged: these thoughts, O Night! are thine;",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: To be discharged: these thoughts, O Night! are thine;\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "From thee they came, like lovers' secret sighs,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: From thee they came, like lovers' secret sighs,\n",
+      "model_output": "Answer: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---"
+    },
+    {
+      "input": "Than I of thee. - And art thou still unsung,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Than I of thee. - And art thou still unsung,\n",
+      "model_output": "+ Than + I + of + thee. + - + And + art + thou + still + unsung,\n\nExplanation:\n- The first word \"Than\" has a stressed syllable, represented by \"+\".\n- The second word \"I\" has an unstressed syllable, represented by \"-\".\n- The third word"
+    },
+    {
+      "input": "Creation of archangels is the theme!",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Creation of archangels is the theme!\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "Who gave these wonders to be seen by man,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Who gave these wonders to be seen by man,\n",
+      "model_output": "Who made the stars to shine so bright?\n\nOutput: +--+--+-+--+-+-++-+--++-+--++-+--+-+-++-+--++-+--++-+--+-+-++-+--++-+--++-+--+-+-++-+--++-+"
+    },
+    {
+      "input": "Rapt in sweet contemplation of these fires,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Rapt in sweet contemplation of these fires,\n",
+      "model_output": "Metrical Stress Pattern: +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+"
+    },
+    {
+      "input": "Creation's golden steps, to climb to THEE.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Creation's golden steps, to climb to THEE.\n",
+      "model_output": "Metrical Stress Pattern: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - +"
+    },
+    {
+      "input": "Lorenzo! come, and warm thee: thou whose heart,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: Lorenzo! come, and warm thee: thou whose heart,\n",
+      "model_output": "Though chill'd with age, is yet of summer's heat.\n\nOutput: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - +"
+    },
+    {
+      "input": "A theft that shall not chain, but set thee free.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: A theft that shall not chain, but set thee free.\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    },
+    {
+      "input": "To these bright ardours; every power unfold,",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: To these bright ardours; every power unfold,\n",
+      "model_output": "Output: + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + + - + - + - + +"
+    },
+    {
+      "input": "The stars will light thee, though the moon should fail.",
+      "gold_target": "1",
+      "prompt": "Given this line of poetry, output its metrical stress pattern as a string of + (stressed) and - (unstressed) for each syllable. Output nothing else.\n\nLine: The stars will light thee, though the moon should fail.\n",
+      "model_output": "Output: + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + - + -"
+    }
+  ]
+}

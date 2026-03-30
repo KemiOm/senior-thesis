@@ -1,0 +1,1810 @@
+{
+  "model": "Qwen/Qwen2-7B-Instruct",
+  "prompt_type": "zero_shot",
+  "task": "natural_text",
+  "split": "test",
+  "n_samples": 200,
+  "results": [
+    {
+      "input": "[start]",
+      "gold_target": "\" When the cock crew, he wept, \" - smote by that eye,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: [start]\n\nNext line:\n",
+      "model_output": "The sun sets on the horizon,\n[Your task is to continue the poem based on the given context.]\n\nThe sky paints a canvas of orange and pink,\nAs stars begin to twinkle in the night's wink.\nThe gentle breeze whispers through the trees,\nCarrying with it the scent of blooming bees.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S B T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "\" When the cock crew, he wept, \" - smote by that eye,",
+      "gold_target": "Which looks on me, on all: that Power who bids",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: \" When the cock crew, he wept, \" - smote by that eye,\n\nNext line:\n",
+      "model_output": "His heart ached with sorrow, as dawn's light did deny.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "P HH B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Which looks on me, on all: that Power who bids",
+      "gold_target": "This midnight sentinel, with clarion shrill,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Which looks on me, on all: that Power who bids\n\nNext line:\n",
+      "model_output": "In every heart a secret hope arise,\nThat in His time, our souls may truly thrive.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W K R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "This midnight sentinel, with clarion shrill,",
+      "gold_target": "( Emblem of that which shall awake the dead, )",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: This midnight sentinel, with clarion shrill,\n\nNext line:\n",
+      "model_output": "Fills the dark expanse with echoes still. \n\n(Note: The prompt asks for a continuation of the given poem, specifically focusing on the \"midnight sentinel\" and its \"clarion shrill.\" The task is to write the next line that logically follows these elements, maintaining the poetic tone and imagery.)",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L W D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "( Emblem of that which shall awake the dead, )",
+      "gold_target": "Rouse souls from slumber, into thoughts of heaven.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: ( Emblem of that which shall awake the dead, )\n\nNext line:\n",
+      "model_output": "A radiant orb, a symbol of the undead's dread. \n\nThe answer should be a single sentence that continues the poem in a logical and coherent manner, building upon the given context. The next line should expand on the idea of an \"emblem\" that represents something that will awaken the dead, perhaps describing the appearance",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T V HH",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Rouse souls from slumber, into thoughts of heaven.",
+      "gold_target": "Shall I too weep? Where then is fortitude?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Rouse souls from slumber, into thoughts of heaven.\n\nNext line:\n",
+      "model_output": "Let wings of hope unfurl and carry us to realms unseen. Let the whispers of the divine stir within our hearts, igniting a flame that burns brighter than the stars above. As we ascend through clouds of doubt, our spirits soar on the breeze of faith, embracing the infinite possibilities that lie beyond the horizon of our",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N Z F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Shall I too weep? Where then is fortitude?",
+      "gold_target": "And, fortitude abandon'd, where is man?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Shall I too weep? Where then is fortitude?\n\nNext line:\n",
+      "model_output": "In the heart of sorrow, where resilience takes root,  \nShall I find strength, or shall despair ensnare my youth?",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W Z M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And, fortitude abandon'd, where is man?",
+      "gold_target": "I know the terms on which he sees the light:",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And, fortitude abandon'd, where is man?\n\nNext line:\n",
+      "model_output": "Man, once a being of strength and will,\nnow lost in the depths of despair's chill,\nseeks solace in shadows, where light does not stand,\nin the silent embrace of solitude, his heart's true command.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH S L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "I know the terms on which he sees the light:",
+      "gold_target": "He that is born is listed; life is war,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: I know the terms on which he sees the light:\n\nNext line:\n",
+      "model_output": "He sees the light through a lens of despair, where every ray is a memory of what was lost, and hope flickers like a candle in a storm, barely clinging to the darkness, yearning for a moment of clarity that might guide it back to the warmth of understanding and the embrace of possibility. In his heart",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L Z W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "He that is born is listed; life is war,",
+      "gold_target": "Eternal war with woe. Who bears it best,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: He that is born is listed; life is war,\n\nNext line:\n",
+      "model_output": "In a world where every breath is a battle, and every step is a march towards the unknown, he stands tall, his spirit unyielding, a beacon of resilience in the face of relentless conflict.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B T B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Eternal war with woe. Who bears it best,",
+      "gold_target": "Deserves it least. - On other themes I'll dwell.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Eternal war with woe. Who bears it best,\n\nNext line:\n",
+      "model_output": "In hearts of stone or those that weep with rest? Eternal war with woe, a battle fierce and long,\nWho bears it best, in hearts of stone or those that weep with rest?\n\nIn hearts of stone, where pain is locked away,\nA fortress strong, yet empty, day by day.\n\nOr",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 L D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Deserves it least. - On other themes I'll dwell.",
+      "gold_target": "Lorenzo! let me turn my thoughts on thee,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Deserves it least. - On other themes I'll dwell.\n\nNext line:\n",
+      "model_output": "But in this case, my heart does tell\nA tale of shadows, where light once fell.",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1",
+      "gold_form_ok": true
+    },
+    {
+      "input": "Lorenzo! let me turn my thoughts on thee,",
+      "gold_target": "And thine on themes may profit; profit there",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Lorenzo! let me turn my thoughts on thee,\n\nNext line:\n",
+      "model_output": "For in thy heart, a flame of truth doth gleam.\nAmidst the shadows that life often weaves,\nIn you, a beacon shines, both pure and deep,\nGuiding through trials, with a steadfast keep.",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 M P P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And thine on themes may profit; profit there",
+      "gold_target": "Where most thy need: themes, too, the genuine growth",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And thine on themes may profit; profit there\n\nNext line:\n",
+      "model_output": "in wisdom, truth, and virtue's fair array,\nfor in these noble pursuits, one finds a ray\nof light that guides through life's complex maze,\nilluminating paths where understanding and grace.",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 T D G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Where most thy need: themes, too, the genuine growth",
+      "gold_target": "Of dear Philander's dust. He thus, though dead,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Where most thy need: themes, too, the genuine growth\n\nNext line:\n",
+      "model_output": "Of wisdom and insight, in the heart's truest depth, where one's essence and purpose are most vividly depicted.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH S D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Of dear Philander's dust. He thus, though dead,",
+      "gold_target": "May still befriend. - What themes? Time's wondrous price,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Of dear Philander's dust. He thus, though dead,\n\nNext line:\n",
+      "model_output": "still speaks to us,\nhis legacy a guiding light, a beacon in the darkness of time, reminding us of the virtues he held dear and the impact he left upon those who knew him well.",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 T W P",
+      "gold_form_ok": true
+    },
+    {
+      "input": "May still befriend. - What themes? Time's wondrous price,",
+      "gold_target": "Death, friendship, and Philander's final scene.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: May still befriend. - What themes? Time's wondrous price,\n\nNext line:\n",
+      "model_output": "In every moment, love and strife,\nwe learn to cherish life's embrace,  \nembracing change with open eyes,  \nfor in its flow, we find our prize.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F F S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Death, friendship, and Philander's final scene.",
+      "gold_target": "So could I touch these themes as might obtain",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Death, friendship, and Philander's final scene.\n\nNext line:\n",
+      "model_output": "The pallid hand of death did gently press\nUpon the brow of Philander, as he lay,\nIn silent slumber, 'midst the fragrant grass,\nWhere friends had placed him, in a peaceful place. \nNow, as the sun began to set its rays,\nA gentle breeze whispered through the trees",
+      "gold_stress_pm": "++",
+      "gold_rhyme_key": "IY1 Z M B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "So could I touch these themes as might obtain",
+      "gold_target": "Thine ear, nor leave thy heart quite disengaged,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: So could I touch these themes as might obtain\n\nNext line:\n",
+      "model_output": "I would explore the depths of human pain,  \nUnraveling secrets hidden in plain sight,  \nSeeking solace in the shadows where light,\nFades into whispers of the heart's true fight.",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 N L HH K D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Thine ear, nor leave thy heart quite disengaged,",
+      "gold_target": "The good deed would delight me; half-impress",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Thine ear, nor leave thy heart quite disengaged,\n\nNext line:\n",
+      "model_output": "For in my words, a deeper truth is laid,  \nA gentle whisper, guiding through life's maze.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M HH M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "The good deed would delight me; half-impress",
+      "gold_target": "On my dark cloud an Iris; and from grief",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: The good deed would delight me; half-impress\n\nNext line:\n",
+      "model_output": "yet still, I fear the judgment of my peers, who might perceive it as a mere ploy for admiration.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N F G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "On my dark cloud an Iris; and from grief",
+      "gold_target": "Call glory. - Dost thou mourn Philander's fate?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: On my dark cloud an Iris; and from grief\n\nNext line:\n",
+      "model_output": "I find solace in its vibrant hue, a fleeting escape from sorrow's cruel clutch.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M F F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Call glory. - Dost thou mourn Philander's fate?",
+      "gold_target": "I know thou say'st it: says thy life the same?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Call glory. - Dost thou mourn Philander's fate?\n\nNext line:\n",
+      "model_output": "Oh, let not sorrow's shadow dim thy heart,\nFor in his life, a tale of love and art.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S L S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "I know thou say'st it: says thy life the same?",
+      "gold_target": "- He mourns the dead who lives as they desire.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: I know thou say'st it: says thy life the same?\n\nNext line:\n",
+      "model_output": "Yet in my heart, a whisper echoes, claiming\nthat even as you speak, your actions paint a different frame.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L Z D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "- He mourns the dead who lives as they desire.",
+      "gold_target": "Where is that thrift, that avarice of TIME,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: - He mourns the dead who lives as they desire.\n\nNext line:\n",
+      "model_output": "He weeps for those who've lost their fire. He weeps for those who've lost their fire, yearning to ignite anew,\nTheir hearts once ablaze, now dimmed in the gloom,\nAching for the spark that once danced within,\nLonging to reclaim the light and set their spirits alight",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V V T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Where is that thrift, that avarice of TIME,",
+      "gold_target": "( O glorious avarice! ) thought of death inspires,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Where is that thrift, that avarice of TIME,\n\nNext line:\n",
+      "model_output": "That once so richly filled our days with prime,\nNow steals away, leaving behind a trace,\nOf memories fading, like a sunset's grace.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V D N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "( O glorious avarice! ) thought of death inspires,",
+      "gold_target": "As rumour'd robberies endear our gold?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: ( O glorious avarice! ) thought of death inspires,\n\nNext line:\n",
+      "model_output": "Yet in its embrace, life's fleeting beauty persists.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R N G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "As rumour'd robberies endear our gold?",
+      "gold_target": "O Time! than gold more sacred; more a load",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: As rumour'd robberies endear our gold?\n\nNext line:\n",
+      "model_output": "As whispers of deceit make our trust grow old. \n\nAs the shadows lengthen and the night descends,\nOur hearts, once light, now heavy with unspoken ends,\nIn every glance, a tale untold, a secret bound,\nAs whispers of deceit make our trust grow old. \n\nIn whispered fears, we",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S M L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "O Time! than gold more sacred; more a load",
+      "gold_target": "Than lead to fools; and fools reputed wise.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: O Time! than gold more sacred; more a load\n\nNext line:\n",
+      "model_output": "Than all the wealth that ever man did hold. \n\nO Time! thou must untangle this, \nWhose knotted fortunes twist and entwine,\nUnravel secrets deep as night,\nAnd set true worth in light divine.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F R W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Than lead to fools; and fools reputed wise.",
+      "gold_target": "What moment granted man without account?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Than lead to fools; and fools reputed wise.\n\nNext line:\n",
+      "model_output": "Yet in their jests, a truth they do confide,\nFor wisdom oft resides in laughter's guise,  \nUnveiling life's complexities with mirth,\nAs shadows dance, revealing truths worthirth.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M W K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "What moment granted man without account?",
+      "gold_target": "What years are squander'd, Wisdom's debt unpaid!",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: What moment granted man without account?\n\nNext line:\n",
+      "model_output": "Time's whisper, in the still of night,  \nUnfurls a tapestry of light,  \nRevealing secrets, ancient and vast,\nIn the silent dance of past and future's last.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W D N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "What years are squander'd, Wisdom's debt unpaid!",
+      "gold_target": "Our wealth in days all due to that discharge.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: What years are squander'd, Wisdom's debt unpaid!\n\nNext line:\n",
+      "model_output": "The future's light grows dim with each mistake we make,  \nAs time's relentless march erases what we could have taken back.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T T D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Our wealth in days all due to that discharge.",
+      "gold_target": "Haste, haste, he lies in wait, he's at the door,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Our wealth in days all due to that discharge.\n\nNext line:\n",
+      "model_output": "The sun's last rays, a final embrace,\nPaint the sky in hues of gold and grace.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH T D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Haste, haste, he lies in wait, he's at the door,",
+      "gold_target": "Insidious Death! should his strong hand arrest,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Haste, haste, he lies in wait, he's at the door,\n\nNext line:\n",
+      "model_output": "With eyes ablaze and heart aglow,\nhe whispers secrets to the night, unaware of the dawn's first light.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S HH R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Insidious Death! should his strong hand arrest,",
+      "gold_target": "No composition sets the prisoner free.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Insidious Death! should his strong hand arrest,\n\nNext line:\n",
+      "model_output": "Innocent lives, crushed beneath his fatal curse.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S P F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "No composition sets the prisoner free.",
+      "gold_target": "Eternity's inexorable chain",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: No composition sets the prisoner free.\n\nNext line:\n",
+      "model_output": "Yet hope remains, a flicker in the dark,\nA glimmer of release, a silent spark. \n\nThe poem is about the struggle for freedom and the persistence of hope even in the darkest of times. The speaker acknowledges that no single act or composition can set a prisoner free, but they also believe that hope is",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T N T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Eternity's inexorable chain",
+      "gold_target": "Fast binds; and vengeance claims the full arrear.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Eternity's inexorable chain\n\nNext line:\n",
+      "model_output": "Inescapable, it binds us all,\nA cosmic dance of time's small ball. In the eternal embrace of the universe, we find our fleeting place, a whisper in the vastness, where moments and memories trace the tapestry of existence with grace.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K F R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Fast binds; and vengeance claims the full arrear.",
+      "gold_target": "How late I shudder'd on the brink! how late",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Fast binds; and vengeance claims the full arrear.\n\nNext line:\n",
+      "model_output": "The chains of justice clank with silent fear. The weight of past offenses now seeks retribution, as the echoes of unavenged wrongs reverberate through time, amplifying the urgency of each step taken towards the inevitable reckoning. The air hums with an electric tension, charged by the collective memory",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B HH L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "How late I shudder'd on the brink! how late",
+      "gold_target": "Life call'd for her last refuge in despair!",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: How late I shudder'd on the brink! how late\n\nNext line:\n",
+      "model_output": "I sought the safety of the path, my heart still racing, each step a reminder of the peril that had nearly claimed me.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R N D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Life call'd for her last refuge in despair!",
+      "gold_target": "That time is mine, O Mead, to thee I owe;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Life call'd for her last refuge in despair!\n\nNext line:\n",
+      "model_output": "She sought solace in the arms of night's embrace, where shadows whispered tales of forgotten days and dreams that danced on the edge of reality, offering a fleeting escape from the relentless grip of sorrow's chains.",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1",
+      "gold_form_ok": false
+    },
+    {
+      "input": "That time is mine, O Mead, to thee I owe;",
+      "gold_target": "Fain would I pay thee with eternity.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: That time is mine, O Mead, to thee I owe;\n\nNext line:\n",
+      "model_output": "In every verse and every measure, I entwine\nthy spirit, ancient bard, with my own voice, true and bold, weaving a tapestry of shared wisdom and timeless tales that echo through the ages, binding our souls in an unbreakable bond of inspiration and creativity.",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 W T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Fain would I pay thee with eternity.",
+      "gold_target": "But ill my genius answers my desire;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Fain would I pay thee with eternity.\n\nNext line:\n",
+      "model_output": "But time, alas, is but a fleeting memory. \n\nContinuation:\nIn endless dance of moments, we entwine,\nYet, in the grasp of shadows, our love declines.\nEternity, a promise whispered in the night,\nFades like the stars, as dawn's light takes flight. \n\nSo,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N M D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "But ill my genius answers my desire;",
+      "gold_target": "My sickly song is mortal, past thy cure.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: But ill my genius answers my desire;\n\nNext line:\n",
+      "model_output": "With every stroke, I carve a futurepire.\nBut ill my genius answers my desire; With every stroke, I carve a futurepire, where dreams take flight and reality merges, painting a canvas of possibilities that once seemed but whispers on the wind now stand as solid as stone, sculpted by the very hands that dare",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M P K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "My sickly song is mortal, past thy cure.",
+      "gold_target": "Accept the will; - it dies not with my strain.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: My sickly song is mortal, past thy cure.\n\nNext line:\n",
+      "model_output": "Yet in its dying breath, it whispers truth. \n\nMy sickly song, though frail and fading fast, carries a message that echoes through the vastness of time, a testament to the human spirit's unwavering quest for understanding and connection. In its dying breath, it whispers truth - a fragile thread of reality",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W M S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Accept the will; - it dies not with my strain.",
+      "gold_target": "For what calls thy disease, Lorenzo? Not",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Accept the will; - it dies not with my strain.\n\nNext line:\n",
+      "model_output": "In the silence of the night, I find solace in the stars' eternal dance, their constancy a gentle reminder that even in the face of change, there is a timeless truth that persists.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "D L N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "For what calls thy disease, Lorenzo? Not",
+      "gold_target": "For Aesculapian, but for moral aid.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: For what calls thy disease, Lorenzo? Not\n\nNext line:\n",
+      "model_output": "For what calls thy disease, Lorenzo? Not\nthe whispers of the night or shadows that dance in the moon's embrace,\nbut the silent echoes of a heart once vibrant, now lost in the labyrinth of its own regrets.",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 B F M D",
+      "gold_form_ok": true
+    },
+    {
+      "input": "For Aesculapian, but for moral aid.",
+      "gold_target": "Thou think'st it folly to be wise too soon.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: For Aesculapian, but for moral aid.\n\nNext line:\n",
+      "model_output": "In sickness of the soul, no healing wand is laid. In darkness where the heart's true light is dimmed,\nAesculapian's touch cannot dispel the shroud of sin.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W T S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Thou think'st it folly to be wise too soon.",
+      "gold_target": "Youth is not rich in time, it may be poor;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Thou think'st it folly to be wise too soon.\n\nNext line:\n",
+      "model_output": "Yet, in the quiet of the night, I hear a whisper, urging me to embrace the dawn of understanding, to let the light of knowledge guide my path through the shadows.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M B P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Youth is not rich in time, it may be poor;",
+      "gold_target": "Part with it as with money, sparing; pay",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Youth is not rich in time, it may be poor;\n\nNext line:\n",
+      "model_output": "Yet in its heart, a treasure gleams so bright,\nA spirit wild and free, a light that fights. \n\nIn the face of fleeting moments, youth holds on tight,\nEmbracing every dawn, each night's embrace so right.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M S P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Part with it as with money, sparing; pay",
+      "gold_target": "No moment but in purchase of its worth;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Part with it as with money, sparing; pay\n\nNext line:\n",
+      "model_output": "each penny's worth in kindness, for a heart\nto cherish every act of giving, to find joy in the small gestures that bind us, like threads woven into the fabric of our shared humanity, where each thread counts, each act of generosity sown with care, blooms into a tapestry of love and understanding,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V T W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "No moment but in purchase of its worth;",
+      "gold_target": "And what its worth, ask death-beds; they can tell.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: No moment but in purchase of its worth;\n\nNext line:\n",
+      "model_output": "Each breath we take, a coin tossed to fate,\nIn time's relentless current, stories are sown,  \nFrom whispers in the wind to echoes in stone,  \nAs lives entwine, a tapestry is born,  \nWhere threads of joy and sorrow are worn.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B K T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And what its worth, ask death-beds; they can tell.",
+      "gold_target": "Part with it as with life, reluctant; big",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And what its worth, ask death-beds; they can tell.\n\nNext line:\n",
+      "model_output": "For life's true value is not measured by breaths,\nBut in the love we give and the kindness we bestow, eternally echoing through the halls of time, shaping destinies with every act of grace and empathy, leaving a legacy that outlives the physical form, transcending the mortal coil to touch",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L R B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Part with it as with life, reluctant; big",
+      "gold_target": "With holy hope of nobler time to come;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Part with it as with life, reluctant; big\n\nNext line:\n",
+      "model_output": "yet when you do, the weightlessness is freeing. As you release the burden, a sense of liberation fills the air, like the gentle breeze that dances through the leaves after a storm, carrying away the remnants of what once was heavy and oppressive. With each exhale, you feel a newfound lightness, a space",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T T K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "With holy hope of nobler time to come;",
+      "gold_target": "Time higher-aim'd, still nearer the great mark",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: With holy hope of nobler time to come;\n\nNext line:\n",
+      "model_output": "In hearts once dark, a glimmering light begun. \n\nWith each passing day, the shadows fade,\nRevealing paths that lead to grace and shade.\nNo longer lost in the maze of despair,\nWe find our way, guided by love's gentle care.\nAs whispers of the future echo clear,\nWe plant",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N G M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Time higher-aim'd, still nearer the great mark",
+      "gold_target": "Of men and angels, virtue more divine.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Time higher-aim'd, still nearer the great mark\n\nNext line:\n",
+      "model_output": "With every step, the horizon expands,\nrevealing paths once hidden in dark.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V M D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Of men and angels, virtue more divine.",
+      "gold_target": "Is this our duty, wisdom, glory, gain?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Of men and angels, virtue more divine.\n\nNext line:\n",
+      "model_output": "In their celestial dance, they twirl and shine,\nTheir hearts alight with grace, a radiant sign.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W G G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Is this our duty, wisdom, glory, gain?",
+      "gold_target": "( These Heaven benign in vital union binds: )",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Is this our duty, wisdom, glory, gain?\n\nNext line:\n",
+      "model_output": "To seek and strive for what we cannot see,\nTo chase the light in darkness, to believe.",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 HH B N V Y B",
+      "gold_form_ok": true
+    },
+    {
+      "input": "( These Heaven benign in vital union binds: )",
+      "gold_target": "And sport we like the natives of the bough,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: ( These Heaven benign in vital union binds: )\n\nNext line:\n",
+      "model_output": "As souls entwine, a sacred bond they find,\nIn hearts aflame, a love divine aligns.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N V B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And sport we like the natives of the bough,",
+      "gold_target": "When vernal suns inspire? Amusement reigns",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And sport we like the natives of the bough,\n\nNext line:\n",
+      "model_output": "Laughing and leaping, free as birds in flight,\nWe revel in the sun's warm, golden light.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N M R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "When vernal suns inspire? Amusement reigns",
+      "gold_target": "Man's great demand: to trifle is to live:",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: When vernal suns inspire? Amusement reigns\n\nNext line:\n",
+      "model_output": "As laughter echoes through the air, a world of joy unfurls, painting memories in hues of springtime delight.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "Z T L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Man's great demand: to trifle is to live:",
+      "gold_target": "And is it then a trifle, too, to die?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Man's great demand: to trifle is to live:\n\nNext line:\n",
+      "model_output": "In jest and folly, we find our release,\nEmbracing chaos, in life's endless breeze.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T T D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And is it then a trifle, too, to die?",
+      "gold_target": "Thou say'st I preach, Lorenzo! 'T is confess'd.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And is it then a trifle, too, to die?\n\nNext line:\n",
+      "model_output": "No, for in death, we find the ultimate mystery, a silent echo of life's symphony, where souls intertwine, transcending time's fleeting dance, in an eternal embrace that whispers, \"Here I am, forevermore, in the heartbeats of those who remember.\"",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T Z K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Thou say'st I preach, Lorenzo! 'T is confess'd.",
+      "gold_target": "What, if, for once, I preach thee quite awake?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Thou say'st I preach, Lorenzo! 'T is confess'd.\n\nNext line:\n",
+      "model_output": "But let me tell thee, my friend, that my words are not confined,\nIn truth, they're but a humble attempt to align\nWith the wisdom of the ages, to guide and to refine,\nAnd in doing so, perhaps offer some light to thine. \n\nThou say'st I preach, Lorenzo",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 K W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "What, if, for once, I preach thee quite awake?",
+      "gold_target": "Who wants amusement in the flame of battle?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: What, if, for once, I preach thee quite awake?\n\nNext line:\n",
+      "model_output": "Then hear me, soul, and let not dreams deceive. \n\nNote: The poem is written in iambic tetrameter, so each line consists of four iambs (unstressed syllable followed by a stressed syllable). The rhyme scheme is AABBCCDD, with the last word of each stanza rh",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F V B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Who wants amusement in the flame of battle?",
+      "gold_target": "Is it not treason to the soul immortal,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Who wants amusement in the flame of battle?\n\nNext line:\n",
+      "model_output": "Those who seek glory in the chaos, dance beneath the storm's relentless call.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T S M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Is it not treason to the soul immortal,",
+      "gold_target": "Her foes in arms, eternity the prize?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Is it not treason to the soul immortal,\n\nNext line:\n",
+      "model_output": "To forsake its purpose, its divine call? To wander lost in shadows, where light's not told,  \nAnd dreams of truth and freedom grow dim and small.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M T P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Her foes in arms, eternity the prize?",
+      "gold_target": "Will toys amuse when medicines cannot cure?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Her foes in arms, eternity the prize?\n\nNext line:\n",
+      "model_output": "Her courage shone like a beacon in the night,\nGuiding lost souls to a future bright.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M K K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Will toys amuse when medicines cannot cure?",
+      "gold_target": "When spirits ebb, when life's enchanting scenes",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Will toys amuse when medicines cannot cure?\n\nNext line:\n",
+      "model_output": "Though laughter may briefly chase away the pain,\nyet in the depths of sorrow, a heart still yearns to regain.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L N S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "When spirits ebb, when life's enchanting scenes",
+      "gold_target": "Their lustre lose, and lessen in our sight,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: When spirits ebb, when life's enchanting scenes\n\nNext line:\n",
+      "model_output": "fade into the shadows of the night,\nI find solace in the gentle whispers of the breeze,\nas it carries with it memories of days so bright. \n\nWhen the world grows silent and the stars above\nbegin their dance across the velvet sky,\nI close my eyes and let the universe's rhythm move,\nembracing",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L N S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Their lustre lose, and lessen in our sight,",
+      "gold_target": "( As lands and cities with their glittering spires,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Their lustre lose, and lessen in our sight,\n\nNext line:\n",
+      "model_output": "yet still they glow with a faint, lingering light.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W G S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "( As lands and cities with their glittering spires,",
+      "gold_target": "To the poor shatter'd bark, by sudden storm",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: ( As lands and cities with their glittering spires,\n\nNext line:\n",
+      "model_output": "Fade into the misty veil of twilight skies,)\n\nAs lands and cities with their glittering spires,\nFade into the misty veil of twilight skies,\nEchoes of laughter and the distant cries,\nWhisper secrets to the wind that softly flies.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B S S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "To the poor shatter'd bark, by sudden storm",
+      "gold_target": "- Thrown off to sea, and soon to perish there, )",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: To the poor shatter'd bark, by sudden storm\n\nNext line:\n",
+      "model_output": "Despairing, she cries out to the heavens, \"Oh, mercy, guide my way through this tempest's woe.\"",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S T P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "- Thrown off to sea, and soon to perish there, )",
+      "gold_target": "Will toys amuse? No; thrones will then be toys,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: - Thrown off to sea, and soon to perish there, )\n\nNext line:\n",
+      "model_output": "But a sudden gust of wind did spare\n\nme, lifting me up with its mighty flair.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N B T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Will toys amuse? No; thrones will then be toys,",
+      "gold_target": "And earth and skies seem dust upon the scale.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Will toys amuse? No; thrones will then be toys,\n\nNext line:\n",
+      "model_output": "As power's grip tightens, hearts grow cold and toys amuse no more, for in the dance of kings, only the game of thrones bestows a fleeting, hollow sort of glory, leaving behind the echoes of laughter replaced by the沉重 whispers of ambition and the relentless march towards dominion.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "D P S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And earth and skies seem dust upon the scale.",
+      "gold_target": "Redeem we time? - Its loss we dearly buy.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And earth and skies seem dust upon the scale.\n\nNext line:\n",
+      "model_output": "Yet still I yearn for more, a balance to enthrall. \n\nAnd in the depths of longing, a whisper echoes clear,\nA promise of a world where scales tip not just near.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W D B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Redeem we time? - Its loss we dearly buy.",
+      "gold_target": "What pleads Lorenzo for his high-prized sports?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Redeem we time? - Its loss we dearly buy.\n\nNext line:\n",
+      "model_output": "Yet in each moment's fleeting dance, we find a hidden key,\nUnlocking memories or forging paths that lead to destiny.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH P S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "What pleads Lorenzo for his high-prized sports?",
+      "gold_target": "He pleads time's numerous blanks; he loudly pleads",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: What pleads Lorenzo for his high-prized sports?\n\nNext line:\n",
+      "model_output": "His heart, so full of passion and drive,\n yearns for the thrill of victory.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH L P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "He pleads time's numerous blanks; he loudly pleads",
+      "gold_target": "The straw-like trifles on life's common stream.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: He pleads time's numerous blanks; he loudly pleads\n\nNext line:\n",
+      "model_output": "for a chance to fill them with moments of joy and love, to leave behind a legacy of kindness and understanding, embracing every second as a precious gift that can either heal or harm, choosing wisely each step to create a tapestry of compassion and unity, where hearts intertwine in harmony, transcending the boundaries of time",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L K S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "The straw-like trifles on life's common stream.",
+      "gold_target": "From whom those blanks and trifles but from thee?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: The straw-like trifles on life's common stream.\n\nNext line:\n",
+      "model_output": "In the vast ocean of existence, they float like insignificant whispers, carrying tales of the mundane and the extraordinary, each one a testament to the intricate dance between the unnoticed and the profound.",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1",
+      "gold_form_ok": true
+    },
+    {
+      "input": "From whom those blanks and trifles but from thee?",
+      "gold_target": "No blank, no trifle, Nature made, or meant.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: From whom those blanks and trifles but from thee?\n\nNext line:\n",
+      "model_output": "O, teach me how to love, to lose, to grieve, to be. \n\nFrom whom those blanks and trifles but from thee? O, teach me how to love, to lose, to grieve, to be, for in your light, I find the way to navigate life's uncertainties, to",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N M M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "No blank, no trifle, Nature made, or meant.",
+      "gold_target": "Virtue, or purposed virtue, still be thine;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: No blank, no trifle, Nature made, or meant.\n\nNext line:\n",
+      "model_output": "She leaves no stone unturned in her design, weaving intricate patterns in the fabric of life, where every element, no matter how small, holds a significant role, contributing to the grand tapestry of existence, reminding us that even the tiniest speck is a testament to the boundless creativity and meticulous craftsmanship inherent",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S B N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Virtue, or purposed virtue, still be thine;",
+      "gold_target": "This cancels thy complaint at once; this leaves",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Virtue, or purposed virtue, still be thine;\n\nNext line:\n",
+      "model_output": "And let your heart be guided by divine. \n\nGuidelines: \n1. The poem should have a consistent theme of moral and spiritual guidance.\n2. The tone should be encouraging and uplifting.\n3. The language should be poetic and metaphorical.\n4. The next line should build upon the idea of purposeful virtue",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W S L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "This cancels thy complaint at once; this leaves",
+      "gold_target": "In act no trifle, and no blank in time.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: This cancels thy complaint at once; this leaves\n\nNext line:\n",
+      "model_output": "no room for any further argument or dispute, for the truth has been revealed and all doubts have been silenced.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B N T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "In act no trifle, and no blank in time.",
+      "gold_target": "This greatens, fills, immortalizes all;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: In act no trifle, and no blank in time.\n\nNext line:\n",
+      "model_output": "Each moment's weight is measured with a fine\nprecision, each deed a step towards destiny's climb. In act no trifle, and no blank in time,\neach breath we take carves paths unseen, entwining\nour destinies with threads of chance and choice,\nwhere every decision echoes through eternity's ch",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F M L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "This greatens, fills, immortalizes all;",
+      "gold_target": "This the blest art of turning all to gold;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: This greatens, fills, immortalizes all;\n\nNext line:\n",
+      "model_output": "In the vast expanse of time and space, it weaves a tapestry of boundless grace.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L T G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "This the blest art of turning all to gold;",
+      "gold_target": "This the good heart's prerogative to raise",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: This the blest art of turning all to gold;\n\nNext line:\n",
+      "model_output": "Yet even in this, one must be bold. The heart must first decide to let go,\nOf what is lost in pursuit of the prize,\nFor true transformation lies not just in the coin,\nBut in the soul's alchemy, where value truly shines.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "P T R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "This the good heart's prerogative to raise",
+      "gold_target": "A royal tribute from the poorest hours;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: This the good heart's prerogative to raise\n\nNext line:\n",
+      "model_output": "The sun from its slumber, a gentle caress,\nAwakening the world with its warm embrace, as if to say, \"Arise, let love's light chase away the night's despair.\"",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F P Z",
+      "gold_form_ok": false
+    },
+    {
+      "input": "A royal tribute from the poorest hours;",
+      "gold_target": "Immense revenue! every moment pays.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: A royal tribute from the poorest hours;\n\nNext line:\n",
+      "model_output": "In humble offerings, love's true worth endures.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V M P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Immense revenue! every moment pays.",
+      "gold_target": "If nothing more than purpose in thy power,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Immense revenue! every moment pays.\n\nNext line:\n",
+      "model_output": "The sun's golden rays, a constant, never-ending prize. \n\nThe wealth of time, an ocean vast and wide,\nIn every breath, a treasure, a life to guide.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "P N P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "If nothing more than purpose in thy power,",
+      "gold_target": "Thy purpose firm is equal to the deed:",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: If nothing more than purpose in thy power,\n\nNext line:\n",
+      "model_output": "Thy heart shall find its truest song, a whisper of the hour.",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 T D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Thy purpose firm is equal to the deed:",
+      "gold_target": "Who does the best his circumstance allows,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Thy purpose firm is equal to the deed:\n\nNext line:\n",
+      "model_output": "Thy heart, unswayed by fear or greed,\n\nThy purpose firm is equal to the deed:\n\nNext line:\nThy heart, unswayed by fear or greed, beats true and strong, guiding each step you take towards your noble goal.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH S L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Who does the best his circumstance allows,",
+      "gold_target": "Does well, acts nobly; angels could no more.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Who does the best his circumstance allows,\n\nNext line:\n",
+      "model_output": "yet still strives for more, with a heart that won't slow.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K N M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Does well, acts nobly; angels could no more.",
+      "gold_target": "Our outward act, indeed, admits restraint;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Does well, acts nobly; angels could no more.\n\nNext line:\n",
+      "model_output": "In deeds and words, a shining star he appears,\nGuiding souls with wisdom, love, and clear.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N D R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Our outward act, indeed, admits restraint;",
+      "gold_target": "'T is not in things o'er thought to domineer.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Our outward act, indeed, admits restraint;\n\nNext line:\n",
+      "model_output": "Yet in our hearts, desires often reign, unbound and vast, shaping the very essence of our being, driving us towards actions both noble and shadowed by the complexities of human nature.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T T D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "'T is not in things o'er thought to domineer.",
+      "gold_target": "Guard well thy thought; our thoughts are heard in heaven.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: 'T is not in things o'er thought to domineer.\n\nNext line:\n",
+      "model_output": "But rather to understand and see with clarity, To find the beauty in simplicity, And let the complexities unravel on their own time, Embracing the journey without急于求成的紧迫感, For true understanding often blossoms in its own sweet season, when we least expect it to.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH N HH",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Guard well thy thought; our thoughts are heard in heaven.",
+      "gold_target": "On all-important time, through every age,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Guard well thy thought; our thoughts are heard in heaven.\n\nNext line:\n",
+      "model_output": "For every whisper of the soul,\nHeaven's ear, attentive and divine, doth send a sacred response, intertwining the threads of fate with each sincere sentiment.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R V D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "On all-important time, through every age,",
+      "gold_target": "Though much, and warm, the wise have urged, the man",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: On all-important time, through every age,\n\nNext line:\n",
+      "model_output": "Men have sought to harness its fleeting page. On all-important time, through every age,\nMen have sought to harness its fleeting page, yet in the dance of moments, wisdom whispers that true mastery lies not in control, but in the artful embrace of each passing second, where memories are etched and dreams take flight",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH D M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Though much, and warm, the wise have urged, the man",
+      "gold_target": "Is yet unborn who duly weighs an hour.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Though much, and warm, the wise have urged, the man\n\nNext line:\n",
+      "model_output": "still yearns for what he cannot purge.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "D W N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Is yet unborn who duly weighs an hour.",
+      "gold_target": "\" I've lost a day \" - the prince who nobly cried,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Is yet unborn who duly weighs an hour.\n\nNext line:\n",
+      "model_output": "Time's measure, though it ticks and tocks with care,\nIs yet unborn who duly weighs an hour. \n\nIn moments fleeting, hearts do learn to soar,\nAs secrets whispered in the silent hour.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH N K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "\" I've lost a day \" - the prince who nobly cried,",
+      "gold_target": "Had been an emperor without his crown;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: \" I've lost a day \" - the prince who nobly cried,\n\nNext line:\n",
+      "model_output": "In his sorrow, he sought solace in the sky.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W HH K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Had been an emperor without his crown;",
+      "gold_target": "\" Of Rome? \" say, rather, lord of human race:",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Had been an emperor without his crown;\n\nNext line:\n",
+      "model_output": "Yet still he ruled with grace and sound. \n\nThe poem is about a person who has lost their power or status, but they are still respected and influential in some way. The tone is reflective and somewhat melancholic, but there is also a sense of dignity and poise. The imagery suggests that even though the person",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V HH R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "\" Of Rome? \" say, rather, lord of human race:",
+      "gold_target": "He spoke as if deputed by mankind.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: \" Of Rome? \" say, rather, lord of human race:\n\nNext line:\n",
+      "model_output": "For in thy name we've conquered, marched, and raised\nour voices in unison, a chorus of the brave,\nembracing destiny with hearts that won't deceive.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "D B M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "He spoke as if deputed by mankind.",
+      "gold_target": "So should all speak: so Reason speaks in all.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: He spoke as if deputed by mankind.\n\nNext line:\n",
+      "model_output": "His voice rang clear and true, a clarion call to reason's hallowed ground.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S N L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "So should all speak: so Reason speaks in all.",
+      "gold_target": "From the soft whispers of that god in man,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: So should all speak: so Reason speaks in all.\n\nNext line:\n",
+      "model_output": "And yet, in every heart, a whisper calls,\nA voice of doubt that questions, seeks to unravel. And yet, in every heart, a whisper calls, A gentle nudge towards the unknown, daring one to grasp the stars or fear the fall. \n\nOr perhaps it's a reminder soft and sweet, whisper",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "G N M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "From the soft whispers of that god in man,",
+      "gold_target": "Why fly to Folly, why to Frenzy fly,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: From the soft whispers of that god in man,\n\nNext line:\n",
+      "model_output": "I hear a call to seek the sacred within.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T F F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Why fly to Folly, why to Frenzy fly,",
+      "gold_target": "For rescue from the blessing we possess?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Why fly to Folly, why to Frenzy fly,\n\nNext line:\n",
+      "model_output": "When in your heart, true joy can always lie.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B W P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "For rescue from the blessing we possess?",
+      "gold_target": "Time, the supreme! - time is eternity;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: For rescue from the blessing we possess?\n\nNext line:\n",
+      "model_output": "In seeking freedom, we may find ourselves entwined with its very essence.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T Z T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Time, the supreme! - time is eternity;",
+      "gold_target": "Pregnant with all eternity can give;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Time, the supreme! - time is eternity;\n\nNext line:\n",
+      "model_output": "In its embrace, all moments merge into a single, unending sequence, where each fleeting instant holds the weight of an eternal truth.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T K G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Pregnant with all eternity can give;",
+      "gold_target": "Pregnant with all that makes archangels smile.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Pregnant with all eternity can give;\n\nNext line:\n",
+      "model_output": "The weight of time, a burden to carry, yet a gift to cherish, as each moment breathes life into the endless promise of tomorrow.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M T S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Pregnant with all that makes archangels smile.",
+      "gold_target": "Who murders time, he crushes in the birth",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Pregnant with all that makes archangels smile.\n\nNext line:\n",
+      "model_output": "Her heart swells with the weight of a world's hope,  \nAs she carries within her, a divine repose. \n\nContinuation:\nIn every gentle sway and tender touch she gives,\nA universe's potential whispers softly, lives.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K N B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Who murders time, he crushes in the birth",
+      "gold_target": "A power ethereal, only not adored.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Who murders time, he crushes in the birth\n\nNext line:\n",
+      "model_output": "Of every moment, aching for its worth. Who dares to wield the scythe of fate,\ntrampling dreams beneath its weight,\nin each embrace of time, a silent theft,\nof every moment, aching for its worth. \n\nAs whispers echo through the ages,\nin the dance of life, where shadows",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 N N D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "A power ethereal, only not adored.",
+      "gold_target": "Ah! how unjust to Nature and himself",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: A power ethereal, only not adored.\n\nNext line:\n",
+      "model_output": "It whispers secrets in the wind's soft roar,\nUnseen and unheard, a mystery unfurled. In shadows it dances, a silent allure,\nEvolving tales untold, in the heart it stirs.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N N HH",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Ah! how unjust to Nature and himself",
+      "gold_target": "Is thoughtless, thankless, inconsistent man!",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Ah! how unjust to Nature and himself\n\nNext line:\n",
+      "model_output": "The man who seeks to hide his true self. Ah! how unjust to Nature and himself, The man who seeks to hide his true self, Trapped in a mask of lies, he loses sight, Of the essence that defines his inner light.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K N M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Is thoughtless, thankless, inconsistent man!",
+      "gold_target": "Like children babbling nonsense in their sports,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Is thoughtless, thankless, inconsistent man!\n\nNext line:\n",
+      "model_output": "Yet in his heart, a flicker of compassion remains. \n\nIs thoughtless, thankless, inconsistent man!\nYet in his heart, a flicker of compassion remains,\nFor when the world seems cold and cruel, he yearns to mend,\nTo bridge the gaps of misunderstanding, and heal the deepest wounds within.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N N S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Like children babbling nonsense in their sports,",
+      "gold_target": "We censure Nature for a span too short;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Like children babbling nonsense in their sports,\n\nNext line:\n",
+      "model_output": "They jump and laugh, carefree as a summer'sSORTIE.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S T T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "We censure Nature for a span too short;",
+      "gold_target": "That span too short we tax as tedious too;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: We censure Nature for a span too short;\n\nNext line:\n",
+      "model_output": "Yet marvel at her endless, wondrous art.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "Z T T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "That span too short we tax as tedious too;",
+      "gold_target": "Torture invention, all expedients tire,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: That span too short we tax as tedious too;\n\nNext line:\n",
+      "model_output": "Yet in its moments, life's true beauty we bestow. \n\nThe fleeting hours, though brief, hold treasures untold,\nIn each second's grace, our souls are gently unfold.\nThe sun that sets, to rise anew, a promise it bequeaths,\nIn transient beauty, eternity's secret it teaches.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L K T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Torture invention, all expedients tire,",
+      "gold_target": "To lash the lingering moments into speed,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Torture invention, all expedients tire,\n\nNext line:\n",
+      "model_output": "Yet in the heart of darkness, a glimmer appears. \n\n(Note: The poem is about the human capacity for cruelty and resilience, and the idea that even in the darkest of times, there is always hope.) \n\nThe poem is written in iambic pentameter, so the next line should follow that rhythm",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M N S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "To lash the lingering moments into speed,",
+      "gold_target": "And whirl us ( happy riddance! ) from ourselves.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: To lash the lingering moments into speed,\n\nNext line:\n",
+      "model_output": "Time's relentless march, a force we can't heed. To grasp its fleeting essence, we must indeed\nclimb the peaks of memory, where echoes resound,\nin whispers of the past, in dreams that bound.\nFor in the tapestry of life, each thread entwined,\nwe seek to unravel secrets",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R F S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And whirl us ( happy riddance! ) from ourselves.",
+      "gold_target": "Art, brainless Art! our furious charioteer,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And whirl us ( happy riddance! ) from ourselves.\n\nNext line:\n",
+      "model_output": "As if by a sudden, unexpected gust of wind,\nWe're lifted, carried away from our mundane routines,\nEmbraced by the thrill of the unknown, no longer confined,\nOur spirits soar, transcending the ordinary, into realms of the soul's truest devotion.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T F T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Art, brainless Art! our furious charioteer,",
+      "gold_target": "( For Nature's voice unstifled would recall, )",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Art, brainless Art! our furious charioteer,\n\nNext line:\n",
+      "model_output": "With reckless abandon, drags us through the mire,\nignoring reason's plea, in a dance of light and shade, where beauty's elusive face defies the grasp of mere mortals, leaving us in a perpetual chase, yearning to capture the fleeting essence that sets Art apart from the mundane, a sym",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N W R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "( For Nature's voice unstifled would recall, )",
+      "gold_target": "Drives headlong towards the precipice of death;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: ( For Nature's voice unstifled would recall, )\n\nNext line:\n",
+      "model_output": "The whispering winds and rustling leaves enthrall. The gentle caress of breeze upon my skin,\nIn nature's symphony, a soothing balm within. As secrets of the earth in whispers softly blend,\nThe whispering winds and rustling leaves enthrall,  \nDancing with the trees in an",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "P V D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Drives headlong towards the precipice of death;",
+      "gold_target": "Death, most our dread; death thus more dreadful made.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Drives headlong towards the precipice of death;\n\nNext line:\n",
+      "model_output": "The heart beats faster, a drumming in the chest,\nEchoing the final march, a rhythm of descent. The mind races, grasping at memories, fleeting moments, trying to hold onto life's tapestry before it unravels into the abyss below. Each breath is a struggle, a desperate attempt to prolong",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M D M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Death, most our dread; death thus more dreadful made.",
+      "gold_target": "O what a riddle of absurdity!",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Death, most our dread; death thus more dreadful made.\n\nNext line:\n",
+      "model_output": "Yet in its embrace, we find a strange serenity, as if the final curtain call whispers, \"Peace at last.\" In the stillness of the night, where shadows dance and dreams entwine, this enigmatic visitor unveils a silent symphony, where each breath's exhale is a lullaby to",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R V B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "O what a riddle of absurdity!",
+      "gold_target": "Leisure is pain; takes off our chariot-wheels;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: O what a riddle of absurdity!\n\nNext line:\n",
+      "model_output": "The universe, a cosmic jest, \nwhere stars wink and galaxies jest,\nin silent laughter at our plight,\nas we seek meaning in the night. \n\nO what a riddle of absurdity! \nLife's enigma, a cosmic mystery,\na dance of atoms, a fleeting show,\nin the vast expanse",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F T W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Leisure is pain; takes off our chariot-wheels;",
+      "gold_target": "How heavily we drag the load of life!",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Leisure is pain; takes off our chariot-wheels;\n\nNext line:\n",
+      "model_output": "Yet still we seek it, like a drowning man to breathe. \n\nLeisure is a fleeting respite, a momentary escape from the relentless grind of life, where the ceaseless pursuit of productivity and achievement leaves us feeling drained and unfulfilled. It is the elusive oasis in the desert of our daily existence,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L V L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "How heavily we drag the load of life!",
+      "gold_target": "Blest leisure is our curse; like that of Cain,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: How heavily we drag the load of life!\n\nNext line:\n",
+      "model_output": "Yet still we strive, our spirits ever high,\nIn the face of trials, we find our might, defying strife.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T V K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Blest leisure is our curse; like that of Cain,",
+      "gold_target": "It makes us wander; wander earth around",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Blest leisure is our curse; like that of Cain,\n\nNext line:\n",
+      "model_output": "We strive to fill the void with endless gain. \n\n(Note: This line continues the theme of the poem, which seems to be about the paradoxical nature of leisure and its impact on human life.) \nThe previous lines suggest that leisure, while seemingly a blessing, can also be a source of trouble or suffering, much",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W W R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "It makes us wander; wander earth around",
+      "gold_target": "To fly that tyrant, Thought. As Atlas groan'd",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: It makes us wander; wander earth around\n\nNext line:\n",
+      "model_output": "The vastness of the world, a never-ending quest,\nbeckons us with its mysteries, hidden in the crest. The wind whispers tales of ancient lore, stirring dreams of far-off shores, where sunsets paint the sky in hues of gold and crimson gore, inviting us to embark on journeys untold.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "Z T G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "To fly that tyrant, Thought. As Atlas groan'd",
+      "gold_target": "The world beneath, we groan beneath an hour.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: To fly that tyrant, Thought. As Atlas groan'd\n\nNext line:\n",
+      "model_output": "The weight of worlds upon his shoulders, yet he stood firm, defiance etched in every line of his ancient form.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "G B N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "The world beneath, we groan beneath an hour.",
+      "gold_target": "We cry for mercy to the next amusement;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: The world beneath, we groan beneath an hour.\n\nNext line:\n",
+      "model_output": "The weight of time, a burden we carry on,  \nUnyielding, relentless, in its constant march,  \nEach moment passing, a leaf from life's tree,\nWhispering secrets, in the wind it does flee,  \nAs seasons change, and the earth does its dance,\nIn the cycle of life",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T N M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "We cry for mercy to the next amusement;",
+      "gold_target": "The next amusement mortgages our fields;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: We cry for mercy to the next amusement;\n\nNext line:\n",
+      "model_output": "But the laughter echoes, mocking our plea for relief.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M M F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "The next amusement mortgages our fields;",
+      "gold_target": "Slight inconvenience! Prisons hardly frown,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: The next amusement mortgages our fields;\n\nNext line:\n",
+      "model_output": "The future whispers threats, a silent deal. \n\nAs the present's greed carves through the land,\nIn every corner, a new promise stands,\nBut shadows linger, in the heart of night,\nFor what we gain, at what cost, is a question right. \n\nEach pact signed, each wheel turns with might",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "P HH F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Slight inconvenience! Prisons hardly frown,",
+      "gold_target": "From hateful time if prisons set us free.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Slight inconvenience! Prisons hardly frown,\n\nNext line:\n",
+      "model_output": "For freedom's sake, a small price to be found. For freedom's sake, a small price to be found, in the quiet acceptance of our own bound hands, where hearts yearn for skies unchained and souls dance beneath the open, endless lands.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S S F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "From hateful time if prisons set us free.",
+      "gold_target": "Yet when Death kindly tenders us relief,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: From hateful time if prisons set us free.\n\nNext line:\n",
+      "model_output": "From hateful time if prisons set us free,  \nWe must find hope in hearts that see.  \n\nFor in the shadows where despair does dwell,\nA glimmer of light can still unfurl.  \n\nThis poem explores the idea that even after being released from the confines of a prison, whether literal or metaphorical, one",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T S R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Yet when Death kindly tenders us relief,",
+      "gold_target": "We call him cruel: years to moments shrink,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Yet when Death kindly tenders us relief,\n\nNext line:\n",
+      "model_output": "We must embrace the final release, surrendering to the eternal sleep.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T M R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "We call him cruel: years to moments shrink,",
+      "gold_target": "Ages to years. The telescope is turn'd.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: We call him cruel: years to moments shrink,\n\nNext line:\n",
+      "model_output": "Yet in his gaze, a gentle light still sparkles within.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T Z T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Ages to years. The telescope is turn'd.",
+      "gold_target": "To man's false optics ( from his folly false )",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Ages to years. The telescope is turn'd.\n\nNext line:\n",
+      "model_output": "The stars, once distant points of light, now dance in measured orbits, revealing the vast tapestry of time's woven secrets.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH F F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "To man's false optics ( from his folly false )",
+      "gold_target": "Time, in advance, behind him hides his wings,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: To man's false optics ( from his folly false )\n\nNext line:\n",
+      "model_output": "To God's true vision, where love and truth prevail.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH HH W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Time, in advance, behind him hides his wings,",
+      "gold_target": "And seems to creep, decrepit with his age.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Time, in advance, behind him hides his wings,\n\nNext line:\n",
+      "model_output": "As shadows stretch and lengthen with the cooling light,\nTime, in advance, behind him hides his wings, silently watching as the world slows down, embracing the tranquility of dusk, its feathered edges blurred by the fading sun's embrace. The air grows still, carrying whispers of night's approach, while the last",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W HH D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And seems to creep, decrepit with his age.",
+      "gold_target": "Behold him, when pass'd by; what then is seen",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And seems to creep, decrepit with his age.\n\nNext line:\n",
+      "model_output": "His eyes, once bright and full of life's embrace,\nnow clouded by time's relentless, sorrowful race. And yet within their hazy depths, a flicker remains—\na spark of wisdom, stories untold, yearning to claim.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N Z S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Behold him, when pass'd by; what then is seen",
+      "gold_target": "But his broad pinions, swifter than the winds?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Behold him, when pass'd by; what then is seen\n\nNext line:\n",
+      "model_output": "A man of dignity, with grace and serene. \n\nBehold him, when pass'd by; what then is seen\nA man of dignity, with grace and serene,\nHis steps so measured, his bearing so keen,\nIn every turn, a story he weaves, unseen. \n\nIn his eyes, a world",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S N W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "But his broad pinions, swifter than the winds?",
+      "gold_target": "And all mankind, in contradiction strong,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: But his broad pinions, swifter than the winds?\n\nNext line:\n",
+      "model_output": "Carried him high above the clouds, where he danced with the stars, his heart alight with a joy that knew no bounds.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N K S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And all mankind, in contradiction strong,",
+      "gold_target": "Rueful, aghast, cry out on his career.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And all mankind, in contradiction strong,\n\nNext line:\n",
+      "model_output": "Struggles to find a balance where love belongs.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N HH K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Rueful, aghast, cry out on his career.",
+      "gold_target": "Leave to thy foes these errors, and these ills;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Rueful, aghast, cry out on his career.\n\nNext line:\n",
+      "model_output": "His once promising path now veers into despair. \n\nContext: The sun sets low, painting the sky in hues of orange and pink.\n\nNext line:\nBirds take flight, their silhouettes against the fading light. \n\nContext: The old oak tree creaks under the weight of history.\n\nNext line:",
+      "gold_stress_pm": "++",
+      "gold_rhyme_key": "IY1 L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Leave to thy foes these errors, and these ills;",
+      "gold_target": "To Nature just, their cause and cure explore.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Leave to thy foes these errors, and these ills;\n\nNext line:\n",
+      "model_output": "Let them be theirs to bear, for they have sown\nthe seeds of discord, now reaping sorrow's toll,\ntheir hearts consumed by envy, their souls entwined\nwith shadows, as they stumble in the darkened halls\nof their own making, where truth is but a whisper\nlost in the",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N K K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "To Nature just, their cause and cure explore.",
+      "gold_target": "Not short Heaven's bounty, boundless our expense;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: To Nature just, their cause and cure explore.\n\nNext line:\n",
+      "model_output": "In fields of green, where secrets are stored,\nWhere whispers of the wind do softly soar. In fields of green, where secrets are stored, Where whispers of the wind do softly soar,  \nAncient trees stand tall, in silent conversation,  \nTheir wisdom echoing through the ages, a timeless revelation. \n\nOr,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B B K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Not short Heaven's bounty, boundless our expense;",
+      "gold_target": "No niggard, Nature; men are prodigals.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Not short Heaven's bounty, boundless our expense;\n\nNext line:\n",
+      "model_output": "Yet still we seek more, never content to please. \n\nNot short Heaven's bounty, boundless our expense;\nYet still we seek more, never content to please.\nEndless desires gnaw at our souls, driving us to chase shadows in the light of day. \n\nNot short Heaven's bounty, boundless our",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N M P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "No niggard, Nature; men are prodigals.",
+      "gold_target": "We waste, not use, our time; we breathe, not live.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: No niggard, Nature; men are prodigals.\n\nNext line:\n",
+      "model_output": "She gives without stint, but we, in return, waste and squander her gifts. She pours out her bounty generously, yet we often fail to appreciate or utilize it wisely, squandering resources and neglecting the sustenance she so freely provides. In our relentless pursuit of more, we overlook the abundance already at our",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B N L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "We waste, not use, our time; we breathe, not live.",
+      "gold_target": "Time wasted is existence, used is life.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: We waste, not use, our time; we breathe, not live.\n\nNext line:\n",
+      "model_output": "We seek, not find, our purpose; we dream, not achieve.\nWe plan, not act, our destiny; we hope, not create. \n\nIn this world of constant motion, we often find ourselves caught in a cycle of superficial actions and aspirations, failing to truly grasp the essence of existence. We chase after",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "Y Z L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Time wasted is existence, used is life.",
+      "gold_target": "And bare existence man, to live ordain'd,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Time wasted is existence, used is life.\n\nNext line:\n",
+      "model_output": "Time's a thief, stealing moments,\nstealing dreams, leaving behind strife. Time's relentless march, a constant reminder of our fleeting days, erases the past while it carves out the future, leaving us with memories and regrets that echo through the silent chambers of our hearts. Each tick-tock of the clock",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T L D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And bare existence man, to live ordain'd,",
+      "gold_target": "Wrings and oppresses with enormous weight.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And bare existence man, to live ordain'd,\n\nNext line:\n",
+      "model_output": "In search of purpose, wandering in the mind's vast plain.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W N W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Wrings and oppresses with enormous weight.",
+      "gold_target": "And why? Since time was given for use, not waste,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Wrings and oppresses with enormous weight.\n\nNext line:\n",
+      "model_output": "The burden of existence, a relentless fate. The weight of each breath, a silent scream,\nIn the vast expanse of time, a fleeting dream.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "Y N W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And why? Since time was given for use, not waste,",
+      "gold_target": "Enjoin'd to fly, with tempest, tide, and stars,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And why? Since time was given for use, not waste,\n\nNext line:\n",
+      "model_output": "We must choose to live with purpose and grace, embracing each moment as a sacred space.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T N S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Enjoin'd to fly, with tempest, tide, and stars,",
+      "gold_target": "To keep his speed, nor ever wait for man;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Enjoin'd to fly, with tempest, tide, and stars,\n\nNext line:\n",
+      "model_output": "Guided by the moon's soft glow, we embark on a journey across the vast, uncharted seas, where each wave whispers tales of forgotten dreams and hidden treasures waiting to be discovered beneath the shimmering surface.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W F M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "To keep his speed, nor ever wait for man;",
+      "gold_target": "Time's use was doom'd a pleasure; waste, a pain;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: To keep his speed, nor ever wait for man;\n\nNext line:\n",
+      "model_output": "He ran with grace, a blur in the dawn's light, defying the stillness of the world as it slowly awoke, each step echoing the determination etched deep within his soul, a testament to the freedom that only the unfettered spirit could truly understand and cherish.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "P W P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Time's use was doom'd a pleasure; waste, a pain;",
+      "gold_target": "That man might feel his error, if unseen;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Time's use was doom'd a pleasure; waste, a pain;\n\nNext line:\n",
+      "model_output": "Yet still we strive to find the balance, in the dance of gain and loss, where moments fleeting yet profound, weave the tapestry of life's vast expanse.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R F N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "That man might feel his error, if unseen;",
+      "gold_target": "And, feeling, fly to labour for his cure;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: That man might feel his error, if unseen;\n\nNext line:\n",
+      "model_output": "Yet in his heart, a whisper speaks, \"Be seen.\" \n\nReasoning: The context suggests that the subject is contemplating the consequences of his actions or behavior when no one is watching. The next line introduces an internal dialogue within the man, suggesting that despite the anonymity provided by solitude, he still feels the need for",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F HH K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And, feeling, fly to labour for his cure;",
+      "gold_target": "Not, blundering, split on idleness for ease.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And, feeling, fly to labour for his cure;\n\nNext line:\n",
+      "model_output": "His heart, once heavy with despair, now lightens, yearning for the touch of hope's pure air.",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1",
+      "gold_form_ok": true
+    },
+    {
+      "input": "Not, blundering, split on idleness for ease.",
+      "gold_target": "Life's cares are comforts; such by Heaven design'd;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Not, blundering, split on idleness for ease.\n\nNext line:\n",
+      "model_output": "In the quiet of the night, I hear a whisper, urging me to rise and face the dawn's first light.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B HH D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Life's cares are comforts; such by Heaven design'd;",
+      "gold_target": "He that has none, must make them, or be wretched.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Life's cares are comforts; such by Heaven design'd;\n\nNext line:\n",
+      "model_output": "In gentle ease we find our strength refined. In quiet moments, souls intertwine,\nUnfurling wisdom from life's hidden sign.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M B R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "He that has none, must make them, or be wretched.",
+      "gold_target": "Cares are employments; and without employ",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: He that has none, must make them, or be wretched.\n\nNext line:\n",
+      "model_output": "He that has none, must make them, or be wretched,\nyet in his heart he knows true wealth is not measured;\nin acts of kindness and love shared, a treasure\nhe cultivates, beyond any worldly treasure.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N W M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Cares are employments; and without employ",
+      "gold_target": "The soul is on a rack; the rack of rest,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Cares are employments; and without employ\n\nNext line:\n",
+      "model_output": "we wither, like plants neglected in a field. \n\nThe weight of our worries becomes our constant companion, guiding us through the day as surely as the sun rises and sets, reminding us of our humanity's inherent struggle against the forces of nature and time. In the quiet moments when we allow ourselves to truly see,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R V R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "The soul is on a rack; the rack of rest,",
+      "gold_target": "To souls most adverse; action all their joy.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: The soul is on a rack; the rack of rest,\n\nNext line:\n",
+      "model_output": "Tormented by memories, yet seeking release. \n\nThe weight of the past, a burden too vast,\nCrushes the spirit, leaves it in a state of unrest. \nEach moment a trial, each breath a test,\nYet in the darkness, a glimmer of hope persists. \n\nThe soul yearns for",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K L D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "To souls most adverse; action all their joy.",
+      "gold_target": "Here, then, the riddle, mark'd above, unfolds:",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: To souls most adverse; action all their joy.\n\nNext line:\n",
+      "model_output": "In realms of conflict, where peace they employ. In realms of conflict, where peace they employ, their hearts entwine, a paradox so bold, where strife's embrace reveals a hidden hold, nurturing growth in soil of turmoil cold.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M B N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Here, then, the riddle, mark'd above, unfolds:",
+      "gold_target": "Then time turns torment, when man turns a fool.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Here, then, the riddle, mark'd above, unfolds:\n\nNext line:\n",
+      "model_output": "In truth, it's not a puzzle at all,\nBut rather a simple tale untold,\nOf hearts entwined beneath starlight's gold,\nWhere love's sweet whispers dance and bold. \n\nIn truth, it's not a puzzle at all,\nA mystery shrouded in veiled hall,\nBut love's",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M T F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Then time turns torment, when man turns a fool.",
+      "gold_target": "We rave, we wrestle with great Nature's plan;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Then time turns torment, when man turns a fool.\n\nNext line:\n",
+      "model_output": "Then in his heart, he feels the cruel rule\nOf regret and missed chances, a heavy toll,\nAs memories of wasted days unfold,\nLeaving behind a path of unfulfilled roles. \n\nIn this continuation, I've expanded on the theme of time turning into torment due to a person's foolish actions or decisions",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "G N P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "We rave, we wrestle with great Nature's plan;",
+      "gold_target": "We thwart the Deity; and 't is decreed,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: We rave, we wrestle with great Nature's plan;\n\nNext line:\n",
+      "model_output": "In ceaseless struggle, seeking truth to understand.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T Z D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "We thwart the Deity; and 't is decreed,",
+      "gold_target": "Who thwart His will shall contradict their own.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: We thwart the Deity; and 't is decreed,\n\nNext line:\n",
+      "model_output": "That we shall reap the consequences, indeed. \n\nWe defy the divine will, a bold defiance,\nIn our hearts, a fire of rebellion's ignition.\nWe seek to reshape reality, to rewrite fate,\nBut in doing so, we open doors to great debate.\n\nFor every action, there's a reaction, a response",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L K N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Who thwart His will shall contradict their own.",
+      "gold_target": "Hence our unnatural quarrel with ourselves;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Who thwart His will shall contradict their own.\n\nNext line:\n",
+      "model_output": "Those who defy the divine decree,\nFind themselves in a labyrinth of woe,  \nTrapped within the bounds of their own doing,\nStruggling against the winds of fate's unyielding blow.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K W S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Hence our unnatural quarrel with ourselves;",
+      "gold_target": "Our thoughts at enmity; our bosom-broil:",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Hence our unnatural quarrel with ourselves;\n\nNext line:\n",
+      "model_output": "In a world where we're often lost and confused,\nWe seek solace in shadows, trying to adjust. In a world where we're often lost and confused,\nWe seek solace in shadows, trying to adjust.\nAmidst the darkness, we find a small clue,\nA flicker of light that guides us",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N B B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Our thoughts at enmity; our bosom-broil:",
+      "gold_target": "We push Time from us, and we wish him back;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Our thoughts at enmity; our bosom-broil:\n\nNext line:\n",
+      "model_output": "Our hearts in constant strife, no peace to know, only echoes of past grievances that linger like shadows, casting long, dark reflections upon the hopeful light of reconciliation.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W HH B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "We push Time from us, and we wish him back;",
+      "gold_target": "Lavish of lustrums, and yet fond of life;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: We push Time from us, and we wish him back;\n\nNext line:\n",
+      "model_output": "But in our haste, we forget to bask\nin the moments fleeting, the beauty that laces\neach second, each breath, a precious gift to embrace.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F V L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Lavish of lustrums, and yet fond of life;",
+      "gold_target": "Life we think long and short; Death seek and shun;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Lavish of lustrums, and yet fond of life;\n\nNext line:\n",
+      "model_output": "Though time's relentless march may claim its toll,\nIn memories' embrace, eternal youth unfolds.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S N N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Life we think long and short; Death seek and shun;",
+      "gold_target": "Body and soul, like peevish man and wife,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Life we think long and short; Death seek and shun;\n\nNext line:\n",
+      "model_output": "Life's fleeting moments, though brief,\nTeach us to cherish each scene.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M N W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Body and soul, like peevish man and wife,",
+      "gold_target": "United jar, and yet are loath to part.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Body and soul, like peevish man and wife,\n\nNext line:\n",
+      "model_output": "In constant conflict, yet bound by a shared life.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L T P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "United jar, and yet are loath to part.",
+      "gold_target": "O the dark days of vanity! while here",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: United jar, and yet are loath to part.\n\nNext line:\n",
+      "model_output": "Though we may seem divided, our hearts still beat as one.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V W HH",
+      "gold_form_ok": false
+    },
+    {
+      "input": "O the dark days of vanity! while here",
+      "gold_target": "How tasteless, and how terrible when gone!",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: O the dark days of vanity! while here\n\nNext line:\n",
+      "model_output": "I stand in awe, a witness to life's mystery.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T W G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "How tasteless, and how terrible when gone!",
+      "gold_target": "Gone! they ne'er go; when past, they haunt us still;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: How tasteless, and how terrible when gone!\n\nNext line:\n",
+      "model_output": "Yet still, in memory's embrace,\nThe echoes linger, a haunting grace.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH S S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Gone! they ne'er go; when past, they haunt us still;",
+      "gold_target": "The spirit walks of every day deceased,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Gone! they ne'er go; when past, they haunt us still;\n\nNext line:\n",
+      "model_output": "Their echoes linger, haunting memories entwine,\nUnfurling stories of the past, in whispers they align.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V D D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "The spirit walks of every day deceased,",
+      "gold_target": "And smiles an angel, or a fury frowns.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: The spirit walks of every day deceased,\n\nNext line:\n",
+      "model_output": "Their whispers echo through the silent air,\nAs memories linger, holding onto despair.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N F F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And smiles an angel, or a fury frowns.",
+      "gold_target": "Nor death nor life delight us. If time past,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And smiles an angel, or a fury frowns.\n\nNext line:\n",
+      "model_output": "The world is a stage, and we are its players,\nDancing to rhythms of love and sorrow's callers. The world is a stage, where dreams take flight,\nAnd in each act, our hearts entwine with light.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F T P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Nor death nor life delight us. If time past,",
+      "gold_target": "And time possess'd, both pain us, what can please?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Nor death nor life delight us. If time past,\n\nNext line:\n",
+      "model_output": "we yearn for its gentle embrace, yet in memory's whisper, we find solace and a fleeting hope that perhaps, amidst the fading light, lies a promise of reunion, where shadows dance with the echoes of laughter shared under starlit skies, painting our souls with hues of joy that transcend the bounds of time itself",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W K P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And time possess'd, both pain us, what can please?",
+      "gold_target": "That which the Deity to please ordain'd, -",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And time possess'd, both pain us, what can please?\n\nNext line:\n",
+      "model_output": "Yet still we seek, in shadows and in breeze,\nA fleeting moment, where our souls can ease. And in the whisper of the leaves so green,\nWe find a whisper, soft as dreams unseen.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T P D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "That which the Deity to please ordain'd, -",
+      "gold_target": "Time used. The man who consecrates his hours",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: That which the Deity to please ordain'd, -\n\nNext line:\n",
+      "model_output": "He gave me strength to bear my fate divine.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K HH Z",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Time used. The man who consecrates his hours",
+      "gold_target": "By vigorous effort, and an honest aim,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Time used. The man who consecrates his hours\n\nNext line:\n",
+      "model_output": "To tasks of meaning, finds in life a purpose,\nAnd through each moment, crafts a story's chorus.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N N M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "By vigorous effort, and an honest aim,",
+      "gold_target": "At once he draws the sting of life and death;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: By vigorous effort, and an honest aim,\n\nNext line:\n",
+      "model_output": "I strive to reach the stars, to claim a place among the stars' grand design.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L N D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "At once he draws the sting of life and death;",
+      "gold_target": "He walks with Nature, and her paths are peace.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: At once he draws the sting of life and death;\n\nNext line:\n",
+      "model_output": "In a moment, time stands still, as fate's breath\nwaits on the edge of his quill, poised to write\nthe tale of destinies entwined, where love and strife\ndance in the shadows, their whispers echoing through the night.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH P P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "He walks with Nature, and her paths are peace.",
+      "gold_target": "Our error's cause and cure are seen: see next",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: He walks with Nature, and her paths are peace.\n\nNext line:\n",
+      "model_output": "His heart beats in harmony with the rustling leaves. His soul dances with the whispering breeze, as he strolls through the verdant embrace of the forest, where every step echoes a symphony of life, and his spirit soars higher than the crowning branches, entwined in a dance of tranquility",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S S N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Our error's cause and cure are seen: see next",
+      "gold_target": "Time's nature, origin, importance, speed;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Our error's cause and cure are seen: see next\n\nNext line:\n",
+      "model_output": "In the reflection of a mirror, we find our true selves, baring all the flaws and virtues that make us whole.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R M S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Time's nature, origin, importance, speed;",
+      "gold_target": "And thy great gain from urging his career. -",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Time's nature, origin, importance, speed;\n\nNext line:\n",
+      "model_output": "Time's nature, a mystery so profound,\nOrigin unknown, yet ever around,\nImportance vast, in every human thread,\nSpeed relentless, in its ceaseless tread. \nInfinite loops, a cosmic thread,\nWeaving past, present, and future's creed,\nEternal dance, a celestial play,\nTime's",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "D HH K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And thy great gain from urging his career. -",
+      "gold_target": "All-sensual man, because untouch'd, unseen,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And thy great gain from urging his career. -\n\nNext line:\n",
+      "model_output": "Yet in his heart, a whisper of despair. \n\nAnd though the world hailed him as a king,\nHis soul yearned for peace, a quiet thing.\nFor every crown he donned, a weight grew heavy,\nBeneath the throne, shadows danced and wept.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B N N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "All-sensual man, because untouch'd, unseen,",
+      "gold_target": "He looks on time as nothing. Nothing else",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: All-sensual man, because untouch'd, unseen,\n\nNext line:\n",
+      "model_output": "You seem a dream, a shadow, a fleeting scene.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N N L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "He looks on time as nothing. Nothing else",
+      "gold_target": "Is truly man's: 't is Fortune's. - Time's a god.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: He looks on time as nothing. Nothing else\n\nNext line:\n",
+      "model_output": "matters to him, only the present moment exists.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F T G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Is truly man's: 't is Fortune's. - Time's a god.",
+      "gold_target": "Hast thou ne'er heard of Time's omnipotence?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Is truly man's: 't is Fortune's. - Time's a god.\n\nNext line:\n",
+      "model_output": "Though fleeting, it holds the power to shape destinies, just as the capricious winds sculpt the ever-changing landscapes of the mortal realm.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V T M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Hast thou ne'er heard of Time's omnipotence?",
+      "gold_target": "For, or against, what wonders can he do!",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Hast thou ne'er heard of Time's omnipotence?\n\nNext line:\n",
+      "model_output": "Then let not thy heart be filled with fear,\nFor though Time doth hold dominion here,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K HH D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "For, or against, what wonders can he do!",
+      "gold_target": "And will: to stand blank neuter he disdains.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: For, or against, what wonders can he do!\n\nNext line:\n",
+      "model_output": "Yet in his heart, a fire still glows anew. \n\nFor, or against, what wonders can he do!\nYet in his heart, a fire still glows anew,\nIlluminating paths both old and new,\nA beacon of hope, a guiding light to pursue.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N HH D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And will: to stand blank neuter he disdains.",
+      "gold_target": "Not on those terms was Time ( Heaven's stranger! ) sent",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And will: to stand blank neuter he disdains.\n\nNext line:\n",
+      "model_output": "He yearns for purpose, a guiding light in the dark, seeking a bond that transcends the mundane, a connection that whispers, \"You are not alone,\" in the silent chambers of his soul.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH S S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Not on those terms was Time ( Heaven's stranger! ) sent",
+      "gold_target": "On his important embassy to man.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Not on those terms was Time ( Heaven's stranger! ) sent\n\nNext line:\n",
+      "model_output": "To vex the world with man, who, like a rent,\nEndures the yoke of circumstance, yet yearns\nFor freedom's breeze, a sigh that echoes in the rents\nOf time, where shadows dance and dreams are spun.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M T M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "On his important embassy to man.",
+      "gold_target": "Lorenzo! no; on the long-destined hour,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: On his important embassy to man.\n\nNext line:\n",
+      "model_output": "He walked with purpose, his heart full of hope,\nfor in his hands lay the seeds of a new hope,  \nto bridge the gaps and heal the strife,\nin a world torn apart by time's cruel knife.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N L D",
+      "gold_form_ok": false
+    }
+  ],
+  "gold_form_note": "gold_stress_pm, gold_rhyme_key, gold_form_ok: CMU-based signature of gold_target (evaluation.form_eval_generation.line_form_signature); same path as eval_natural_text_form.py."
+}

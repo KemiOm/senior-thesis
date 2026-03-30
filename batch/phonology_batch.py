@@ -76,7 +76,7 @@ def main():
         corpus_db = ROOT / "output" / "corpus.db"
         valid_ids = _poem_ids_with_valid_meter(corpus_db)
         if not valid_ids:
-            print("No poems with valid 01 meter in corpus.db. Run export_sqlite.py first.")
+            print("No poems with valid 01 meter in corpus.db. Run: python scripts/export_sqlite.py")
             return
         json_files = [p for p in json_files if p.stem in valid_ids]
         print(f"Meter-only: {len(json_files)} poems with valid 01 stress (of {len(valid_ids)} in corpus)")

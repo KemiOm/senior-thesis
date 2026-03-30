@@ -1,0 +1,1810 @@
+{
+  "model": "mistralai/Mistral-7B-v0.1",
+  "prompt_type": "zero_shot",
+  "task": "natural_text",
+  "split": "test",
+  "n_samples": 200,
+  "results": [
+    {
+      "input": "[start]",
+      "gold_target": "\" When the cock crew, he wept, \" - smote by that eye,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: [start]\n\nNext line:\n",
+      "model_output": "I’m not sure what I’m doing here.\n\nI’m not sure what I’m doing here.\n\nI’m not sure what I’m doing here.\n\nI’m not sure what I’m doing here.\n\nI’m not sure what I",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S B T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "\" When the cock crew, he wept, \" - smote by that eye,",
+      "gold_target": "Which looks on me, on all: that Power who bids",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: \" When the cock crew, he wept, \" - smote by that eye,\n\nNext line:\n",
+      "model_output": "\"And the cock crew, he wept, \" - smote by that eye,\n\n\"And the cock crew, he wept, \" - smote by that eye,\n\n\"And the cock crew, he wept, \" - smote by that eye,\n\n\"And the",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "P HH B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Which looks on me, on all: that Power who bids",
+      "gold_target": "This midnight sentinel, with clarion shrill,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Which looks on me, on all: that Power who bids\n\nNext line:\n",
+      "model_output": "The sun to shine, the wind to blow,\n\nThe rain to fall, the grass to grow,\n\nThe flowers to bloom, the trees to bear,\n\nThe fruits to ripen, the seeds to share,\n\nThe birds to sing, the bees to buzz,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W K R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "This midnight sentinel, with clarion shrill,",
+      "gold_target": "( Emblem of that which shall awake the dead, )",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: This midnight sentinel, with clarion shrill,\n\nNext line:\n",
+      "model_output": "The moonlight’s silver glow,\n\nThe stars’ bright twinkling show,\n\nThe night’s dark silence,\n\nThe wind’s soft whisper,\n\nThe crickets’ chirping,\n\nThe owl’s hooting,\n\nThe coy",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L W D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "( Emblem of that which shall awake the dead, )",
+      "gold_target": "Rouse souls from slumber, into thoughts of heaven.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: ( Emblem of that which shall awake the dead, )\n\nNext line:\n",
+      "model_output": "( And the dead shall be raised incorruptible, )\n\nContext: ( And the dead shall be raised incorruptible, )\n\nNext line:\n\n( And we shall be changed. )\n\nContext: ( And we shall be changed. )\n\nNext line:\n\n(",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T V HH",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Rouse souls from slumber, into thoughts of heaven.",
+      "gold_target": "Shall I too weep? Where then is fortitude?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Rouse souls from slumber, into thoughts of heaven.\n\nNext line:\n",
+      "model_output": "> The soul is a thing of beauty,\n>\n> A thing of wonder,\n>\n> A thing of mystery,\n>\n> A thing of love.\n\nContext: The soul is a thing of beauty,\n\nNext line:\n\n> The soul is a thing of beauty",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N Z F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Shall I too weep? Where then is fortitude?",
+      "gold_target": "And, fortitude abandon'd, where is man?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Shall I too weep? Where then is fortitude?\n\nNext line:\n",
+      "model_output": "I shall not weep.\n\nI shall not weep.\n\nI shall not weep.\n\nI shall not weep.\n\nI shall not weep.\n\nI shall not weep.\n\nI shall not weep.\n\nI shall not weep.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W Z M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And, fortitude abandon'd, where is man?",
+      "gold_target": "I know the terms on which he sees the light:",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And, fortitude abandon'd, where is man?\n\nNext line:\n",
+      "model_output": "And, fortitude abandon'd, where is man?\n\nThe answer is in the question.\n\nMan is where he is.\n\nHe is not where he is not.\n\nHe is not where he is.\n\nHe is where he is not.\n\nHe is not where",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH S L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "I know the terms on which he sees the light:",
+      "gold_target": "He that is born is listed; life is war,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: I know the terms on which he sees the light:\n\nNext line:\n",
+      "model_output": "I know the terms on which he sees the light:\n\nHe sees the light as a means to an end.\n\nHe sees the light as a means to an end.\n\nHe sees the light as a means to an end.\n\nHe sees the light as a means to an end.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L Z W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "He that is born is listed; life is war,",
+      "gold_target": "Eternal war with woe. Who bears it best,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: He that is born is listed; life is war,\n\nNext line:\n",
+      "model_output": "He that is born is listed; life is war,\n\nAnd death is peace.\n\nThe next line:\n\nHe that is born is listed; life is war,\n\nAnd death is peace.\n\nAnd life is war.\n\nThe next line:\n\nHe that is born",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B T B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Eternal war with woe. Who bears it best,",
+      "gold_target": "Deserves it least. - On other themes I'll dwell.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Eternal war with woe. Who bears it best,\n\nNext line:\n",
+      "model_output": "The one who bears it best,\n\nIs the one who bears it least.\n\nThe one who bears it least,\n\nIs the one who bears it best.\n\nThe one who bears it best,\n\nIs the one who bears it least.\n\nThe one who bears it least",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 L D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Deserves it least. - On other themes I'll dwell.",
+      "gold_target": "Lorenzo! let me turn my thoughts on thee,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Deserves it least. - On other themes I'll dwell.\n\nNext line:\n",
+      "model_output": "The world is full of people who deserve it least.\n\nI'll dwell on other themes.\n\nI'll dwell on other themes.\n\nI'll dwell on other themes.\n\nI'll dwell on other themes.\n\nI'll dwell on other themes.",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1",
+      "gold_form_ok": true
+    },
+    {
+      "input": "Lorenzo! let me turn my thoughts on thee,",
+      "gold_target": "And thine on themes may profit; profit there",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Lorenzo! let me turn my thoughts on thee,\n\nNext line:\n",
+      "model_output": "I’ll not be turned,\n\nI’ll not be turned,\n\nI’ll not be turned,\n\nI’ll not be turned,\n\nI’ll not be turned,\n\nI’ll not be turned,\n\nI’ll not be turned,",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 M P P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And thine on themes may profit; profit there",
+      "gold_target": "Where most thy need: themes, too, the genuine growth",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And thine on themes may profit; profit there\n\nNext line:\n",
+      "model_output": "And thine on themes may profit; profit there\n\nAnd thine on themes may profit; profit there\n\nAnd thine on themes may profit; profit there\n\nAnd thine on themes may profit; profit there\n\nAnd thine on themes may profit; profit there\n\nAnd thine",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 T D G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Where most thy need: themes, too, the genuine growth",
+      "gold_target": "Of dear Philander's dust. He thus, though dead,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Where most thy need: themes, too, the genuine growth\n\nNext line:\n",
+      "model_output": "Where most thy need: themes, too, the genuine growth\n\nWhere most thy need: themes, too, the genuine growth\n\nWhere most thy need: themes, too, the genuine growth\n\nWhere most thy need: themes, too, the genuine growth\n\nWhere most thy need: themes,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH S D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Of dear Philander's dust. He thus, though dead,",
+      "gold_target": "May still befriend. - What themes? Time's wondrous price,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Of dear Philander's dust. He thus, though dead,\n\nNext line:\n",
+      "model_output": "I'll make a grave, and therein lay\n\nThe next line:\n\nHis bones, and therein make a bed\n\nThe next line:\n\nOf dear Philander's dust. He thus, though dead,\n\nThe next line:\n\nI'll make a",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 T W P",
+      "gold_form_ok": true
+    },
+    {
+      "input": "May still befriend. - What themes? Time's wondrous price,",
+      "gold_target": "Death, friendship, and Philander's final scene.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: May still befriend. - What themes? Time's wondrous price,\n\nNext line:\n",
+      "model_output": "The next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F F S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Death, friendship, and Philander's final scene.",
+      "gold_target": "So could I touch these themes as might obtain",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Death, friendship, and Philander's final scene.\n\nNext line:\n",
+      "model_output": "\"I'll be your friend, Philander,\n\nAnd I'll be your friend, Philander,\n\nAnd I'll be your friend, Philander,\n\nAnd I'll be your friend, Philander,\n\nAnd I'll be your friend, Philander,",
+      "gold_stress_pm": "++",
+      "gold_rhyme_key": "IY1 Z M B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "So could I touch these themes as might obtain",
+      "gold_target": "Thine ear, nor leave thy heart quite disengaged,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: So could I touch these themes as might obtain\n\nNext line:\n",
+      "model_output": "The next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 N L HH K D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Thine ear, nor leave thy heart quite disengaged,",
+      "gold_target": "The good deed would delight me; half-impress",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Thine ear, nor leave thy heart quite disengaged,\n\nNext line:\n",
+      "model_output": "Their words are sweet, and they are sweet to hear.\n\nContext: The world is full of suffering,\n\nNext line:\n\nIt is also full of the overcoming of it.\n\nContext: I am the master of my fate,\n\nNext line:\n\nI am",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M HH M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "The good deed would delight me; half-impress",
+      "gold_target": "On my dark cloud an Iris; and from grief",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: The good deed would delight me; half-impress\n\nNext line:\n",
+      "model_output": "The good deed would delight me; half-impress\n\nThe good deed would delight me; half-impress\n\nThe good deed would delight me; half-impress\n\nThe good deed would delight me; half-impress\n\nThe good deed would delight me",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N F G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "On my dark cloud an Iris; and from grief",
+      "gold_target": "Call glory. - Dost thou mourn Philander's fate?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: On my dark cloud an Iris; and from grief\n\nNext line:\n",
+      "model_output": "I’m not sure what to do with this one. I’m not sure if I’m supposed to write a poem or a story. I’m not sure if I’m supposed to write a poem or a story. I’m not sure if I’m supposed to write a poem or",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M F F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Call glory. - Dost thou mourn Philander's fate?",
+      "gold_target": "I know thou say'st it: says thy life the same?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Call glory. - Dost thou mourn Philander's fate?\n\nNext line:\n",
+      "model_output": "I mourn not Philander's fate,\n\nBut I mourn the fate of Philander's mate.\n\nContext:\n\nI mourn not Philander's fate,\n\nBut I mourn the fate of Philander's mate.\n\nShe was a woman of",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S L S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "I know thou say'st it: says thy life the same?",
+      "gold_target": "- He mourns the dead who lives as they desire.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: I know thou say'st it: says thy life the same?\n\nNext line:\n",
+      "model_output": "I know thou say'st it: says thy life the same?\n\nI know thou say'st it: says thy life the same?\n\nI know thou say'st it: says thy life the same?\n\nI know thou say'st it: says thy life the same?",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L Z D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "- He mourns the dead who lives as they desire.",
+      "gold_target": "Where is that thrift, that avarice of TIME,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: - He mourns the dead who lives as they desire.\n\nNext line:\n",
+      "model_output": "He mourns the dead who lives as they desire.\n\nHe mourns the dead who lives as they desire.\n\nHe mourns the dead who lives as they desire.\n\nHe mourns the dead who lives as they desire.\n\nHe mourns the dead who lives as they desire.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V V T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Where is that thrift, that avarice of TIME,",
+      "gold_target": "( O glorious avarice! ) thought of death inspires,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Where is that thrift, that avarice of TIME,\n\nNext line:\n",
+      "model_output": "That makes us spend our lives in getting wealth,\n\nAnd not in spending it?\n\nContext:\n\nThe world is too much with us; late and soon,\n\nGetting and spending, we lay waste our powers;\n\nNext line:\n\nLittle we see in Nature that",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V D N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "( O glorious avarice! ) thought of death inspires,",
+      "gold_target": "As rumour'd robberies endear our gold?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: ( O glorious avarice! ) thought of death inspires,\n\nNext line:\n",
+      "model_output": "The thought of death inspires,\n\nThe thought of death inspires,\n\nThe thought of death inspires,\n\nThe thought of death inspires,\n\nThe thought of death inspires,\n\nThe thought of death inspires,\n\nThe thought of death inspires,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R N G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "As rumour'd robberies endear our gold?",
+      "gold_target": "O Time! than gold more sacred; more a load",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: As rumour'd robberies endear our gold?\n\nNext line:\n",
+      "model_output": "As rumour'd robberies endear our gold?\n\nThe robberies are rumoured, not real.\n\nThe gold is real, but not endearing.\n\nThe robberies are rumoured, not real.\n\nThe gold is real, but not endearing.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S M L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "O Time! than gold more sacred; more a load",
+      "gold_target": "Than lead to fools; and fools reputed wise.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: O Time! than gold more sacred; more a load\n\nNext line:\n",
+      "model_output": "Than gold more sacred; more a load\n\nThan gold more sacred; more a load\n\nThan gold more sacred; more a load\n\nThan gold more sacred; more a load\n\nThan gold more sacred; more a load\n\nThan gold more sacred; more a load\n\nThan gold more",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F R W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Than lead to fools; and fools reputed wise.",
+      "gold_target": "What moment granted man without account?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Than lead to fools; and fools reputed wise.\n\nNext line:\n",
+      "model_output": "Than lead to fools; and fools reputed wise.\n\nThe fools are wise, and the wise are fools.\n\nThe wise are fools, and the fools are wise.\n\nThe wise are fools, and the fools are wise.\n\nThe wise are",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M W K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "What moment granted man without account?",
+      "gold_target": "What years are squander'd, Wisdom's debt unpaid!",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: What moment granted man without account?\n\nNext line:\n",
+      "model_output": "The moment of the first breath,\n\nThe moment of the first step,\n\nThe moment of the first word,\n\nThe moment of the first thought,\n\nThe moment of the first dream,\n\nThe moment of the first love,\n\nThe moment of the first death,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W D N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "What years are squander'd, Wisdom's debt unpaid!",
+      "gold_target": "Our wealth in days all due to that discharge.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: What years are squander'd, Wisdom's debt unpaid!\n\nNext line:\n",
+      "model_output": "The years are squander'd, Wisdom's debt unpaid,\n\nAnd all the world is lost.\n\nThe years are squander'd, Wisdom's debt unpaid,\n\nAnd all the world is lost.\n\nThe years are squander'd, Wis",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T T D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Our wealth in days all due to that discharge.",
+      "gold_target": "Haste, haste, he lies in wait, he's at the door,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Our wealth in days all due to that discharge.\n\nNext line:\n",
+      "model_output": "The discharge was a gift from the gods.\n\nThe discharge was a gift from the gods.\n\nThe discharge was a gift from the gods.\n\nThe discharge was a gift from the gods.\n\nThe discharge was a gift from the gods.\n\nThe discharge",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH T D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Haste, haste, he lies in wait, he's at the door,",
+      "gold_target": "Insidious Death! should his strong hand arrest,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Haste, haste, he lies in wait, he's at the door,\n\nNext line:\n",
+      "model_output": "He's at the door, he's at the door, he's at the door, he's at the door, he's at the door, he's at the door, he's at the door, he's at the door, he's at the door,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S HH R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Insidious Death! should his strong hand arrest,",
+      "gold_target": "No composition sets the prisoner free.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Insidious Death! should his strong hand arrest,\n\nNext line:\n",
+      "model_output": "Thee, from life, to swift oblivion, haste,\n\nContext: And, when he for thy sake should stretch out\n\nNext line:\n\nHis scepter o’er unnumbered worlds to throw,\n\nContext: To bind them by his laws divine;",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S P F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "No composition sets the prisoner free.",
+      "gold_target": "Eternity's inexorable chain",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: No composition sets the prisoner free.\n\nNext line:\n",
+      "model_output": "The prisoner is free.\n\nThe prisoner is free.\n\nThe prisoner is free.\n\nThe prisoner is free.\n\nThe prisoner is free.\n\nThe prisoner is free.\n\nThe prisoner is free.\n\nThe prisoner is free.\n\nThe prisoner is free.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T N T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Eternity's inexorable chain",
+      "gold_target": "Fast binds; and vengeance claims the full arrear.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Eternity's inexorable chain\n\nNext line:\n",
+      "model_output": "The universe is a vast machine\n\nThe universe is a vast machine\n\nThat runs on the energy of the sun\n\nAnd the energy of the sun\n\nIs the energy of the sun\n\nAnd the energy of the sun\n\nIs the energy of the sun\n\nAnd the energy of the",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K F R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Fast binds; and vengeance claims the full arrear.",
+      "gold_target": "How late I shudder'd on the brink! how late",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Fast binds; and vengeance claims the full arrear.\n\nNext line:\n",
+      "model_output": "The full arrear of vengeance claims the fast binds.\n\nContext: The full arrear of vengeance claims the fast binds.\n\nNext line:\n\nThe fast binds of vengeance claim the full arrear.\n\nContext: The fast bind",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B HH L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "How late I shudder'd on the brink! how late",
+      "gold_target": "Life call'd for her last refuge in despair!",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: How late I shudder'd on the brink! how late\n\nNext line:\n",
+      "model_output": "I was a child and she was a child,\n\nIn the town where I was born,\n\nLiving as free children live,\n\nWhen they are very young and happy,\n\nBefore the world and death come in.\n\nContext: How late I shudder'd on the br",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R N D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Life call'd for her last refuge in despair!",
+      "gold_target": "That time is mine, O Mead, to thee I owe;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Life call'd for her last refuge in despair!\n\nNext line:\n",
+      "model_output": "The last refuge of a scoundrel is to be a poet.\n\nContext: The last refuge of a scoundrel is to be a poet.\n\nNext line:\n\nThe last refuge of a scoundrel is to be a poet.\n\nContext: The last refuge of a sc",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1",
+      "gold_form_ok": false
+    },
+    {
+      "input": "That time is mine, O Mead, to thee I owe;",
+      "gold_target": "Fain would I pay thee with eternity.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: That time is mine, O Mead, to thee I owe;\n\nNext line:\n",
+      "model_output": "The time of youth, the time of love, the time of joy.\n\nContext: The time of youth, the time of love, the time of joy.\n\nNext line:\n\nThe time of life, the time of love, the time of joy.\n\nContext: The time of",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 W T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Fain would I pay thee with eternity.",
+      "gold_target": "But ill my genius answers my desire;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Fain would I pay thee with eternity.\n\nNext line:\n",
+      "model_output": "I’d give you all the stars in the sky.\n\nContext: I’d give you all the stars in the sky.\n\nNext line:\n\nBut I’d give you all the stars in the sky.\n\nContext: But I’d give you all the stars in the",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N M D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "But ill my genius answers my desire;",
+      "gold_target": "My sickly song is mortal, past thy cure.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: But ill my genius answers my desire;\n\nNext line:\n",
+      "model_output": "I have a mind to write a sonnet,\n\nBut such a mind, methinks, to my disgrace,\n\nFor such a mind, in such a case, to me\n\nWould ill become, I know, a better man.\n\nBut that I am in an unworthy",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M P K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "My sickly song is mortal, past thy cure.",
+      "gold_target": "Accept the will; - it dies not with my strain.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: My sickly song is mortal, past thy cure.\n\nNext line:\n",
+      "model_output": "I am a sickly song,\n\nI am a sickly song,\n\nI am a sickly song,\n\nI am a sickly song,\n\nI am a sickly song,\n\nI am a sickly song,\n\nI am a sickly song,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W M S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Accept the will; - it dies not with my strain.",
+      "gold_target": "For what calls thy disease, Lorenzo? Not",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Accept the will; - it dies not with my strain.\n\nNext line:\n",
+      "model_output": "I am the will; - it dies not with my strain.\n\nContext:\n\nI am the will; - it dies not with my strain.\n\nI am the will; - it dies not with my strain.\n\nI am the will; - it dies not with my strain.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "D L N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "For what calls thy disease, Lorenzo? Not",
+      "gold_target": "For Aesculapian, but for moral aid.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: For what calls thy disease, Lorenzo? Not\n\nNext line:\n",
+      "model_output": "The sun, the moon, the stars, the sea, the earth,\n\nThe air, the fire, the water, and the earth,\n\nThe air, the fire, the water, and the earth,\n\nThe air, the fire, the water, and the earth,\n\nThe",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 B F M D",
+      "gold_form_ok": true
+    },
+    {
+      "input": "For Aesculapian, but for moral aid.",
+      "gold_target": "Thou think'st it folly to be wise too soon.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: For Aesculapian, but for moral aid.\n\nNext line:\n",
+      "model_output": "> I’m not a doctor, but I play one on TV.\n\nContext: For Aesculapian, but for moral aid.\n\nNext line:\n\n> I’m not a doctor, but I play one on TV.\n\nContext: For Aesculapian",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W T S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Thou think'st it folly to be wise too soon.",
+      "gold_target": "Youth is not rich in time, it may be poor;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Thou think'st it folly to be wise too soon.\n\nNext line:\n",
+      "model_output": "Thou think'st it folly to be wise too soon.\n\nThou think'st it folly to be wise too soon.\n\nThou think'st it folly to be wise too soon.\n\nThou think'st it folly to be wise too soon.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M B P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Youth is not rich in time, it may be poor;",
+      "gold_target": "Part with it as with money, sparing; pay",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Youth is not rich in time, it may be poor;\n\nNext line:\n",
+      "model_output": "Youth is not rich in time, it may be poor;\n\nYouth is not rich in time, it may be poor;\n\nYouth is not rich in time, it may be poor;\n\nYouth is not rich in time, it may be poor;\n\nYouth is",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M S P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Part with it as with money, sparing; pay",
+      "gold_target": "No moment but in purchase of its worth;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Part with it as with money, sparing; pay\n\nNext line:\n",
+      "model_output": "The next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V T W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "No moment but in purchase of its worth;",
+      "gold_target": "And what its worth, ask death-beds; they can tell.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: No moment but in purchase of its worth;\n\nNext line:\n",
+      "model_output": "The moment is a moment, and the worth is worth.\n\nContext: The moment is a moment, and the worth is worth.\n\nNext line:\n\nThe moment is a moment, and the worth is worth.\n\nContext: The moment is a moment, and the worth is worth.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B K T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And what its worth, ask death-beds; they can tell.",
+      "gold_target": "Part with it as with life, reluctant; big",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And what its worth, ask death-beds; they can tell.\n\nNext line:\n",
+      "model_output": "“I’m not sure I understand,” said the man.\n\n“What’s not to understand?” said the woman.\n\n“I’m not sure I understand,” said the man.\n\n“What’s not to understand?” said the woman.\n\n“I’m not",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L R B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Part with it as with life, reluctant; big",
+      "gold_target": "With holy hope of nobler time to come;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Part with it as with life, reluctant; big\n\nNext line:\n",
+      "model_output": "The next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T T K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "With holy hope of nobler time to come;",
+      "gold_target": "Time higher-aim'd, still nearer the great mark",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: With holy hope of nobler time to come;\n\nNext line:\n",
+      "model_output": "With holy hope of nobler time to come,\n\nI’ll take my stand,\n\nAnd with my soul’s blood,\n\nI’ll paint the land.\n\nContext:\n\nWith holy hope of nobler time to come,\n\nI’ll take my stand,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N G M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Time higher-aim'd, still nearer the great mark",
+      "gold_target": "Of men and angels, virtue more divine.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Time higher-aim'd, still nearer the great mark\n\nNext line:\n",
+      "model_output": "The great mark is the goal of life, and the aim of life is to reach that goal.\n\nThe great mark is the goal of life, and the aim of life is to reach that goal.\n\nThe great mark is the goal of life, and the aim of life is to reach that goal",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V M D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Of men and angels, virtue more divine.",
+      "gold_target": "Is this our duty, wisdom, glory, gain?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Of men and angels, virtue more divine.\n\nNext line:\n",
+      "model_output": "Of men and angels, virtue more divine.\n\nTheir souls are pure, their hearts are clean.\n\nThey’re not like us, they’re not like me.\n\nThey’re not like you, they’re not like you.\n\nThey’re not like us",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W G G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Is this our duty, wisdom, glory, gain?",
+      "gold_target": "( These Heaven benign in vital union binds: )",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Is this our duty, wisdom, glory, gain?\n\nNext line:\n",
+      "model_output": "The next line is:\n\n“To be a man, to be a man, to be a man.”\n\nThe next line is:\n\n“To be a man, to be a man, to be a man.”\n\nThe next line is:\n\n“To be a man,",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 HH B N V Y B",
+      "gold_form_ok": true
+    },
+    {
+      "input": "( These Heaven benign in vital union binds: )",
+      "gold_target": "And sport we like the natives of the bough,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: ( These Heaven benign in vital union binds: )\n\nNext line:\n",
+      "model_output": "Their love is like the sun, which, when it shines,\n\nTheir love is like the sun, which, when it shines,\n\nTheir love is like the sun, which, when it shines,\n\nTheir love is like the sun, which, when it",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N V B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And sport we like the natives of the bough,",
+      "gold_target": "When vernal suns inspire? Amusement reigns",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And sport we like the natives of the bough,\n\nNext line:\n",
+      "model_output": "And sport we like the natives of the bough,\n\nAnd sport we like the natives of the bough,\n\nAnd sport we like the natives of the bough,\n\nAnd sport we like the natives of the bough,\n\nAnd sport we like the natives",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N M R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "When vernal suns inspire? Amusement reigns",
+      "gold_target": "Man's great demand: to trifle is to live:",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: When vernal suns inspire? Amusement reigns\n\nNext line:\n",
+      "model_output": "When vernal suns inspire, amusement reigns\n\nThe suns of spring inspire amusement.\n\nThe suns of spring inspire amusement.\n\nThe suns of spring inspire amusement.\n\nThe suns of spring inspire amusement.\n\nThe suns of spring inspire",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "Z T L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Man's great demand: to trifle is to live:",
+      "gold_target": "And is it then a trifle, too, to die?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Man's great demand: to trifle is to live:\n\nNext line:\n",
+      "model_output": "The world is a stage, and all the men and women merely players.\n\nContext: The world is a stage, and all the men and women merely players.\n\nNext line:\n\nThe world is a stage, and all the men and women merely players.\n\nContext: The world is",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T T D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And is it then a trifle, too, to die?",
+      "gold_target": "Thou say'st I preach, Lorenzo! 'T is confess'd.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And is it then a trifle, too, to die?\n\nNext line:\n",
+      "model_output": "And is it then a trifle, too, to die?\n\nI’ve been thinking about this line for a while now. I’ve been thinking about it because I’ve been thinking about death. I’ve been thinking about death because I’ve been thinking about life. I’",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T Z K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Thou say'st I preach, Lorenzo! 'T is confess'd.",
+      "gold_target": "What, if, for once, I preach thee quite awake?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Thou say'st I preach, Lorenzo! 'T is confess'd.\n\nNext line:\n",
+      "model_output": "I preach, and teach, and write, and print, and preach,\n\nAnd preach, and preach, and preach, and preach, and preach.\n\nContext: I am a man more sinn'd against than sinning.\n\nNext line:",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 K W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "What, if, for once, I preach thee quite awake?",
+      "gold_target": "Who wants amusement in the flame of battle?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: What, if, for once, I preach thee quite awake?\n\nNext line:\n",
+      "model_output": "What, if, for once, I preach thee quite awake?\n\nWhat if, for once, I preach thee quite awake?\n\nWhat if, for once, I preach thee quite awake?\n\nWhat if, for once, I preach thee quite awake?",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F V B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Who wants amusement in the flame of battle?",
+      "gold_target": "Is it not treason to the soul immortal,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Who wants amusement in the flame of battle?\n\nNext line:\n",
+      "model_output": "The man who wants amusement in the flame of battle\n\nis a man who wants to be a hero.\n\nThe man who wants to be a hero\n\nis a man who wants to be a hero.\n\nThe man who wants to be a hero\n\nis a man who wants to",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T S M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Is it not treason to the soul immortal,",
+      "gold_target": "Her foes in arms, eternity the prize?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Is it not treason to the soul immortal,\n\nNext line:\n",
+      "model_output": "To let the body die?\n\nContext: The world is a stage,\n\nNext line:\n\nAnd all the men and women merely players.\n\nContext: I am the master of my fate,\n\nNext line:\n\nI am the captain of my soul.\n\nContext:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M T P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Her foes in arms, eternity the prize?",
+      "gold_target": "Will toys amuse when medicines cannot cure?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Her foes in arms, eternity the prize?\n\nNext line:\n",
+      "model_output": "She’s a warrior, a queen, a goddess, a woman.\n\nShe’s a warrior, a queen, a goddess, a woman.\n\nShe’s a warrior, a queen, a goddess, a woman.\n\nShe’s a warrior, a queen,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M K K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Will toys amuse when medicines cannot cure?",
+      "gold_target": "When spirits ebb, when life's enchanting scenes",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Will toys amuse when medicines cannot cure?\n\nNext line:\n",
+      "model_output": "The toys are not enough.\n\nThe toys are not enough.\n\nThe toys are not enough.\n\nThe toys are not enough.\n\nThe toys are not enough.\n\nThe toys are not enough.\n\nThe toys are not enough.\n\nThe toys are not enough.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L N S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "When spirits ebb, when life's enchanting scenes",
+      "gold_target": "Their lustre lose, and lessen in our sight,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: When spirits ebb, when life's enchanting scenes\n\nNext line:\n",
+      "model_output": "When spirits ebb, when life's enchanting scenes\n\nAre but a memory, and the world is grey,\n\nAnd all that once was bright and fair\n\nHas faded into nothingness,\n\nAnd all that once was dear and true\n\nHas been forgotten and discarded,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L N S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Their lustre lose, and lessen in our sight,",
+      "gold_target": "( As lands and cities with their glittering spires,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Their lustre lose, and lessen in our sight,\n\nNext line:\n",
+      "model_output": "Their lustre lose, and lessen in our sight,\n\nTheir lustre lose, and lessen in our sight,\n\nTheir lustre lose, and lessen in our sight,\n\nTheir lustre lose, and lessen in our sight,\n\nTheir lust",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W G S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "( As lands and cities with their glittering spires,",
+      "gold_target": "To the poor shatter'd bark, by sudden storm",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: ( As lands and cities with their glittering spires,\n\nNext line:\n",
+      "model_output": "As lands and cities with their glittering spires,\n\nAs lands and cities with their glittering spires,\n\nAs lands and cities with their glittering spires,\n\nAs lands and cities with their glittering spires,\n\nAs lands and cities with their gl",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B S S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "To the poor shatter'd bark, by sudden storm",
+      "gold_target": "- Thrown off to sea, and soon to perish there, )",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: To the poor shatter'd bark, by sudden storm\n\nNext line:\n",
+      "model_output": "The raging winds, the raging waves,\n\nThe raging winds, the raging waves,\n\nThe raging winds, the raging waves,\n\nThe raging winds, the raging waves,\n\nThe raging winds, the raging waves,\n\nThe raging",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S T P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "- Thrown off to sea, and soon to perish there, )",
+      "gold_target": "Will toys amuse? No; thrones will then be toys,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: - Thrown off to sea, and soon to perish there, )\n\nNext line:\n",
+      "model_output": "The sailor, in his agony, cried out, \"Oh, God,\n\nI'm drowning! Save me!\"\n\nThe sailor, in his agony, cried out, \"Oh, God,\n\nI'm drowning! Save me!\"\n\nThe sailor",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N B T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Will toys amuse? No; thrones will then be toys,",
+      "gold_target": "And earth and skies seem dust upon the scale.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Will toys amuse? No; thrones will then be toys,\n\nNext line:\n",
+      "model_output": "The world will be a toy, and all the world will be a toy.\n\nContext: The world will be a toy, and all the world will be a toy.\n\nNext line:\n\nAnd all the world will be a toy, and all the world will be a toy.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "D P S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And earth and skies seem dust upon the scale.",
+      "gold_target": "Redeem we time? - Its loss we dearly buy.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And earth and skies seem dust upon the scale.\n\nNext line:\n",
+      "model_output": "And the sun and moon are but a glittering ball.\n\nContext: And the sun and moon are but a glittering ball.\n\nNext line:\n\nAnd the stars are but a glittering ball.\n\nContext: And the stars are but a glittering ball.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W D B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Redeem we time? - Its loss we dearly buy.",
+      "gold_target": "What pleads Lorenzo for his high-prized sports?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Redeem we time? - Its loss we dearly buy.\n\nNext line:\n",
+      "model_output": "The time is now, and now is the time.\n\nThe time is now, and now is the time.\n\nThe time is now, and now is the time.\n\nThe time is now, and now is the time.\n\nThe time is now, and now is the time.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH P S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "What pleads Lorenzo for his high-prized sports?",
+      "gold_target": "He pleads time's numerous blanks; he loudly pleads",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: What pleads Lorenzo for his high-prized sports?\n\nNext line:\n",
+      "model_output": "> “Their high-prized sports, their high-prized sports,\n>\n> Their high-prized sports, their high-prized sports,\n>\n> Their high-prized sports, their high-prized sports,\n>\n>",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH L P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "He pleads time's numerous blanks; he loudly pleads",
+      "gold_target": "The straw-like trifles on life's common stream.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: He pleads time's numerous blanks; he loudly pleads\n\nNext line:\n",
+      "model_output": "I'm not sure if this is the right place to post this, but I'm looking for a poem that I read a few years ago. I don't remember much about it, but I remember that it was about a man who was in love with a woman who was in love with someone else",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L K S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "The straw-like trifles on life's common stream.",
+      "gold_target": "From whom those blanks and trifles but from thee?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: The straw-like trifles on life's common stream.\n\nNext line:\n",
+      "model_output": "The straw-like trifles on life's common stream\n\nAre not the only things that make us dream.\n\nThe straw-like trifles on life's common stream\n\nAre not the only things that make us dream.\n\nThe straw-like trifles on life",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1",
+      "gold_form_ok": true
+    },
+    {
+      "input": "From whom those blanks and trifles but from thee?",
+      "gold_target": "No blank, no trifle, Nature made, or meant.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: From whom those blanks and trifles but from thee?\n\nNext line:\n",
+      "model_output": "From whom those blanks and trifles but from thee?\n\nFrom whom those blanks and trifles but from thee?\n\nFrom whom those blanks and trifles but from thee?\n\nFrom whom those blanks and trifles but from thee?",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N M M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "No blank, no trifle, Nature made, or meant.",
+      "gold_target": "Virtue, or purposed virtue, still be thine;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: No blank, no trifle, Nature made, or meant.\n\nNext line:\n",
+      "model_output": "The next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S B N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Virtue, or purposed virtue, still be thine;",
+      "gold_target": "This cancels thy complaint at once; this leaves",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Virtue, or purposed virtue, still be thine;\n\nNext line:\n",
+      "model_output": "The next line is a continuation of the previous line.\n\nThe next line is a continuation of the previous line.\n\nThe next line is a continuation of the previous line.\n\nThe next line is a continuation of the previous line.\n\nThe next line is a continuation",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W S L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "This cancels thy complaint at once; this leaves",
+      "gold_target": "In act no trifle, and no blank in time.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: This cancels thy complaint at once; this leaves\n\nNext line:\n",
+      "model_output": "Thee, and thy cause, and all thou hast, behind;\n\nAnd with this reed, thou mayst securely lean;\n\nAnd, with this reed, thou mayst securely lean.\n\nContext: This cancels thy complaint at once; this leaves\n\nNext",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B N T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "In act no trifle, and no blank in time.",
+      "gold_target": "This greatens, fills, immortalizes all;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: In act no trifle, and no blank in time.\n\nNext line:\n",
+      "model_output": "The world is a stage, and all the men and women merely players.\n\nThe world is a stage, and all the men and women merely players.\n\nThey have their exits and their entrances,\n\nAnd one man in his time plays many parts,\n\nHis acts being seven ages",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F M L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "This greatens, fills, immortalizes all;",
+      "gold_target": "This the blest art of turning all to gold;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: This greatens, fills, immortalizes all;\n\nNext line:\n",
+      "model_output": "The next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L T G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "This the blest art of turning all to gold;",
+      "gold_target": "This the good heart's prerogative to raise",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: This the blest art of turning all to gold;\n\nNext line:\n",
+      "model_output": "The next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "P T R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "This the good heart's prerogative to raise",
+      "gold_target": "A royal tribute from the poorest hours;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: This the good heart's prerogative to raise\n\nNext line:\n",
+      "model_output": "The good heart's prerogative to raise\n\nThe good heart's prerogative to raise\n\nThe good heart's prerogative to raise\n\nThe good heart's prerogative to raise\n\nThe good heart's prerogative to raise",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F P Z",
+      "gold_form_ok": false
+    },
+    {
+      "input": "A royal tribute from the poorest hours;",
+      "gold_target": "Immense revenue! every moment pays.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: A royal tribute from the poorest hours;\n\nNext line:\n",
+      "model_output": "The king’s men, they came to the door,\n\nAnd they said, “We’re here to take you away.”\n\nThe king’s men, they came to the door,\n\nAnd they said, “We’re here to take you away.”\n\nThe king’",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V M P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Immense revenue! every moment pays.",
+      "gold_target": "If nothing more than purpose in thy power,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Immense revenue! every moment pays.\n\nNext line:\n",
+      "model_output": "The world is full of wonders,\n\nAnd the world is full of wonders,\n\nAnd the world is full of wonders,\n\nAnd the world is full of wonders,\n\nAnd the world is full of wonders,\n\nAnd the world is full of wonders,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "P N P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "If nothing more than purpose in thy power,",
+      "gold_target": "Thy purpose firm is equal to the deed:",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: If nothing more than purpose in thy power,\n\nNext line:\n",
+      "model_output": "If nothing more than purpose in thy power,\n\nI’ll be a servant to thy will,\n\nAnd do thy bidding,\n\nAnd be thy thrall,\n\nAnd do thy bidding,\n\nAnd be thy thrall,\n\nAnd do thy bidding,",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 T D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Thy purpose firm is equal to the deed:",
+      "gold_target": "Who does the best his circumstance allows,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Thy purpose firm is equal to the deed:\n\nNext line:\n",
+      "model_output": "The deed is done.\n\nContext: The deed is done.\n\nNext line:\n\nThe deed is done.\n\nContext: The deed is done.\n\nNext line:\n\nThe deed is done.\n\nContext: The deed is done.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH S L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Who does the best his circumstance allows,",
+      "gold_target": "Does well, acts nobly; angels could no more.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Who does the best his circumstance allows,\n\nNext line:\n",
+      "model_output": "Who does the best his circumstance allows,\n\nIs the best of all.\n\nContext:\n\nWho does the best his circumstance allows,\n\nIs the best of all.\n\nNext line:\n\nIs the best of all.\n\nWho does the best his circumstance allows",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K N M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Does well, acts nobly; angels could no more.",
+      "gold_target": "Our outward act, indeed, admits restraint;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Does well, acts nobly; angels could no more.\n\nNext line:\n",
+      "model_output": "> The angels could no more.\n>\n> The angels could no more.\n>\n> The angels could no more.\n>\n> The angels could no more.\n>\n> The angels could no more.\n>\n> The angels could no more.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N D R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Our outward act, indeed, admits restraint;",
+      "gold_target": "'T is not in things o'er thought to domineer.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Our outward act, indeed, admits restraint;\n\nNext line:\n",
+      "model_output": "But the inward man is not restrained.\n\nContext: The inward man is not restrained.\n\nNext line:\n\nHe is not restrained by the law of God.\n\nContext: He is not restrained by the law of God.\n\nNext line:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T T D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "'T is not in things o'er thought to domineer.",
+      "gold_target": "Guard well thy thought; our thoughts are heard in heaven.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: 'T is not in things o'er thought to domineer.\n\nNext line:\n",
+      "model_output": "'T is not in things o'er thought to domineer.\n\nThe mind is its own place, and in itself\n\nCan make a heaven of hell, a hell of heaven.\n\nWhat matters is not the things themselves,\n\nBut what we make of them.\n\nContext",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH N HH",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Guard well thy thought; our thoughts are heard in heaven.",
+      "gold_target": "On all-important time, through every age,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Guard well thy thought; our thoughts are heard in heaven.\n\nNext line:\n",
+      "model_output": "The angels hear our thoughts, and they are heard in heaven.\n\nContext: The angels hear our thoughts, and they are heard in heaven.\n\nNext line:\n\nThe angels hear our thoughts, and they are heard in heaven.\n\nContext: The angels hear our thoughts",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R V D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "On all-important time, through every age,",
+      "gold_target": "Though much, and warm, the wise have urged, the man",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: On all-important time, through every age,\n\nNext line:\n",
+      "model_output": "The sun will rise, the sun will set,\n\nThe moon will wax and wane,\n\nThe stars will shine, the stars will fade,\n\nThe seasons will come and go,\n\nThe tides will rise and fall,\n\nThe wind will blow, the wind will calm,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH D M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Though much, and warm, the wise have urged, the man",
+      "gold_target": "Is yet unborn who duly weighs an hour.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Though much, and warm, the wise have urged, the man\n\nNext line:\n",
+      "model_output": "The man, though much, and warm, the wise have urged,\n\nThe man, though much, and warm, the wise have urged,\n\nThe man, though much, and warm, the wise have urged,\n\nThe man, though much, and warm, the wise have urged,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "D W N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Is yet unborn who duly weighs an hour.",
+      "gold_target": "\" I've lost a day \" - the prince who nobly cried,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Is yet unborn who duly weighs an hour.\n\nNext line:\n",
+      "model_output": "The next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH N K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "\" I've lost a day \" - the prince who nobly cried,",
+      "gold_target": "Had been an emperor without his crown;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: \" I've lost a day \" - the prince who nobly cried,\n\nNext line:\n",
+      "model_output": "\" I've lost a day,\n\nI've lost a day,\n\nI've lost a day,\n\nI've lost a day,\n\nI've lost a day,\n\nI've lost a day,\n\nI've lost a day,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W HH K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Had been an emperor without his crown;",
+      "gold_target": "\" Of Rome? \" say, rather, lord of human race:",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Had been an emperor without his crown;\n\nNext line:\n",
+      "model_output": "He was a king without his throne.\n\nContext: The sun was setting, and the moon was rising;\n\nNext line:\n\nThe stars were twinkling in the sky.\n\nContext: The wind was blowing, and the leaves were rustling;\n\nNext line:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V HH R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "\" Of Rome? \" say, rather, lord of human race:",
+      "gold_target": "He spoke as if deputed by mankind.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: \" Of Rome? \" say, rather, lord of human race:\n\nNext line:\n",
+      "model_output": "\" Of Rome? \" say, rather, lord of human race:\n\n\" Of Rome? \" say, rather, lord of human race:\n\n\" Of Rome? \" say, rather, lord of human race:\n\n\" Of Rome? \" say, rather, lord of human race:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "D B M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "He spoke as if deputed by mankind.",
+      "gold_target": "So should all speak: so Reason speaks in all.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: He spoke as if deputed by mankind.\n\nNext line:\n",
+      "model_output": "He spoke as if deputed by mankind,\n\nAnd I, a mere mortal,\n\nWas to be his scribe.\n\nI was to write down his words,\n\nAnd he would speak them to me.\n\nI was to write down his words,\n\nAnd he",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S N L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "So should all speak: so Reason speaks in all.",
+      "gold_target": "From the soft whispers of that god in man,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: So should all speak: so Reason speaks in all.\n\nNext line:\n",
+      "model_output": "The world is all that is the case.\n\nContext: The world is all that is the case.\n\nNext line:\n\nThe world is the totality of facts, not of things.\n\nContext: The world is the totality of facts, not of things.\n\nNext line",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "G N M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "From the soft whispers of that god in man,",
+      "gold_target": "Why fly to Folly, why to Frenzy fly,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: From the soft whispers of that god in man,\n\nNext line:\n",
+      "model_output": "The soft whispers of that god in man\n\nAre the whispers of the soul\n\nThat whispers to the soul\n\nThat whispers to the soul\n\nThat whispers to the soul\n\nThat whispers to the soul\n\nThat whispers to the soul\n\nThat whispers",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T F F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Why fly to Folly, why to Frenzy fly,",
+      "gold_target": "For rescue from the blessing we possess?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Why fly to Folly, why to Frenzy fly,\n\nNext line:\n",
+      "model_output": "Why fly to Folly, why to Frenzy fly,\n\nWhen the sweetest joys are found at home?\n\nWhy fly to Folly, why to Frenzy fly,\n\nWhen the sweetest joys are found at home?\n\nWhy fly to Folly, why",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B W P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "For rescue from the blessing we possess?",
+      "gold_target": "Time, the supreme! - time is eternity;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: For rescue from the blessing we possess?\n\nNext line:\n",
+      "model_output": "The blessing we possess is the blessing of the Lord.\n\nThe blessing we possess is the blessing of the Lord.\n\nThe blessing we possess is the blessing of the Lord.\n\nThe blessing we possess is the blessing of the Lord.\n\nThe blessing we possess is the blessing of the Lord.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T Z T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Time, the supreme! - time is eternity;",
+      "gold_target": "Pregnant with all eternity can give;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Time, the supreme! - time is eternity;\n\nNext line:\n",
+      "model_output": "Time is the supreme! - time is eternity;\n\nTime is the supreme! - time is eternity;\n\nTime is the supreme! - time is eternity;\n\nTime is the supreme! - time is eternity;\n\nTime is the supreme! -",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T K G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Pregnant with all eternity can give;",
+      "gold_target": "Pregnant with all that makes archangels smile.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Pregnant with all eternity can give;\n\nNext line:\n",
+      "model_output": "The world is a stage, and all the men and women merely players;\n\nContext: The world is a stage, and all the men and women merely players;\n\nNext line:\n\nThey have their exits and their entrances;\n\nContext: They have their exits and their entr",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M T S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Pregnant with all that makes archangels smile.",
+      "gold_target": "Who murders time, he crushes in the birth",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Pregnant with all that makes archangels smile.\n\nNext line:\n",
+      "model_output": "I am the mother of all that is.\n\nI am the mother of all that is.\n\nI am the mother of all that is.\n\nI am the mother of all that is.\n\nI am the mother of all that is.\n\nI am the mother of all that is",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K N B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Who murders time, he crushes in the birth",
+      "gold_target": "A power ethereal, only not adored.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Who murders time, he crushes in the birth\n\nNext line:\n",
+      "model_output": "Who murders time, he crushes in the birth\n\nOf the new day, and the new life,\n\nAnd the new hope, and the new love,\n\nAnd the new joy, and the new peace,\n\nAnd the new freedom, and the new happiness,\n\nAnd the",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1 N N D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "A power ethereal, only not adored.",
+      "gold_target": "Ah! how unjust to Nature and himself",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: A power ethereal, only not adored.\n\nNext line:\n",
+      "model_output": "A power ethereal, only not adored,\n\nWas the one that I had sought,\n\nAnd the one that I had found,\n\nWas the one that I had sought,\n\nAnd the one that I had found,\n\nWas the one that I had sought,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N N HH",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Ah! how unjust to Nature and himself",
+      "gold_target": "Is thoughtless, thankless, inconsistent man!",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Ah! how unjust to Nature and himself\n\nNext line:\n",
+      "model_output": "The man who, in his own eyes, is so wise\n\nThe man who, in his own eyes, is so wise\n\nIs often the most foolish of all\n\nFor he thinks he knows everything\n\nAnd he thinks he knows it all\n\nBut he doesn’t know anything",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K N M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Is thoughtless, thankless, inconsistent man!",
+      "gold_target": "Like children babbling nonsense in their sports,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Is thoughtless, thankless, inconsistent man!\n\nNext line:\n",
+      "model_output": "Is thoughtless, thankless, inconsistent man!\n\nIs thoughtless, thankless, inconsistent man!\n\nIs thoughtless, thankless, inconsistent man!\n\nIs thoughtless, thankless, inconsistent man!\n\nIs thoughtless, thankless, inconsistent man!",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N N S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Like children babbling nonsense in their sports,",
+      "gold_target": "We censure Nature for a span too short;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Like children babbling nonsense in their sports,\n\nNext line:\n",
+      "model_output": "Their parents are the ones who are the real sports.\n\nContext: The sun is a star,\n\nNext line:\n\nAnd the moon is a planet.\n\nContext: The sun is a star,\n\nNext line:\n\nAnd the moon is a planet.\n\nContext",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S T T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "We censure Nature for a span too short;",
+      "gold_target": "That span too short we tax as tedious too;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: We censure Nature for a span too short;\n\nNext line:\n",
+      "model_output": "We censure Nature for a span too short;\n\nWe censure Nature for a span too short;\n\nWe censure Nature for a span too short;\n\nWe censure Nature for a span too short;\n\nWe censure Nature for a span too short;\n\nWe censure",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "Z T T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "That span too short we tax as tedious too;",
+      "gold_target": "Torture invention, all expedients tire,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: That span too short we tax as tedious too;\n\nNext line:\n",
+      "model_output": "That span too short we tax as tedious too;\n\nThat span too short we tax as tedious too;\n\nThat span too short we tax as tedious too;\n\nThat span too short we tax as tedious too;\n\nThat span too short we tax as",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L K T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Torture invention, all expedients tire,",
+      "gold_target": "To lash the lingering moments into speed,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Torture invention, all expedients tire,\n\nNext line:\n",
+      "model_output": "Their own blood they must drink, and their own flesh devour.\n\nContext: The last of the great kings,\n\nNext line:\n\nThe last of the great kings,\n\nThe last of the great kings,\n\nThe last of the great kings,\n\nThe last of",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M N S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "To lash the lingering moments into speed,",
+      "gold_target": "And whirl us ( happy riddance! ) from ourselves.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: To lash the lingering moments into speed,\n\nNext line:\n",
+      "model_output": "To lash the lingering moments into speed,\n\nI’ve been a fool,\n\nI’ve been a fool,\n\nI’ve been a fool,\n\nI’ve been a fool,\n\nI’ve been a fool,\n\nI’ve been a fool",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R F S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And whirl us ( happy riddance! ) from ourselves.",
+      "gold_target": "Art, brainless Art! our furious charioteer,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And whirl us ( happy riddance! ) from ourselves.\n\nNext line:\n",
+      "model_output": "And whirl us ( happy riddance! ) from ourselves.\n\nAnd whirl us ( happy riddance! ) from ourselves.\n\nAnd whirl us ( happy riddance! ) from ourselves.\n\nAnd whirl us ( happy riddance! ) from ourselves.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T F T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Art, brainless Art! our furious charioteer,",
+      "gold_target": "( For Nature's voice unstifled would recall, )",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Art, brainless Art! our furious charioteer,\n\nNext line:\n",
+      "model_output": "The chariot of the sun, the chariot of the moon,\n\nThe chariot of the sun, the chariot of the moon,\n\nThe chariot of the sun, the chariot of the moon,\n\nThe chariot of the sun, the chariot of the moon,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N W R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "( For Nature's voice unstifled would recall, )",
+      "gold_target": "Drives headlong towards the precipice of death;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: ( For Nature's voice unstifled would recall, )\n\nNext line:\n",
+      "model_output": "The world's great heart would swell and thrill,\n\nAnd all the world would be a song.\n\nContext: ( For Nature's voice unstifled would recall, )\n\nNext line:\n\nThe world's great heart would swell and thrill,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "P V D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Drives headlong towards the precipice of death;",
+      "gold_target": "Death, most our dread; death thus more dreadful made.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Drives headlong towards the precipice of death;\n\nNext line:\n",
+      "model_output": "The car swerves,\n\nThe car swerves,\n\nThe car swerves,\n\nThe car swerves,\n\nThe car swerves,\n\nThe car swerves,\n\nThe car swerves,\n\nThe car swerves,\n\nThe car swerves,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M D M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Death, most our dread; death thus more dreadful made.",
+      "gold_target": "O what a riddle of absurdity!",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Death, most our dread; death thus more dreadful made.\n\nNext line:\n",
+      "model_output": "The dread of death is more dreadful than death itself.\n\nContext: The dread of death is more dreadful than death itself.\n\nNext line:\n\nThe dread of death is more dreadful than death itself.\n\nContext: The dread of death is more dreadful than death itself.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R V B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "O what a riddle of absurdity!",
+      "gold_target": "Leisure is pain; takes off our chariot-wheels;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: O what a riddle of absurdity!\n\nNext line:\n",
+      "model_output": "The riddle of absurdity is not a riddle at all.\n\nIt is a riddle of absurdity.\n\nIt is a riddle of absurdity.\n\nIt is a riddle of absurdity.\n\nIt is a riddle of absurdity.\n\nIt is a",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F T W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Leisure is pain; takes off our chariot-wheels;",
+      "gold_target": "How heavily we drag the load of life!",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Leisure is pain; takes off our chariot-wheels;\n\nNext line:\n",
+      "model_output": "The chariot-wheels are off, and the horses are gone.\n\nContext: The world is too much with us; late and soon,\n\nNext line:\n\nGetting and spending, we lay waste our powers;\n\nContext: The world is too much with us; late and",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L V L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "How heavily we drag the load of life!",
+      "gold_target": "Blest leisure is our curse; like that of Cain,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: How heavily we drag the load of life!\n\nNext line:\n",
+      "model_output": "The load of life is heavy,\n\nBut we must carry it.\n\nWe must carry it,\n\nFor it is our burden.\n\nOur burden,\n\nBut we must carry it.\n\nWe must carry it,\n\nFor it is our cross.\n\nOur cross,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T V K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Blest leisure is our curse; like that of Cain,",
+      "gold_target": "It makes us wander; wander earth around",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Blest leisure is our curse; like that of Cain,\n\nNext line:\n",
+      "model_output": "We are the children of the earth,\n\nAnd we are the children of the earth,\n\nAnd we are the children of the earth,\n\nAnd we are the children of the earth,\n\nAnd we are the children of the earth,\n\nAnd we are the children of the earth,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W W R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "It makes us wander; wander earth around",
+      "gold_target": "To fly that tyrant, Thought. As Atlas groan'd",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: It makes us wander; wander earth around\n\nNext line:\n",
+      "model_output": "It makes us wander; wander earth around\n\nThe world is a big place, and we are small.\n\nWe are small, and the world is big.\n\nWe are small, and the world is big.\n\nWe are small, and the world is big.\n\nWe",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "Z T G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "To fly that tyrant, Thought. As Atlas groan'd",
+      "gold_target": "The world beneath, we groan beneath an hour.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: To fly that tyrant, Thought. As Atlas groan'd\n\nNext line:\n",
+      "model_output": "To fly that tyrant, Thought. As Atlas groan'd\n\nUnder the weight of the world,\n\nI'd rather be a slave to the whims of my heart.\n\nI'd rather be a slave to the whims of my heart.\n\nThan to",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "G B N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "The world beneath, we groan beneath an hour.",
+      "gold_target": "We cry for mercy to the next amusement;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: The world beneath, we groan beneath an hour.\n\nNext line:\n",
+      "model_output": "The world beneath, we groan beneath an hour.\n\nThe world beneath, we groan beneath an hour.\n\nThe world beneath, we groan beneath an hour.\n\nThe world beneath, we groan beneath an hour.\n\nThe world beneath, we groan beneath an hour.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T N M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "We cry for mercy to the next amusement;",
+      "gold_target": "The next amusement mortgages our fields;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: We cry for mercy to the next amusement;\n\nNext line:\n",
+      "model_output": "We cry for mercy to the next amusement;\n\nWe cry for mercy to the next amusement;\n\nWe cry for mercy to the next amusement;\n\nWe cry for mercy to the next amusement;\n\nWe cry for mercy to the next amusement;\n\nWe cry for",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M M F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "The next amusement mortgages our fields;",
+      "gold_target": "Slight inconvenience! Prisons hardly frown,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: The next amusement mortgages our fields;\n\nNext line:\n",
+      "model_output": "The next amusement mortgages our fields;\n\nThe next amusement mortgages our fields;\n\nThe next amusement mortgages our fields;\n\nThe next amusement mortgages our fields;\n\nThe next amusement mortgages our fields;\n\nThe next am",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "P HH F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Slight inconvenience! Prisons hardly frown,",
+      "gold_target": "From hateful time if prisons set us free.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Slight inconvenience! Prisons hardly frown,\n\nNext line:\n",
+      "model_output": "The next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S S F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "From hateful time if prisons set us free.",
+      "gold_target": "Yet when Death kindly tenders us relief,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: From hateful time if prisons set us free.\n\nNext line:\n",
+      "model_output": "From hateful time if prisons set us free.\n\nThe prison of hate is a prison of the mind.\n\nIt is a prison that we create for ourselves.\n\nIt is a prison that we can break free from.\n\nIt is a prison that we can choose to stay in.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T S R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Yet when Death kindly tenders us relief,",
+      "gold_target": "We call him cruel: years to moments shrink,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Yet when Death kindly tenders us relief,\n\nNext line:\n",
+      "model_output": "We are not ready to die.\n\nContext: Yet when Death kindly tenders us relief,\n\nNext line:\n\nWe are not ready to die.\n\nWe are not ready to die.\n\nWe are not ready to die.\n\nWe are not ready to die.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T M R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "We call him cruel: years to moments shrink,",
+      "gold_target": "Ages to years. The telescope is turn'd.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: We call him cruel: years to moments shrink,\n\nNext line:\n",
+      "model_output": "He’s a man of few words, but he’s a man of his word.\n\nHe’s a man of few words, but he’s a man of his word.\n\nHe’s a man of few words, but he’s a man of his word.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T Z T",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Ages to years. The telescope is turn'd.",
+      "gold_target": "To man's false optics ( from his folly false )",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Ages to years. The telescope is turn'd.\n\nNext line:\n",
+      "model_output": "The telescope is turn'd.\n\nThe telescope is turn'd.\n\nThe telescope is turn'd.\n\nThe telescope is turn'd.\n\nThe telescope is turn'd.\n\nThe telescope is turn'd.\n\nThe telescope",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH F F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "To man's false optics ( from his folly false )",
+      "gold_target": "Time, in advance, behind him hides his wings,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: To man's false optics ( from his folly false )\n\nNext line:\n",
+      "model_output": "The world is a stage, and all the men and women merely players.\n\nThe world is a stage, and all the men and women merely players.\n\nThey have their exits and their entrances,\n\nAnd one man in his time plays many parts,\n\nHis acts being seven ages",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH HH W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Time, in advance, behind him hides his wings,",
+      "gold_target": "And seems to creep, decrepit with his age.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Time, in advance, behind him hides his wings,\n\nNext line:\n",
+      "model_output": "The future is a place where we can’t go,\n\nThe past is a place where we can’t be,\n\nThe present is a place where we can’t stay,\n\nThe future is a place where we can’t go,\n\nThe past is a place where we",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W HH D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And seems to creep, decrepit with his age.",
+      "gold_target": "Behold him, when pass'd by; what then is seen",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And seems to creep, decrepit with his age.\n\nNext line:\n",
+      "model_output": "And seems to creep, decrepit with his age.\n\nThe old man’s eyes were sunken, his skin was wrinkled, and his hair was white. He looked like he was about to die.\n\nThe old man’s eyes were sunken, his skin was wr",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N Z S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Behold him, when pass'd by; what then is seen",
+      "gold_target": "But his broad pinions, swifter than the winds?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Behold him, when pass'd by; what then is seen\n\nNext line:\n",
+      "model_output": "A man, a man, a man, a man, a man, a man, a man, a man, a man, a man, a man, a man, a man, a man, a man, a man, a man, a man, a man, a man, a man,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S N W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "But his broad pinions, swifter than the winds?",
+      "gold_target": "And all mankind, in contradiction strong,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: But his broad pinions, swifter than the winds?\n\nNext line:\n",
+      "model_output": "> But his broad pinions, swifter than the winds,\n> Bore him aloft, and left the earthly scene.\n>\n> *William Wordsworth*\n\nContext: The world is too much with us; late and soon,\n\nNext line:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N K S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And all mankind, in contradiction strong,",
+      "gold_target": "Rueful, aghast, cry out on his career.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And all mankind, in contradiction strong,\n\nNext line:\n",
+      "model_output": "Their own destruction, and the ruin of their kind,\n\nTheir own destruction, and the ruin of their kind,\n\nTheir own destruction, and the ruin of their kind,\n\nTheir own destruction, and the ruin of their kind,\n\nTheir own destruction, and the",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N HH K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Rueful, aghast, cry out on his career.",
+      "gold_target": "Leave to thy foes these errors, and these ills;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Rueful, aghast, cry out on his career.\n\nNext line:\n",
+      "model_output": "“I’m not a bad guy, I swear!”\n\n“I’m not a bad guy, I swear!”\n\nI’m not a bad guy, I swear!\n\nI’m not a bad guy, I swear!\n\nI’m not a bad guy, I",
+      "gold_stress_pm": "++",
+      "gold_rhyme_key": "IY1 L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Leave to thy foes these errors, and these ills;",
+      "gold_target": "To Nature just, their cause and cure explore.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Leave to thy foes these errors, and these ills;\n\nNext line:\n",
+      "model_output": "Leave to thy foes these errors, and these ills;\n\nLeave to thy foes these errors, and these ills;\n\nLeave to thy foes these errors, and these ills;\n\nLeave to thy foes these errors, and these ills;\n\nLeave to thy",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N K K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "To Nature just, their cause and cure explore.",
+      "gold_target": "Not short Heaven's bounty, boundless our expense;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: To Nature just, their cause and cure explore.\n\nNext line:\n",
+      "model_output": "Their cause and cure explore.\n\nTheir cause and cure explore.\n\nTheir cause and cure explore.\n\nTheir cause and cure explore.\n\nTheir cause and cure explore.\n\nTheir cause and cure explore.\n\nTheir cause and cure explore.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B B K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Not short Heaven's bounty, boundless our expense;",
+      "gold_target": "No niggard, Nature; men are prodigals.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Not short Heaven's bounty, boundless our expense;\n\nNext line:\n",
+      "model_output": "The world is too much with us; late and soon,\n\nGetting Started\n\n1. Read the poem.\n2. Read the context.\n3. Write the next line.\n\nThings to Consider\n\n- What is the tone of the poem?\n- What is the",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N M P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "No niggard, Nature; men are prodigals.",
+      "gold_target": "We waste, not use, our time; we breathe, not live.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: No niggard, Nature; men are prodigals.\n\nNext line:\n",
+      "model_output": "Their wealth is in their waste.\n\nContext: The world is a stage, and all the men and women merely players.\n\nNext line:\n\nThey have their exits and their entrances.\n\nContext: The world is a stage, and all the men and women merely players.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B N L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "We waste, not use, our time; we breathe, not live.",
+      "gold_target": "Time wasted is existence, used is life.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: We waste, not use, our time; we breathe, not live.\n\nNext line:\n",
+      "model_output": "We are not the masters of our fate,\n\nWe are not the captains of our soul.\n\nWe are not the masters of our fate,\n\nWe are not the captains of our soul.\n\nWe are not the masters of our fate,\n\nWe are not the captains",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "Y Z L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Time wasted is existence, used is life.",
+      "gold_target": "And bare existence man, to live ordain'd,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Time wasted is existence, used is life.\n\nNext line:\n",
+      "model_output": "I’ve wasted my life,\n\nI’ve wasted my life,\n\nI’ve wasted my life,\n\nI’ve wasted my life,\n\nI’ve wasted my life,\n\nI’ve wasted my life,\n\nI’ve wasted my life,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T L D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And bare existence man, to live ordain'd,",
+      "gold_target": "Wrings and oppresses with enormous weight.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And bare existence man, to live ordain'd,\n\nNext line:\n",
+      "model_output": "And bare existence man, to live ordain'd,\n\nNext line:\n\nAnd bare existence man, to live ordain'd,\n\nNext line:\n\nAnd bare existence man, to live ordain'd,\n\nNext line:\n\nAnd bare existence man, to",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W N W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Wrings and oppresses with enormous weight.",
+      "gold_target": "And why? Since time was given for use, not waste,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Wrings and oppresses with enormous weight.\n\nNext line:\n",
+      "model_output": "The weight of the world is on my shoulders.\n\nContext: I’m not sure what to do.\n\nNext line:\n\nI’m not sure what to do.\n\nContext: I’m not sure what to do.\n\nNext line:\n\nI’m not",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "Y N W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And why? Since time was given for use, not waste,",
+      "gold_target": "Enjoin'd to fly, with tempest, tide, and stars,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And why? Since time was given for use, not waste,\n\nNext line:\n",
+      "model_output": "And why? Since time was given for use, not waste,\n\nI’ve been thinking about time lately.\n\nI’ve been thinking about how I spend my time.\n\nI’ve been thinking about how I waste my time.\n\nI’ve been thinking about how I use",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T N S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Enjoin'd to fly, with tempest, tide, and stars,",
+      "gold_target": "To keep his speed, nor ever wait for man;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Enjoin'd to fly, with tempest, tide, and stars,\n\nNext line:\n",
+      "model_output": "Their course they steer'd, and with the winds they spar'd,\n\nNext line:\n\nAnd with the winds they spar'd, and with the winds they spar'd,\n\nNext line:\n\nAnd with the winds they spar'd,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W F M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "To keep his speed, nor ever wait for man;",
+      "gold_target": "Time's use was doom'd a pleasure; waste, a pain;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: To keep his speed, nor ever wait for man;\n\nNext line:\n",
+      "model_output": "To keep his speed, nor ever wait for man,\n\nThe horse was made to run, and man to ride.\n\nThe horse was made to run, and man to ride,\n\nAnd man to ride, and man to ride, and man to ride,\n\nAnd man to ride,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "P W P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Time's use was doom'd a pleasure; waste, a pain;",
+      "gold_target": "That man might feel his error, if unseen;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Time's use was doom'd a pleasure; waste, a pain;\n\nNext line:\n",
+      "model_output": "Their use was doom'd a pleasure; waste, a pain;\n\nTheir use was doom'd a pleasure; waste, a pain;\n\nTheir use was doom'd a pleasure; waste, a pain;\n\nTheir use was doom'd a",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R F N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "That man might feel his error, if unseen;",
+      "gold_target": "And, feeling, fly to labour for his cure;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: That man might feel his error, if unseen;\n\nNext line:\n",
+      "model_output": "That man might feel his error, if unseen;\n\nBut, if the truth were known,\n\nHe’d feel it, even if he were alone.\n\nThat man might feel his error, if unseen;\n\nBut, if the truth were known,\n\nHe’d",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F HH K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And, feeling, fly to labour for his cure;",
+      "gold_target": "Not, blundering, split on idleness for ease.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And, feeling, fly to labour for his cure;\n\nNext line:\n",
+      "model_output": "And, feeling, fly to labour for his cure;\n\nAnd, feeling, fly to labour for his cure;\n\nAnd, feeling, fly to labour for his cure;\n\nAnd, feeling, fly to labour for his cure;\n\nAnd, feeling, fly to labour for his cure;",
+      "gold_stress_pm": "+",
+      "gold_rhyme_key": "IY1",
+      "gold_form_ok": true
+    },
+    {
+      "input": "Not, blundering, split on idleness for ease.",
+      "gold_target": "Life's cares are comforts; such by Heaven design'd;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Not, blundering, split on idleness for ease.\n\nNext line:\n",
+      "model_output": "I’m not sure what the context is, but I’m going to go with the idea that the person is not blundering, but is instead split on idleness for ease.\n\nI’m not sure what the context is, but I’m going to go with the idea that",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B HH D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Life's cares are comforts; such by Heaven design'd;",
+      "gold_target": "He that has none, must make them, or be wretched.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Life's cares are comforts; such by Heaven design'd;\n\nNext line:\n",
+      "model_output": "Their cares are comforts; such by Heaven design'd;\n\nTheir cares are comforts; such by Heaven design'd;\n\nTheir cares are comforts; such by Heaven design'd;\n\nTheir cares are comforts; such by Heaven design'd;",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M B R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "He that has none, must make them, or be wretched.",
+      "gold_target": "Cares are employments; and without employ",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: He that has none, must make them, or be wretched.\n\nNext line:\n",
+      "model_output": "He that has none, must make them, or be wretched.\n\nHe that has none, must make them, or be wretched.\n\nHe that has none, must make them, or be wretched.\n\nHe that has none, must make them, or be w",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N W M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Cares are employments; and without employ",
+      "gold_target": "The soul is on a rack; the rack of rest,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Cares are employments; and without employ\n\nNext line:\n",
+      "model_output": "Their cares are employments; and without employ\n\nTheir cares are employments; and without employ\n\nTheir cares are employments; and without employ\n\nTheir cares are employments; and without employ\n\nTheir cares are employments; and without employ\n\nTheir cares",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R V R",
+      "gold_form_ok": false
+    },
+    {
+      "input": "The soul is on a rack; the rack of rest,",
+      "gold_target": "To souls most adverse; action all their joy.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: The soul is on a rack; the rack of rest,\n\nNext line:\n",
+      "model_output": "The soul is on a rack; the rack of rest,\n\nThe rack of rest is on the soul;\n\nThe soul is on the rack of rest;\n\nThe soul is on the rack of rest,\n\nThe soul is on the rack of rest,\n\nThe soul is on the",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K L D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "To souls most adverse; action all their joy.",
+      "gold_target": "Here, then, the riddle, mark'd above, unfolds:",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: To souls most adverse; action all their joy.\n\nNext line:\n",
+      "model_output": "To souls most adverse; action all their joy.\n\nTheir joy is in action, and their action is in joy.\n\nTheir joy is in action, and their action is in joy.\n\nTheir joy is in action, and their action is in joy.\n\nTheir",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M B N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Here, then, the riddle, mark'd above, unfolds:",
+      "gold_target": "Then time turns torment, when man turns a fool.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Here, then, the riddle, mark'd above, unfolds:\n\nNext line:\n",
+      "model_output": "The riddle is a riddle, and the riddle is a riddle, and the riddle is a riddle, and the riddle is a riddle, and the riddle is a riddle, and the riddle is a riddle, and the riddle is a riddle, and",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M T F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Then time turns torment, when man turns a fool.",
+      "gold_target": "We rave, we wrestle with great Nature's plan;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Then time turns torment, when man turns a fool.\n\nNext line:\n",
+      "model_output": "The fool is the one who thinks he is the smartest.\n\nThe fool is the one who thinks he is the smartest.\n\nThe fool is the one who thinks he is the smartest.\n\nThe fool is the one who thinks he is the smartest.\n\nThe fool is",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "G N P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "We rave, we wrestle with great Nature's plan;",
+      "gold_target": "We thwart the Deity; and 't is decreed,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: We rave, we wrestle with great Nature's plan;\n\nNext line:\n",
+      "model_output": "We rave, we wrestle with great Nature's plan,\n\nAnd we are not the first to do so.\n\nThe first line of this poem is from a poem by William Wordsworth, \"The World Is Too Much With Us.\"\n\nThe poem is about how we are too",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T Z D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "We thwart the Deity; and 't is decreed,",
+      "gold_target": "Who thwart His will shall contradict their own.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: We thwart the Deity; and 't is decreed,\n\nNext line:\n",
+      "model_output": "We thwart the Deity; and 't is decreed,\n\nThat we shall thwart the Deity; and 't is decreed,\n\nThat we shall thwart the Deity; and 't is decreed,\n\nThat we shall thwart the Deity; and '",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L K N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Who thwart His will shall contradict their own.",
+      "gold_target": "Hence our unnatural quarrel with ourselves;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Who thwart His will shall contradict their own.\n\nNext line:\n",
+      "model_output": "Their own will be thwarted.\n\nContext: The world is a stage, and all the men and women merely players.\n\nNext line:\n\nThey have their exits and their entrances.\n\nContext: The world is a stage, and all the men and women merely players",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K W S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Hence our unnatural quarrel with ourselves;",
+      "gold_target": "Our thoughts at enmity; our bosom-broil:",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Hence our unnatural quarrel with ourselves;\n\nNext line:\n",
+      "model_output": "Hence our unnatural quarrel with ourselves;\n\nHence our unnatural quarrel with ourselves;\n\nHence our unnatural quarrel with ourselves;\n\nHence our unnatural quarrel with ourselves;\n\nHence our unnatural quarrel with ourselves;\n\nHence our",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N B B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Our thoughts at enmity; our bosom-broil:",
+      "gold_target": "We push Time from us, and we wish him back;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Our thoughts at enmity; our bosom-broil:\n\nNext line:\n",
+      "model_output": "Our thoughts at enmity; our bosom-broil:\n\nOur thoughts at enmity; our bosom-broil:\n\nOur thoughts at enmity; our bosom-broil:\n\nOur thoughts at enmity; our bosom-broil:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W HH B",
+      "gold_form_ok": false
+    },
+    {
+      "input": "We push Time from us, and we wish him back;",
+      "gold_target": "Lavish of lustrums, and yet fond of life;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: We push Time from us, and we wish him back;\n\nNext line:\n",
+      "model_output": "We push Time from us, and we wish him back;\n\nWe push Time from us, and we wish him back;\n\nWe push Time from us, and we wish him back;\n\nWe push Time from us, and we wish him back;\n\nWe push Time from us, and",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F V L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Lavish of lustrums, and yet fond of life;",
+      "gold_target": "Life we think long and short; Death seek and shun;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Lavish of lustrums, and yet fond of life;\n\nNext line:\n",
+      "model_output": "I’ve been a man of many years,\n\nAnd yet I’m still a man of many years.\n\nI’ve been a man of many years,\n\nAnd yet I’m still a man of many years.\n\nI’ve been a man of many years,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S N N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Life we think long and short; Death seek and shun;",
+      "gold_target": "Body and soul, like peevish man and wife,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Life we think long and short; Death seek and shun;\n\nNext line:\n",
+      "model_output": "The world is a stage, and all the men and women merely players;\n\nContext:\n\nThe world is a stage, and all the men and women merely players;\n\nNext line:\n\nThey have their exits and their entrances;\n\nContext:\n\nThey have their ex",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M N W",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Body and soul, like peevish man and wife,",
+      "gold_target": "United jar, and yet are loath to part.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Body and soul, like peevish man and wife,\n\nNext line:\n",
+      "model_output": "Are always at a strife.\n\nContext: The world is full of suffering,\n\nNext line:\n\nBut it is also full of overcoming.\n\nContext: The world is full of suffering,\n\nNext line:\n\nBut it is also full of overcoming.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L T P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "United jar, and yet are loath to part.",
+      "gold_target": "O the dark days of vanity! while here",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: United jar, and yet are loath to part.\n\nNext line:\n",
+      "model_output": "The jar is broken, and yet the pieces are still there.\n\nContext: The jar is broken, and yet the pieces are still there.\n\nNext line:\n\nThe pieces are scattered, and yet they are still there.\n\nContext: The pieces are scattered, and yet they are still",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V W HH",
+      "gold_form_ok": false
+    },
+    {
+      "input": "O the dark days of vanity! while here",
+      "gold_target": "How tasteless, and how terrible when gone!",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: O the dark days of vanity! while here\n\nNext line:\n",
+      "model_output": "The next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T W G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "How tasteless, and how terrible when gone!",
+      "gold_target": "Gone! they ne'er go; when past, they haunt us still;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: How tasteless, and how terrible when gone!\n\nNext line:\n",
+      "model_output": "The taste of a good wine,\n\nThe taste of a good wine,\n\nThe taste of a good wine,\n\nThe taste of a good wine,\n\nThe taste of a good wine,\n\nThe taste of a good wine,\n\nThe taste of a good wine,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH S S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Gone! they ne'er go; when past, they haunt us still;",
+      "gold_target": "The spirit walks of every day deceased,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Gone! they ne'er go; when past, they haunt us still;\n\nNext line:\n",
+      "model_output": "Their memory is a ghost,\n\nTheir memory is a ghost,\n\nThat haunts us still.\n\nTheir memory is a ghost,\n\nThat haunts us still.\n\nTheir memory is a ghost,\n\nThat haunts us still.\n\nTheir memory",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V D D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "The spirit walks of every day deceased,",
+      "gold_target": "And smiles an angel, or a fury frowns.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: The spirit walks of every day deceased,\n\nNext line:\n",
+      "model_output": "The spirit walks of every day deceased,\n\nTheir souls are free,\n\nTheir bodies are not,\n\nTheir souls are free,\n\nTheir bodies are not,\n\nTheir souls are free,\n\nTheir bodies are not,\n\nTheir souls are",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N F F",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And smiles an angel, or a fury frowns.",
+      "gold_target": "Nor death nor life delight us. If time past,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And smiles an angel, or a fury frowns.\n\nNext line:\n",
+      "model_output": "And smiles an angel, or a fury frowns.\n\nThe next line is a continuation of the previous line. The previous line is a continuation of the previous line. The previous line is a continuation of the previous line. The previous line is a continuation of the previous line.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F T P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Nor death nor life delight us. If time past,",
+      "gold_target": "And time possess'd, both pain us, what can please?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Nor death nor life delight us. If time past,\n\nNext line:\n",
+      "model_output": "If time past,\n\nIf time past,\n\nIf time past,\n\nIf time past,\n\nIf time past,\n\nIf time past,\n\nIf time past,\n\nIf time past,\n\nIf time past,\n\nIf time past,\n\nIf time past",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "W K P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And time possess'd, both pain us, what can please?",
+      "gold_target": "That which the Deity to please ordain'd, -",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And time possess'd, both pain us, what can please?\n\nNext line:\n",
+      "model_output": "And time possess'd, both pain us, what can please?\n\nThe answer is:\n\nAnd time possess'd, both pain us, what can please?\n\nThe answer is:\n\nAnd time possess'd, both pain us, what can please?\n\nThe answer is",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "T P D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "That which the Deity to please ordain'd, -",
+      "gold_target": "Time used. The man who consecrates his hours",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: That which the Deity to please ordain'd, -\n\nNext line:\n",
+      "model_output": "That which the Deity to please ordain'd, -\n\nThe next line is:\n\nThat which the Deity to please ordain'd, -\n\nThe next line is:\n\nThat which the Deity to please ordain'd, -\n\nThe next line is",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K HH Z",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Time used. The man who consecrates his hours",
+      "gold_target": "By vigorous effort, and an honest aim,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Time used. The man who consecrates his hours\n\nNext line:\n",
+      "model_output": "To the service of his country.\n\nContext: Time used. The man who consecrates his hours\n\nNext line:\n\nTo the service of his country.\n\nContext: Time used. The man who consecrates his hours\n\nNext line:\n\nTo the service",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N N M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "By vigorous effort, and an honest aim,",
+      "gold_target": "At once he draws the sting of life and death;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: By vigorous effort, and an honest aim,\n\nNext line:\n",
+      "model_output": "I have been able to make my way\n\nContext: I have been able to make my way\n\nNext line:\n\nTo the top of the mountain,\n\nContext: To the top of the mountain,\n\nNext line:\n\nAnd I have seen the sun rise.\n\nContext",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "L N D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "At once he draws the sting of life and death;",
+      "gold_target": "He walks with Nature, and her paths are peace.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: At once he draws the sting of life and death;\n\nNext line:\n",
+      "model_output": "At once he draws the sting of life and death;\n\nAnd, as the crow\n\nWith hooked nail on cold stone\n\nTears not the flesh\n\nBut plucks the eye\n\nFrom its dark socket,\n\nSo he tears not the flesh\n\nBut plucks the",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH P P",
+      "gold_form_ok": false
+    },
+    {
+      "input": "He walks with Nature, and her paths are peace.",
+      "gold_target": "Our error's cause and cure are seen: see next",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: He walks with Nature, and her paths are peace.\n\nNext line:\n",
+      "model_output": "He walks with Nature, and her paths are peace.\n\nHe walks with Nature, and her paths are peace.\n\nHe walks with Nature, and her paths are peace.\n\nHe walks with Nature, and her paths are peace.\n\nHe walks with Nature, and her paths are peace.",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "S S N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Our error's cause and cure are seen: see next",
+      "gold_target": "Time's nature, origin, importance, speed;",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Our error's cause and cure are seen: see next\n\nNext line:\n",
+      "model_output": "Our error's cause and cure are seen: see next\n\nContext: Our error's cause and cure are seen: see next\n\nNext line:\n\nOur error's cause and cure are seen: see next\n\nContext: Our error's cause and cure are seen: see next",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "R M S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Time's nature, origin, importance, speed;",
+      "gold_target": "And thy great gain from urging his career. -",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Time's nature, origin, importance, speed;\n\nNext line:\n",
+      "model_output": "Time is a river,\n\nTime is a river,\n\nTime is a river,\n\nTime is a river,\n\nTime is a river,\n\nTime is a river,\n\nTime is a river,\n\nTime is a river,\n\nTime is a river,",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "D HH K",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And thy great gain from urging his career. -",
+      "gold_target": "All-sensual man, because untouch'd, unseen,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And thy great gain from urging his career. -\n\nNext line:\n",
+      "model_output": "And thy great gain from urging his career.\n\nThe next line is a continuation of the previous line. The previous line is a continuation of the previous line. The previous line is a continuation of the previous line. The previous line is a continuation of the previous line. The previous line",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "B N N",
+      "gold_form_ok": false
+    },
+    {
+      "input": "All-sensual man, because untouch'd, unseen,",
+      "gold_target": "He looks on time as nothing. Nothing else",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: All-sensual man, because untouch'd, unseen,\n\nNext line:\n",
+      "model_output": "The next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N N L",
+      "gold_form_ok": false
+    },
+    {
+      "input": "He looks on time as nothing. Nothing else",
+      "gold_target": "Is truly man's: 't is Fortune's. - Time's a god.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: He looks on time as nothing. Nothing else\n\nNext line:\n",
+      "model_output": "He looks on time as nothing. Nothing else\n\nHe looks on time as nothing. Nothing else\n\nHe looks on time as nothing. Nothing else\n\nHe looks on time as nothing. Nothing else\n\nHe looks on time as nothing. Nothing else\n\nHe looks on time as nothing. Nothing",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "F T G",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Is truly man's: 't is Fortune's. - Time's a god.",
+      "gold_target": "Hast thou ne'er heard of Time's omnipotence?",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Is truly man's: 't is Fortune's. - Time's a god.\n\nNext line:\n",
+      "model_output": "The next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:\n\nThe next line is:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "V T M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Hast thou ne'er heard of Time's omnipotence?",
+      "gold_target": "For, or against, what wonders can he do!",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Hast thou ne'er heard of Time's omnipotence?\n\nNext line:\n",
+      "model_output": "The world is a stage, and all the men and women merely players.\n\nContext: The world is a stage, and all the men and women merely players.\n\nNext line:\n\nThe world is a stage, and all the men and women merely players.\n\nContext: The world is",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "K HH D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "For, or against, what wonders can he do!",
+      "gold_target": "And will: to stand blank neuter he disdains.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: For, or against, what wonders can he do!\n\nNext line:\n",
+      "model_output": "For, or against, what wonders can he do!\n\nHe can do wonders,\n\nHe can do wonders,\n\nHe can do wonders,\n\nHe can do wonders,\n\nHe can do wonders,\n\nHe can do wonders,\n\nHe",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N HH D",
+      "gold_form_ok": false
+    },
+    {
+      "input": "And will: to stand blank neuter he disdains.",
+      "gold_target": "Not on those terms was Time ( Heaven's stranger! ) sent",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: And will: to stand blank neuter he disdains.\n\nNext line:\n",
+      "model_output": "And will: to stand blank neuter he disdains.\n\nAnd will: to stand blank neuter he disdains.\n\nAnd will: to stand blank neuter he disdains.\n\nAnd will: to stand blank neuter he disdains.\n\nAnd will:",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "HH S S",
+      "gold_form_ok": false
+    },
+    {
+      "input": "Not on those terms was Time ( Heaven's stranger! ) sent",
+      "gold_target": "On his important embassy to man.",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: Not on those terms was Time ( Heaven's stranger! ) sent\n\nNext line:\n",
+      "model_output": "To make a mock of mortal things;\n\nContext: Not on those terms was Time ( Heaven's stranger! ) sent\n\nNext line:\n\nTo make a mock of mortal things;\n\nContext: Not on those terms was Time ( Heaven's stranger! ) sent",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "M T M",
+      "gold_form_ok": false
+    },
+    {
+      "input": "On his important embassy to man.",
+      "gold_target": "Lorenzo! no; on the long-destined hour,",
+      "prompt": "Continue this poem. Given the previous line(s), write the next line.\n\nContext: On his important embassy to man.\n\nNext line:\n",
+      "model_output": "> I am the man who will not be moved.\n\nContext: On his important embassy to man.\n\nNext line:\n\n> I am the man who will not be moved.\n\nContext: On his important embassy to man.\n\nNext line:\n\n> I am",
+      "gold_stress_pm": "",
+      "gold_rhyme_key": "N L D",
+      "gold_form_ok": false
+    }
+  ],
+  "gold_form_note": "gold_stress_pm, gold_rhyme_key, gold_form_ok: CMU-based signature of gold_target (evaluation.form_eval_generation.line_form_signature); same path as eval_natural_text_form.py."
+}

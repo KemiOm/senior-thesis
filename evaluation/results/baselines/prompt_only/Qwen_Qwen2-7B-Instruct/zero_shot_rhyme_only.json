@@ -1,0 +1,1209 @@
+{
+  "model": "Qwen/Qwen2-7B-Instruct",
+  "prompt_type": "zero_shot",
+  "task": "rhyme_only",
+  "split": "test",
+  "n_samples": 200,
+  "results": [
+    {
+      "input": "\" When the cock crew, he wept, \" - smote by that eye,",
+      "gold_target": "S B T",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: \" When the cock crew, he wept, \" - smote by that eye,\n",
+      "model_output": "which saw him first in his father's pride.\n\nNote: The input is a single line of poetry. The output should be the phoneme rime of the last stressed syllable onward. In this case, it would be \"-smote\". The task is to identify and output this specific part of the line.\nTo"
+    },
+    {
+      "input": "Which looks on me, on all: that Power who bids",
+      "gold_target": "P HH B",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Which looks on me, on all: that Power who bids\n",
+      "model_output": "The stars to shine, and flowers to spread their pride.\n\nOutput: pride\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"pride\" because it is the last word in the line and ends with a stressed syllable followed by a"
+    },
+    {
+      "input": "This midnight sentinel, with clarion shrill,",
+      "gold_target": "W K R",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: This midnight sentinel, with clarion shrill,\n",
+      "model_output": "Keeps watch o'er the sleeping city still.\n\nExample Input:\nThis midnight sentinel, with clarion shrill,\n\nExample Output:\nill\n\nNew Input:\nKeeps watch o'er the sleeping city still.\n\nNew Output:\nill\nTo solve this problem, you can follow these steps:\n\n1. Split the input string into"
+    },
+    {
+      "input": "( Emblem of that which shall awake the dead, )",
+      "gold_target": "L W D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: ( Emblem of that which shall awake the dead, )\n",
+      "model_output": "Output: dead\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"dead\". The other words in the line do not have a clear rhyme with the last word."
+    },
+    {
+      "input": "Rouse souls from slumber, into thoughts of heaven.",
+      "gold_target": "T V HH",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Rouse souls from slumber, into thoughts of heaven.\n",
+      "model_output": "Output: mber\n\nExplanation: The last stressed syllable in the line is \"ember,\" which is the rhyme sound. The other syllables are not part of the rhyme and can be ignored. Therefore, the output is \"ember.\""
+    },
+    {
+      "input": "Shall I too weep? Where then is fortitude?",
+      "gold_target": "N Z F",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Shall I too weep? Where then is fortitude?\n",
+      "model_output": "Output: -ude\n\nExplanation: The last stressed syllable in the line is \"fortitude\". The phoneme rime, or the rhyme sound, is \"-ude\". Therefore, the output is \"-ude\"."
+    },
+    {
+      "input": "And, fortitude abandon'd, where is man?",
+      "gold_target": "W Z M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And, fortitude abandon'd, where is man?\n",
+      "model_output": "Output: man\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word. In this case, the last stressed syllable of \"man\" is /æn/, which is the rhyme sound. The other words in the line do not have a clear rhyme with"
+    },
+    {
+      "input": "I know the terms on which he sees the light:",
+      "gold_target": "HH S L",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: I know the terms on which he sees the light:\n",
+      "model_output": "Output: light\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a poem or song. In this case, the last stressed syllable of \"light\" is \"ight\", which is the rhyme sound. Therefore, the output is \"light\"."
+    },
+    {
+      "input": "He that is born is listed; life is war,",
+      "gold_target": "L Z W",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: He that is born is listed; life is war,\n",
+      "model_output": "And the world is a stage where we play our parts.\n\nOutput: parts. The rhyme sound is \"parts\" which is the phoneme rime of the last stressed syllable in the given line of poetry."
+    },
+    {
+      "input": "Eternal war with woe. Who bears it best,",
+      "gold_target": "B T B",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Eternal war with woe. Who bears it best,\n",
+      "model_output": "Whom God doth choose to bless?\n\nNote: The input is case-sensitive and punctuation marks are part of the input string.\nThe rhyme sound of the given line is \"ow\"."
+    },
+    {
+      "input": "Deserves it least. - On other themes I'll dwell.",
+      "gold_target": "IY1 L D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Deserves it least. - On other themes I'll dwell.\n",
+      "model_output": "Output: least\n\nExplanation: The rhyme sound is determined by the phoneme rime of the last stressed syllable in a word. In this case, \"least\" has the phoneme rime \"-est\", which is the rhyme sound for this line of poetry."
+    },
+    {
+      "input": "Lorenzo! let me turn my thoughts on thee,",
+      "gold_target": "IY1",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Lorenzo! let me turn my thoughts on thee,\n",
+      "model_output": "And see if I can find some kind of rhyme for thee.\n\nThe rhyme sound is \"ee\". \n\nTo arrive at this answer, I first identified the last stressed syllable in the line, which is \"thee\". Then, I looked at the phonemes that follow it and found that the rhyme sound is \""
+    },
+    {
+      "input": "And thine on themes may profit; profit there",
+      "gold_target": "IY1 M P P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And thine on themes may profit; profit there\n",
+      "model_output": "Phoneme rime: profit\n\nExplanation: The phoneme rime of the last stressed syllable in the given line is \"profit\". This means that the sound \"profit\" is repeated at the end of the line, making it a rhyming word."
+    },
+    {
+      "input": "Where most thy need: themes, too, the genuine growth",
+      "gold_target": "IY1 T D G",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Where most thy need: themes, too, the genuine growth\n",
+      "model_output": "of love and friendship, and the noblest deeds,\nare not to be found in the glittering show\nof wealth and power, but in the heart's own glow.\n\nExample input: \"Where most thy need: themes, too, the genuine growth\"\nExample output: \"growth\"\n\nNew input: \"are not"
+    },
+    {
+      "input": "Of dear Philander's dust. He thus, though dead,",
+      "gold_target": "HH S D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Of dear Philander's dust. He thus, though dead,\n",
+      "model_output": "Doth live in me, and I in thee.\n\nOutput: ee\n\nExplanation: The rhyme sound is the phoneme /i:/ which is heard in the words \"dead\" and \"me.\" This is a common way to identify rhymes in English poetry, by focusing on the vowel sounds at the end of the"
+    },
+    {
+      "input": "May still befriend. - What themes? Time's wondrous price,",
+      "gold_target": "IY1 T W P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: May still befriend. - What themes? Time's wondrous price,\n",
+      "model_output": "In gold and light.\n\nOutput: ice\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a poem or song. In this case, the last stressed syllable of \"price\" is \"ice\". Therefore, the rhyme sound is \"ice\"."
+    },
+    {
+      "input": "Death, friendship, and Philander's final scene.",
+      "gold_target": "F F S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Death, friendship, and Philander's final scene.\n",
+      "model_output": "Output: een\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word. In this case, \"scene\" has the stressed syllable on the second to last syllable, which is \"een\". Therefore, the rhyme sound is \"een\"."
+    },
+    {
+      "input": "So could I touch these themes as might obtain",
+      "gold_target": "IY1 Z M B",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: So could I touch these themes as might obtain\n",
+      "model_output": "Answer:\n\nPhoneme rime: -tain\n\nExplanation: The last stressed syllable in the line is \"tain\" from the word \"obtain.\" This is the phoneme rime you're looking for. It's important to note that the rhyme sound is not necessarily a word but rather the phonetic ending"
+    },
+    {
+      "input": "Thine ear, nor leave thy heart quite disengaged,",
+      "gold_target": "IY1 N L HH K D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Thine ear, nor leave thy heart quite disengaged,\n",
+      "model_output": "Output: engaged\n\nExplanation: The task is to identify the rhyme sound of the last stressed syllable in the given line. In this case, the last stressed syllable is \"engaged\" which is the word that rhymes with \"disengaged\". Therefore, the output is \"engaged\"."
+    },
+    {
+      "input": "The good deed would delight me; half-impress",
+      "gold_target": "M HH M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: The good deed would delight me; half-impress\n",
+      "model_output": "me with its worth.\n\nOutput: me\n\nExplanation: The rhyme sound is determined by the phoneme rime of the last stressed syllable onward. In this case, the last stressed syllable is \"me\" in both instances, so that is the rhyme sound."
+    },
+    {
+      "input": "On my dark cloud an Iris; and from grief",
+      "gold_target": "N F G",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: On my dark cloud an Iris; and from grief\n",
+      "model_output": "I find a new joy in life's beauty.\n\nOutput: joy\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, the last stressed syllable is \"joy\" in the word \"joy.\" Therefore, the rhyme sound is \"joy.\""
+    },
+    {
+      "input": "Call glory. - Dost thou mourn Philander's fate?",
+      "gold_target": "M F F",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Call glory. - Dost thou mourn Philander's fate?\n",
+      "model_output": "Output: ate\n\nExplanation: The rhyme sound is determined by the phoneme rime of the last stressed syllable onward. In this case, the last stressed syllable in \"Philander's fate\" is \"ate\". Therefore, the rhyme sound is \"ate\"."
+    },
+    {
+      "input": "I know thou say'st it: says thy life the same?",
+      "gold_target": "S L S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: I know thou say'st it: says thy life the same?\n",
+      "model_output": "Output: \"same\" \n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, the last stressed syllable in the line is \"same\", which is the rhyme sound. Therefore, the output is \"same\"."
+    },
+    {
+      "input": "- He mourns the dead who lives as they desire.",
+      "gold_target": "L Z D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: - He mourns the dead who lives as they desire.\n",
+      "model_output": "Output: ire\n\nExplanation: The last stressed syllable in the given line is \"ire\". This is the part that rhymes with other words ending in similar sounds. So, the rhyme sound is \"ire\". \n\nNote: In this context, \"phoneme\" refers to the smallest unit of sound in a language"
+    },
+    {
+      "input": "Where is that thrift, that avarice of TIME,",
+      "gold_target": "V V T",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Where is that thrift, that avarice of TIME,\n",
+      "model_output": "Whose hoard is all the world, whose measureless\nInfinite treasure is the past and present prime?\n\nExample Input:\nWhere is that thrift, that avarice of TIME,\n\nExample Output:\nTIME\n\nNote:\nThe rhyme sound is the phonetic sequence of the last stressed syllable in the line. In"
+    },
+    {
+      "input": "( O glorious avarice! ) thought of death inspires,",
+      "gold_target": "V D N",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: ( O glorious avarice! ) thought of death inspires,\n",
+      "model_output": "Sound: ices\n\nLine: ( The sun's a golden ball ) in the sky so bright and tall,\nSound: all\n\nLine: ( The moon's a silver sphere ) in the night so fair and clear,\nSound: ear\n\nLine: ( The stars are diamonds bright ) in the heavens they do light"
+    },
+    {
+      "input": "As rumour'd robberies endear our gold?",
+      "gold_target": "R N G",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: As rumour'd robberies endear our gold?\n",
+      "model_output": "Output: gold\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"gold\". The other words in the line do not have a clear rhyme with the last word."
+    },
+    {
+      "input": "O Time! than gold more sacred; more a load",
+      "gold_target": "S M L",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: O Time! than gold more sacred; more a load\n",
+      "model_output": "Of wisdom, than thy golden hours bestow'd.\n\nOutput: load\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of each word. In this case, the last stressed syllable of \"load\" matches the last stressed syllable of \"gold\", making them rhyme"
+    },
+    {
+      "input": "Than lead to fools; and fools reputed wise.",
+      "gold_target": "F R W",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Than lead to fools; and fools reputed wise.\n",
+      "model_output": "Output: wise\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, the last stressed syllable is \"wise\" in the word \"wise\". Therefore, the rhyme sound is \"wise\"."
+    },
+    {
+      "input": "What moment granted man without account?",
+      "gold_target": "M W K",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: What moment granted man without account?\n",
+      "model_output": "Output: sound:ount\n\nExplanation: The last stressed syllable in the given line is \"ount\" which is the part that rhymes. So, the output is \"ount\". \n\nNote: In poetry, the rhyme scheme refers to the pattern of rhyming sounds at the end of lines in a poem."
+    },
+    {
+      "input": "What years are squander'd, Wisdom's debt unpaid!",
+      "gold_target": "W D N",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: What years are squander'd, Wisdom's debt unpaid!\n",
+      "model_output": "Output: \"paid\" \n\nExplanation: The last stressed syllable in the line is \"paid\", which is the rhyme sound. The other words in the line do not contain a rhyme sound that matches with \"paid\". Therefore, \"paid\" is the correct answer."
+    },
+    {
+      "input": "Our wealth in days all due to that discharge.",
+      "gold_target": "T T D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Our wealth in days all due to that discharge.\n",
+      "model_output": "Output: \"discharge\" \n\nExplanation: The last stressed syllable in the line is \"discharge\". The phoneme rime of this word is \"-charge\". This is the part of the word that will rhyme with other words ending in similar sounds. In this case, the poet may have intended for the word"
+    },
+    {
+      "input": "Haste, haste, he lies in wait, he's at the door,",
+      "gold_target": "HH T D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Haste, haste, he lies in wait, he's at the door,\n",
+      "model_output": "Sound: wait, door\n\nExplanation: The last stressed syllables are \"wait\" and \"door\". These words share the same phonetic ending, which is the rhyme sound. Therefore, the output is \"wait, door\"."
+    },
+    {
+      "input": "Insidious Death! should his strong hand arrest,",
+      "gold_target": "S HH R",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Insidious Death! should his strong hand arrest,\n",
+      "model_output": "And with a gentle touch, guide him to the light.\n\nNote: The input will always be a single line of poetry. The output should be the phoneme rime of the last stressed syllable of the line.\nThe phoneme rime of the last stressed syllable of the given line is \"ight\"."
+    },
+    {
+      "input": "No composition sets the prisoner free.",
+      "gold_target": "S P F",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: No composition sets the prisoner free.\n",
+      "model_output": "Output: ee\n\nExplanation: The last stressed syllable in the given line is \"free\". The phoneme rime of \"free\" is \"ee\". Therefore, the output is \"ee\"."
+    },
+    {
+      "input": "Eternity's inexorable chain",
+      "gold_target": "T N T",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Eternity's inexorable chain\n",
+      "model_output": "Output: \"chain\" \n\nExplanation: The last stressed syllable in the line is \"chain\", which is the rhyme sound. The other words in the line do not have a rhyme sound that matches with \"chain\". Therefore, \"chain\" is the correct answer."
+    },
+    {
+      "input": "Fast binds; and vengeance claims the full arrear.",
+      "gold_target": "K F R",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Fast binds; and vengeance claims the full arrear.\n",
+      "model_output": "Output: claims\n\nExplanation: The rhyme sound is the phoneme that is repeated at the end of the line. In this case, the last stressed syllable is \"claims\", so that is the rhyme sound. The other words in the line do not have the same ending sound, so they are not part of the"
+    },
+    {
+      "input": "How late I shudder'd on the brink! how late",
+      "gold_target": "B HH L",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: How late I shudder'd on the brink! how late\n",
+      "model_output": "Output: late\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, the last stressed syllable is \"late\" in both instances, so that is the rhyme sound. There are no other words or sounds to consider in this output."
+    },
+    {
+      "input": "Life call'd for her last refuge in despair!",
+      "gold_target": "R N D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Life call'd for her last refuge in despair!\n",
+      "model_output": "Output: \"despair\" \n\nExplanation: The last stressed syllable in the line is \"despair,\" and the rhyme sound is the phoneme rime of this word. Therefore, the output is \"despair.\""
+    },
+    {
+      "input": "That time is mine, O Mead, to thee I owe;",
+      "gold_target": "IY1",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: That time is mine, O Mead, to thee I owe;\n",
+      "model_output": "Output: \"ow\""
+    },
+    {
+      "input": "Fain would I pay thee with eternity.",
+      "gold_target": "IY1 W T",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Fain would I pay thee with eternity.\n",
+      "model_output": "Output: i-ety\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"i-ety\" from the word \"eternity\". \n\nTo break it down:\n\n1. Identify the last stressed syllable in the line: \"eternity"
+    },
+    {
+      "input": "But ill my genius answers my desire;",
+      "gold_target": "N M D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: But ill my genius answers my desire;\n",
+      "model_output": "Output: ire\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a poem or song. In this case, the last stressed syllable of \"desire\" is \"ire\". Therefore, the rhyme sound for this line of poetry is \"ire\"."
+    },
+    {
+      "input": "My sickly song is mortal, past thy cure.",
+      "gold_target": "M P K",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: My sickly song is mortal, past thy cure.\n",
+      "model_output": "Output: cure\n\nExplanation: The task requires identifying the rhyme sound in the given line of poetry. In this case, the rhyme sound is \"cure,\" which is the phoneme rime of the last stressed syllable onward in the line. The other words in the line do not share a common rhyme sound with"
+    },
+    {
+      "input": "Accept the will; - it dies not with my strain.",
+      "gold_target": "W M S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Accept the will; - it dies not with my strain.\n",
+      "model_output": "Output: \"strain\" \n\nExplanation: The last stressed syllable in the given line is \"strain\". The phoneme rime of \"strain\" is \"ain\". Therefore, the rhyme sound is \"ain\"."
+    },
+    {
+      "input": "For what calls thy disease, Lorenzo? Not",
+      "gold_target": "D L N",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: For what calls thy disease, Lorenzo? Not\n",
+      "model_output": "Output: \"Not\" has the rhyme sound \"OT\". \n\nJustification: In English language, rhymes are often determined by the phonetic ending of words. The last stressed syllable in a word is usually where the rhyme sound can be found. In the given line, \"Lorenzo?\" ends with a"
+    },
+    {
+      "input": "For Aesculapian, but for moral aid.",
+      "gold_target": "IY1 B F M D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: For Aesculapian, but for moral aid.\n",
+      "model_output": "Output: aid\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"aid\" as in the word \"aid.\" The other words in the line do not share a common rhyme sound with \"aid.\""
+    },
+    {
+      "input": "Thou think'st it folly to be wise too soon.",
+      "gold_target": "W T S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Thou think'st it folly to be wise too soon.\n",
+      "model_output": "Output: phoneme rime: un\n\nExplanation: The last stressed syllable in the given line is \"un\" which is the phoneme rime. The phoneme rime refers to the part of a word that carries its meaning and determines its pronunciation, and in this case, it is the \"un\""
+    },
+    {
+      "input": "Youth is not rich in time, it may be poor;",
+      "gold_target": "M B P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Youth is not rich in time, it may be poor;\n",
+      "model_output": "Sound: time\n\nGiven this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: The world is full of wonders, and yet we see them not;\nSound: not\n\nGiven this line of poetry, output the rhyme sound (phoneme"
+    },
+    {
+      "input": "Part with it as with money, sparing; pay",
+      "gold_target": "M S P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Part with it as with money, sparing; pay\n",
+      "model_output": "Answer:\n\nAnswer: money\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable and onward in the word. In \"money,\" the stressed syllable is on the second syllable, and the rhyme sound is \"money.\" The other words in the line do not have a"
+    },
+    {
+      "input": "No moment but in purchase of its worth;",
+      "gold_target": "V T W",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: No moment but in purchase of its worth;\n",
+      "model_output": "Phoneme rime: worth\n\nExplanation: The last stressed syllable in the line is \"worth,\" which is the phoneme rime. The other syllables in the line do not form a rime with any other word in the line."
+    },
+    {
+      "input": "And what its worth, ask death-beds; they can tell.",
+      "gold_target": "B K T",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And what its worth, ask death-beds; they can tell.\n",
+      "model_output": "Output: tell\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"tell\". The other words in the line do not rhyme with \"tell\"."
+    },
+    {
+      "input": "Part with it as with life, reluctant; big",
+      "gold_target": "L R B",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Part with it as with life, reluctant; big\n",
+      "model_output": "Output: life\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word. In this case, the last stressed syllable of \"life\" is \"ife\", which is the same as the last stressed syllable of \"big\". Therefore, the rhyme sound is"
+    },
+    {
+      "input": "With holy hope of nobler time to come;",
+      "gold_target": "T T K",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: With holy hope of nobler time to come;\n",
+      "model_output": "Output: \"come\" \n\nJustification: The last stressed syllable in the given line is \"come\". The phoneme rime of \"come\" is \"-ome\", which is the rhyme sound. Therefore, the output is \"come\"."
+    },
+    {
+      "input": "Time higher-aim'd, still nearer the great mark",
+      "gold_target": "N G M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Time higher-aim'd, still nearer the great mark\n",
+      "model_output": "To find the rhyme sound, we need to identify the phonemes that make up the rime of the last stressed syllable in each word. Here's the breakdown:\n\n1. Time - /taɪm/\n2. higher-aim'd - /haɪˈaɪəmd/ (Note: 'aim"
+    },
+    {
+      "input": "Of men and angels, virtue more divine.",
+      "gold_target": "V M D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Of men and angels, virtue more divine.\n",
+      "model_output": "Output: divine\n\nExplanation: The rhyme sound is the phoneme that is repeated at the end of the line. In this case, it is the \"ine\" sound in \"divine.\" This is the part of the word that is stressed and carries the most weight in terms of pronunciation and meaning. Therefore, \""
+    },
+    {
+      "input": "Is this our duty, wisdom, glory, gain?",
+      "gold_target": "W G G",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Is this our duty, wisdom, glory, gain?\n",
+      "model_output": "Output: gain\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a line of poetry. In this case, the last stressed syllable of \"gain\" is /ein/, which is the rhyme sound. Therefore, the output is \"gain\"."
+    },
+    {
+      "input": "( These Heaven benign in vital union binds: )",
+      "gold_target": "IY1 HH B N V Y B",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: ( These Heaven benign in vital union binds: )\n",
+      "model_output": "Output: \"binds\" \n\nExplanation: The last stressed syllable in the line is \"binds,\" which has the phoneme /z/. This is the rhyme sound."
+    },
+    {
+      "input": "And sport we like the natives of the bough,",
+      "gold_target": "N V B",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And sport we like the natives of the bough,\n",
+      "model_output": "Output:ough\n\nExplanation: The last stressed syllable in the given line is \"ough\" which is the phoneme that rhymes with other words ending in \"-ough\" such as \"through\", \"bough\", etc. Therefore, the output is \"ough\"."
+    },
+    {
+      "input": "When vernal suns inspire? Amusement reigns",
+      "gold_target": "N M R",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: When vernal suns inspire? Amusement reigns\n",
+      "model_output": "Sure, I can help with that. The rhyme sound for the given line is \"ains\". \n\nHere's a Python function to find the rhyme sound:\n\n```python\ndef find_rhyme_sound(line):\n    words = line.split()\n    last_word = words[-1]\n    rhyme_sound = last_word.rpartition"
+    },
+    {
+      "input": "Man's great demand: to trifle is to live:",
+      "gold_target": "Z T L",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Man's great demand: to trifle is to live:\n",
+      "model_output": "Answer:\n\nive\n\nExplanation: The last stressed syllable in the line is \"live,\" and the phoneme rime (rhyme sound) of this word is \"ive.\" Therefore, the answer is \"ive.\""
+    },
+    {
+      "input": "And is it then a trifle, too, to die?",
+      "gold_target": "T T D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And is it then a trifle, too, to die?\n",
+      "model_output": "Output: \"to die\" \n\nExplanation: The last stressed syllables in the line are \"die\". The phoneme rime of \"die\" is \"ee\". Therefore, the rhyme sound is \"ee\"."
+    },
+    {
+      "input": "Thou say'st I preach, Lorenzo! 'T is confess'd.",
+      "gold_target": "T Z K",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Thou say'st I preach, Lorenzo! 'T is confess'd.\n",
+      "model_output": "Output: -d\n\nExplanation: The rhyme sound in this line is \"-d\", which is the phoneme rime of the last stressed syllable onward. Specifically, it comes from the \"confess'd\" part of the line. The other words do not contribute to the rhyme."
+    },
+    {
+      "input": "What, if, for once, I preach thee quite awake?",
+      "gold_target": "IY1 K W",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: What, if, for once, I preach thee quite awake?\n",
+      "model_output": "Output: wake\n\nExplanation: The rhyme sound is determined by the phoneme rime of the last stressed syllable onward. In this case, the last stressed syllable is \"wake\" in the word \"awake\". Therefore, the rhyme sound is \"wake\"."
+    },
+    {
+      "input": "Who wants amusement in the flame of battle?",
+      "gold_target": "F V B",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Who wants amusement in the flame of battle?\n",
+      "model_output": "Output: \"battle\" \n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"battle\". The word \"flame\" does not rhyme with \"battle\" so it is not considered in determining the rhyme sound. Therefore, the answer is \""
+    },
+    {
+      "input": "Is it not treason to the soul immortal,",
+      "gold_target": "T S M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Is it not treason to the soul immortal,\n",
+      "model_output": "To seek in earthly things a mortal goal?\n\nOutput: immortal\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, the last stressed syllable is \"immortal,\" and the rhyme sound is also \"immortal.\" Therefore, the output is \"immortal"
+    },
+    {
+      "input": "Her foes in arms, eternity the prize?",
+      "gold_target": "M T P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Her foes in arms, eternity the prize?\n",
+      "model_output": "Output: prize\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word. In this case, the last stressed syllable of \"prize\" is \"ize\", which is the rhyme sound. Therefore, the output is \"prize\"."
+    },
+    {
+      "input": "Will toys amuse when medicines cannot cure?",
+      "gold_target": "M K K",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Will toys amuse when medicines cannot cure?\n",
+      "model_output": "Output: \"cure\" \n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"cure\". The other words in the line do not share a common rhyme sound with \"cure\"."
+    },
+    {
+      "input": "When spirits ebb, when life's enchanting scenes",
+      "gold_target": "L N S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: When spirits ebb, when life's enchanting scenes\n",
+      "model_output": "Fade into night, and all is hush and still,\nThen comes a voice that whispers through the gloom,\nA voice that speaks of love and hope and thrill.\n\nExample input: \"When spirits ebb, when life's enchanting scenes\"\nExample output: \"scenes\"\n\nNew input: \"Then comes a voice"
+    },
+    {
+      "input": "Their lustre lose, and lessen in our sight,",
+      "gold_target": "L N S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Their lustre lose, and lessen in our sight,\n",
+      "model_output": "Sound: light\n\nLine: The sun's last rays, a dying day's last sigh,\nSound: sigh\n\nLine: The stars appear, a twinkling, distant gleam,\nSound: beam\n\nLine: And darkness falls, a quiet, peaceful calm,\nSound: calm\n\nLine: The moon takes stage,"
+    },
+    {
+      "input": "( As lands and cities with their glittering spires,",
+      "gold_target": "W G S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: ( As lands and cities with their glittering spires,\n",
+      "model_output": "And towers that pierce the starry vault above,\nIn darkness lie, and all their pomp is o'er,\nAnd Nature's voice in silence seems to grope.)\n\nNote: The input will always be a single line of poetry. The output should be the phoneme rime of the last stressed syllable of the"
+    },
+    {
+      "input": "To the poor shatter'd bark, by sudden storm",
+      "gold_target": "B S S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: To the poor shatter'd bark, by sudden storm\n",
+      "model_output": "Struck down, and toss'd about in tempest's rage.\n\nOutput: \"toss'd\" and \"rage\" share the rhyme sound \"/-d/\" and \"/-d/\"."
+    },
+    {
+      "input": "- Thrown off to sea, and soon to perish there, )",
+      "gold_target": "S T P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: - Thrown off to sea, and soon to perish there, )\n",
+      "model_output": "Sound:  ere\n\nGiven this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: - And in the night, the moon is bright, and so am I. \nSound:  I\n\nGiven this line of poetry, output the"
+    },
+    {
+      "input": "Will toys amuse? No; thrones will then be toys,",
+      "gold_target": "N B T",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Will toys amuse? No; thrones will then be toys,\n",
+      "model_output": "And toys be men.\n\nOutput: toys\n\nExplanation: The rhyme sound is determined by the phoneme rime of the last stressed syllable in each line. In this case, the last stressed syllable in both lines is \"toys,\" so that is the rhyme sound."
+    },
+    {
+      "input": "And earth and skies seem dust upon the scale.",
+      "gold_target": "D P S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And earth and skies seem dust upon the scale.\n",
+      "model_output": "Output: scale\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"scale\". The other words in the line do not have a clear rhyme with the last word."
+    },
+    {
+      "input": "Redeem we time? - Its loss we dearly buy.",
+      "gold_target": "W D B",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Redeem we time? - Its loss we dearly buy.\n",
+      "model_output": "Output: rhyme sound: ai\n\nExplanation: The last stressed syllables in the line are \"time\" and \"buy\". The phoneme rime (rhyme sound) of these words is \"ai\". Therefore, the output is \"ai\"."
+    },
+    {
+      "input": "What pleads Lorenzo for his high-prized sports?",
+      "gold_target": "HH P S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: What pleads Lorenzo for his high-prized sports?\n",
+      "model_output": "Output: sports\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word. In this case, the last stressed syllable of \"sports\" is \"sports\". Therefore, the rhyme sound is \"sports\"."
+    },
+    {
+      "input": "He pleads time's numerous blanks; he loudly pleads",
+      "gold_target": "HH L P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: He pleads time's numerous blanks; he loudly pleads\n",
+      "model_output": "Answer:\n\nblanks; Pleads. \n\nThe rhyme sound is \"blanks; Pleads\". The last stressed syllables in the line are \"blanks\" and \"Pleads\", which rhyme with each other."
+    },
+    {
+      "input": "The straw-like trifles on life's common stream.",
+      "gold_target": "L K S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: The straw-like trifles on life's common stream.\n",
+      "model_output": "Output: stream. \n\nExplanation: The last stressed syllable in the given line is \"stream\". The phoneme rime of this word is \"stream\". Therefore, the output is \"stream\"."
+    },
+    {
+      "input": "From whom those blanks and trifles but from thee?",
+      "gold_target": "IY1",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: From whom those blanks and trifles but from thee?\n",
+      "model_output": "Output: ee\n\nExplanation: The last stressed syllable in the given line is \"thee\", and its phoneme rime is \"ee\". Therefore, the output is \"ee\"."
+    },
+    {
+      "input": "No blank, no trifle, Nature made, or meant.",
+      "gold_target": "N M M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: No blank, no trifle, Nature made, or meant.\n",
+      "model_output": "Output: meant. \n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a line of poetry. In this case, the last stressed syllable of \"meant\" is /ɛnt/, which is the rhyme sound for this line. The other words"
+    },
+    {
+      "input": "Virtue, or purposed virtue, still be thine;",
+      "gold_target": "S B N",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Virtue, or purposed virtue, still be thine;\n",
+      "model_output": "Output: in\n\nExplanation: The last stressed syllable in the given line is \"in\". The rhyme sound is the phoneme that matches the sound of \"in\" at the end of the line. In this case, the rhyme sound is also \"in\". Therefore, the output is \"in\"."
+    },
+    {
+      "input": "This cancels thy complaint at once; this leaves",
+      "gold_target": "W S L",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: This cancels thy complaint at once; this leaves\n",
+      "model_output": "no room for further argument.\n\nOutput: once\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"once\" which is the last word in the second line and is the rhyme of \"complaint\" in the first line."
+    },
+    {
+      "input": "In act no trifle, and no blank in time.",
+      "gold_target": "B N T",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: In act no trifle, and no blank in time.\n",
+      "model_output": "Output: time\n\nExplanation: The last stressed syllable in the given line is \"time\". The phoneme rime of \"time\" is \"aim\", which is the rhyme sound we are looking for. Therefore, the output is \"time\"."
+    },
+    {
+      "input": "This greatens, fills, immortalizes all;",
+      "gold_target": "F M L",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: This greatens, fills, immortalizes all;\n",
+      "model_output": "Output: all\n\nExplanation: The last stressed syllable in the given line is \"all\". The phoneme rime of \"all\" is \"all\". Therefore, the output is \"all\"."
+    },
+    {
+      "input": "This the blest art of turning all to gold;",
+      "gold_target": "L T G",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: This the blest art of turning all to gold;\n",
+      "model_output": "Output: old\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable and any following syllables until a non-rhyming syllable or the end of the word is reached. In this case, the last stressed syllable is \"gold,\" and the rhyme sound is"
+    },
+    {
+      "input": "This the good heart's prerogative to raise",
+      "gold_target": "P T R",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: This the good heart's prerogative to raise\n",
+      "model_output": "the voice of conscience in our breast.\n\nOutput: \"voice\"\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"voice\" because it is the word that ends with a sound that matches the ending sound of another word in the poem. Specifically"
+    },
+    {
+      "input": "A royal tribute from the poorest hours;",
+      "gold_target": "F P Z",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: A royal tribute from the poorest hours;\n",
+      "model_output": "Output: hours\n\nExplanation: The last stressed syllable in the given line is \"hours\". The rhyme sound is the phoneme rime of this word, which is \"hours\". Therefore, the output is \"hours\"."
+    },
+    {
+      "input": "Immense revenue! every moment pays.",
+      "gold_target": "V M P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Immense revenue! every moment pays.\n",
+      "model_output": "Output: \"ays\""
+    },
+    {
+      "input": "If nothing more than purpose in thy power,",
+      "gold_target": "P N P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: If nothing more than purpose in thy power,\n",
+      "model_output": "Sound: power\n\nLine: And if thy purpose be to make a flower,\nSound: flower\n\nLine: Then let it be thy will that every hour\nSound: hour\n\nLine: Shall see its beauty in thy face and power.\nSound: power\n\nLine: For then thy face and all the world will know"
+    },
+    {
+      "input": "Thy purpose firm is equal to the deed:",
+      "gold_target": "IY1 T D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Thy purpose firm is equal to the deed:\n",
+      "model_output": "Output: deed\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word. In this case, the last stressed syllable of \"deed\" is \"eed\", which is the rhyme sound. Therefore, the output is \"deed\"."
+    },
+    {
+      "input": "Who does the best his circumstance allows,",
+      "gold_target": "HH S L",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Who does the best his circumstance allows,\n",
+      "model_output": "Output: -s\n\nJustification: The last stressed syllable in the given line is \"allows\". The phoneme rime, or the rhyme sound, of this word is \"-s\". This means that the sound at the end of the word that could be used to create a rhyme with other words ending in similar"
+    },
+    {
+      "input": "Does well, acts nobly; angels could no more.",
+      "gold_target": "K N M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Does well, acts nobly; angels could no more.\n",
+      "model_output": "Output: more\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a poem or song. In this case, the last stressed syllable of \"no more\" is \"more\", which is the rhyme sound. Therefore, the output is \"more\"."
+    },
+    {
+      "input": "Our outward act, indeed, admits restraint;",
+      "gold_target": "N D R",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Our outward act, indeed, admits restraint;\n",
+      "model_output": "Output: sound: -ant\n\nExplanation: The last stressed syllable in the given line is \"restraint\". The phoneme rime, or the rhyme sound, of this word is \"-ant\". This means that the rhyme sound of the line is \"-ant\". \n\nTo break it down further, the phoneme"
+    },
+    {
+      "input": "'T is not in things o'er thought to domineer.",
+      "gold_target": "T T D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: 'T is not in things o'er thought to domineer.\n",
+      "model_output": "Answer:\neer\n\nExplanation: The last stressed syllable in the given line is \"eer\" which is the part that rhymes. The task is to output this phoneme rime without any additional text. Therefore, the answer is \"eer\". \n\nOptions:\n- \"eer\" is the correct answer as it matches"
+    },
+    {
+      "input": "Guard well thy thought; our thoughts are heard in heaven.",
+      "gold_target": "HH N HH",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Guard well thy thought; our thoughts are heard in heaven.\n",
+      "model_output": "Output: heaven\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"heaven\". The other words in the line do not rhyme with \"heaven\". Therefore, the output is simply \"heaven\"."
+    },
+    {
+      "input": "On all-important time, through every age,",
+      "gold_target": "R V D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: On all-important time, through every age,\n",
+      "model_output": "the same old story's told, and will be told.\n\nOutput: told\n\nExplanation: The task is asking to identify the phonetic ending of the last stressed syllable in the given line of poetry. In this case, the last stressed syllable is \"told\" which has the phonetic ending of \"old"
+    },
+    {
+      "input": "Though much, and warm, the wise have urged, the man",
+      "gold_target": "HH D M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Though much, and warm, the wise have urged, the man\n",
+      "model_output": "has turned to arms.\n\nOutput: s\n\nExplanation: The last stressed syllable in the line is \"arms,\" and its phoneme rime is \"s.\" Therefore, the output is \"s.\""
+    },
+    {
+      "input": "Is yet unborn who duly weighs an hour.",
+      "gold_target": "D W N",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Is yet unborn who duly weighs an hour.\n",
+      "model_output": "Output: hour\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"hour\". The other words in the line do not have a matching rhyme sound at the end."
+    },
+    {
+      "input": "\" I've lost a day \" - the prince who nobly cried,",
+      "gold_target": "HH N K",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: \" I've lost a day \" - the prince who nobly cried,\n",
+      "model_output": "Output: ay\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"ay\" in the word \"day\". \n\nTo break down the line into its phonemes:\n\nI've lost a day - teh prins ah noh-bli-"
+    },
+    {
+      "input": "Had been an emperor without his crown;",
+      "gold_target": "W HH K",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Had been an emperor without his crown;\n",
+      "model_output": "Phoneme rime: /əˈnaʊn/ \n\nExplanation: The phoneme rime is the part of the word that carries the rhyme, which in this case is \"announced\" or \"annon\". The stress falls on the second syllable, so we output \"/əˈnaʊn/\""
+    },
+    {
+      "input": "\" Of Rome? \" say, rather, lord of human race:",
+      "gold_target": "V HH R",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: \" Of Rome? \" say, rather, lord of human race:\n",
+      "model_output": "Answer:\n\nace\n\nExplanation: The rhyme sound is found in the last stressed syllable of the line. In this case, it's the \"ace\" in \"race.\" The other words and sounds are not part of the rhyme. So, the answer is just \"ace.\""
+    },
+    {
+      "input": "He spoke as if deputed by mankind.",
+      "gold_target": "D B M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: He spoke as if deputed by mankind.\n",
+      "model_output": "Output: mankind\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"mankind\". The other words in the line do not have a matching rhyme sound at the end."
+    },
+    {
+      "input": "So should all speak: so Reason speaks in all.",
+      "gold_target": "S N L",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: So should all speak: so Reason speaks in all.\n",
+      "model_output": "Output: all\n\nExplanation: The last stressed syllable in the given line is \"all\" and its phoneme rime is also \"all\". Therefore, the output is \"all\"."
+    },
+    {
+      "input": "From the soft whispers of that god in man,",
+      "gold_target": "G N M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: From the soft whispers of that god in man,\n",
+      "model_output": "Phoneme rime: an\n\nGiven this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: The moon's a giant eye, so bright and round,\nPhoneme rime: round\n\nGiven this line of poetry, output"
+    },
+    {
+      "input": "Why fly to Folly, why to Frenzy fly,",
+      "gold_target": "T F F",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Why fly to Folly, why to Frenzy fly,\n",
+      "model_output": "When you can stay in Reason's sunny sky?\n\nOutput: sky\n\nExplanation: The rhyme sound is determined by the phoneme rime of the last stressed syllable onward. In this case, the last stressed syllable in \"sunny sky\" is \"sky\", which is the rhyme sound. Therefore, the output"
+    },
+    {
+      "input": "For rescue from the blessing we possess?",
+      "gold_target": "B W P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: For rescue from the blessing we possess?\n",
+      "model_output": "Output: ess\n\nExplanation: The last stressed syllable in the given line is \"ess\" which is the part that rhymes. The task is to output this phoneme rime without any other characters or spaces. Therefore, the answer is \"ess\"."
+    },
+    {
+      "input": "Time, the supreme! - time is eternity;",
+      "gold_target": "T Z T",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Time, the supreme! - time is eternity;\n",
+      "model_output": "Phoneme rime: i-ty\n\nExplanation: The last stressed syllable in the line is \"i-ty\" which is the phoneme rime. The other options are not correct because they do not match the phoneme rime of the last stressed syllable in the line. For example, \""
+    },
+    {
+      "input": "Pregnant with all eternity can give;",
+      "gold_target": "T K G",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Pregnant with all eternity can give;\n",
+      "model_output": "Output: give\n\nExplanation: The last stressed syllable in the given line is \"give\". The phoneme rime of this word is \"iv\". Therefore, the rhyme sound is \"iv\"."
+    },
+    {
+      "input": "Pregnant with all that makes archangels smile.",
+      "gold_target": "M T S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Pregnant with all that makes archangels smile.\n",
+      "model_output": "Output: smile. \n\nExplanation: The last stressed syllable in the given line is \"smile\". The phoneme rime of \"smile\" is \"ail\", which is the part of the word that is repeated at the end of another word to create a rhyme. Therefore, the output is \"ail\"."
+    },
+    {
+      "input": "Who murders time, he crushes in the birth",
+      "gold_target": "K N B",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Who murders time, he crushes in the birth\n",
+      "model_output": "Sound: death\n\nExplanation: The last stressed syllable in the line is \"death,\" which is the rhyme sound. The other words in the line do not have a matching rhyme sound."
+    },
+    {
+      "input": "A power ethereal, only not adored.",
+      "gold_target": "IY1 N N D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: A power ethereal, only not adored.\n",
+      "model_output": "Output: ord\n\nExplanation: The last stressed syllable in the given line is \"ord\" which is the part that rhymes. The other sounds in the word are not considered as they do not contribute to the rhyme. Therefore, the output is just \"ord\"."
+    },
+    {
+      "input": "Ah! how unjust to Nature and himself",
+      "gold_target": "N N HH",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Ah! how unjust to Nature and himself\n",
+      "model_output": "Output: himself\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a line of poetry. In this case, the last stressed syllable of \"himself\" is \"elf,\" which is the rhyme sound. Therefore, the output is \"himself"
+    },
+    {
+      "input": "Is thoughtless, thankless, inconsistent man!",
+      "gold_target": "K N M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Is thoughtless, thankless, inconsistent man!\n",
+      "model_output": "Output: man!\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a line of poetry. In this case, the last stressed syllable of \"man\" is \"an\", which is the rhyme sound. Therefore, the output is \"man!\"."
+    },
+    {
+      "input": "Like children babbling nonsense in their sports,",
+      "gold_target": "N N S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Like children babbling nonsense in their sports,\n",
+      "model_output": "Output: sports\n\nExplanation: The rhyme sound is determined by the phoneme rime of the last stressed syllable onward. In this case, the last stressed syllable is \"sports,\" and its phoneme rime is \"sports.\" Therefore, the output is \"sports.\""
+    },
+    {
+      "input": "We censure Nature for a span too short;",
+      "gold_target": "S T T",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: We censure Nature for a span too short;\n",
+      "model_output": "Output: short\n\nExplanation: The task is to identify the rhyme sound in the given line of poetry. In this case, the rhyme sound is \"short.\" This is the phoneme rime of the last stressed syllable onward in the line. The instruction specifies not to output anything else, so only the rhyme sound"
+    },
+    {
+      "input": "That span too short we tax as tedious too;",
+      "gold_target": "Z T T",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: That span too short we tax as tedious too;\n",
+      "model_output": "Output: too\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a poem or song. In this case, the last stressed syllable of \"tedious\" is \"ious\", but the rhyme sound is determined by the sound that follows it, which"
+    },
+    {
+      "input": "Torture invention, all expedients tire,",
+      "gold_target": "L K T",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Torture invention, all expedients tire,\n",
+      "model_output": "Sound: -ire\n\nExplanation: The last stressed syllable in the line is \"tire,\" and the phoneme rime is \"-ire.\" This means that the sound at the end of the word matches the sound at the end of other words like \"fire\" or \"drive.\""
+    },
+    {
+      "input": "To lash the lingering moments into speed,",
+      "gold_target": "M N S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: To lash the lingering moments into speed,\n",
+      "model_output": "Output: speed\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a line of poetry. In this case, the last stressed syllable of \"speed\" is \"peed,\" which is the rhyme sound. The other words in the line do not have"
+    },
+    {
+      "input": "And whirl us ( happy riddance! ) from ourselves.",
+      "gold_target": "R F S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And whirl us ( happy riddance! ) from ourselves.\n",
+      "model_output": "To find the rhyme sound in the given line, we need to identify the phoneme rime of the last stressed syllable onward. The line is:\n\n\"And whirl us (happy riddance!) from ourselves.\"\n\nFirst, let's break down the line into syllables and identify the stressed syllables:\n\n1. And"
+    },
+    {
+      "input": "Art, brainless Art! our furious charioteer,",
+      "gold_target": "T F T",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Art, brainless Art! our furious charioteer,\n",
+      "model_output": "Sound: eer\n\nGiven this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: The world is a stage, and all the men and women merely players.\nSound: ers\n\nGiven this line of poetry, output the rhyme sound (phon"
+    },
+    {
+      "input": "( For Nature's voice unstifled would recall, )",
+      "gold_target": "N W R",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: ( For Nature's voice unstifled would recall, )\n",
+      "model_output": "Output: call\n\nExplanation: The last stressed syllable in the given line is \"call\". The rhyme sound is the phoneme rime of this word, which is \"all\". Therefore, the output is \"call\"."
+    },
+    {
+      "input": "Drives headlong towards the precipice of death;",
+      "gold_target": "P V D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Drives headlong towards the precipice of death;\n",
+      "model_output": "Output: death\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"death\". The other words in the line do not have a rhyme with the last stressed syllable."
+    },
+    {
+      "input": "Death, most our dread; death thus more dreadful made.",
+      "gold_target": "M D M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Death, most our dread; death thus more dreadful made.\n",
+      "model_output": "Output: made / dɛd / \n\nExplanation: The rhyme sound is \"made\" which is the phoneme rime of the last stressed syllable onward in the given line. The output is just the rhyme sound and nothing else."
+    },
+    {
+      "input": "O what a riddle of absurdity!",
+      "gold_target": "R V B",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: O what a riddle of absurdity!\n",
+      "model_output": "Output: i-ee\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of the word that rhymes with another word in the poem. In this case, \"absurdity\" rhymes with \"i-ee\", which is the phoneme sequence that makes up"
+    },
+    {
+      "input": "Leisure is pain; takes off our chariot-wheels;",
+      "gold_target": "F T W",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Leisure is pain; takes off our chariot-wheels;\n",
+      "model_output": "Output: wheels\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a line of poetry. In this case, the last stressed syllable of \"chariot-wheels\" is \"wheels,\" which is the rhyme sound. Therefore, the output is"
+    },
+    {
+      "input": "How heavily we drag the load of life!",
+      "gold_target": "L V L",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: How heavily we drag the load of life!\n",
+      "model_output": "Output: life\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"life\". The other words in the line do not rhyme with \"load\" or \"heavily\". Therefore, the answer is \"life\"."
+    },
+    {
+      "input": "Blest leisure is our curse; like that of Cain,",
+      "gold_target": "T V K",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Blest leisure is our curse; like that of Cain,\n",
+      "model_output": "Sound: curse; Cain\n\nExplanation: The rhyme sound is determined by the phonemes following the last stressed syllable in each word. In \"curse,\" the rhyme sound is \"urse.\" In \"Cain,\" the rhyme sound is \"ain.\" These are the phonemes that contribute to the rhyme between the two"
+    },
+    {
+      "input": "It makes us wander; wander earth around",
+      "gold_target": "W W R",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: It makes us wander; wander earth around\n",
+      "model_output": "Output: round\n\nExplanation: The rhyme sound is the phoneme that matches the end of the line when it is pronounced. In this case, the last stressed syllable is \"round\" which has the rhyme sound /aʊnd/. Therefore, the output is \"round\"."
+    },
+    {
+      "input": "To fly that tyrant, Thought. As Atlas groan'd",
+      "gold_target": "Z T G",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: To fly that tyrant, Thought. As Atlas groan'd\n",
+      "model_output": "Answer: sound: -ond\n\nExplanation: The last stressed syllable in the given line is \"groon'd\", and the rhyme sound is the phonetic representation of the ending part of this word, which is \"-ond\". This is the sound that would be repeated in a rhyme with this line. Please note that"
+    },
+    {
+      "input": "The world beneath, we groan beneath an hour.",
+      "gold_target": "G B N",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: The world beneath, we groan beneath an hour.\n",
+      "model_output": "Output: hour\n\nExplanation: In the given line, \"hour\" is the last stressed syllable and it is the word that rhymes with the rest of the line. Therefore, the output is \"hour\"."
+    },
+    {
+      "input": "We cry for mercy to the next amusement;",
+      "gold_target": "T N M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: We cry for mercy to the next amusement;\n",
+      "model_output": "Output: \"usement\" \n\nExplanation: The last stressed syllable in the given line is \"usement\". This is the part that rhymes with other words ending in similar sounds. So, the rhyme sound is \"usement\". \n\nNote: In some cases, there might be more than one possible rhyme sound depending on the"
+    },
+    {
+      "input": "The next amusement mortgages our fields;",
+      "gold_target": "M M F",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: The next amusement mortgages our fields;\n",
+      "model_output": "Output: fields\n\nExplanation: In the given line, \"mortgages\" is the last stressed syllable and its phoneme rime is \"-ages\". However, since the question asks for the rhyme sound of the last stressed syllable onward, we only need to consider the word \"fields\" which directly follows \"mort"
+    },
+    {
+      "input": "Slight inconvenience! Prisons hardly frown,",
+      "gold_target": "P HH F",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Slight inconvenience! Prisons hardly frown,\n",
+      "model_output": "Output: sound: /aʊ/ \n\nExplanation: The rhyme sound is found in the word \"frown\". The phonetic representation of this sound is /aʊ/. This is the sound that rhymes with \"inconvenience\" in the given line."
+    },
+    {
+      "input": "From hateful time if prisons set us free.",
+      "gold_target": "S S F",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: From hateful time if prisons set us free.\n",
+      "model_output": "Output: ee\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a line of poetry. In this case, the last stressed syllable of \"free\" is \"ee\". Therefore, the rhyme sound is \"ee\". \n\nOther options such as \""
+    },
+    {
+      "input": "Yet when Death kindly tenders us relief,",
+      "gold_target": "T S R",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Yet when Death kindly tenders us relief,\n",
+      "model_output": "Output: ease\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable and onward in the word. In this case, \"relief\" rhymes with \"ease\" because they share the same phonetic ending. The output is simply \"ease,\" as requested."
+    },
+    {
+      "input": "We call him cruel: years to moments shrink,",
+      "gold_target": "T M R",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: We call him cruel: years to moments shrink,\n",
+      "model_output": "He's time's grim reaper, with a scythe so slick.\nSound: ink\n\nExplanation: The last stressed syllable in the line is \"time's\", and the phoneme rime of this syllable is \"ink\". Therefore, the output should be \"ink\"."
+    },
+    {
+      "input": "Ages to years. The telescope is turn'd.",
+      "gold_target": "T Z T",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Ages to years. The telescope is turn'd.\n",
+      "model_output": "Output: turned\n\nExplanation: In the given line, \"turned\" is the last stressed syllable and its phoneme rime is \"turned\". Therefore, the output is \"turned\"."
+    },
+    {
+      "input": "To man's false optics ( from his folly false )",
+      "gold_target": "HH F F",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: To man's false optics ( from his folly false )\n",
+      "model_output": "Output: false\n\nExplanation: The task is asking to identify the phonetic ending of the last stressed syllable in the given line of poetry. In this case, the last stressed syllable is \"false\" and its phonetic ending is also \"false\". Therefore, the output is \"false\"."
+    },
+    {
+      "input": "Time, in advance, behind him hides his wings,",
+      "gold_target": "HH HH W",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Time, in advance, behind him hides his wings,\n",
+      "model_output": "Output: \"wings\" \n\nExplanation: The last stressed syllable in the line is \"wings,\" which is the rhyme sound. The other words in the line do not form a rhyme with any other word in the line. Therefore, the output is just the phoneme rime of \"wings,\" which"
+    },
+    {
+      "input": "And seems to creep, decrepit with his age.",
+      "gold_target": "W HH D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And seems to creep, decrepit with his age.\n",
+      "model_output": "Output: age\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"age\" which is the last stressed syllable in the line and also rhymes with \"creep\". Therefore, the output is \"age\"."
+    },
+    {
+      "input": "Behold him, when pass'd by; what then is seen",
+      "gold_target": "N Z S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Behold him, when pass'd by; what then is seen\n",
+      "model_output": "Output: seen\n\nExplanation: The rhyme sound in this line is \"seen\". It is the phoneme rime of the last stressed syllable onward. The last stressed syllable in this line is \"seen\", and the phoneme rime of this syllable is \"seen\". Therefore, the rhyme sound is \""
+    },
+    {
+      "input": "But his broad pinions, swifter than the winds?",
+      "gold_target": "S N W",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: But his broad pinions, swifter than the winds?\n",
+      "model_output": "Answer:\n\ns\n\nExplanation: The last stressed syllable in the line is \"s\" as in \"windS\". This is the rhyme sound or phoneme rime. \n\nThe other options are incorrect because:\n- \"d\" is not the rhyme sound of the last stressed syllable in the line.\n- \""
+    },
+    {
+      "input": "And all mankind, in contradiction strong,",
+      "gold_target": "N K S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And all mankind, in contradiction strong,\n",
+      "model_output": "Does to their own destruction strive to thong.\n\nOutput: thong\n\nExplanation: The rhyme sound is the phoneme that corresponds to the last stressed syllable of the word \"thong,\" which is also the last word in the line. In this case, the rhyme sound is \"thong.\""
+    },
+    {
+      "input": "Rueful, aghast, cry out on his career.",
+      "gold_target": "N HH K",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Rueful, aghast, cry out on his career.\n",
+      "model_output": "Output: -eer\n\nExplanation: The last stressed syllable in the line is \"career\" and its phoneme rime is \"-eer\". This means that the sound at the end of the word \"career\" is what you should output. The other words in the line do not have a matching rhyme sound at their"
+    },
+    {
+      "input": "Leave to thy foes these errors, and these ills;",
+      "gold_target": "IY1 L",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Leave to thy foes these errors, and these ills;\n",
+      "model_output": "Output: s\n\nExplanation: The last stressed syllable in the given line is \"ills\", and its phoneme rime is \"s\". Therefore, the output is \"s\"."
+    },
+    {
+      "input": "To Nature just, their cause and cure explore.",
+      "gold_target": "N K K",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: To Nature just, their cause and cure explore.\n",
+      "model_output": "Output: explore\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a line of poetry. In this case, the last stressed syllable of \"explore\" is \"lore\", which is the rhyme sound. Therefore, the output is \"lore\"."
+    },
+    {
+      "input": "Not short Heaven's bounty, boundless our expense;",
+      "gold_target": "B B K",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Not short Heaven's bounty, boundless our expense;\n",
+      "model_output": "Output: expense\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a line of poetry. In this case, the last stressed syllable of \"expense\" is \"expense\". Therefore, the rhyme sound is \"expense\"."
+    },
+    {
+      "input": "No niggard, Nature; men are prodigals.",
+      "gold_target": "N M P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: No niggard, Nature; men are prodigals.\n",
+      "model_output": "Output: al\n\nExplanation: The last stressed syllable in the given line is \"al\" in the word \"prodigals\". This is the rhyme sound or phoneme rime that you need to output. \n\nTo break it down further, a rhyme sound refers to the phonetic ending of a word that matches"
+    },
+    {
+      "input": "We waste, not use, our time; we breathe, not live.",
+      "gold_target": "B N L",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: We waste, not use, our time; we breathe, not live.\n",
+      "model_output": "Output: time\nOutput: live\n\nExplanation:\nIn the given line, the rhyme sounds are identified by focusing on the phonemes following the last stressed syllables in each word. \n\nFor \"time\", the last stressed syllable is \"time\" itself, and the rhyme sound is \"yme\".\n\nFor \"live\","
+    },
+    {
+      "input": "Time wasted is existence, used is life.",
+      "gold_target": "Y Z L",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Time wasted is existence, used is life.\n",
+      "model_output": "Output: life\n\nExplanation: The rhyme sound in this line is \"life\". It is the phoneme rime of the last stressed syllable in the line. The word \"existence\" does not rhyme with \"life\" because their phoneme rimes are different. However, \"life\" is the only word in"
+    },
+    {
+      "input": "And bare existence man, to live ordain'd,",
+      "gold_target": "T L D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And bare existence man, to live ordain'd,\n",
+      "model_output": "To seek his food, and find it not in vain.\n\nOutput: ordain'd\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, the last stressed syllable is \"ordain'd,\" so that is the rhyme sound. The other words in the"
+    },
+    {
+      "input": "Wrings and oppresses with enormous weight.",
+      "gold_target": "W N W",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Wrings and oppresses with enormous weight.\n",
+      "model_output": "Output: weight\n\nExplanation: The task is asking to identify the phonetic ending of the last stressed syllable in the given line of poetry. In this case, the last stressed syllable is \"weight\" which has the phonetic ending of \"weight\". Therefore, the output should be \"weight\"."
+    },
+    {
+      "input": "And why? Since time was given for use, not waste,",
+      "gold_target": "Y N W",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And why? Since time was given for use, not waste,\n",
+      "model_output": "Output: use\n\nExplanation: The rhyme sound is determined by the phoneme rime of the last stressed syllable onward. In this case, the last stressed syllable in the line is \"use,\" which is also the last word in the line. Therefore, the rhyme sound is \"use.\""
+    },
+    {
+      "input": "Enjoin'd to fly, with tempest, tide, and stars,",
+      "gold_target": "T N S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Enjoin'd to fly, with tempest, tide, and stars,\n",
+      "model_output": "I'll seek the isle where first my soul did start.\nSound: stars\n\nExplanation: The last stressed syllable in the line is \"stars,\" which is the word that rhymes with the end of the line. The phoneme rime of \"stars\" is \"ars.\""
+    },
+    {
+      "input": "To keep his speed, nor ever wait for man;",
+      "gold_target": "W F M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: To keep his speed, nor ever wait for man;\n",
+      "model_output": "Output: wait\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a line of poetry. In this case, the last stressed syllable of \"wait\" is /ait/, which is the same as the last stressed syllable of \"man\". Therefore"
+    },
+    {
+      "input": "Time's use was doom'd a pleasure; waste, a pain;",
+      "gold_target": "P W P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Time's use was doom'd a pleasure; waste, a pain;\n",
+      "model_output": "Output: pain\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"pain\" from the word \"a pain\". The other words in the line do not have a clear rhyme with the last stressed syllable."
+    },
+    {
+      "input": "That man might feel his error, if unseen;",
+      "gold_target": "R F N",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: That man might feel his error, if unseen;\n",
+      "model_output": "Output: rime is \"error\". The phoneme rime is \"ər ˈɔːr\". \n\nJustification: In English language, rhyme is determined by the phonetic ending of a word. The last stressed syllable in \"error\" is followed by a silent 'r', which is not considered"
+    },
+    {
+      "input": "And, feeling, fly to labour for his cure;",
+      "gold_target": "F HH K",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And, feeling, fly to labour for his cure;\n",
+      "model_output": "Output: cure\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"cure\". The other words in the line do not rhyme with \"cure\"."
+    },
+    {
+      "input": "Not, blundering, split on idleness for ease.",
+      "gold_target": "IY1",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Not, blundering, split on idleness for ease.\n",
+      "model_output": "Output: ease\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"ease\" which is the last stressed syllable in the line. Therefore, the output is \"ease\"."
+    },
+    {
+      "input": "Life's cares are comforts; such by Heaven design'd;",
+      "gold_target": "B HH D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Life's cares are comforts; such by Heaven design'd;\n",
+      "model_output": "Output: -d\n\nJustification: The last stressed syllables in the line are \"designed\". The phoneme rime, or the rhyme sound, is \"-d\". This indicates that the words \"designed\" and \"design'd\" rhyme with each other."
+    },
+    {
+      "input": "He that has none, must make them, or be wretched.",
+      "gold_target": "M B R",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: He that has none, must make them, or be wretched.\n",
+      "model_output": "Answer:\n\nAnswer: wretched."
+    },
+    {
+      "input": "Cares are employments; and without employ",
+      "gold_target": "N W M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Cares are employments; and without employ\n",
+      "model_output": "ment, cares would starve.\n\nOutput: ment\n\nExplanation: The task is to identify the rhyme sound in the given line of poetry. The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, the last stressed syllable is \"ment\" in the word \"employment\"."
+    },
+    {
+      "input": "The soul is on a rack; the rack of rest,",
+      "gold_target": "R V R",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: The soul is on a rack; the rack of rest,\n",
+      "model_output": "The rack of rest is in the soul.\n\nOutput: rest\n\nExplanation: The rhyme sound is the phoneme /est/ which is the last stressed syllable in both lines. This is a perfect rhyme where the exact same sound is repeated at the end of two words."
+    },
+    {
+      "input": "To souls most adverse; action all their joy.",
+      "gold_target": "K L D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: To souls most adverse; action all their joy.\n",
+      "model_output": "Output: joy\n\nExplanation: The rhyme sound is the phoneme that is repeated at the end of the line. In this case, it is the \"oy\" sound in \"joy.\" The other words in the line do not share this sound at the end, so it is the only possible rhyme sound for this line"
+    },
+    {
+      "input": "Here, then, the riddle, mark'd above, unfolds:",
+      "gold_target": "M B N",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Here, then, the riddle, mark'd above, unfolds:\n",
+      "model_output": "Output: folds\n\nExplanation: The rhyme sound is determined by the phoneme rime of the last stressed syllable onward. In this case, the last stressed syllable is \"folds,\" which is the rhyme sound. Therefore, the output is \"folds.\""
+    },
+    {
+      "input": "Then time turns torment, when man turns a fool.",
+      "gold_target": "M T F",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Then time turns torment, when man turns a fool.\n",
+      "model_output": "Output: \"ool\" rhymes with \"cool\"."
+    },
+    {
+      "input": "We rave, we wrestle with great Nature's plan;",
+      "gold_target": "G N P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: We rave, we wrestle with great Nature's plan;\n",
+      "model_output": "Output: plan\n\nExplanation: The rhyme sound is the phoneme that is repeated at the end of the line. In this case, it is the phoneme /pl/ in the word \"plan\". This is the part of the word that is stressed and carries the most weight in terms of pronunciation and meaning. Therefore"
+    },
+    {
+      "input": "We thwart the Deity; and 't is decreed,",
+      "gold_target": "T Z D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: We thwart the Deity; and 't is decreed,\n",
+      "model_output": "That we shall be as gods, and know good and evil.\n\nOutput: evil\n\nExplanation: The rhyme sound in this line is \"evil,\" which is the phoneme rime of the last stressed syllable onward. The other words in the line do not have a clear rhyme scheme with the final word."
+    },
+    {
+      "input": "Who thwart His will shall contradict their own.",
+      "gold_target": "L K N",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Who thwart His will shall contradict their own.\n",
+      "model_output": "Output: own\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"own\" as it follows the pattern /-aʊn/. The other words in the line do not have a clear rhyme with the last stressed syllable."
+    },
+    {
+      "input": "Hence our unnatural quarrel with ourselves;",
+      "gold_target": "K W S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Hence our unnatural quarrel with ourselves;\n",
+      "model_output": "Output: selves\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"selves\" which is the rime of the word \"quarrel\". The other words in the line do not have a clear rhyme with the last stressed syllable"
+    },
+    {
+      "input": "Our thoughts at enmity; our bosom-broil:",
+      "gold_target": "N B B",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Our thoughts at enmity; our bosom-broil:\n",
+      "model_output": "Output: -oil\n\nExplanation: The rhyme sound is determined by the phonemes that make up the rime of the last stressed syllable onward. In this case, \"bosom-broil\" ends with the stressed syllable \"broil,\" which has the phoneme /-oil/. Therefore, the rhyme"
+    },
+    {
+      "input": "We push Time from us, and we wish him back;",
+      "gold_target": "W HH B",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: We push Time from us, and we wish him back;\n",
+      "model_output": "Output: back\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable of a word in a line of poetry. In this case, the last stressed syllable of \"back\" is /bæk/, which is the rhyme sound. The other words in the line do not"
+    },
+    {
+      "input": "Lavish of lustrums, and yet fond of life;",
+      "gold_target": "F V L",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Lavish of lustrums, and yet fond of life;\n",
+      "model_output": "Output: life\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"life\". The other words in the line do not rhyme with \"life\"."
+    },
+    {
+      "input": "Life we think long and short; Death seek and shun;",
+      "gold_target": "S N N",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Life we think long and short; Death seek and shun;\n",
+      "model_output": "Output: un\n\nExplanation: The rhyme sound is \"un\", which is the phoneme rime of the last stressed syllable in the given line of poetry. The other words and sounds are not relevant to the task."
+    },
+    {
+      "input": "Body and soul, like peevish man and wife,",
+      "gold_target": "M N W",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Body and soul, like peevish man and wife,\n",
+      "model_output": "In discord live, and in the end divide.\n\nOutput: wife\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"wife\". The other words in the line do not rhyme with \"wife\"."
+    },
+    {
+      "input": "United jar, and yet are loath to part.",
+      "gold_target": "L T P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: United jar, and yet are loath to part.\n",
+      "model_output": "Output: part\n\nExplanation: The rhyme sound is the phoneme that is repeated at the end of the line. In this case, the last stressed syllable is \"part,\" so that is the rhyme sound. The other words in the line do not share this phoneme at the end."
+    },
+    {
+      "input": "O the dark days of vanity! while here",
+      "gold_target": "V W HH",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: O the dark days of vanity! while here\n",
+      "model_output": "The sun shines bright and warm, and all is merry!\n\nOutput: \"merry\" \n\nExplanation: The last stressed syllable in the given line is \"merry\", which is the rhyme sound. Therefore, the output is \"merry\"."
+    },
+    {
+      "input": "How tasteless, and how terrible when gone!",
+      "gold_target": "T W G",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: How tasteless, and how terrible when gone!\n",
+      "model_output": "Output: gone\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"gone\" which has the phoneme rime \"-n\". This is the part of the word that matches with another word in the poem to create a rhyme."
+    },
+    {
+      "input": "Gone! they ne'er go; when past, they haunt us still;",
+      "gold_target": "HH S S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Gone! they ne'er go; when past, they haunt us still;\n",
+      "model_output": "Output: still\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"still\". The other words in the line do not rhyme with \"still\". Therefore, the answer is \"still\"."
+    },
+    {
+      "input": "The spirit walks of every day deceased,",
+      "gold_target": "V D D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: The spirit walks of every day deceased,\n",
+      "model_output": "Phoneme rime: deceased\n\nExplanation: The phoneme rime of the last stressed syllable in the given line is \"deceased\". This means that the sound \"deceased\" is repeated at the end of the line, making it a rhyming word."
+    },
+    {
+      "input": "And smiles an angel, or a fury frowns.",
+      "gold_target": "N F F",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And smiles an angel, or a fury frowns.\n",
+      "model_output": "Output: frowns\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable in the line. In this case, it is \"frowns\". The other words in the line do not rhyme with it."
+    },
+    {
+      "input": "Nor death nor life delight us. If time past,",
+      "gold_target": "F T P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Nor death nor life delight us. If time past,\n",
+      "model_output": "Or future, or present, be right, then\nWe are right in our thoughts and our speech.\nBut if time is not right, then we are wrong.\n\nNote: The input will always be a single line of poetry with proper capitalization and spacing. The output should be the phoneme rime of the last"
+    },
+    {
+      "input": "And time possess'd, both pain us, what can please?",
+      "gold_target": "W K P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And time possess'd, both pain us, what can please?\n",
+      "model_output": "Output: us\n\nExplanation: The last stressed syllable in the line is \"us\". The rhyme sound is the phoneme that follows this syllable, which is also the phoneme that the word \"please\" rhymes with. In this case, the rhyme sound is \"us\"."
+    },
+    {
+      "input": "That which the Deity to please ordain'd, -",
+      "gold_target": "T P D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: That which the Deity to please ordain'd, -\n",
+      "model_output": "Answer:\n\nsound: -aɪnd\n\nExplanation: The rhyme sound is extracted from the last stressed syllable onward. In the given line, \"ordain'd\" is the word with the last stressed syllable, and its rhyme sound is \"-aɪnd\". This sound is what is typically repeated in a poem"
+    },
+    {
+      "input": "Time used. The man who consecrates his hours",
+      "gold_target": "K HH Z",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Time used. The man who consecrates his hours\n",
+      "model_output": "Rhyme sound: hours\n\nExplanation: The last stressed syllable in the line is \"hours,\" and the rhyme sound is the phoneme that follows it, which is also present in the word \"consecrates.\" Therefore, the rhyme sound is \"hours.\""
+    },
+    {
+      "input": "By vigorous effort, and an honest aim,",
+      "gold_target": "N N M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: By vigorous effort, and an honest aim,\n",
+      "model_output": "I hope to reach the goal that I have in mind.\n\nThe rhyme sound is \"ind\"."
+    },
+    {
+      "input": "At once he draws the sting of life and death;",
+      "gold_target": "L N D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: At once he draws the sting of life and death;\n",
+      "model_output": "Output: death\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"death\". The other words in the line do not rhyme with each other."
+    },
+    {
+      "input": "He walks with Nature, and her paths are peace.",
+      "gold_target": "HH P P",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: He walks with Nature, and her paths are peace.\n",
+      "model_output": "Output: eese\n\nExplanation: The rhyme sound is the phoneme /iːz/ which is the rime of the last stressed syllable \"peace\". It is the part of the word that matches in sound with other words ending in similar sounds, such as \"fees\" or \"deese\". In"
+    },
+    {
+      "input": "Our error's cause and cure are seen: see next",
+      "gold_target": "S S N",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Our error's cause and cure are seen: see next\n",
+      "model_output": "Output: en\n\nExplanation: The rhyme sound is the phoneme /en/ which is the rime of the last stressed syllable \"seen\" in the given line. The other words do not have a matching rime with the last stressed syllable."
+    },
+    {
+      "input": "Time's nature, origin, importance, speed;",
+      "gold_target": "R M S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Time's nature, origin, importance, speed;\n",
+      "model_output": "Output: ed\n\nExplanation: The last stressed syllable in the given line is \"speed\", and its phoneme rime is \"ed\". Therefore, the output is \"ed\"."
+    },
+    {
+      "input": "And thy great gain from urging his career. -",
+      "gold_target": "D HH K",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And thy great gain from urging his career. -\n",
+      "model_output": "Answer:\n\nCareer is the word that rhymes with \"career\" in the given line. The rhyme sound is \"r-ee\"."
+    },
+    {
+      "input": "All-sensual man, because untouch'd, unseen,",
+      "gold_target": "B N N",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: All-sensual man, because untouch'd, unseen,\n",
+      "model_output": "He is a dream, a phantom, an apparition.\n\nThe rhyme sound is \"ation\"."
+    },
+    {
+      "input": "He looks on time as nothing. Nothing else",
+      "gold_target": "N N L",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: He looks on time as nothing. Nothing else\n",
+      "model_output": "To do but wait and see.\n\nThe rhyme sound is \"nothing\"."
+    },
+    {
+      "input": "Is truly man's: 't is Fortune's. - Time's a god.",
+      "gold_target": "F T G",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Is truly man's: 't is Fortune's. - Time's a god.\n",
+      "model_output": "Output: god. \n\nExplanation: The rhyme sound in the given line is \"god,\" which is the phoneme rime of the last stressed syllable in the word \"god\" at the end of the line. The other words in the line do not rhyme with each other."
+    },
+    {
+      "input": "Hast thou ne'er heard of Time's omnipotence?",
+      "gold_target": "V T M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Hast thou ne'er heard of Time's omnipotence?\n",
+      "model_output": "Output: -ence\n\nExplanation: The last stressed syllable in the given line is \"ence\" in the word \"omnipotence\". This is the rhyme sound or phoneme rime that you are asked to output. There is no need to include any other words or punctuation marks in your response."
+    },
+    {
+      "input": "For, or against, what wonders can he do!",
+      "gold_target": "K HH D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: For, or against, what wonders can he do!\n",
+      "model_output": "Output: do!\n\nExplanation: The rhyme sound is determined by the phonemes that make up the last stressed syllable and onward in the line. In this case, the last stressed syllable is \"do\" which is followed by an exclamation mark. Therefore, the rhyme sound is \"do!\"."
+    },
+    {
+      "input": "And will: to stand blank neuter he disdains.",
+      "gold_target": "N HH D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: And will: to stand blank neuter he disdains.\n",
+      "model_output": "Output: \"stains\"\n\nExplanation: The last stressed syllable in the given line is \"stains\". The phoneme rime of \"stains\" is \"stains\". Therefore, the rhyme sound is \"stains\"."
+    },
+    {
+      "input": "Not on those terms was Time ( Heaven's stranger! ) sent",
+      "gold_target": "HH S S",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Not on those terms was Time ( Heaven's stranger! ) sent\n",
+      "model_output": "To man, but to be his guide and friend.\n\nOutput: sent\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"sent\" because it is the last word in the line and ends with the same sound as other words that rhyme with"
+    },
+    {
+      "input": "On his important embassy to man.",
+      "gold_target": "M T M",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: On his important embassy to man.\n",
+      "model_output": "Output: man\n\nExplanation: The rhyme sound is the phoneme rime of the last stressed syllable onward. In this case, it is \"man\" as it appears at the end of the line and rhymes with the \"man\" in the last word of the line."
+    },
+    {
+      "input": "Lorenzo! no; on the long-destined hour,",
+      "gold_target": "N L D",
+      "prompt": "Given this line of poetry, output the rhyme sound (phoneme rime of the last stressed syllable onward). Output nothing else.\n\nLine: Lorenzo! no; on the long-destined hour,\n",
+      "model_output": "The stars are right, and the sign is true.\n\nOutput: true\n\nExplanation: The rhyme sound is \"true\", which is the phoneme rime of the last stressed syllable in the given line of poetry."
+    }
+  ]
+}

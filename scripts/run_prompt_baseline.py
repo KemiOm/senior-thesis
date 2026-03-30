@@ -2,19 +2,13 @@
 """
 Run prompt-only baseline: load test lines, build prompts, call models, save outputs.
 
-Supports:
-  - Encoder-decoder (seq2seq): T5, FLAN-T5, BART, PEGASUS, etc. (--model_type seq2seq, default)
-  - Decoder-only (causal): GPT-2, Pythia, LLaMA, Mistral, etc. (--model_type causal)
-
 Few-shot prompts use a full example stanza (quatrain): each line is paired with its label in the
-same format as training (from corpus.db), mirroring line-level meter/rhyme supervision.
+same format as training 
 
 Usage:
   python scripts/run_prompt_baseline.py --model google/flan-t5-large --prompt zero_shot --task meter_only
   python scripts/run_prompt_baseline.py --model google/flan-t5-large --prompt few_shot --task meter_only
   python scripts/run_prompt_baseline.py --model gpt2-medium --model_type causal --prompt few_shot --task meter_only --n 100
-
-Requires: pip install transformers torch (or pip install transformers accelerate)
 
 Output: evaluation/results/baselines/prompt_only/{model_slug}/{prompt_type}_{task}.json
 """
@@ -34,9 +28,8 @@ if str(ROOT) not in sys.path:
 DATA_DIR = ROOT / "output" / "training_data"
 RESULTS_DIR = ROOT / "evaluation" / "results" / "baselines" / "prompt_only"
 
-# Few-shot: we generate an example quatrain dynamically from `output/corpus.db`,
-# so the example line labels (stress/rhyme/combined tokens) exactly match the
-# same supervision logic used to build `output/training_data/...`.
+# Few-shot: build an example quatrain from `output/corpus.db` so labels (stress/rhyme/combined)
+# match the same rules as `output/training_data/...`.
 FEW_SHOT_SEPARATOR = "\n\n---\n\n"
 _EXAMPLE_QUATRAIN = None
 
@@ -321,7 +314,7 @@ def filter_and_regold_data(
 
     if not corpus_db.exists():
         raise FileNotFoundError(
-            f"--strict-eval requires {corpus_db}. Run export_sqlite.py first."
+            f"--strict-eval requires {corpus_db}. Run: python scripts/export_sqlite.py"
         )
     conn = sqlite3.connect(corpus_db)
     try:
@@ -373,7 +366,7 @@ def get_example_quatrain_lines():
     corpus_db = ROOT / "output" / "corpus.db"
     if not corpus_db.exists():
         raise FileNotFoundError(
-            f"Required for example prompts: {corpus_db}. Run export_sqlite.py first."
+            f"Required for example prompts: {corpus_db}. Run: python scripts/export_sqlite.py"
         )
 
     import sqlite3
@@ -648,7 +641,7 @@ def run_inference_causal(
     model.to(dev)
     model.eval()
 
-    # Many causal LMs need a padding side for batch decode; left-pad so we decode only new tokens
+    # Causal models: set a padding token so decoding can return only the new continuation.
     if getattr(tokenizer, "pad_token", None) is None:
         tokenizer.pad_token = tokenizer.eos_token
 
@@ -787,7 +780,7 @@ def main():
         )
 
     def strip_prompt_echo(raw_out: str, prompt_used: str) -> str:
-        """If the model echoed the prompt (or a prefix of it), strip it so we keep only the answer."""
+        """Remove prompt echo from the output when the model repeats the prompt or a prefix."""
         if not prompt_used or not raw_out:
             return raw_out
         if raw_out.startswith(prompt_used):
@@ -835,7 +828,7 @@ def main():
     if args.task == "natural_text":
         payload["gold_form_note"] = (
             "gold_stress_pm, gold_rhyme_key, gold_form_ok: CMU-based signature of gold_target "
-            "(evaluation.form_eval_generation.line_form_signature); same path as eval_natural_text_form.py."
+            "(evaluation.form_eval_generation.line_form_signature); same path as scripts/corpus_tools.py nt-form."
         )
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(

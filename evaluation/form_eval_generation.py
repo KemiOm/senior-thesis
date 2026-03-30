@@ -56,8 +56,8 @@ def line_form_signature(line: str, *, relax_oov: bool = False) -> dict[str, Any]
     Extract comparable form features from arbitrary line text.
     Uses CMU + optional espeak (see sample.phonology_sample.get_arpabet) — same pipeline for gold and pred.
 
-    If relax_oov is True, a line counts as ok when we have a non-empty stress string even if some
-    words are CMU not_found (stress is from pronounced words only — coverage caveat for archaic text).
+    If relax_oov is True, a line counts as ok when there is a non-empty stress string even if some
+    words are CMU not_found (stress comes from pronounced words only; weaker coverage on archaic text).
     """
     text = (line or "").strip()
     if not text:
@@ -98,7 +98,7 @@ def compare_next_line_form(
 ) -> dict[str, Any]:
     """
     Gold = corpus next line; pred = model generation.
-    Returns flags for  tables (exact stress match, syllable count, rhyme key).
+    Returns flags for tables (exact stress match, syllable count, rhyme key).
     """
     g = line_form_signature(gold_line, relax_oov=relax_oov)
     p = line_form_signature(pred_line, relax_oov=relax_oov)
@@ -135,7 +135,7 @@ def aggregate_natural_text_form_results(
 ) -> dict[str, float | int]:
     """
     Batch metrics for natural_text baseline JSON results[] (gold_target vs model_output).
-    Same counting rules as scripts/eval_natural_text_form.py.
+    Same counting rules as scripts/corpus_tools.py nt-form.
     relax_oov: if True, allow lines with partial CMU coverage (see line_form_signature).
                If None, read FORM_EVAL_RELAX_OOV=1 from the environment.
     """

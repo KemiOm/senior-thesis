@@ -7,7 +7,7 @@ A pipeline for extracting, normalizing, and annotating English poetry from the E
 ## Documentation
 
 - **[OVERVIEW.MD](OVERVIEW.MD)** — Full project description: pipeline stages, terminology (meter, stress, rhyme, TEI), phonology tools (Poesy, Prosodic, CMU), evaluation workflow (splits → prepare data → run baselines → compute metrics → choose model), and HPC usage.
-- **Evaluation** — Splits, metrics, and prompt-only baselines: see [evaluation/README.md](evaluation/README.md) and the “Evaluation and choosing a model” section in OVERVIEW.MD.
+- **Evaluation** — Splits, metrics, and prompt-only baselines: see [evaluation/EVALUATION_PROTOCOL.md](evaluation/EVALUATION_PROTOCOL.md) and the “Evaluation and choosing a model” section in OVERVIEW.MD.
 
 ---
 
@@ -86,11 +86,11 @@ pip install -r requirements.txt
 │   ├── normalize_batch.py
 │   └── phonology_batch.py
 ├── notebooks/               # Training data prep, evaluation metrics, SFT overview
-├── scripts/                 # HPC/CLI scripts (e.g. run_prompt_baseline)
-├── evaluation/              # Splits, metrics, baseline results (see evaluation/README.md)
+├── scripts/                 # export_sqlite, quality_checks, run_prompt_baseline, corpus_tools; scripts/hpc/ = cluster jobs
+├── evaluation/              # splits, metrics, summarize_prompt_baselines.py, baseline JSON + CSV outputs
+├── sft/                     # Fine-tuned model checkpoints (gitignored weights; see scripts/train_sft_seq2seq_sample.py)
+├── data/                    # Optional local data (samples, metadata)
 ├── docs/                    # Data overview, debug transcripts
-├── export_sqlite.py         # Export annotated JSON → SQLite
-├── quality_checks.py        # Report corpus statistics and coverage
 ├── requirements.txt
 └── ECPA/                    # Source data (clone separately, not in repo)
     └── web/works/           # Poem XMLs
@@ -139,7 +139,7 @@ Output: `output/poems_annotated/<id>.json`
 ### Step 4: Export to SQLite
 
 ```bash
-python export_sqlite.py
+python scripts/export_sqlite.py
 ```
 
 Output: `output/corpus.db`
@@ -147,7 +147,7 @@ Output: `output/corpus.db`
 ### Step 5: Quality checks
 
 ```bash
-python quality_checks.py
+python scripts/quality_checks.py
 ```
 
 Reports: poem/line counts, meter distribution, rhyme coverage, phonology (CMU) coverage, degraded poems, end-stopping, caesura, stanza types.

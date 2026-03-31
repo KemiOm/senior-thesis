@@ -9,7 +9,7 @@ Batch optimizations: parallelism, no espeak fallback, long-line truncation, prog
 import os
 os.environ["POESY_DEBUG"] = "0"
 os.environ["PHONOLOGY_BATCH"] = "1"   # disables espeak fallback
-os.environ["MAX_LINE_CHARS"] = "0"     # no truncation; full lines to Poesy (long prose blocks may timeout)
+os.environ["MAX_LINE_CHARS"] = "0"     # no truncation; full lines to Poesy long blocks may timeout
 os.environ["MAX_POEM_LINES"] = "500"  # skip Poesy for poems >500 lines (phonology-only)
 
 import sys
@@ -17,7 +17,7 @@ import argparse
 import json
 from pathlib import Path
 
-# Project root (parent of batch/). Ensures the sample package is importable in worker
+# Project root 
 # subprocesses (ProcessPoolExecutor) as well as the main process.
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:

@@ -1,12 +1,20 @@
 """
-Add phonology, meter, rhyme, and punctuation annotations to one normalized poem.
-Uses: Poesy/Prosodic (rhyme, meter, stress), CMU dict (phonology/ARPAbet), programmatic checks (end_stopped, caesura).
-All annotations are automated—no manual tagging.
+Turn one normalized poem JSON into an annotated poem JSON.
 
-Install first:
+What gets added per line: CMU-style pronunciations, stress and meter hints from the
+Poesy library which wraps Prosodic, rhyme groups from Poesy when parsing succeeds, plus
+simple rules for end-of-line punctuation (end-stopped vs run-on) and caesura (a mid-line
+pause). Nothing is hand-labeled; it is all pipeline output you can audit or replace later.
+
+Dependencies: pronouncing (CMU Pronouncing Dictionary), Poesy (Prosodic + rhyme), and
+optionally espeak for words missing from CMU when not in batch mode.
+
+Install (typical):
   brew install espeak
   pip install pronouncing
   pip install git+https://github.com/quadrismegistus/poesy
+
+some changes made to handle stress
 """
 
 import json
@@ -20,10 +28,12 @@ ROOT = Path(__file__).resolve().parent.parent
 INPUT_DIR = ROOT / "output/poems_normalized"
 OUTPUT_DIR = ROOT / "output/poems_annotated"
 
-# Patch multiprocessing.Manager BEFORE Prosodic/hashstash can import it.
-# hashstash creates Manager() at import; its subprocess fails in sandbox/restricted envs.
-# Fallback: in-process fake manager so Poesy rhyme/meter can run.
 def _patch_manager_for_hashstash():
+    """Prosodic’s dependency chain can spawn a multiprocessing Manager at import time.
+
+    sometimes that subprocess fails. Swaped in a tiny fake Manager so imports still succeed; 
+    rhyme/meter code can run in the main process.
+    """
     import multiprocessing as mp
     _orig = mp.Manager
 
@@ -45,7 +55,7 @@ def _patch_manager_for_hashstash():
 
 _patch_manager_for_hashstash()
 
-# Project-local NLTK data (Prosodic needs punkt); avoids ~/nltk_data permission issues.
+# was getting errors about nltk data not being found, so added this
 _nltk_data = ROOT / "data" / "nltk_data"
 _nltk_data.mkdir(parents=True, exist_ok=True)
 import os
@@ -53,7 +63,11 @@ os.environ.setdefault("NLTK_DATA", str(_nltk_data))
 
 
 def _ensure_nltk_punkt():
-    """Download NLTK punkt if missing (required by Prosodic tokenizer)."""
+    """Make sure NLTK’s sentence tokenizer data exists.
+
+    Prosodic tokenizes text before scansion; it expects punkt
+     Data is stored under the project’s ``data/nltk_data`` folder 
+    """
     try:
         import nltk
         nltk.data.find("tokenizers/punkt_tab")
@@ -68,7 +82,10 @@ def _ensure_nltk_punkt():
 
 
 def _patch_prosodic_config():
-    """Prosodic 2.x may not expose config; Poesy expects prosodic.config."""
+    """Older Poesy code expects ``prosodic.config`` to exist.
+
+    Newer Prosodic builds omit it; attach an empty dict so imports do not crash.
+    """
     try:
         import prosodic
         if not hasattr(prosodic, "config"):
@@ -78,7 +95,15 @@ def _patch_prosodic_config():
 
 
 def _patch_prosodic_text_meter():
-    """Prosodic 2.x Text() has fixed signature; Poesy passes meter= string."""
+    """Bridge Poesy (older API) to Prosodic 2.x (stricter types).
+
+    Poesy still passes meter names as strings and sometimes leaves poem-level meter as a
+    string on the text object. Prosodic expects a real Meter object and will throw if it
+    gets a bare string. wrap three hooks: Text construction, get_meter: if the
+    inherited value is still a string, replace it with a default Meter, and parse if
+    callers pass meter= as a string.  If this block
+    fails silently  Poesy errors out 
+    """
     try:
         import prosodic
         from prosodic.texts.texts import TextModel
@@ -94,13 +119,23 @@ def _patch_prosodic_text_meter():
         prosodic.Text = _patched_text
         prosodic.texts.texts.Text = _patched_text
 
-        # Entity.get_meter: Poesy calls line.parse(meter="..."); Prosodic expects Meter object
+        # Entity.get_meter: Poesy passes meter= str to parse(); Prosodic 2.x expects a Meter instance.
+        # Also, Poesy sets poem.meter to a string; get_meter() inherits self.text._mtr and returns
         _orig_get_meter = Entity.get_meter
 
         def _patched_get_meter(self, meter=None, **meter_kwargs):
             if isinstance(meter, str):
-                meter = None  # use Prosodic default
-            return _orig_get_meter(self, meter=meter, **meter_kwargs)
+                meter = None
+            res = _orig_get_meter(self, meter=meter, **meter_kwargs)
+            if isinstance(res, str):
+                from prosodic.parsing import Meter
+
+                self._mtr = Meter(**meter_kwargs) if meter_kwargs else Meter()
+                tx = getattr(self, "text", None)
+                if tx is not None and isinstance(getattr(tx, "_mtr", None), str):
+                    tx._mtr = self._mtr
+                return self._mtr
+            return res
 
         Entity.get_meter = _patched_get_meter
 
@@ -137,7 +172,12 @@ from poesy import Poem as PoesyPoem
 
 
 def _arpabet_from_espeak(word: str) -> list:
-    """Use espeak subprocess to get IPA; best-effort conversion to ARPAbet. Returns [] if espeak fails."""
+    """Fallback pronunciation when CMU does not know a word.
+
+    Calls the ``espeak`` command-line tool to get IPA, then maps common symbols into a rough
+    ARPAbet-like phone list. Returns an empty list if espeak is
+    missing or the word cannot be handled.
+    """
     import subprocess
     try:
         clean = re.sub(r"^[^\w']+|[^\w']+$", "", word)
@@ -175,9 +215,14 @@ def _arpabet_from_espeak(word: str) -> list:
 
 
 def get_arpabet(word: str) -> tuple:
-    """
-    Look up ARPAbet pronunciation. Returns (phones_list, source).
-    Tries: CMU dict, apostrophe variants, then espeak fallback (disabled when PHONOLOGY_BATCH=1).
+    """Return how a single token is pronounced, plus where that guess came from.
+
+    Order of attempts: (1) CMU Pronouncing Dictionary via ``pronouncing``, (2) same word with
+    apostrophes stripped if that fails, (3) espeak fallback
+
+    Returns:
+        Tuple of ``(phones, source)`` where ``phones`` is a list of ARPAbet strings (one
+        pronunciation variant) and ``source`` is ``"cmudict"``, ``"espeak"``, or ``"not_found"``.
     """
     skip_espeak = os.environ.get("PHONOLOGY_BATCH", "").strip() == "1"
     if not HAS_PRONOUNCING:
@@ -199,7 +244,12 @@ def get_arpabet(word: str) -> tuple:
 
 
 def get_phonology_for_line(line_text: str) -> list:
-    """Build per-word phonology list: {word, arpabet, source}."""
+    """Split a line into word tokens and attach CMU (or fallback) phones to each.
+
+    Output is a list of dicts: ``{"word": str, "arpabet": list of str, "source": str}``. This
+    is the backbone for rhyme keys and for the lexical stress string when Poesy does not
+    supply metrical stress.
+    """
     words = re.findall(r"[\w']+", line_text)
     out = []
     for w in words:
@@ -210,7 +260,7 @@ def get_phonology_for_line(line_text: str) -> list:
 
 def get_rhyme_word(phonology: list):
     """
-    The word that carries the rhyme: last content word (line-final rhyme word).
+    The word that carries the rhyme: last content word
     Uses last word with arpabet; falls back to last word.
     """
     if not phonology:
@@ -225,7 +275,11 @@ def get_rhyme_word(phonology: list):
 
 
 def phones_to_stress(phones: list) -> list:
-    """Extract stress digits from CMU phones: AH0->0, IY1->1, OW2->2."""
+    """Pull stress levels (0, 1, 2) off CMU-style phones.
+
+    In ARPAbet, vowels end with 0 (unstressed), 1 (primary stress), or 2 (secondary). We keep
+    one integer per vowel token in order, and ignore consonants for this step.
+    """
     stresses = []
     for ph in (phones or []):
         p = ph if isinstance(ph, str) else (ph[0] if isinstance(ph, (list, tuple)) and ph else None)
@@ -234,12 +288,23 @@ def phones_to_stress(phones: list) -> list:
     return stresses
 
 
+# Human-readable foot labelsguess meter from syllable count alone.
 FEET_NAMES = {1: "monometer", 2: "dimeter", 3: "trimeter", 4: "tetrameter", 5: "pentameter",
               6: "hexameter", 7: "heptameter", 8: "octameter"}
 
 
 def line_meter_from_phonology(phonology: list) -> tuple:
-    """Compute syllable count, binary stress pattern, and meter_type from phonology. Returns (syllable_count, stress_pattern, meter_type)."""
+    """Get rough stress pattern and meter label from dictionary stress only 
+
+    This does **lexical** stress from CMU: it does not know about elision or promoted stresses
+    in poetry; it is a cheap fallback when Poesy/Prosodic does not return a line-level stress
+    string. Binary ``0``/``1`` for unstressed/stressed vowels, count syllables, and
+    label familiar patterns 
+
+    Returns:
+        ``(syllable_count, stress_binary_string, meter_type_label)``. If there are no vowels,
+        returns ``(0, "", "unknown")``.
+    """
     stresses = []
     for p in phonology:
         arp = p.get("arpabet") or []
@@ -283,15 +348,15 @@ def get_end_stopped(line_text: str) -> bool:
 
 
 def get_caesura(line_text: str) -> dict:
-    """
-    First strong mid-line pause and local lexical context.
+    """Find the first plausible caesura: a comma-like pause between two words mid-line.
+
+    We tokenize into words and punctuation. The first mark in the set comma, semicolon, colon,
+    em-dash, or hyphen that sits between two real words counts as a hit. We store the word
+    index before the break and the words on either side. If nothing matches, every value in
+    the returned dict is None.
+
     Returns:
-      {
-        "index": <0-based word index before the pause> or None,
-        "punct": <pause punctuation token> or None,
-        "before": <word before pause> or None,
-        "after": <word after pause> or None,
-      }
+        Dict with keys index, punct, before, after (each an int/str or None).
     """
     toks = re.findall(r"[\w']+|[^\w\s]", line_text)
     word_i = -1
@@ -321,7 +386,12 @@ def get_caesura(line_text: str) -> dict:
 
 
 def build_poem_string(poem: dict) -> str:
-    """Convert normalized stanzas to newline-separated string for Poesy. Truncates long lines when MAX_LINE_CHARS set."""
+    """Flatten a poem dict into one string for Poesy: one verse line per text line.
+
+    Blank lines separate stanzas. If MAX_LINE_CHARS is a positive integer, lines longer than
+    that are cut from the left and prefixed with an ellipsis so the  rhyme word
+    stays intact for Prosodic.
+    """
     max_chars = 0
     try:
         max_chars = int(os.environ.get("MAX_LINE_CHARS", "0") or "0")
@@ -339,18 +409,31 @@ def build_poem_string(poem: dict) -> str:
 
 
 def _log_poesy(msg: str) -> None:
-    """Print diagnostic message to stderr (for troubleshooting rhyme_group). Suppressed when POESY_DEBUG=0."""
+    """Debug helper for Poesy: prints to stderr unless ``POESY_DEBUG=0`` (batch runs often disable it)."""
     if os.environ.get("POESY_DEBUG", "1") != "0":
         print(f"[poesy-debug] {msg}", file=__import__("sys").stderr)
 
 
 def annotate_with_poesy(poem: dict) -> dict:
+    """Run Poesy’s Poem parser to get rhyme groups and Prosodic line parses for one poem.
+
+    Poesy wraps Prosodic: it builds a metrical parse and a rhyme graph. Read, for each line,
+    the best available stress string and meter string from the Prosodic line object, plus a
+    rhyme label per line position. Tries to read an overall meter label for the poem from Poesy’s internal stats when present.
+
+    If anything in that stack throws version mismatch, huge poem timeout,  return
+    empty annotations and ``annotate_poem`` falls back to CMU-only fields.
+
+    Environment:
+        MAX_POEM_LINES: if set and the poem has more lines, skip Poesy entirely (batch safety).
+        POESY_DEBUG: set to 0 to silence stderr diagnostics.
+
+    Returns:
+        Dict with keys:
+            ``per_line``: map ``(stanza_index, line_index)`` -> ``{"rhyme_group", "meter", "stress"}``
+            (values may be None where missing).
+            ``meter_type``: poem-level string or None.
     """
-    Use Poesy (Prosodic) for rhyme, meter, stress.
-    Returns {per_line: {(si,li): {...}}, meter_type: "iambic pentameter"}.
-    Skips Poesy when MAX_POEM_LINES exceeded (batch mode) to avoid long runs on huge poems.
-    """
-    import sys
     num_lines = sum(len(s) for s in poem.get("stanzas", []))
     max_poem_lines = 0
     try:
@@ -375,7 +458,7 @@ def annotate_with_poesy(poem: dict) -> dict:
         if rhymes_raw:
             sample = list(rhymes_raw.items())[:5]
             _log_poesy(f"p.rhymes sample: {sample}")
-        keys_sorted = sorted(p.lined.keys())  # canonical line order (linenum, stanzanum)
+        keys_sorted = sorted(p.lined.keys())  # line order 
         rhymes_list = [rhymes_raw.get(k, "") if rhymes_raw else "" for k in keys_sorted]
         _log_poesy(f"keys_sorted[:8]={keys_sorted[:8]} rhymes_list[:8]={rhymes_list[:8]}")
         prosodic_list = []
@@ -424,7 +507,7 @@ def annotate_with_poesy(poem: dict) -> dict:
                 pos += 1
         non_empty_rhymes = sum(1 for v in ann.values() if v.get("rhyme_group") and str(v.get("rhyme_group", "")).strip() not in ("", "?"))
         _log_poesy(f"ann built: {len(ann)} entries, {non_empty_rhymes} non-empty rhyme_groups")
-        # meter_type from Poesy: statd has meter_type_scheme (iambic, trochaic, etc.) + beat_scheme_repr (Pentameter, etc.)
+        # meter_type from Poesy: statd has meter_type_scheme  + beat_scheme_repr 
         meter_type = None
         try:
             statd = getattr(p, "statd", None) or {}
@@ -447,7 +530,6 @@ def annotate_with_poesy(poem: dict) -> dict:
         _log_poesy(traceback.format_exc())
         # Root cause: Prosodic->hashstash creates multiprocessing.Manager() at import.
         # Manager subprocess fails with PermissionError binding socket -> parent gets EOFError.
-        # Fix: run outside sandbox; check macOS Full Disk Access / Terminal permissions; or patch hashstash.
         _log_poesy("ROOT_CAUSE: (1) hashstash Manager fails in restricted envs; (2) Poesy/Prosodic 2.x API mismatch")
         _log_poesy("  (meter=str vs Meter object) -> parse fails before rhyme_net runs.")
         import warnings
@@ -455,20 +537,123 @@ def annotate_with_poesy(poem: dict) -> dict:
         return {"per_line": {}, "meter_type": None}
 
 
+# Short names for stanza sizes  label stanza_type in the output JSON.
 STANZA_NAMES = {2: "couplet", 4: "quatrain", 6: "sestet", 8: "octet", 3: "tercet", 5: "cinquain"}
 
 
 def _parse_str_to_stress(parse_str: str) -> str:
-    """Convert Prosodic parse_str (e.g. 'if|ERE|the|MO|ment') to +/- stress pattern.
-    Uppercase = stressed (+), lowercase = unstressed (-)."""
+    """Turn Prosodic’s pipe-separated scansion string into + and - for each metrical slot.
+
+    Prosodic sometimes prints syllables like ``if|ERE|the|MO|ment`` where uppercase marks a
+    stressed syllable. We emit one ``+`` or ``-`` per chunk. Empty input returns an empty string.
+    """
     if not parse_str or not isinstance(parse_str, str):
         return ""
     parts = parse_str.split("|")
     return "".join("+" if any(c.isupper() for c in p if c.isalpha()) else "-" for p in parts if p.strip())
 
 
+# --- Optional: based off of notebook try to get stress
+_NOTEBOOK_STYLE_METER = None
+_PROSODIC_LOG_QUIET = False
+
+
+def _quiet_prosodic_logging_once() -> None:
+    """Turn down Prosodic’s log noise after the first call (helps batch logs stay readable)."""
+    global _PROSODIC_LOG_QUIET
+    if _PROSODIC_LOG_QUIET:
+        return
+    try:
+        import logging
+        import prosodic
+        if hasattr(prosodic, "logger"):
+            prosodic.logger.setLevel(logging.ERROR)
+        logging.getLogger("prosodic").setLevel(logging.ERROR)
+    except Exception:
+        pass
+    _PROSODIC_LOG_QUIET = True
+
+
+def _metricalgpt_notebook_meter():
+    """Build and cache one Prosodic ``Meter`` object  
+    """
+    global _NOTEBOOK_STYLE_METER
+    if _NOTEBOOK_STYLE_METER is not None:
+        return _NOTEBOOK_STYLE_METER
+    import prosodic
+    _quiet_prosodic_logging_once()
+    constraints = {
+        "w_peak": 3.0,
+        "w_stress": 1.0,
+        "s_unstress": 1.0,
+        "unres_across": 2.0,
+        "unres_within": 2.0,
+        "pentameter": 5.0,
+    }
+    _NOTEBOOK_STYLE_METER = prosodic.Meter(
+        constraints=constraints,
+        resolve_optionality=True,
+        max_s=1,
+        max_w=2,
+        parse_unit="line",
+    )
+    return _NOTEBOOK_STYLE_METER
+
+
+def stress_from_notebook_style_prosodic(line_text: str) -> str:
+    """Scan one line with Prosodic using the explicit pentameter ``Meter`` (notebook-style path).
+
+    Unlike ``annotate_with_poesy``, this does not go through Poesy’s whole-poem object; it runs
+    ``TextModel(txt).parse(meter=...)`` on the line alone. That can match published notebook
+    workflows but it is **not** a substitute for deciding the true meter of every line—long
+    lines that are really tetrameter may still be forced through a pentameter lens.
+
+    Returns a string of ``+`` and ``-``, or ``""`` if Prosodic fails or the line exceeds
+    PROSODIC_NOTEBOOK_MAX_CHARS.
+    """
+    s = (line_text or "").strip()
+    if not s:
+        return ""
+    try:
+        max_chars = int(os.environ.get("PROSODIC_NOTEBOOK_MAX_CHARS", "2000") or "2000")
+    except ValueError:
+        max_chars = 2000
+    if len(s) > max_chars:
+        return ""
+    try:
+        from prosodic.texts.texts import TextModel
+    except Exception:
+        return ""
+    _quiet_prosodic_logging_once()
+    try:
+        meter = _metricalgpt_notebook_meter()
+        t = TextModel(txt=s)
+        out = t.parse(meter=meter, lim=1)
+        if not out:
+            return ""
+        pl = out[0]
+        bp = getattr(pl, "best_parse", None)
+        if bp is None:
+            return ""
+        stress = getattr(bp, "stress_str", None) or getattr(bp, "parse_stress", None)
+        if callable(stress):
+            stress = stress()
+        if isinstance(stress, str) and stress.strip():
+            return stress.strip()
+        parse_str = getattr(bp, "parse_str", None)
+        parse_str = parse_str(viols=False) if callable(parse_str) else parse_str
+        if parse_str and isinstance(parse_str, str) and "|" in parse_str:
+            return _parse_str_to_stress(parse_str)
+    except Exception:
+        return ""
+    return ""
+
+
 def _rhyme_pairs(rhyme_groups: list) -> list:
-    """Pairs of line indices that rhyme, e.g. [(0,1)] for couplet, [(0,2),(1,3)] for abab."""
+    """List undirected pairs of line indices that share the same non-empty rhyme label.
+    Input is parallel to lines in one stanza: each entry is a rhyme group id 
+    Used only to store ``rhyme_pairs`` in the stanza record for convenience.
+    """
     groups = {}
     for i, rg in enumerate(rhyme_groups):
         if rg and str(rg).strip() and str(rg).strip() != "?" and str(rg) != "-":
@@ -483,10 +668,21 @@ def _rhyme_pairs(rhyme_groups: list) -> list:
 
 
 def annotate_poem(poem: dict) -> dict:
-    """
-    Add phonology, meter, rhyme, end_stopped, caesura, enjambment to each line.
-    Output: stanzas list of {stanza_index, stanza_type, rhyme_scheme, rhyme_pairs, lines}.
-    Each line: raw, normalized, stanza_index, line_index, phonology, rhyme_word, rhyme_group, meter, stress, end_stopped, caesura, enjambment.
+    """Main entry: take a normalized poem and return the same poem shape with labels filled in.
+
+    Steps in order: call ``annotate_with_poesy`` for rhyme + Prosodic stress/meter when possible;
+    for each line, attach CMU phonology, rhyme word, end-stopped and caesura flags, and
+    enjambment. If Poesy left ``stress`` blank, 
+    fill from dictionary stress. 
+
+    Line-level ``meter_type`` uses Poesy’s poem-wide label if possible; otherwise use
+    the heuristic label from ``line_meter_from_phonology``. The counter dict
+    ``annotation_sources`` is for checking, not rigorous
+
+    Returns:
+        Dict with ``id``, ``author``, ``title``, and ``stanzas``. Each stanza has index,
+        type label, rhyme scheme string, rhyme_pairs list, and ``lines`` with the per-field
+        records described in your export script.
     """
     poesy_result = annotate_with_poesy(poem)
     poesy_ann = poesy_result.get("per_line", poesy_result) if isinstance(poesy_result, dict) and "per_line" in poesy_result else poesy_result
@@ -498,7 +694,7 @@ def annotate_poem(poem: dict) -> dict:
         "stanzas": [],
     }
     # Track sources: Poesy vs fallback (phonology/CMU)
-    src = {"stress_poesy": 0, "stress_empty": 0, "meter_poesy": 0, "meter_phonology": 0,
+    src = {"stress_poesy": 0, "stress_empty": 0, "stress_notebook": 0, "meter_poesy": 0, "meter_phonology": 0,
            "rhyme_poesy": 0, "rhyme_empty": 0, "meter_type_poesy": 0, "meter_type_phonology": 0}
     track_sources = os.environ.get("ANNOTATION_SOURCES", "1") == "1"
 
@@ -532,6 +728,22 @@ def annotate_poem(poem: dict) -> dict:
             rec["meter"] = pa.get("meter")
             rec["stress"] = pa.get("stress")
             syll, stress_pattern, meter_type_fallback = line_meter_from_phonology(phon)
+            if not (rec.get("stress") or "").strip():
+                rec["stress"] = stress_pattern or ""
+            nb_mode = (os.environ.get("PROSODIC_NOTEBOOK_STRESS") or "").strip().lower()
+            if nb_mode in ("1", "force", "yes", "true"):
+                nb = stress_from_notebook_style_prosodic(norm)
+                if nb:
+                    rec["stress"] = nb
+                    if track_sources:
+                        src["stress_notebook"] += 1
+            elif nb_mode == "prefer":
+                if not (rec.get("stress") or "").strip():
+                    nb = stress_from_notebook_style_prosodic(norm)
+                    if nb:
+                        rec["stress"] = nb
+                        if track_sources:
+                            src["stress_notebook"] += 1
             if track_sources:
                 if rg: src["rhyme_poesy"] += 1
                 else: src["rhyme_empty"] += 1
@@ -574,6 +786,11 @@ SAMPLE_COUPLET = "o5156-w1237"   # BOOK XII. Ep. 23. (2-line stanzas)
 
 
 def main():
+    """Small demo: load two built-in sample poem IDs from ``output/poems_normalized`` and print labels.
+
+    Writes matching JSON under ``output/poems_annotated``. Handy for a quick smoke test after
+    changing this module; batch jobs use ``batch/phonology_batch.py`` instead.
+    """
     print("Poesy (Prosodic): loaded")
     if HAS_PRONOUNCING:
         print("CMU (pronouncing): loaded")

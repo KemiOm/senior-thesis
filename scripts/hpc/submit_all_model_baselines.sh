@@ -10,11 +10,15 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$ROOT"
 
-# Defaults tuned for YCRC Bouchet-style limits: day partition often kills jobs at 4h.
-# SPLIT_TASKS=1 → one Slurm job per (model × prompt × task) so each run is short enough to finish.
-# N=10000 → cap lines per JSON (raise N when the scheduler allows longer jobs; N=0 = full test set, no --n).
+# SPLIT_TASKS=1 → one Slurm job per (model × prompt × task) for easier retries and parallelism.
+# N=10000 → cap lines per JSON (N=0 = full test set — needs enough walltime).
+# Longer walltime / different partition (bypass 4h day cap): e.g.
+#   SLURM_TIME=24:00:00 SLURM_PARTITION=week ./scripts/hpc/submit_all_model_baselines.sh
+# (Check your cluster: scontrol show partition; partition names vary.)
 SPLIT_TASKS="${SPLIT_TASKS:-1}"
 N="${N:-10000}"
+SLURM_TIME="${SLURM_TIME:-12:00:00}"
+SLURM_PARTITION="${SLURM_PARTITION:-}"
 
 SLURM_SCRIPT="$ROOT/scripts/hpc/run_prompt_baseline_all_tasks.slurm"
 if [ ! -f "$SLURM_SCRIPT" ]; then
@@ -82,7 +86,7 @@ if [ "${N}" = "0" ]; then
 else
   n_disp="$N"
 fi
-echo "Submitting $total Slurm jobs | PROMPTS=$PROMPTS | N=$n_disp | SPLIT_TASKS=$SPLIT_TASKS | STAGGER_SEC=${STAGGER_SEC}"
+echo "Submitting $total Slurm jobs | PROMPTS=$PROMPTS | N=$n_disp | SPLIT_TASKS=$SPLIT_TASKS | time=${SLURM_TIME}${SLURM_PARTITION:+ partition=$SLURM_PARTITION} | STAGGER_SEC=${STAGGER_SEC}"
 [ -n "${HF_TOKEN:-}" ] && echo "HF_TOKEN is set in this shell (passed via --export=ALL)." || echo "Tip: export HF_TOKEN before running this script for Hub auth."
 
 for PROMPT in $PROMPTS; do
@@ -92,13 +96,13 @@ for PROMPT in $PROMPTS; do
       for BTASK in "${TASKS[@]}"; do
         exp="$(build_export "$MODEL" "$MODEL_TYPE" "$PROMPT" "$BTASK")"
         echo "  -> $MODEL ($MODEL_TYPE) | $PROMPT | $BTASK"
-        sbatch --chdir="$ROOT" --export="$exp" "$SLURM_SCRIPT"
+        sbatch --chdir="$ROOT" --time="$SLURM_TIME" ${SLURM_PARTITION:+--partition="$SLURM_PARTITION"} --export="$exp" "$SLURM_SCRIPT"
         stagger
       done
     else
       exp="$(build_export "$MODEL" "$MODEL_TYPE" "$PROMPT" "")"
       echo "  -> $MODEL ($MODEL_TYPE) | $PROMPT"
-      sbatch --chdir="$ROOT" --export="$exp" "$SLURM_SCRIPT"
+      sbatch --chdir="$ROOT" --time="$SLURM_TIME" ${SLURM_PARTITION:+--partition="$SLURM_PARTITION"} --export="$exp" "$SLURM_SCRIPT"
       stagger
     fi
   done

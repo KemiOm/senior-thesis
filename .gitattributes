@@ -1,0 +1,2 @@
+# GitHub rejects files > 100MB; corpus.db is ~265MB — store as LFS pointer after: git lfs install && git lfs track 'output/corpus.db'
+output/corpus.db filter=lfs diff=lfs merge=lfs -text

@@ -18,8 +18,12 @@ build/
 sft/**/checkpoint-*/
 sft/**/final_model/
 
-# Output and data
-output/
+# Output: keep most artifacts local; version only prepared training JSON + corpus for advisor review.
+output/*
+!output/corpus.db
+!output/training_data/
+!output/training_data/**
+
 data/nltk_data/
 
 # Prompt baseline JSON outputs are large but versioned for thesis / advisor review.

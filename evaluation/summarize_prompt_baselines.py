@@ -5,7 +5,7 @@ Roll up prompt-only baseline JSONs into one comparison table (exact match on gol
 Writes:
   - evaluation/results/model_comparison.csv
   - evaluation/results/model_comparison_fair.csv
-  - evaluation/results/model_selection_notes.txt (prepends evaluation/model_selection_notes_preamble.txt if present)
+  - evaluation/results/model_selection_notes.txt
 
 Fair rows: use `--fair-n min` keeps runs comparable when line caps differ (see `--help`).
 
@@ -41,7 +41,6 @@ BASELINE_DIR = ROOT / "evaluation" / "results" / "baselines" / "prompt_only"
 OUT_CSV = ROOT / "evaluation" / "results" / "model_comparison.csv"
 OUT_CSV_FAIR = ROOT / "evaluation" / "results" / "model_comparison_fair.csv"
 OUT_NOTES = ROOT / "evaluation" / "results" / "model_selection_notes.txt"
-NOTES_PREAMBLE = ROOT / "evaluation" / "model_selection_notes_preamble.txt"
 
 GroupPTTask = tuple[str, str]
 
@@ -459,11 +458,6 @@ def write_selection_notes(rows: list[dict], prompt_type: str) -> None:
                 lines.append(f"**Heuristic default (meter_only only):** `{b[0]}`")
 
     body = "\n".join(lines) + "\n"
-    preamble = ""
-    if NOTES_PREAMBLE.is_file():
-        preamble = NOTES_PREAMBLE.read_text(encoding="utf-8").strip()
-        if preamble:
-            body = preamble + "\n\n---\n\n" + body
     OUT_NOTES.parent.mkdir(parents=True, exist_ok=True)
     OUT_NOTES.write_text(body, encoding="utf-8")
     print(f"Wrote {OUT_NOTES}")

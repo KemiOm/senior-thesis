@@ -2,28 +2,28 @@
   "full_corpus": {
     "n_lines": 320887,
     "meter_coverage": {
-      "n_with_meter": 320838,
-      "pct": 99.98472982701075
+      "n_with_meter": 320871,
+      "pct": 99.99501382106473
     },
     "stress_coverage": {
-      "n_with_stress": 140169,
-      "pct": 43.68173219856211
+      "n_with_stress": 319908,
+      "pct": 99.69490817639854
     },
     "rhyme_coverage": {
-      "n_with_rhyme": 186765,
-      "pct": 58.20273180278416
+      "n_with_rhyme": 183657,
+      "pct": 57.23416654460916
     },
     "cmu_coverage": {
-      "n_full_cmu": 313930,
-      "pct": 97.8319470717106
+      "n_full_cmu": 313949,
+      "pct": 97.83786815919623
     },
     "end_stopped": {
       "n": 265510,
       "pct": 82.74252306886848
     },
     "caesura": {
-      "n": 130585,
-      "pct": 40.69501101633909
+      "n": 129766,
+      "pct": 40.43978098209027
     }
   },
   "train": {
@@ -33,12 +33,12 @@
       "pct": 99.99323527706372
     },
     "stress_coverage": {
-      "n_with_stress": 91294,
-      "pct": 44.112758267457814
+      "n_with_stress": 205979,
+      "pct": 99.52791897794701
     },
     "rhyme_coverage": {
-      "n_with_rhyme": 121771,
-      "pct": 58.8390769052359
+      "n_with_rhyme": 119968,
+      "pct": 57.967877229942594
     },
     "cmu_coverage": {
       "n_full_cmu": 202642,
@@ -49,35 +49,35 @@
       "pct": 82.5677921877114
     },
     "caesura": {
-      "n": 82157,
-      "pct": 39.69781016254663
+      "n": 81652,
+      "pct": 39.453796942345235
     }
   },
   "dev": {
     "n_lines": 42831,
     "meter_coverage": {
-      "n_with_meter": 42798,
-      "pct": 99.92295300133081
+      "n_with_meter": 42831,
+      "pct": 100.0
     },
     "stress_coverage": {
-      "n_with_stress": 18998,
-      "pct": 44.35572365809811
+      "n_with_stress": 42830,
+      "pct": 99.99766524246456
     },
     "rhyme_coverage": {
-      "n_with_rhyme": 24751,
-      "pct": 57.78758375942658
+      "n_with_rhyme": 24461,
+      "pct": 57.1105040741519
     },
     "cmu_coverage": {
-      "n_full_cmu": 41683,
-      "pct": 97.31969834932642
+      "n_full_cmu": 41702,
+      "pct": 97.3640587424996
     },
     "end_stopped": {
       "n": 35915,
       "pct": 83.8528168849665
     },
     "caesura": {
-      "n": 17178,
-      "pct": 40.106464943615606
+      "n": 17097,
+      "pct": 39.91734958324578
     }
   },
   "test": {
@@ -87,12 +87,12 @@
       "pct": 99.9954059951763
     },
     "stress_coverage": {
-      "n_with_stress": 20039,
-      "pct": 46.029631331112896
+      "n_with_stress": 43534,
+      "pct": 99.99770299758815
     },
     "rhyme_coverage": {
-      "n_with_rhyme": 24710,
-      "pct": 56.75892959687608
+      "n_with_rhyme": 23969,
+      "pct": 55.05685080969335
     },
     "cmu_coverage": {
       "n_full_cmu": 42544,
@@ -103,8 +103,8 @@
       "pct": 82.08338118755024
     },
     "caesura": {
-      "n": 18378,
-      "pct": 42.21431032502584
+      "n": 18228,
+      "pct": 41.86975996324796
     }
   },
   "held_out_poets": {
@@ -114,12 +114,12 @@
       "pct": 100.0
     },
     "stress_coverage": {
-      "n_with_stress": 6925,
-      "pct": 35.505537325676784
+      "n_with_stress": 19504,
+      "pct": 100.0
     },
     "rhyme_coverage": {
-      "n_with_rhyme": 11133,
-      "pct": 57.080598851517635
+      "n_with_rhyme": 10859,
+      "pct": 55.675758818703855
     },
     "cmu_coverage": {
       "n_full_cmu": 19220,
@@ -130,8 +130,8 @@
       "pct": 82.86505332239541
     },
     "caesura": {
-      "n": 9163,
-      "pct": 46.980106644790816
+      "n": 9110,
+      "pct": 46.70836751435603
     }
   },
   "held_out_poems": {
@@ -141,8 +141,8 @@
       "pct": 100.0
     },
     "stress_coverage": {
-      "n_with_stress": 2913,
-      "pct": 36.136955712690735
+      "n_with_stress": 8061,
+      "pct": 100.0
     },
     "rhyme_coverage": {
       "n_with_rhyme": 4400,
@@ -157,8 +157,8 @@
       "pct": 84.59248232229253
     },
     "caesura": {
-      "n": 3709,
-      "pct": 46.01166108423273
+      "n": 3679,
+      "pct": 45.63949882148617
     }
   }
 }

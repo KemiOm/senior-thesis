@@ -4417,15 +4417,15 @@
   },
   {
     "input": "IF ere the moment should arrive,",
-    "target": "M D R"
+    "target": "AY1 V"
   },
   {
     "input": "Which hope herself despairs to see,",
-    "target": "D T S"
+    "target": "IY1"
   },
   {
     "input": "Fortune, thy suppliant shall strive",
-    "target": "S L S"
+    "target": "AY1 V"
   },
   {
     "input": "To raise a votive pile to thee.",
@@ -4433,115 +4433,115 @@
   },
   {
     "input": "BONA FORTUNA shall be plac'd",
-    "target": "L B P"
+    "target": "IY1 P"
   },
   {
     "input": "In golden letters round the dome,",
-    "target": "L R D"
+    "target": "OW1 M"
   },
   {
     "input": "The weary pilgrim there shall rest,",
-    "target": "P L R"
+    "target": "EH1 S T"
   },
   {
     "input": "And wait for happier days to come.",
-    "target": "D T K"
+    "target": "AH1 M"
   },
   {
     "input": "A curious lamp of bold design,",
-    "target": "V B D"
+    "target": "AY1 N"
   },
   {
     "input": "With emblematic sculpture crown'd,",
-    "target": "M S K"
+    "target": "AH1 L P CH ER0 K"
   },
   {
     "input": "Shall burn before thy sacred shrine,",
-    "target": "B S R"
+    "target": "AY1 N"
   },
   {
     "input": "And cast its cheering rays around.",
-    "target": "T R R"
+    "target": "AW1 N D"
   },
   {
     "input": "It shall be form'd of silent tears,",
-    "target": "V S T"
+    "target": "EH1 R Z"
   },
   {
     "input": "Slow dropping in the cave of care,",
-    "target": "K V K"
+    "target": "EH1 R"
   },
   {
     "input": "Through the cold gloom of ling'ring years",
-    "target": "V L Y"
+    "target": "IH1 R Z"
   },
   {
     "input": "Congeal'd to crystal by despair.",
-    "target": "K B D"
+    "target": "EH1 R"
   },
   {
     "input": "It shall be wrought with tales of woe,",
-    "target": "T V W"
+    "target": "OW1"
   },
   {
     "input": "Where Fortune turn'd the adverse tide,",
-    "target": "T D T"
+    "target": "AY1 D"
   },
   {
     "input": "And taught the stream of chance to flow",
-    "target": "T T F"
+    "target": "OW1"
   },
   {
     "input": "In channels hope herself denied.",
-    "target": "HH HH D"
+    "target": "AY1 D"
   },
   {
     "input": "There expectation's light shall burn,",
-    "target": "L L B"
+    "target": "ER1 N"
   },
   {
     "input": "And watchful faith the flame preserve;",
-    "target": "F F P"
+    "target": "ER1 V"
   },
   {
     "input": "If doubts and fears perchance return,",
-    "target": "F P R"
+    "target": "ER1 N"
   },
   {
     "input": "Hope shall have patience in reserve.",
-    "target": "P N R"
+    "target": "ER1 V"
   },
   {
     "input": "Bright lambent flame! till death shall end",
-    "target": "D L N"
+    "target": "EH1 N D"
   },
   {
     "input": "This mortal coil, and sorrow cease,",
-    "target": "N S S"
+    "target": "IY1 S"
   },
   {
     "input": "Thy beams shall consolation lend,",
-    "target": "L K L"
+    "target": "EH1 N D"
   },
   {
     "input": "And light us on the way to peace.",
-    "target": "W T P"
+    "target": "IY1 S"
   },
   {
     "input": "O goddess Fortune, from thine eyes",
-    "target": "F N Z"
+    "target": "AY1 Z"
   },
   {
     "input": "The mystic fillet straight unbind,",
-    "target": "F S N"
+    "target": "EY1 T N"
   },
   {
     "input": "See what thy random power denies,",
-    "target": "R P D"
+    "target": "AY1 Z"
   },
   {
     "input": "And own thyself unjust and blind.",
-    "target": "N N B"
+    "target": "AY1 N D"
   },
   {
     "input": "SIGH not, ye winds, as passing o'er",
@@ -117421,11 +117421,11 @@
   },
   {
     "input": "Your teeth from Hemmet, and your hair from Bolney,",
-    "target": "HH F B"
+    "target": "AH1 M B"
   },
   {
     "input": "Was not an eye too to be had for money?",
-    "target": "HH F M"
+    "target": "AH1 N IY0"
   },
   {
     "input": "TO me, whom in their lays the shepherds call",

@@ -1,0 +1,28 @@
+Baseline results saved to /Users/kemiomoniyi/Senior Thesis/evaluation/baseline_results.json
+{
+  "n_lines": 320887,
+  "meter_coverage": {
+    "n_with_meter": 320871,
+    "pct": 99.99501382106473
+  },
+  "stress_coverage": {
+    "n_with_stress": 319908,
+    "pct": 99.69490817639854
+  },
+  "rhyme_coverage": {
+    "n_with_rhyme": 183657,
+    "pct": 57.23416654460916
+  },
+  "cmu_coverage": {
+    "n_full_cmu": 313949,
+    "pct": 97.83786815919623
+  },
+  "end_stopped": {
+    "n": 265510,
+    "pct": 82.74252306886848
+  },
+  "caesura": {
+    "n": 129766,
+    "pct": 40.43978098209027
+  }
+}

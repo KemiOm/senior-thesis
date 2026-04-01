@@ -1,0 +1,8 @@
+Creating evaluation splits...
+  train: 2380 poems -> /Users/kemiomoniyi/Senior Thesis/evaluation/splits/train.json
+  dev: 510 poems -> /Users/kemiomoniyi/Senior Thesis/evaluation/splits/dev.json
+  test: 511 poems -> /Users/kemiomoniyi/Senior Thesis/evaluation/splits/test.json
+  held_out_poets: 217 poems -> /Users/kemiomoniyi/Senior Thesis/evaluation/splits/held_out_poets.json
+  held_out_poems: 100 poems -> /Users/kemiomoniyi/Senior Thesis/evaluation/splits/held_out_poems.json
+  meta -> /Users/kemiomoniyi/Senior Thesis/evaluation/splits/meta.json
+Done.

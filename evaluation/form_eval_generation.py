@@ -15,7 +15,7 @@ from sample.phonology_sample import get_phonology_for_line, line_meter_from_phon
 
 
 def rhyme_key_from_phonology(phonology_json: str) -> str:
-    """Same rule as training / run_prompt_baseline (ARPAbet tail from last stressed vowel)."""
+    """Same rule as training / run_prompt_baseline"""
     if not phonology_json:
         return ""
     try:
@@ -54,10 +54,10 @@ def phonology_has_not_found(phon: list[dict]) -> bool:
 def line_form_signature(line: str, *, relax_oov: bool = False) -> dict[str, Any]:
     """
     Extract comparable form features from arbitrary line text.
-    Uses CMU + optional espeak (see sample.phonology_sample.get_arpabet) — same pipeline for gold and pred.
+    Uses CMU + optional espeak 
 
     If relax_oov is True, a line counts as ok when there is a non-empty stress string even if some
-    words are CMU not_found (stress comes from pronounced words only; weaker coverage on archaic text).
+    words are CMU not_found 
     """
     text = (line or "").strip()
     if not text:

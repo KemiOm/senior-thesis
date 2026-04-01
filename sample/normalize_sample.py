@@ -6,8 +6,7 @@ import json
 import re
 from pathlib import Path
 
-# Project root (parent of sample/). Paths resolve relative to project root so scripts
-# work from sample/ or from the project root.
+# Project root 
 ROOT = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = ROOT / "output/poems"
 
@@ -16,12 +15,12 @@ def normalize_line(raw: str) -> str:
     """
     Normalize a single line of verse.
     Handles: space before punctuation, curly quotes/apostrophes, whitespace.
-    Preserves poetic contractions (e.g. 'T is, slumb'ring) — only standardizes the apostrophe char.
+    Preserves poetic contractions like'T is, slumb'ring
     """
     s = raw.strip()
     s = re.sub(r"\s+", " ", s)  # collapse multiple spaces
-    s = s.replace(""", '"').replace(""", '"')  # curly double quotes → straight
-    s = s.replace("'", "'").replace("'", "'").replace("ʼ", "'")  # curly/smart apostrophe → straight
+    s = s.replace(""", '"').replace(""", '"')  # curly double quotes
+    s = s.replace("'", "'").replace("'", "'").replace("ʼ", "'")  # curly/smart apostrophe 
     s = re.sub(r"[\u2013\u2014]", "-", s)  # en/em dash → hyphen
     s = re.sub(r"\s+([,.;:!?])", r"\1", s)  # remove space before punctuation
     return s

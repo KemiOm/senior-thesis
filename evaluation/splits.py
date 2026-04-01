@@ -71,13 +71,13 @@ def create_splits(
     Strategy:
     1. Held-out poets: Select N authors with at least 3 poems; put all their
        poems in held_out_poets. Tests generalization to unseen authors.
-    2. Held-out poems: From the remaining poems (not in held_out_poets),
+    2. Held-out poems: From the remaining poems,
        randomly select held_out_poems_n poems. Tests generalization to
        unseen poems within known authors.
     3. Train/dev/test: Split the rest by train_frac, dev_frac, test_frac.
 
     Writes train.json, dev.json, test.json, held_out_poets.json,
-    held_out_poems.json, and meta.json (counts and parameters).
+    held_out_poems.json, and meta.json 
     """
     if abs(train_frac + dev_frac + test_frac - 1.0) > 0.001:
         raise ValueError("train_frac + dev_frac + test_frac must equal 1.0")

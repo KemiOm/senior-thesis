@@ -1,7 +1,7 @@
 """
 Batch-normalize extracted poems.
-Reads from output/poems/, applies normalize_poem, writes to output/poems_normalized/.
-By default skips poems that already have normalized output (use --force to reprocess).
+Reads from output/poems/, applies normalize_poem, writes to output/poems_normalized/
+By default skips poems that already have normalized output 
 """
 
 import argparse

@@ -42,16 +42,16 @@ For prompt baselines, `scripts/run_prompt_baseline.py` loads `output/training_da
 
 ---
 
-## 3. Four conditions (tasks) — same input text, different target
+## 3. Four conditions (tasks)
 
-| Task | What the model is asked to predict (`gold_target` / `target`) |
-|------|----------------------------------------------------------------|
-| **meter_only** | Stress / meter pattern as a normalized string (e.g. `+/-` pattern). |
-| **rhyme_only** | Rhyme key string from the phonology pipeline. |
-| **natural_text** | The **next line** (or continuation) as natural language. |
-| **combined** | One structured string bundling fields (e.g. `meter:…|rhyme:…|end:…|caesura:…`). |
+| Task | Typical `input` | What the model predicts (`gold_target` / `target`) |
+|------|-----------------|------------------------------------------------------|
+| **meter_only** | One line of verse | Stress / meter pattern (e.g. `+/-` string). |
+| **rhyme_only** | One line of verse | Rhyme key from the phonology pipeline. |
+| **natural_text** | Prior line(s) in the **same poem** (or `[start]`) | **Next line** surface text (continuation). |
+| **combined** | **Same as natural_text** | **Next line’s** bundled string (`meter:…|rhyme:…|end:…|caesura:…`). Rows may include `next_line` for strict-eval tooling. |
 
-**Comparability rule:** Same **test** lines (same `input`) and same **task definition**; differences are only in the model or prompt. That makes **exact match** and task-specific metrics directly comparable.
+**Comparability rule:** Rows come from the same corpus split; **natural_text** and **combined** share the same continuation `input` per position. Compare models on the same task and `n_scored`.
 
 ---
 

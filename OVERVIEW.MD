@@ -198,12 +198,12 @@ for name, ids in [("train", train_ids), ("dev", dev_ids), ("test", test_ids), ..
 
 *How they were built.* The notebook (1) loads poem IDs per split from `evaluation/splits/{train,dev,test}.json`, (2) connects to `output/corpus.db` and iterates over lines in those poems (normalized text, stress, meter_type, rhyme_group, phonology, end_stopped, caesura), (3) for each condition builds a list of `{"input": ..., "target": ...}` pairs, then (4) writes each list to `output/training_data/{condition}/{split}.json`. The pairing logic is:
 
-- **natural_text:** input = previous line(s) or `[start]`; target = current line (continuation).
+- **natural_text:** input = previous line(s) in the **same poem** (joined with ` | `) or `[start]`; target = **next line** surface text (continuation). Context does not cross poem boundaries.
 - **meter_only:** input = line text; target = stress pattern as `+`/`-` (only lines with valid stress, 5+ syllables).
 - **rhyme_only:** input = line text; target = rhyme key from phonology (last stressed syllable onward) or rhyme_group.
-- **combined:** input = line text; target = single string `meter:STRESS|rhyme:KEY|end:0|caesura:N`.
+- **combined:** **same input as natural_text** (continuation context); target = bundled string for the **next** line: `meter:STRESS|rhyme:KEY|end:0|caesura:N`. Rows also include optional `next_line` (that line’s text) for strict-eval alignment in `run_prompt_baseline.py`.
 
-Example (meter_only): one row in `test.json` is `{"input": "Tired Nature's sweet restorer, balmy Sleep!", "target": "+-+-+-+-+-+"}`. Example (combined): `{"input": "Tired Nature's sweet restorer, balmy Sleep!", "target": "meter:+-+-+-+-+-+|rhyme:IY1 P|end:1|caesura:4"}`. The baseline script reads these JSONs, turns each `input` into a prompt (using the task template), and sends the prompt to the model; the `target` is the gold used for metrics.
+Example (meter_only): one row in `test.json` is `{"input": "Tired Nature's sweet restorer, balmy Sleep!", "target": "+-+-+-+-+-+"}`. Example (combined): `{"input": "…prior line…", "target": "meter:+-+-+-+-+-+|rhyme:IY1 P|end:1|caesura:4", "next_line": "…actual next line text…"}`. The baseline script reads these JSONs, turns each `input` into a prompt (using the task template), and sends the prompt to the model; the `target` is the gold used for metrics.
 
 Minimal code pattern (from the notebook):
 

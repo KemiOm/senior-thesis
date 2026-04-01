@@ -5,7 +5,7 @@ Computes meter, rhyme, CMU coverage, end-stopping, and caesura for the full corp
 and for each split (train, dev, test, held_out_poets, held_out_poems) when those files exist.
 
 Writes `evaluation/baseline_results.json`. Those numbers describe how complete the
-annotations are; they are a useful baseline before comparing model generations.
+annotations are
 
 Run from project root: python evaluation/run_baseline.py
 
@@ -16,7 +16,6 @@ Needs `output/corpus.db` (from `python scripts/export_sqlite.py`) and
 import sys
 from pathlib import Path
 
-# Ensure project root is on sys.path so evaluation package is importable.
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))

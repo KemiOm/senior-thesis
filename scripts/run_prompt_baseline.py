@@ -21,14 +21,16 @@ import re
 import sys
 from pathlib import Path
 
-# Project paths
+
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+
+from evaluation.structured_baseline_metrics import parse_combined_bundle
 DATA_DIR = ROOT / "output" / "training_data"
 RESULTS_DIR = ROOT / "evaluation" / "results" / "baselines" / "prompt_only"
 
-# Few-shot: build an example quatrain from `output/corpus.db` so labels (stress/rhyme/combined)
+# Few-shot: build an example quatrain from `output/corpus.db` so labels stress/rhyme/combined
 # match the same rules as `output/training_data/...`.
 FEW_SHOT_SEPARATOR = "\n\n---\n\n"
 _EXAMPLE_QUATRAIN = None
@@ -50,7 +52,7 @@ def stress_to_plus_minus(s: str) -> str:
 
 def rhyme_key_from_phonology(phonology_json: str) -> str:
     """
-    Derive rhyme key from phonology using the same logic as
+    Get rhyme key from phonology using the same logic as
     `notebooks/01_prepare_training_data.ipynb`.
     Returns '' if unavailable.
     """
@@ -91,7 +93,7 @@ MIN_STRESS_PATTERN_LEN = 5
 
 def line_row_to_labels(row: tuple) -> dict:
     """
-    One DB line row -> label dict (same fields as former make_label_dict in get_example_quatrain).
+    One DB line row -> label dict 
     row: (line_index, normalized, stress, meter_type, rhyme_group, phonology, end_stopped, caesura)
     """
     (
@@ -110,16 +112,13 @@ def line_row_to_labels(row: tuple) -> dict:
     rg = rhyme_group or ""
     rhyme_only_target = rhyme_key if rhyme_key else (rg if rg and rg != "-" else "none")
 
-    meter_tok = stress_raw or (meter_type or "unknown")
     rg_combined = rhyme_group or "-"
     rhyme_tok = rhyme_key if rhyme_key else (rg_combined if rg_combined != "-" else "none")
     end_tok = 1 if end_stopped else 0
     caes_tok = _caesura_tok(caesura)
-    combined_target = f"meter:{meter_tok}|rhyme:{rhyme_tok}|end:{end_tok}|caesura:{caes_tok}"
-
-    # Prefer stress string in the combined meter slot when available.
-    combined_target_stress = (
-        f"meter:{stress_pm}|rhyme:{rhyme_tok}|end:{end_tok}|caesura:{caes_tok}" if stress_pm else combined_target
+    mt = (meter_type or "").strip() or "unknown"
+    combined_target = (
+        f"stress:{stress_pm or '-'}|meter_type:{mt}|rhyme:{rhyme_tok}|end:{end_tok}|caesura:{caes_tok}"
     )
 
     return {
@@ -132,7 +131,6 @@ def line_row_to_labels(row: tuple) -> dict:
         "rhyme_group": rhyme_group,
         "rhyme_only_target": rhyme_only_target,
         "combined_target": combined_target,
-        "combined_target_stress": combined_target_stress,
         "end_tok": end_tok,
         "caes_tok": caes_tok,
     }
@@ -202,7 +200,7 @@ def build_unambiguous_label_map(conn) -> dict[str, dict]:
             (
                 g["stress_pm"],
                 g["rhyme_only_target"],
-                g["combined_target_stress"],
+                g["combined_target"],
             )
             for g in group
         }
@@ -226,7 +224,7 @@ def build_strict_quatrain_input_keys(conn) -> set[str]:
 
 
 def is_reliable_gold_json(task: str, target: str) -> bool:
-    """Filter using JSON target only (no DB). Used when --gold-filter reliable without --strict-eval."""
+    """Filter using JSON target only  Used when --gold-filter reliable without --strict-eval."""
     t = (target or "").strip()
     if not t:
         return False
@@ -240,13 +238,17 @@ def is_reliable_gold_json(task: str, target: str) -> bool:
     if task == "natural_text":
         return True
     if task == "combined":
-        m = re.match(r"meter:([^|]+)\|rhyme:([^|]+)\|", t)
-        if not m:
+        parsed = parse_combined_bundle(t)
+        if not parsed:
             return False
-        meter_part, rhyme_part = m.group(1).strip(), m.group(2).strip()
-        if not meter_part or meter_part.lower() == "unknown":
-            return False
+        rhyme_part = parsed.get("rhyme", "")
         if rhyme_part.lower() in ("none", ""):
+            return False
+        mt = (parsed.get("meter_type") or "").strip()
+        if mt.lower() in ("unknown", ""):
+            return False
+        meter_part = (parsed.get("stress") or parsed.get("meter") or "").strip()
+        if meter_part in ("", "-"):
             return False
         mp = meter_part
         if all(c in "+-" for c in mp):
@@ -273,7 +275,7 @@ def apply_regold_target(task: str, d: dict) -> str | None:
     if task == "natural_text":
         return None  # keep JSON target
     if task == "combined":
-        return d["combined_target_stress"]
+        return d["combined_target"]
     return None
 
 
@@ -325,7 +327,15 @@ def filter_and_regold_data(
 
     out = []
     for item in data:
-        k = input_normalize_key(item.get("input", item.get("line", "")))
+        item_input = item.get("input", item.get("line", ""))
+        # Continuation tasks: strict_eval membership is on the gold *next line* surface text,
+        # not the multi-line context string.
+        if task == "natural_text":
+            k = input_normalize_key(item.get("target", ""))
+        elif task == "combined":
+            k = input_normalize_key(item.get("next_line") or item_input)
+        else:
+            k = input_normalize_key(item_input)
 
         if not k or k not in strict_keys:
             meta["n_dropped_no_key"] += 1
@@ -351,7 +361,7 @@ def filter_and_regold_data(
 
 def get_example_quatrain_lines():
     """
-    Choose one deterministic stanza (first that satisfies constraints) and
+    Choose one deterministic stanza first that satisfies constraints and
     return 4 lines with precomputed labels for:
       - meter_only ICL: stress as +/- via stress_to_plus_minus (same as training targets)
       - rhyme_only: rhyme_key if available else rhyme_group else 'none'
@@ -436,15 +446,16 @@ def render_few_shot_example_prefix(task: str, example_lines: list[dict]) -> str:
         )
 
     if task == "combined":
-        out = [
-            "Example poem (quatrain). Output one bundled line per input line:",
-            "meter:X|rhyme:Y|end:Z|caesura:C",
-            "",
-        ]
-        for l in example_lines:
-            out.append(f"Line: {l['normalized']}")
-            out.append(l.get("combined_target_stress") or l["combined_target"])
-        return "\n".join(out)
+        l1, l2, l3, l4 = example_lines[0], example_lines[1], example_lines[2], example_lines[3]
+        c1, c2, c3, c4 = l1["combined_target"], l2["combined_target"], l3["combined_target"], l4["combined_target"]
+        return (
+            "Example: after each context, output only the next line's bundled label "
+            "stress:X|meter_type:Y|rhyme:Z|end:E|caesura:C.\n\n"
+            f"Context: [start]\n{c1}\n\n"
+            f"Context: {l1['normalized']}\n{c2}\n\n"
+            f"Context: {l2['normalized']}\n{c3}\n\n"
+            f"Context: {l3['normalized']}\n{c4}\n"
+        )
 
     raise ValueError(f"Unsupported task for few-shot prefix: {task}")
 
@@ -461,9 +472,7 @@ def render_one_shot_example(task: str, example_lines: list[dict]) -> str:
     if task == "natural_text":
         return f"Context: {l1['normalized']}\nNext line: {l2['normalized']}"
     if task == "combined":
-        c1 = l1.get("combined_target_stress") or l1["combined_target"]
-        c2 = l2.get("combined_target_stress") or l2["combined_target"]
-        return f"Line: {l1['normalized']}\n{c1}\nLine: {l2['normalized']}\n{c2}"
+        return f"Context: [start]\n{l1['combined_target']}\nContext: {l1['normalized']}\n{l2['combined_target']}"
     raise ValueError(f"Unsupported task for one_shot example: {task}")
 
 # Prompt templates: task -> prompt_type -> template (use {line} or {input} placeholder).
@@ -525,24 +534,28 @@ PROMPTS = {
     },
     "combined": {
         "zero_shot": (
-            "Given this line of poetry, output a single line with four fields (training format):\n"
-            "meter:X — stress string from the corpus if present, otherwise the abstract meter type;\n"
-            "rhyme:Y — ARPAbet rhyme tail, else rhyme-group letter, else none;\n"
-            "end:Z — 1 if the line is end-stopped, else 0;\n"
-            "caesura:C — caesura annotation from the corpus (e.g. word index), or - if absent.\n"
-            "Use exactly this template and no other text: meter:X|rhyme:Y|end:Z|caesura:C\n\n"
-            "Line: {line}\n"
+            "Given the verse so far, output only the formal annotation for the single next line, "
+            "using exactly this template and no other text: "
+            "stress:X|meter_type:Y|rhyme:Z|end:E|caesura:C\n"
+            "stress:X — metrical stress (+/- per position), or - if unknown;\n"
+            "meter_type:Y — abstract label (e.g. iambic pentameter), or unknown;\n"
+            "rhyme:Z — ARPAbet rhyme tail, else rhyme-group letter, else none;\n"
+            "end:E — 1 if the line is end-stopped, else 0;\n"
+            "caesura:C — corpus caesura (e.g. word index), or - if absent.\n\n"
+            "Context uses previous line(s) joined with \" | \", or [start] for the poem's opening.\n\n"
+            "Context: {line}\n"
         ),
         "one_shot": (
-            "Task: bundle meter, rhyme, end-stopping, and caesura in one string: meter:X|rhyme:Y|end:Z|caesura:C "
-            "(same meaning as the example).\n\n"
+            "Task: after the context, output only the next line's bundled string "
+            "stress:X|meter_type:Y|rhyme:Z|end:E|caesura:C (same meaning as the example).\n\n"
             "Example:\n"
             "{EXAMPLE}\n\n"
-            "Line: {line}\n"
+            "Context: {line}\n"
         ),
         "few_shot": (
-            "Output meter:X|rhyme:Y|end:Z|caesura:C for this line only, same format as the examples.\n\n"
-            "Line: {line}\n"
+            "Output only stress:X|meter_type:Y|rhyme:Z|end:E|caesura:C for the next line after the context, "
+            "same format as the examples.\n\n"
+            "Context: {line}\n"
         ),
     },
 }
@@ -714,7 +727,7 @@ def main():
         help=(
             "Keep only test lines that appear in a fully reliable 4-line stanza in corpus.db "
             "(stress +/- length≥5, meter_type not unknown, rhyme not none); "
-            "regold targets from DB (meter/rhyme/combined use stress-based meter slot). "
+            "regold targets from DB (combined uses stress:X|meter_type:Y|… bundle). "
             "Requires output/corpus.db. Recommended for strict baseline runs."
         ),
     )

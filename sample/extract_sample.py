@@ -22,7 +22,7 @@ def get_line_text(line_elem) -> str:
     and spaces between each tag—whitespace is collapsed to a single space.
     """
     raw = "".join(line_elem.itertext())
-    # Collapse runs of whitespace (spaces, newlines, tabs) to a single space
+    # Collapse runs of whitespace to a single space
     return " ".join(raw.split()).strip()
 
 
@@ -37,12 +37,13 @@ def extract_poem(xml_path: Path) -> Optional[dict]:
         # root is the top-level <TEI> element
         root = tree.getroot()
     except Exception as e:
-        # Catch any parse error (malformed XML, encoding issues, etc.)
+        # Catch any parse error 
         print(f"Parse error {xml_path}: {e}")
         return None
 
-    # find() returns the first match; XPath ".//" means "any descendant"
-    # TEI uses xmlns; the full namespace URI is required in the tag.
+    # find() returns the first match
+    # TEI uses xmlns
+    # the full namespace URI is required in the tag -> got an error when not using it
     title_el = root.find(".//{http://www.tei-c.org/ns/1.0}title")
     author_el = root.find(".//{http://www.tei-c.org/ns/1.0}author")
 

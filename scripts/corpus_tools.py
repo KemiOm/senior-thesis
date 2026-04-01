@@ -202,7 +202,11 @@ def cmd_verify_data(args: argparse.Namespace) -> int:
         else:
             print(f"\nOK — poem_id check: {checked} rows with poem_id in test.json are ⊆ test split ({len(test_ids)} poems).")
 
-    print("\nWhy task line counts differ: meter/rhyme/combined drop or skip some lines; natural_text uses pairs — expect different N per task for the same split.")
+    print(
+        "\nWhy task line counts differ: meter_only skips short/invalid stress; "
+        "natural_text and combined use the same continuation rows (same N); "
+        "rhyme_only uses one row per corpus line."
+    )
     return 0
 
 
@@ -432,7 +436,9 @@ def cmd_annotation_sources(args: argparse.Namespace) -> int:
     totals = {
         "stress_poesy": 0,
         "stress_empty": 0,
+        "stress_notebook": 0,
         "meter_poesy": 0,
+        "meter_empty": 0,
         "meter_phonology": 0,
         "rhyme_poesy": 0,
         "rhyme_empty": 0,
@@ -471,17 +477,25 @@ def cmd_annotation_sources(args: argparse.Namespace) -> int:
     s_poesy, s_empty = totals["stress_poesy"], totals["stress_empty"]
     pct_p = 100 * s_poesy / total_lines if total_lines else 0
     pct_e = 100 * s_empty / total_lines if total_lines else 0
-    print("STRESS (metrical, Poesy only — no fallback)")
-    print(f"  Poesy:   {s_poesy:>8}  ({pct_p:.1f}%)")
-    print(f"  Empty:   {s_empty:>8}  ({pct_e:.1f}%)")
+    snb = totals.get("stress_notebook", 0)
+    print("STRESS (non-empty line count; see stress_notebook for metricalgpt path)")
+    print(f"  Non-empty: {s_poesy:>8}  ({pct_p:.1f}%)")
+    print(f"  Empty:     {s_empty:>8}  ({pct_e:.1f}%)")
+    if snb:
+        print(f"  Notebook override lines (subset): {snb:>8}")
     print()
-    m_poesy, m_phon = totals["meter_poesy"], totals["meter_phonology"]
-    m_total = m_poesy + m_phon
+    m_poesy = totals["meter_poesy"]
+    m_empty = totals.get("meter_empty", 0)
+    m_phon = totals["meter_phonology"]
+    m_total = m_poesy + m_empty + m_phon
     pct_mp = 100 * m_poesy / m_total if m_total else 0
+    pct_me = 100 * m_empty / m_total if m_total else 0
     pct_mph = 100 * m_phon / m_total if m_total else 0
-    print("METER (Poesy metrical vs phonology/CMU lexical)")
-    print(f"  Poesy:      {m_poesy:>8}  ({pct_mp:.1f}%)")
-    print(f"  Phonology:  {m_phon:>8}  ({pct_mph:.1f}%)")
+    print("METER (Prosodic pipe scansion vs empty; legacy meter_phonology = old CMU-in-meter bug)")
+    print(f"  Poesy pipe:  {m_poesy:>8}  ({pct_mp:.1f}%)")
+    print(f"  Empty:       {m_empty:>8}  ({pct_me:.1f}%)")
+    if m_phon:
+        print(f"  Legacy phon: {m_phon:>8}  ({pct_mph:.1f}%)")
     print()
     r_poesy, r_empty = totals["rhyme_poesy"], totals["rhyme_empty"]
     r_total = r_poesy + r_empty

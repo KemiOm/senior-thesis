@@ -4,7 +4,7 @@ Turn one normalized poem JSON into an annotated poem JSON.
 What gets added per line: CMU-style pronunciations, stress and meter hints from the
 Poesy library which wraps Prosodic, rhyme groups from Poesy when parsing succeeds, plus
 simple rules for end-of-line punctuation (end-stopped vs run-on) and caesura (a mid-line
-pause). Nothing is hand-labeled; it is all pipeline output you can audit or replace later.
+pause). 
 
 Dependencies: pronouncing (CMU Pronouncing Dictionary), Poesy (Prosodic + rhyme), and
 optionally espeak for words missing from CMU when not in batch mode.
@@ -22,8 +22,7 @@ import re
 import threading
 from pathlib import Path
 
-# Project root (parent of sample/). Paths resolve relative to project root so scripts
-# work from sample/ or from the project root.
+# Project root 
 ROOT = Path(__file__).resolve().parent.parent
 INPUT_DIR = ROOT / "output/poems_normalized"
 OUTPUT_DIR = ROOT / "output/poems_annotated"
@@ -63,13 +62,13 @@ os.environ.setdefault("NLTK_DATA", str(_nltk_data))
 
 
 def _ensure_nltk_punkt():
-    """Make sure NLTK’s sentence tokenizer data exists.
-
-    Prosodic tokenizes text before scansion; it expects punkt
-     Data is stored under the project’s ``data/nltk_data`` folder 
+    """Download NLTK punkt data if Prosodic/Poesy will run wasn't needed for CMU-only helper
     """
     try:
         import nltk
+    except ImportError:
+        return
+    try:
         nltk.data.find("tokenizers/punkt_tab")
     except LookupError:
         try:
@@ -84,7 +83,8 @@ def _ensure_nltk_punkt():
 def _patch_prosodic_config():
     """Older Poesy code expects ``prosodic.config`` to exist.
 
-    Newer Prosodic builds omit it; attach an empty dict so imports do not crash.
+    Newer Prosodic builds omit it; attach an empty dict so imports do not crash
+    got an error when not attaching an empty dict
     """
     try:
         import prosodic
@@ -104,20 +104,35 @@ def _patch_prosodic_text_meter():
     callers pass meter= as a string.  If this block
     fails silently  Poesy errors out 
     """
+    import importlib
+    import warnings
+
     try:
         import prosodic
         from prosodic.texts.texts import TextModel
         from prosodic.ents import Entity
+        from prosodic.parsing import Meter
+
+        # ``import prosodic.texts.texts as _m`` can raise ImportError on some Python/Prosodic
+        # this was for error handling had to search to find this solution
+        _texts_mod = importlib.import_module("prosodic.texts.texts")
 
         def _patched_text(txt="", fn="", lang=None, parent=None, children=None, tokens_df=None, **kwargs):
-            kwargs.pop("meter", None)  # Poesy passes string; Prosodic needs Meter object or None
+            kwargs.pop("meter", None)  # Poesy passes p.Text(line, meter=...); TextModel has no meter kw
             return TextModel(
                 txt=txt, fn=fn, lang=lang, parent=parent,
                 children=children or [], tokens_df=tokens_df, **kwargs
             )
 
         prosodic.Text = _patched_text
-        prosodic.texts.texts.Text = _patched_text
+        _texts_mod.Text = _patched_text
+
+        def _coerce_meter_value(res, meter_kwargs):
+            """Poesy stores poem ``meter`` as a label string on ``text._mtr``; Prosodic needs Meter."""
+            if isinstance(res, str) or (res is not None and not hasattr(res, "parse_unit")):
+                m = Meter(**meter_kwargs) if meter_kwargs else Meter()
+                return m
+            return res
 
         # Entity.get_meter: Poesy passes meter= str to parse(); Prosodic 2.x expects a Meter instance.
         # Also, Poesy sets poem.meter to a string; get_meter() inherits self.text._mtr and returns
@@ -127,33 +142,70 @@ def _patch_prosodic_text_meter():
             if isinstance(meter, str):
                 meter = None
             res = _orig_get_meter(self, meter=meter, **meter_kwargs)
-            if isinstance(res, str):
-                from prosodic.parsing import Meter
-
-                self._mtr = Meter(**meter_kwargs) if meter_kwargs else Meter()
+            res = _coerce_meter_value(res, meter_kwargs)
+            if res is not getattr(self, "_mtr", None):
+                self._mtr = res
                 tx = getattr(self, "text", None)
                 if tx is not None and isinstance(getattr(tx, "_mtr", None), str):
-                    tx._mtr = self._mtr
-                return self._mtr
+                    tx._mtr = res
             return res
 
         Entity.get_meter = _patched_get_meter
 
-        # parse/parse_iter: Poesy passes meter= string; Prosodic expects Meter object
-        import prosodic.texts.texts as _texts_mod
+        # parse_iter: must never see meter as str (parse_unit). Sanitize poem text._mtr before get_meter.
+        _orig_parse_iter = _texts_mod.TextModel.parse_iter
+
+        def _patched_parse_iter(self, combine_by=None, num_proc=None, lim=None, force=False, meter=None, **meter_kwargs):
+            if isinstance(meter, str):
+                meter = None
+            tx = getattr(self, "text", None)
+            if tx is not None and isinstance(getattr(tx, "_mtr", None), str):
+                tx._mtr = Meter(**meter_kwargs) if meter_kwargs else Meter()
+            if isinstance(getattr(self, "_mtr", None), str):
+                self._mtr = Meter(**meter_kwargs) if meter_kwargs else Meter()
+            yield from _orig_parse_iter(
+                self,
+                combine_by=combine_by,
+                num_proc=num_proc,
+                lim=lim,
+                force=force,
+                meter=meter,
+                **meter_kwargs,
+            )
+
+        _texts_mod.TextModel.parse_iter = _patched_parse_iter
+
+        # parse: Poesy passes meter= string; Prosodic expects Meter object
         _orig_parse = _texts_mod.TextModel.parse
 
         def _patched_parse(self, combine_by=None, num_proc=None, force=False, lim=None, meter=None, **meter_kwargs):
             if isinstance(meter, str):
                 meter = None
             return _orig_parse(
+                self,
                 combine_by=combine_by, num_proc=num_proc, force=force,
                 lim=lim, meter=meter, **meter_kwargs
             )
 
         _texts_mod.TextModel.parse = _patched_parse
-    except Exception:
-        pass
+
+        # Poesy calls ``text.words()`` on each ``p.Text(line, ...)`` object. In Prosodic 2.x,
+        # ``words`` is usually resolved via ``Entity.__getattr__`` to a ``WordTokenList``
+        # instance, so ``text.words`` is that list and ``text.words()`` crashes (not callable).
+        def _textmodel_words(self):
+            return self.wordtokens
+
+        _texts_mod.TextModel.words = _textmodel_words  # type: ignore[assignment]
+
+        # For ``Line`` objects (``WordTokenList``), the old API was ``.words()`` too.
+        from prosodic.words.wordtokenlist import WordTokenList
+
+        def _words_callable(self):
+            return self
+
+        WordTokenList.words = _words_callable  # type: ignore[assignment]
+    except Exception as e:
+        warnings.warn(f"prosodic/poesy compatibility patch failed: {e}", RuntimeWarning)
 
 
 _ensure_nltk_punkt()
@@ -168,7 +220,9 @@ except Exception as e:
     HAS_PRONOUNCING = False
     _PRONOUNCING_ERR = str(e)
 
-from poesy import Poem as PoesyPoem
+# Poesy is imported lazily inside ``annotate_with_poesy`` so that CMU-only callers
+# (e.g. ``get_phonology_for_line`` / ``evaluation.form_eval_generation`` on HPC) do not
+# require ``pip install poesy`` for prompt baselines.
 
 
 def _arpabet_from_espeak(word: str) -> list:
@@ -414,19 +468,49 @@ def _log_poesy(msg: str) -> None:
         print(f"[poesy-debug] {msg}", file=__import__("sys").stderr)
 
 
+def _best_parse_from_prosodic_line(line_obj) -> object:
+    """Pick the best Prosodic ``Parse`` for one line (Prosodic 2.x ``parses[0].best_parse`` or older API)."""
+    parses = getattr(line_obj, "parses", None)
+    if parses is not None:
+        try:
+            if len(parses) > 0:
+                pl0 = parses[0]
+                bp = getattr(pl0, "best_parse", None)
+                if bp is not None:
+                    return bp
+        except (TypeError, IndexError, AttributeError):
+            pass
+    for attr in ("bestParses", "best_parses"):
+        val = getattr(line_obj, attr, None)
+        if val is not None:
+            bps = val() if callable(val) else val
+            if hasattr(bps, "__iter__") and not isinstance(bps, str):
+                bps = list(bps) if bps else []
+                return bps[0] if bps else None
+    return None
+
+
+def _pipe_meter_from_parse(bp) -> str:
+    """Turn Parse ``txt`` (space-separated scansion tokens) into ``a|B|c`` like stored JSON examples."""
+    if bp is None:
+        return ""
+    t = getattr(bp, "txt", None)
+    if not (t and isinstance(t, str)):
+        return ""
+    parts = t.split()
+    return "|".join(parts) if parts else ""
+
+
 def annotate_with_poesy(poem: dict) -> dict:
     """Run Poesy’s Poem parser to get rhyme groups and Prosodic line parses for one poem.
 
     Poesy wraps Prosodic: it builds a metrical parse and a rhyme graph. Read, for each line,
     the best available stress string and meter string from the Prosodic line object, plus a
-    rhyme label per line position. Tries to read an overall meter label for the poem from Poesy’s internal stats when present.
+    rhyme label per line position. Tries to read an overall meter label for the poem from Poesy’s stats when present.
 
     If anything in that stack throws version mismatch, huge poem timeout,  return
     empty annotations and ``annotate_poem`` falls back to CMU-only fields.
-
-    Environment:
         MAX_POEM_LINES: if set and the poem has more lines, skip Poesy entirely (batch safety).
-        POESY_DEBUG: set to 0 to silence stderr diagnostics.
 
     Returns:
         Dict with keys:
@@ -448,12 +532,21 @@ def annotate_with_poesy(poem: dict) -> dict:
         _log_poesy("empty text, returning {}")
         return {"per_line": {}, "meter_type": None}
     try:
+        from poesy import Poem as PoesyPoem
+
         _log_poesy(f"building Poem from {len(text)} chars, {text.count(chr(10))} newlines")
         p = PoesyPoem(text)
         _log_poesy("calling p.parse()...")
         p.parse()  # trigger metrical parsing
         _log_poesy("accessing p.rhymes (triggers rhyme_net)...")
-        rhymes_raw = p.rhymes  # trigger rhyme_net computation
+        try:
+            rhymes_raw = p.rhymes  # trigger rhyme_net computation
+        except Exception as er:
+            _log_poesy(
+                f"p.rhymes/rhyme_net failed (Poesy vs Prosodic 2.x API): {type(er).__name__}: {er}; "
+                "continuing without rhyme groups"
+            )
+            rhymes_raw = {}
         _log_poesy(f"p.rhymes type={type(rhymes_raw).__name__}, len={len(rhymes_raw) if rhymes_raw else 0}")
         if rhymes_raw:
             sample = list(rhymes_raw.items())[:5]
@@ -469,25 +562,44 @@ def annotate_with_poesy(poem: dict) -> dict:
                 continue
             parse_str = getattr(line_obj, "parse_str", None)
             parse_str = parse_str(viols=False) if callable(parse_str) else None
-            bp = None
-            for attr in ("bestParses", "best_parses"):
-                val = getattr(line_obj, attr, None)
-                if val is not None:
-                    bps = val() if callable(val) else val
-                    if hasattr(bps, "__iter__") and not isinstance(bps, str):
-                        bps = list(bps) if bps else []
-                        bp = bps[0] if bps else None
-                    break
-            m_raw = getattr(bp, "parse_meter", None) or getattr(bp, "meter_str", None)
-            _m = getattr(bp, "meter", None)
-            if _m is not None and isinstance(_m, str):
-                m_raw = m_raw or _m
-            meter = m_raw if (m_raw is not None and isinstance(m_raw, str)) else parse_str
-            stress = getattr(bp, "stress", None) or getattr(bp, "stress_str", None) or getattr(bp, "parse_stress", None) or getattr(bp, "parse_stress_str", None)
-            if callable(stress):
-                stress = stress()
+            bp = _best_parse_from_prosodic_line(line_obj)
+            m_raw = None
+            stress = None
+            if bp is not None:
+                sget = (
+                    getattr(bp, "stress_str", None)
+                    or getattr(bp, "stress", None)
+                    or getattr(bp, "parse_stress", None)
+                    or getattr(bp, "parse_stress_str", None)
+                )
+                if callable(sget):
+                    sget = sget()
+                stress = sget if isinstance(sget, str) else None
+                m_raw = getattr(bp, "parse_meter", None)
+                if isinstance(m_raw, str) and m_raw.strip():
+                    pass
+                else:
+                    m_raw = _pipe_meter_from_parse(bp)
+                    if not m_raw:
+                        ms = getattr(bp, "meter_str", None)
+                        if callable(ms):
+                            try:
+                                m_raw = ms("|")
+                            except TypeError:
+                                m_raw = ms()
+                        elif isinstance(ms, str) and ms.strip():
+                            if all(c in "+-" for c in ms.strip()):
+                                m_raw = None
+                            else:
+                                m_raw = ms
+                _m = getattr(bp, "meter", None)
+                if _m is not None and isinstance(_m, str) and not m_raw:
+                    m_raw = _m
+            meter = m_raw if (m_raw is not None and isinstance(m_raw, str) and m_raw.strip()) else parse_str
             if not stress and parse_str and isinstance(parse_str, str) and "|" in parse_str:
                 stress = _parse_str_to_stress(parse_str)
+            if not stress and meter and isinstance(meter, str) and "|" in meter:
+                stress = _parse_str_to_stress(meter)
             prosodic_list.append((meter, stress))
         ann = {}
         pos = 0
@@ -529,7 +641,7 @@ def annotate_with_poesy(poem: dict) -> dict:
         _log_poesy(f"EXCEPTION: {type(e).__name__}: {e}")
         _log_poesy(traceback.format_exc())
         # Root cause: Prosodic->hashstash creates multiprocessing.Manager() at import.
-        # Manager subprocess fails with PermissionError binding socket -> parent gets EOFError.
+        # Manager subprocess fails with Permission this was the error message I had before so log incase it happens again
         _log_poesy("ROOT_CAUSE: (1) hashstash Manager fails in restricted envs; (2) Poesy/Prosodic 2.x API mismatch")
         _log_poesy("  (meter=str vs Meter object) -> parse fails before rhyme_net runs.")
         import warnings
@@ -553,13 +665,29 @@ def _parse_str_to_stress(parse_str: str) -> str:
     return "".join("+" if any(c.isupper() for c in p if c.isalpha()) else "-" for p in parts if p.strip())
 
 
-# --- Optional: based off of notebook try to get stress
+def normalize_stress_to_plus_minus(s: str) -> str:
+    """Store line-level stress like Prosodic/metricalgpt: only ``+`` / ``-`` per metrical syllable.
+
+    CMU lexical fallback uses ``0``/``1``; we convert that here so ``stress`` matches fields like
+    ``ayo19-w0010.json`` (``-+-+-+-+-+``) and the combined-task bundle.
+    """
+    if not s or not isinstance(s, str):
+        return ""
+    s = s.strip()
+    if all(c in "+-" for c in s):
+        return s
+    if all(c in "01" for c in s):
+        return "".join("+" if c == "1" else "-" for c in s)
+    return s
+
+
+# ---  Recently added to get stress
 _NOTEBOOK_STYLE_METER = None
 _PROSODIC_LOG_QUIET = False
 
 
 def _quiet_prosodic_logging_once() -> None:
-    """Turn down Prosodic’s log noise after the first call (helps batch logs stay readable)."""
+    """Turn down Prosodic’s log noise -> lets batch log be simple"""
     global _PROSODIC_LOG_QUIET
     if _PROSODIC_LOG_QUIET:
         return
@@ -601,11 +729,8 @@ def _metricalgpt_notebook_meter():
 
 
 def stress_from_notebook_style_prosodic(line_text: str) -> str:
-    """Scan one line with Prosodic using the explicit pentameter ``Meter`` (notebook-style path).
-
-    Unlike ``annotate_with_poesy``, this does not go through Poesy’s whole-poem object; it runs
-    ``TextModel(txt).parse(meter=...)`` on the line alone. That can match published notebook
-    workflows but it is **not** a substitute for deciding the true meter of every line—long
+    """Scan one line with Prosodic using the explicit pentameter ``Meter`` got this idea from the notebook
+    this does not go through Poesy’s whole-poem object; it runs ``TextModel(txt).parse(meter=...)`` on the line alone. 
     lines that are really tetrameter may still be forced through a pentameter lens.
 
     Returns a string of ``+`` and ``-``, or ``""`` if Prosodic fails or the line exceeds
@@ -676,8 +801,15 @@ def annotate_poem(poem: dict) -> dict:
     fill from dictionary stress. 
 
     Line-level ``meter_type`` uses Poesy’s poem-wide label if possible; otherwise use
-    the heuristic label from ``line_meter_from_phonology``. The counter dict
-    ``annotation_sources`` is for checking, not rigorous
+    the heuristic label from ``line_meter_from_phonology``.
+
+    Field roles (avoid mixing them): ``meter`` = Prosodic pipe scansion (e.g. ``from|SHORT|…``);
+    ``stress`` = metrical ``+``/``-`` string (prefer ``PROSODIC_NOTEBOOK_STRESS=force`` to match
+    metricalgpt’s ``TextModel.parse(meter=…)`` path); ``meter_type`` = abstract label
+    (e.g. ``iambic Pentameter``). If Poesy gives no pipe scansion, ``meter`` is left empty—CMU
+    lexical stress is never copied into ``meter`` (it belongs only in ``stress`` when needed).
+
+    The counter dict ``annotation_sources`` is for checking, not rigorous stats.
 
     Returns:
         Dict with ``id``, ``author``, ``title``, and ``stanzas``. Each stanza has index,
@@ -694,8 +826,8 @@ def annotate_poem(poem: dict) -> dict:
         "stanzas": [],
     }
     # Track sources: Poesy vs fallback (phonology/CMU)
-    src = {"stress_poesy": 0, "stress_empty": 0, "stress_notebook": 0, "meter_poesy": 0, "meter_phonology": 0,
-           "rhyme_poesy": 0, "rhyme_empty": 0, "meter_type_poesy": 0, "meter_type_phonology": 0}
+    src = {"stress_poesy": 0, "stress_empty": 0, "stress_notebook": 0, "meter_poesy": 0, "meter_empty": 0,
+           "meter_phonology": 0, "rhyme_poesy": 0, "rhyme_empty": 0, "meter_type_poesy": 0, "meter_type_phonology": 0}
     track_sources = os.environ.get("ANNOTATION_SOURCES", "1") == "1"
 
     for si, stanza in enumerate(poem["stanzas"]):
@@ -744,15 +876,16 @@ def annotate_poem(poem: dict) -> dict:
                         rec["stress"] = nb
                         if track_sources:
                             src["stress_notebook"] += 1
+            rec["stress"] = normalize_stress_to_plus_minus(rec.get("stress") or "")
             if track_sources:
                 if rg: src["rhyme_poesy"] += 1
                 else: src["rhyme_empty"] += 1
                 if rec["stress"]: src["stress_poesy"] += 1
                 else: src["stress_empty"] += 1
             if rec["meter"] is None or rec["meter"] == "":
-                rec["meter"] = stress_pattern or ""
+                rec["meter"] = ""
                 if track_sources:
-                    src["meter_phonology"] += 1
+                    src["meter_empty"] += 1
             else:
                 if track_sources:
                     src["meter_poesy"] += 1
@@ -829,6 +962,7 @@ def main():
                 print(
                     f"      rhyme_word: {line.get('rhyme_word')} | rhyme: {line['rhyme_group']} "
                     f"| meter_type: {line.get('meter_type', 'N/A')} | meter: {line.get('meter', 'N/A')} "
+                    f"| stress: {line.get('stress', 'N/A')} "
                     f"| end_stopped: {line['end_stopped']} | caesura: {line['caesura']} "
                     f"({line.get('caesura_before')} {line.get('caesura_punct')} {line.get('caesura_after')}) "
                     f"| enjambment: {line['enjambment']}"

@@ -1,30 +1,29 @@
 #!/bin/bash
+#
+# Slurm batch script: run scripts/run_prompt_baseline.py on a compute node.
+#
+# The login node is for editing and submitting jobs; heavy model runs go through
+# Slurm so work runs on compute nodes with a time limit and logged output.
+# Docs: https://slurm.schedmd.com/sbatch.html
+# Yale cluster overview: https://docs.ycrc.yale.edu/
+#
 #SBATCH --job-name=poetry-baseline-all
 #SBATCH --account=span9810
+# Override partition when submitting: sbatch --partition=week ... or SLURM_PARTITION=week
 #SBATCH --partition=day
-# YCRC Bouchet `day` QoS often enforces a 4h walltime cap even when the partition MaxTime is longer.
-# Match that here so expectations match sacct. For longer limits: sbatch --time=12:00:00 ...
-#SBATCH --time=04:00:00
-# submit_all_model_baselines.sh now defaults to SPLIT_TASKS=1 and N=10000 so each job usually finishes within this window.
+# Default walltime; submit_all_model_baselines.sh passes --time
+# On Bouchet, week often needs walltime >= 24h; day is for shorter jobs
+#SBATCH --time=12:00:00
 #SBATCH --mem=32G
 #SBATCH --cpus-per-task=4
 #SBATCH --output=poetry_baseline_all_%j.out
-# Run all four training conditions (meter_only, rhyme_only, natural_text, combined) in one job.
-# Prerequisite: 01_prepare_training_data.ipynb has been run so output/training_data/{task}/test.json exist.
 #
-# Submit from project root:
-#   sbatch --chdir=$(pwd) scripts/hpc/run_prompt_baseline_all_tasks.slurm
+# Needs: output/training_data/{task}/test.json from notebooks/01_prepare_training_data.ipynb
 #
-# Run ALL candidate models in parallel (one job per model):
-#   rm -rf evaluation/results/baselines/prompt_only/*   # optional: clear old JSONs
-#   ./scripts/hpc/submit_all_model_baselines.sh
-#   # Full test (no line cap — needs long walltime / SPLIT_TASKS=1 strongly recommended):  N=0 ./scripts/hpc/submit_all_model_baselines.sh
-#   # or with a sample cap:  N=500 ./scripts/hpc/submit_all_model_baselines.sh
-#   # or:  PROMPT=few_shot N=500 ./scripts/hpc/submit_all_model_baselines.sh
-#   # or:  PROMPTS="zero_shot one_shot few_shot" N=500 ./scripts/hpc/submit_all_model_baselines.sh
-#
-# To run full test set for all tasks, omit N or set N= (empty).
+# One job: sbatch --chdir=$(pwd) scripts/hpc/run_prompt_baseline_all_tasks.slurm
+# Many jobs: ./scripts/hpc/submit_all_model_baselines.sh
 
+# Find project root: Slurm sets SLURM_SUBMIT_DIR; fallbacks cover common clone paths.
 for d in "${SLURM_SUBMIT_DIR}" "$HOME/Senior-Thesis" "$HOME/Senior Thesis" "."; do
   [ -n "$d" ] && [ -f "${d}/scripts/run_prompt_baseline.py" ] && cd "$d" && break
 done
@@ -33,15 +32,16 @@ if [ ! -f "scripts/run_prompt_baseline.py" ]; then
   exit 1
 fi
 
+# Prefer local venv; else conda base if available.
 if [ -d "venv" ]; then
   source venv/bin/activate
 elif command -v conda &>/dev/null; then
   conda activate base
 fi
-# Some models (e.g. certain tokenizers / phi) need extras; install quietly if missing.
-pip install --quiet transformers torch accelerate sentencepiece tiktoken 2>/dev/null || true
+# Minimal deps on the compute node if the image lacks them; ignore failure if already present.
+pip install --quiet transformers torch accelerate sentencepiece tiktoken nltk 2>/dev/null || true
 
-# Shared Hugging Face cache on the cluster (before sbatch: export CLUSTER_HF_HOME=/path/to/scratch/hf_cache)
+# Shared Hugging Face cache on cluster storage (set on login node or in job prologue).
 HF_CACHE_ROOT="${CLUSTER_HF_HOME:-${THESIS_HF_HOME:-}}"
 if [ -n "${HF_CACHE_ROOT:-}" ]; then
   export HF_HOME="$HF_CACHE_ROOT"
@@ -55,27 +55,28 @@ else
   echo "Note: export HF_TOKEN on the login node for higher Hub rate limits."
 fi
 
+# Job env from sbatch --export (see submit_all_model_baselines.sh).
 MODEL=${MODEL:-google/flan-t5-base}
 PROMPT=${PROMPT:-zero_shot}
 MODEL_TYPE=${MODEL_TYPE:-seq2seq}
-# N from submit script (default 10000). Empty = full test. N=0 = full test (passed as --n 0; see run_prompt_baseline.py).
 N=${N:-}
-# STRICT_EVAL=1 (default): only lines in reliable 4-line stanzas + regold from corpus.db (see run_prompt_baseline.py --strict-eval)
 STRICT_EVAL=${STRICT_EVAL:-1}
 
+# Flags for run_prompt_baseline.py: causal vs seq2seq; strict eval when requested.
 EXTRA_ARGS=()
 [ "$MODEL_TYPE" = "causal" ] && EXTRA_ARGS+=(--model_type causal)
 if [ "${STRICT_EVAL:-0}" = "1" ]; then
   EXTRA_ARGS+=(--strict-eval)
 fi
 
-# If BASELINE_TASK is set (e.g. SPLIT_TASKS=1 submit), run only that task (smaller jobs / easier retries).
+# BASELINE_TASK set => one task only; unset => loop all four (used when SPLIT_TASKS=0).
 if [ -n "${BASELINE_TASK:-}" ]; then
   TASK_LIST=("$BASELINE_TASK")
 else
   TASK_LIST=(meter_only rhyme_only natural_text combined)
 fi
 
+# CPU inference (--device -1); optional --n caps test lines when N is non-empty.
 for TASK in "${TASK_LIST[@]}"; do
   echo "=============================================="
   echo "Running $MODEL | $PROMPT | $TASK | $MODEL_TYPE"

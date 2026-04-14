@@ -74,7 +74,7 @@ def compute_metrics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = No
             WHERE stress IS NOT NULL AND TRIM(stress) != ''
         """).fetchone()[0]
 
-    # Rhyme coverage: lines with a rhyme group label (a, b, c, etc.).
+    # Rhyme coverage: lines with a rhyme group label (a, b, c).
     # rhyme_group comes from Poesy's rhyme_net; "-" and empty mean no rhyme.
     if poem_ids:
         rhymed = conn.execute(
@@ -136,8 +136,6 @@ def compute_metrics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = No
 
 def compute_corpus_diagnostics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = None) -> dict:
     """Extra corpus-wide stats (histograms, degraded poems) beyond :func:`compute_metrics`.
-
-    Used by ``run_annotation_coverage.py`` so ``scripts/quality_checks.py`` is not needed.
     """
     if poem_ids:
         placeholders = ",".join("?" * len(poem_ids))
@@ -233,7 +231,6 @@ def main():
     """
     Compute coverage + corpus diagnostics on the full corpus and print as JSON.
     Requires output/corpus.db; run python scripts/export_sqlite.py first.
-    Prefer: python evaluation/run_annotation_coverage.py (writes annotation_coverage.json).
     """
     if not DB_PATH.exists():
         print(f"Database not found: {DB_PATH}")

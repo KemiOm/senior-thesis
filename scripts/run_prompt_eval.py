@@ -2,11 +2,11 @@
 """
 Prompt-based evaluation on test JSON: load lines, build prompts, generate, save per-line JSON.
 
-Use for **pretrained Hub baselines** (default output under ``evaluation/baselines/``) or **merged
-SFT checkpoints** (same script; point ``--model`` at the merged folder and usually
-``--results-dir results`` or set ``PROMPT_EVAL_DIR``).
+Use for **pretrained Hub baselines** (default output under evaluation/baselines/) or **merged
+SFT checkpoints** (same script; point --model at the merged folder and usually
+--results-dir results or set PROMPT_EVAL_DIR).
 
-(Corpus label coverage without a model: ``evaluation/run_annotation_coverage.py``.)
+(Corpus label coverage without a model: evaluation/run_annotation_coverage.py.)
 
 Few-shot prompts use a full example stanza (quatrain): each line is paired with its label in the
 same format as training.
@@ -18,8 +18,8 @@ Usage:
 
 Output (default): evaluation/baselines/{model_slug}/{prompt_type}_{task}.json
 
-SFT / custom tree: set ``PROMPT_EVAL_DIR`` (or legacy ``PROMPT_BASELINE_DIR``) to the parent of
-per-model dirs (e.g. ``results``) or pass ``--results-dir`` to that path.
+SFT / custom tree: set PROMPT_EVAL_DIR (or legacy PROMPT_BASELINE_DIR) to the parent of
+per-model dirs (e.g. results) or pass --results-dir to that path.
 """
 
 from __future__ import annotations
@@ -43,9 +43,9 @@ from evaluation.scoring.struct_metrics import parse_combined_bundle
 def resolve_pretrained_model_id(model_id: str) -> str:
     """Resolve local checkpoint dirs so Transformers loads from disk, not the Hub.
 
-    Relative paths like ``sft/.../final_model`` are only recognized as local if they
-    exist; otherwise ``from_pretrained`` treats the string as a repo id and fails validation.
-    We try the current working directory and the repo root (parent of ``scripts/``).
+    Relative paths like sft/.../final_model are only recognized as local if they
+    exist; otherwise from_pretrained treats the string as a repo id and fails validation.
+    We try the current working directory and the repo root (parent of scripts/).
     """
     raw = model_id.strip()
     p = Path(raw).expanduser()

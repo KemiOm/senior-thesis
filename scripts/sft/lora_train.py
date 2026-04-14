@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """LoRA / QLoRA fine-tuning for seq2seq models on structured tasks (meter_only, rhyme_only, combined).
 
-Uses JSONL with `input` / `target` from output/training_data/<task>/*.json.
-Set --train_file, --dev_file, --output_root. Slurm: scripts/hpc/lora_train.slurm.
+Uses JSON with `input` / `target` fields from output/training_data/<task>/*.json.
+Set --train_file, --dev_file, --output_root per task. Slurm: scripts/hpc/lora_train.slurm or scripts/hpc/submit_lora3.sh.
 
 QLoRA (--qlora) requires CUDA + bitsandbytes; otherwise use LoRA only.
 
@@ -10,11 +10,12 @@ Inference:
 - Raw adapters in final_model/ are not directly usable with from_pretrained.
 - Prefer --merge_and_save and load final_model_merged/.
 - Otherwise, load base model (e.g., google/flan-t5-large) and attach adapters.
+- Eval with scripts/run_prompt_eval.py expects merged weights or Hub ids (plain from_pretrained).
 
 Cluster notes:
-- Defaults: eval/save every 1000 steps; train=8, eval=4 (~32GB GPU).
-- Reduce batch size if OOM; scale up on larger GPUs.
-- If NaNs or loss=0: use full FP32 (NO_FP16=1 NO_BF16=1).
+- Defaults: eval/save every 1000 steps; train=8, eval=4 (~32GB GPU); reduce batch if OOM; scale up on larger GPUs.
+- Slurm defaults BF16 on CUDA (--bf16); NO_BF16=1 for fp16; if NaNs or loss=0 use full FP32 (NO_FP16=1 NO_BF16=1).
+- Resume with --resume_from_checkpoint pointing at checkpoint-* under the run directory.
 """
 
 from __future__ import annotations

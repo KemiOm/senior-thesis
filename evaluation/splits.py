@@ -1,4 +1,4 @@
-"""CLI shim: ``python evaluation/splits.py`` → ``evaluation.corpus.splits``."""
+"""CLI shim: python evaluation/splits.py → evaluation.corpus.splits."""
 
 from evaluation.corpus.splits import main
 

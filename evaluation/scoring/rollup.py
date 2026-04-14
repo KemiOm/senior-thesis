@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Roll baseline / SFT eval JSON trees into ``model_comparison.csv`` + notes.
+Roll baseline / SFT eval JSON trees into model_comparison.csv + notes.
 
-Reads ``<baseline-dir>/*/*.json`` (same layout as ``run_prompt_eval.py`` writes).
-Default dirs: ``evaluation/baselines`` → ``evaluation/baseline_report``.
+Reads <baseline-dir>/*/*.json (same layout as run_prompt_eval.py writes).
+Default dirs: evaluation/baselines → evaluation/baseline_report.
 """
 
 from __future__ import annotations

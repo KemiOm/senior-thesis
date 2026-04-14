@@ -9,11 +9,11 @@ from pathlib import Path
 def baseline_save_slug(model_id: str) -> str:
     """Directory name under a baseline results root.
 
-    Hub-style ids (e.g. ``google/flan-t5-large``) become ``google_flan-t5-large``.
+    Hub-style ids (e.g. google/flan-t5-large) become google_flan-t5-large.
 
     Local checkpoints: use task folder + run id (e.g.
-    ``.../sft/combined_lora/flan-t5-large_lora_20260411_175033/final_model_merged`` →
-    ``combined_lora_flan-t5-large_lora_20260411_175033``).
+    .../sft/combined_lora/flan-t5-large_lora_20260411_175033/final_model_merged →
+    combined_lora_flan-t5-large_lora_20260411_175033).
     """
     s = (model_id or "").strip()
     if not s:

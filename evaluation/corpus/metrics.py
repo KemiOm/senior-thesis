@@ -1,7 +1,7 @@
 """
-Corpus metrics: meter, rhyme, CMU coverage, end-stopping, caesura (from ``corpus.db``).
+Corpus metrics: meter, rhyme, CMU coverage, end-stopping, caesura (from corpus.db).
 
-Used by ``evaluation.corpus.coverage`` for ``annotation_coverage.json``.
+Used by evaluation.corpus.coverage for annotation_coverage.json.
 """
 
 import json

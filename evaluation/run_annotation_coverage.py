@@ -1,4 +1,4 @@
-"""CLI shim: ``python evaluation/run_annotation_coverage.py`` → ``evaluation.corpus.coverage``."""
+"""CLI shim: python evaluation/run_annotation_coverage.py → evaluation.corpus.coverage."""
 
 from evaluation.corpus.coverage import main
 

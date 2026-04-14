@@ -13,7 +13,7 @@ Short reference for **metrics**, **where labels come from**, and **how to keep b
 | `run_annotation_coverage.py` | CLI → `evaluation/annotation_coverage.json` | Gold completeness on the corpus and each split |
 | `structured_baseline_metrics.py` | Field-level partial metrics for rhyme / combined bundles | Imported by `summarize_prompt_baselines.py` |
 | `form_eval_generation.py` | CMU-based form / stress for **natural_text** checks | Optional strict natural_text scoring in summarize |
-| `summarize_prompt_baselines.py` | Walk baseline JSON trees → `model_comparison.csv` | Tables comparing pretrained / SFT runs |
+| `summarize_prompt_baselines.py` | Walk baseline JSON trees → `evaluation/baseline_report/model_comparison.csv` (default) | Tables comparing pretrained / SFT runs |
 | `baseline_slug.py` | Short directory name from hub id or checkpoint path | Used by `scripts/run_prompt_baseline.py` when writing JSON trees |
 
 **Logical grouping:** corpus and splits (`splits.py`; `metrics.py` + `run_annotation_coverage.py` for label completeness) vs model baselines (`summarize_prompt_baselines.py` plus structured/form helpers and `baseline_slug.py` for output folder names). Keeping these as small modules avoids one oversized script and keeps optional CMU work out of the default summarize path.
@@ -117,7 +117,7 @@ Same module → `st_combined_*`: parse success, per-field match (meter with `+/-
 
 ## 6. Running prompt baselines on Bouchet (YCRC)
 
-Baseline jobs use **CPU** inference (`--device -1`) in `scripts/hpc/run_prompt_baseline_all_tasks.slurm`, matching your other poetry-baseline runs: **`partition=day`**, account **`span9810`**, **`--qos=normal`** when your association requires it. Submit from the repo root so paths and `evaluation/results/baselines/…` resolve. GPU SFT eval grids (`scripts/hpc/run_eval_ft_grid.slurm`) write JSON under `results/<short_slug>/` by default (see `evaluation/baseline_slug.py`).
+Baseline jobs use **CPU** inference (`--device -1`) in `scripts/hpc/run_prompt_baseline_all_tasks.slurm`, matching your other poetry-baseline runs: **`partition=day`**, account **`span9810`**, **`--qos=normal`** when your association requires it. Submit from the repo root so paths and `evaluation/baselines/…` resolve. GPU SFT eval grids (`scripts/hpc/run_eval_ft_grid.slurm`) write JSON under `results/<short_slug>/` by default (see `evaluation/baseline_slug.py`).
 
 **Environment**
 
@@ -139,6 +139,6 @@ SLURM_PARTITION=day \
 ./scripts/hpc/submit_all_model_baselines.sh
 ```
 
-Adjust **`N`** (omit for full test; use a longer **`SLURM_TIME`** in that script or override **`SLURM_TIME=24:00:00`** if needed). After jobs finish: `python evaluation/summarize_prompt_baselines.py` → refreshes `evaluation/results/model_comparison.csv`.
+Adjust **`N`** (omit for full test; use a longer **`SLURM_TIME`** in that script or override **`SLURM_TIME=24:00:00`** if needed). After jobs finish: `python evaluation/summarize_prompt_baselines.py` → refreshes `evaluation/baseline_report/model_comparison.csv`.
 
 **Logs:** `poetry_baseline_all_<jobid>.out` in the project directory (or the directory you passed to `--chdir`).

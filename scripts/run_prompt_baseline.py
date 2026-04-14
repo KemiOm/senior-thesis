@@ -12,7 +12,7 @@ Usage:
   python scripts/run_prompt_baseline.py --model google/flan-t5-large --prompt few_shot --task meter_only
   python scripts/run_prompt_baseline.py --model gpt2-medium --model_type causal --prompt few_shot --task meter_only --n 100
 
-Output (default): evaluation/results/baselines/{model_slug}/{prompt_type}_{task}.json
+Output (default): evaluation/baselines/{model_slug}/{prompt_type}_{task}.json
 
 SFT / custom tree: set ``PROMPT_BASELINE_DIR`` to the parent of per-model dirs (e.g. ``results``)
 or pass ``--results-dir`` to that path.
@@ -83,7 +83,7 @@ def resolve_pretrained_model_id(model_id: str) -> str:
 
 
 DATA_DIR = ROOT / "output" / "training_data"
-DEFAULT_BASELINE_RESULTS_DIR = ROOT / "evaluation" / "results" / "baselines"
+DEFAULT_BASELINE_RESULTS_DIR = ROOT / "evaluation" / "baselines"
 # Back-compat alias (old name pointed at …/baselines/prompt_only; layout is now …/baselines/<slug>/).
 RESULTS_DIR = DEFAULT_BASELINE_RESULTS_DIR
 
@@ -807,7 +807,7 @@ def main():
         default=None,
         help=(
             "Directory whose immediate subdirs are model slugs (each contains *.json). "
-            "Default: evaluation/results/baselines. "
+            "Default: evaluation/baselines. "
             "SFT eval grid default: results/ (see scripts/hpc/run_eval_ft_grid.slurm). "
             "Overrides env PROMPT_BASELINE_DIR when set."
         ),

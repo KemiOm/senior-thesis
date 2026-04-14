@@ -2,9 +2,10 @@
 """
 Roll up prompt-only baseline JSONs into one comparison table (exact match on gold vs model output).
 
-Writes (default paths; override with ``--out-dir``):
-  - ``<out-dir>/model_comparison.csv``
-  - ``<out-dir>/model_selection_notes.txt``
+Writes (default paths; override with ``--out-dir`` / ``--baseline-dir``):
+  - Default roll-up directory: ``evaluation/baseline_report`` (``model_comparison.csv``,
+    ``model_selection_notes.txt``).
+  - Default baseline JSON root: ``evaluation/baselines``.
 
 Optional: ``--baseline-dir results`` plus ``--out-dir results``
 and ``--slug-glob`` for an SFT-only rollup (CSV + notes in ``--out-dir``).
@@ -52,8 +53,8 @@ if str(ROOT) not in sys.path:
 def _resolve_repo_path(p: str | Path) -> Path:
     path = Path(p)
     return path if path.is_absolute() else (ROOT / path)
-DEFAULT_BASELINE_DIR = ROOT / "evaluation" / "results" / "baselines"
-DEFAULT_OUT_DIR = ROOT / "evaluation" / "results"
+DEFAULT_BASELINE_DIR = ROOT / "evaluation" / "baselines"
+DEFAULT_OUT_DIR = ROOT / "evaluation" / "baseline_report"
 # Back-compat names for modules that import these (prefer DEFAULT_* in new code).
 BASELINE_DIR = DEFAULT_BASELINE_DIR
 OUT_CSV = DEFAULT_OUT_DIR / "model_comparison.csv"

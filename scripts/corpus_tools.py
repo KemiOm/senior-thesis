@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Small CLI for CSV filters, data checks, natural-text form metrics, and extra diagnostics.
 
-  python scripts/corpus_tools.py filter-csv --n-scored 500 -o evaluation/results/out.csv
-  python scripts/corpus_tools.py filter-csv --n-scored 500 --require-strict-eval -o evaluation/results/comparison_strict.csv
+  python scripts/corpus_tools.py filter-csv --n-scored 500 -o evaluation/baseline_report/out.csv
+  python scripts/corpus_tools.py filter-csv --n-scored 500 --require-strict-eval -o evaluation/baseline_report/comparison_strict.csv
   python scripts/corpus_tools.py verify-data [--check-poem-ids]
   python scripts/corpus_tools.py nt-form path/to/natural_text.json [--n 500] [--relax-oov]
 """
@@ -523,7 +523,7 @@ def main() -> None:
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     p_f = sub.add_parser("filter-csv", help="Filter model_comparison.csv for comparable rows")
-    p_f.add_argument("--input", type=Path, default=ROOT / "evaluation/results/model_comparison.csv")
+    p_f.add_argument("--input", type=Path, default=ROOT / "evaluation/baseline_report/model_comparison.csv")
     p_f.add_argument("-o", "--output", type=Path, required=True)
     p_f.add_argument("--n-scored", type=int, default=None)
     p_f.add_argument("--prompt-type", type=str, default=None)

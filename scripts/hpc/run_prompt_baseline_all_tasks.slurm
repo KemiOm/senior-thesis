@@ -89,4 +89,4 @@ for TASK in "${TASK_LIST[@]}"; do
   echo ""
 done
 
-echo "Done. Results in evaluation/results/baselines/<model_slug>/"
+echo "Done. Results in evaluation/baselines/<model_slug>/"

@@ -73,7 +73,7 @@ N="${N:-500}"
 DEVICE="${DEVICE:-0}"
 SPLIT="${SPLIT:-test}"
 
-# SFT eval JSONs default to results/ (not evaluation/results/baselines/).
+# SFT eval JSONs default to results/ (not evaluation/baselines/).
 SFT_RESULTS="${SFT_RESULTS:-$THESIS_ROOT/results}"
 mkdir -p "$SFT_RESULTS"
 

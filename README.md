@@ -87,9 +87,9 @@ pip install -r requirements.txt
 │   └── phonology_batch.py
 ├── notebooks/               # Training data prep, evaluation metrics, SFT overview
 ├── scripts/                 # export_sqlite, run_prompt_baseline, corpus_tools; scripts/sft/lora_train.py; scripts/hpc/ = Slurm
-├── evaluation/              # splits, metrics, structured_baseline_metrics, summarize_prompt_baselines, baseline JSON + CSV outputs
-├── sft/                     # LoRA runs (checkpoint-*, final_model*, final_model_merged/); gitignored heavy weights
-├── results/                 # SFT eval JSON per <short_slug>/ (optional roll-up via summarize --out-dir results)
+├── evaluation/              # corpus/ (splits, coverage), scoring/ (rollup, slugs, metrics-on-JSON), baselines/, baseline_report/
+├── sft/                     # Default LoRA training root (--output-root); heavy dirs gitignored
+├── results/                 # SFT **eval** JSON only (run_prompt_baseline on merged weights); not checkpoints
 ├── data/                    # Optional local data (samples, metadata)
 ├── docs/                    # Data overview, debug transcripts
 ├── requirements.txt
@@ -168,7 +168,7 @@ for d in evaluation/baselines/*/; do
 done
 ```
 
-Results live under `evaluation/baselines/<model_slug>/` for general baselines, and `results/<short_slug>/` for SFT GPU evals from `run_eval_ft_grid.slurm` (e.g. `few_shot_meter_only.json`). Short slugs come from `evaluation/baseline_slug.py`. If one task is missing (e.g. 3/4), re-run that task for that model; see OVERVIEW.MD for the single-task command.
+Results live under `evaluation/baselines/<model_slug>/` for pretrained prompt baselines, and `results/<short_slug>/` for **SFT eval** JSON from `run_eval_ft_grid.slurm` (e.g. `few_shot_meter_only.json`). Training **weights** live under whatever `--output-root` you used (Slurm defaults to `sft/<task>_lora/`); you do not need both `sft/` and `sft_full/`—the latter is only an alternate folder name some runs used. Short slugs come from `evaluation/scoring/slug.py`. If one task is missing (e.g. 3/4), re-run that task for that model; see OVERVIEW.MD for the single-task command.
 
 ---
 
@@ -184,8 +184,8 @@ Results live under `evaluation/baselines/<model_slug>/` for general baselines, a
 | `evaluation/splits/`      | Train/dev/test and held-out poem ID lists         |
 | `evaluation/baselines/`   | Prompt-baseline JSON per `<model_slug>/` (see `run_prompt_baseline.py`) |
 | `evaluation/baseline_report/` | Roll-up tables: `model_comparison.csv`, selection notes (`summarize_prompt_baselines.py`) |
-| `results/`                | SFT eval JSON per `<short_slug>/`; optional roll-up CSV/notes via `summarize_prompt_baselines.py --out-dir results` |
-| `sft/`                      | Training runs: checkpoints, adapters, merged weights (often gitignored) |
+| `results/`                | SFT **eval** JSON per `<short_slug>/` (not weights); roll-up with `summarize_prompt_baselines.py --baseline-dir results --out-dir results` |
+| `sft/`                      | Default **`OUTPUT_ROOT`** for LoRA: checkpoints, adapters, merged weights (often gitignored). Same role as any other output root (e.g. `sft_full/`), not a separate pipeline. |
 | `data/nltk_data/`         | NLTK data (created automatically)                 |
 
 ---

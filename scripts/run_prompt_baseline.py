@@ -32,8 +32,8 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from evaluation.baseline_slug import baseline_save_slug
-from evaluation.structured_baseline_metrics import parse_combined_bundle
+from evaluation.scoring.slug import baseline_save_slug
+from evaluation.scoring.struct_metrics import parse_combined_bundle
 
 
 def resolve_pretrained_model_id(model_id: str) -> str:
@@ -916,7 +916,7 @@ def main():
         return raw_out
 
     if args.task == "natural_text":
-        from evaluation.form_eval_generation import line_form_signature
+        from evaluation.scoring.form_eval import line_form_signature
 
     results = []
     for i, item in enumerate(data):
@@ -952,7 +952,7 @@ def main():
     if args.task == "natural_text":
         payload["gold_form_note"] = (
             "gold_stress_pm, gold_rhyme_key, gold_form_ok: CMU-based signature of gold_target "
-            "(evaluation.form_eval_generation.line_form_signature); same path as scripts/corpus_tools.py nt-form."
+            "(evaluation.scoring.form_eval.line_form_signature); same path as scripts/corpus_tools.py nt-form."
         )
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(

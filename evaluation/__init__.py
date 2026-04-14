@@ -1,8 +1,9 @@
 """
-Evaluation tools for  fine-tuning experiments.
+Evaluation: corpus splits / coverage (``evaluation.corpus``) and
+model-output scoring / rollups (``evaluation.scoring``).
 
-This package includes:
-- metrics: measures meter, rhyme, CMU coverage, lineation, and caesura
-- splits: builds reproducible train/dev/test splits, including held-out poets and poems
-- run_annotation_coverage: corpus label coverage (no models); saves annotation_coverage.json
+Stable CLIs (thin shims at repo root under ``evaluation/``):
+- ``python evaluation/splits.py``
+- ``python evaluation/run_annotation_coverage.py``
+- ``python evaluation/summarize_prompt_baselines.py``
 """

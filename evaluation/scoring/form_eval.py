@@ -1,10 +1,4 @@
-"""
-Compute form-based metrics for natural_text outputs.
-
-Compares model output to the correct line using phonology features.
-Set FORM_EVAL_RELAX_OOV=1 to allow lines with missing word data
-as long as some stress pattern is found.
-"""
+"""Form-style metrics for natural_text lines (CMU / phonology)."""
 
 from __future__ import annotations
 
@@ -17,7 +11,6 @@ from sample.phonology_sample import get_phonology_for_line, line_meter_from_phon
 
 
 def rhyme_key_from_phonology(phonology_json: str) -> str:
-    """Extract a rhyme key from phonology data (same rule as training)."""
     if not phonology_json:
         return ""
     try:
@@ -54,11 +47,6 @@ def phonology_has_not_found(phon: list[dict]) -> bool:
 
 
 def line_form_signature(line: str, *, relax_oov: bool = False) -> dict[str, Any]:
-    """ 
-    Get form features from a line of text. Returns stress pattern, syllable count, rhyme key, and phonology.
-    If relax_oov is True: allow lines with missing words as long as stress exists
-    If False: require all words to be found
-    """
     text = (line or "").strip()
     if not text:
         return {
@@ -96,10 +84,6 @@ def line_form_signature(line: str, *, relax_oov: bool = False) -> dict[str, Any]
 def compare_next_line_form(
     gold_line: str, pred_line: str, *, relax_oov: bool = False
 ) -> dict[str, Any]:
-    """
-    Gold = corpus next line; pred = model generation.
-    Returns flags for tables (exact stress match, syllable count, rhyme key).
-    """
     g = line_form_signature(gold_line, relax_oov=relax_oov)
     p = line_form_signature(pred_line, relax_oov=relax_oov)
     out: dict[str, Any] = {
@@ -133,23 +117,6 @@ def aggregate_natural_text_form_results(
     *,
     relax_oov: bool | None = None,
 ) -> dict[str, float | int]:
-     """
-    Compute overall metrics for a batch of results.
-
-    Each result should have:
-    - gold_target (correct line)
-    - model_output (generated line)
-
-    Metrics:
-    - stress match %
-    - syllable match %
-    - rhyme match %
-
-    relax_oov:
-    - True: allow partial word coverage
-    - False: require full coverage
-    - None: read from environment variable
-    """
     if relax_oov is None:
         relax_oov = _env_relax_oov()
     rows = results[: max_n] if max_n else results

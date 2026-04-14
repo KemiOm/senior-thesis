@@ -211,7 +211,7 @@ def cmd_verify_data(args: argparse.Namespace) -> int:
 
 
 def cmd_nt_form(args: argparse.Namespace) -> int:
-    from evaluation.form_eval_generation import aggregate_natural_text_form_results
+    from evaluation.scoring.form_eval import aggregate_natural_text_form_results
 
     path = args.json_path
     if not path.is_file():
@@ -391,7 +391,7 @@ def cmd_spotcheck_nt(args: argparse.Namespace) -> int:
     print()
 
     if args.phon_check:
-        from evaluation.form_eval_generation import line_form_signature
+        from evaluation.scoring.form_eval import line_form_signature
 
         g_ok_s = p_ok_s = g_ok_r = p_ok_r = 0
         for row in results:

@@ -17,8 +17,11 @@
 # Shorter smoke test:
 #   N=50 sbatch scripts/hpc/run_eval_ft_grid.slurm
 #
-# JSON output root (default: results/):
+# JSON output root (default: results/) — eval generations only, not training weights.
 #   SFT_RESULTS=/path/to/dir sbatch scripts/hpc/run_eval_ft_grid.slurm
+#
+# Merged weights below default to sft/...; if you trained with OUTPUT_ROOT=sft_full/..., set e.g.
+#   METER_FT=.../sft_full/meter_only_lora/.../final_model_merged sbatch ...
 #
 #SBATCH --partition=gpu
 #SBATCH --gpus=rtx_5000_ada:1

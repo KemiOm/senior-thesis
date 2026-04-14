@@ -14,7 +14,8 @@ __pycache__/
 dist/
 build/
 
-# Fine-tuning checkpoints (large; keep on disk / cluster; regenerate or rsync)
+# Fine-tuning checkpoints (large; keep on disk / cluster; regenerate or rsync).
+# sft/ = default --output-root; sft_full/ = optional alternate name only (same ignore rules).
 sft/**/checkpoint-*/
 sft/**/final_model/
 sft/**/final_model_merged/

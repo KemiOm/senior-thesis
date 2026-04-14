@@ -4,19 +4,26 @@ Short reference for **metrics**, **where labels come from**, and **how to keep b
 
 ---
 
-## 0. Evaluation module files (when you need each)
+## 0. Evaluation layout (when you need each)
 
-| File | Role | Typical use |
-|------|------|---------------|
-| `splits.py` | Fixed poem IDs for train / dev / test / held-out | Training exports, any split-consistent eval |
-| `metrics.py` | SQLite aggregation for **annotation coverage** (not model accuracy) | Imported by `run_annotation_coverage.py` |
-| `run_annotation_coverage.py` | CLI → `evaluation/annotation_coverage.json` | Gold completeness on the corpus and each split |
-| `structured_baseline_metrics.py` | Field-level partial metrics for rhyme / combined bundles | Imported by `summarize_prompt_baselines.py` |
-| `form_eval_generation.py` | CMU-based form / stress for **natural_text** checks | Optional strict natural_text scoring in summarize |
-| `summarize_prompt_baselines.py` | Walk baseline JSON trees → `evaluation/baseline_report/model_comparison.csv` (default) | Tables comparing pretrained / SFT runs |
-| `baseline_slug.py` | Short directory name from hub id or checkpoint path | Used by `scripts/run_prompt_baseline.py` when writing JSON trees |
+**`evaluation/corpus/`** — gold / SQLite (no model generations):
 
-**Logical grouping:** corpus and splits (`splits.py`; `metrics.py` + `run_annotation_coverage.py` for label completeness) vs model baselines (`summarize_prompt_baselines.py` plus structured/form helpers and `baseline_slug.py` for output folder names). Keeping these as small modules avoids one oversized script and keeps optional CMU work out of the default summarize path.
+| Module | Role | Typical use |
+|--------|------|---------------|
+| `corpus/splits.py` | Fixed poem IDs for train / dev / test / held-out → `evaluation/splits/*.json` | `python evaluation/splits.py` |
+| `corpus/metrics.py` | SQLite aggregation for **annotation coverage** (not model accuracy) | Used by `corpus/coverage.py` |
+| `corpus/coverage.py` | CLI → `evaluation/annotation_coverage.json` | `python evaluation/run_annotation_coverage.py` |
+
+**`evaluation/scoring/`** — model JSON outputs:
+
+| Module | Role | Typical use |
+|--------|------|---------------|
+| `scoring/slug.py` | Short result directory name from Hub id or checkpoint path | `run_prompt_baseline.py` |
+| `scoring/struct_metrics.py` | Field-level partial metrics (rhyme / combined bundles) | Rollup + baseline script |
+| `scoring/form_eval.py` | CMU form / stress for **natural_text** | Rollup, `corpus_tools.py` |
+| `scoring/rollup.py` | Walk `*/*.json` trees → `baseline_report/model_comparison.csv` | `python evaluation/summarize_prompt_baselines.py` |
+
+Shims under `evaluation/` keep those two-word CLI paths stable; implementation lives in `corpus/` and `scoring/`.
 
 ---
 
@@ -26,15 +33,15 @@ Short reference for **metrics**, **where labels come from**, and **how to keep b
 
 | Concept | Plain-language meaning | Where it shows up |
 |--------|-------------------------|-------------------|
-| **Stress pattern** | Strong vs weak syllables along the line, as a string (e.g. `+` / `-` or `0`/`1` encodings, normalized to a common form). Used for **meter-only** targets and the meter part of **combined** targets. | DB: `lines.stress`; meter-only supervision: `evaluation/metrics.py`, `scripts/run_prompt_baseline.py` (`stress_to_plus_minus`) |
+| **Stress pattern** | Strong vs weak syllables along the line, as a string (e.g. `+` / `-` or `0`/`1` encodings, normalized to a common form). Used for **meter-only** targets and the meter part of **combined** targets. | DB: `lines.stress`; meter-only supervision: `evaluation/corpus/metrics.py`, `scripts/run_prompt_baseline.py` (`stress_to_plus_minus`) |
 | **Meter type** | High-level label from Poesy/Prosodic (e.g. whether the line is treated as iambic pentameter vs unknown). | DB: `lines.meter_type` |
 | **Rhyme group** | Letter (or symbol) grouping lines that rhyme together in the poem’s scheme. | DB: `lines.rhyme_group` |
-| **Rhyme key (phonetic)** | Derived from **ARPAbet** phonology: tail phones from the **last stressed vowel** (same rule for training and evaluation). Used for **rhyme-only** targets and form checks. | `scripts/run_prompt_baseline.py` (`rhyme_key_from_phonology`), `evaluation/form_eval_generation.py` |
+| **Rhyme key (phonetic)** | Derived from **ARPAbet** phonology: tail phones from the **last stressed vowel** (same rule for training and evaluation). Used for **rhyme-only** targets and form checks. | `scripts/run_prompt_baseline.py` (`rhyme_key_from_phonology`), `evaluation/scoring/form_eval.py` |
 | **Phonology / CMU** | Pronunciation entries per word; lines are flagged when a word is missing from CMU (`not_found`). | DB: `lines.phonology` JSON |
 | **End-stopped** | Whether the line ends at a sentence-like boundary (punctuation heuristic). | DB: `lines.end_stopped` |
 | **Caesura** | Position of a strong mid-line pause (when present). | DB: `lines.caesura` |
 
-**Annotation coverage metrics** (how complete the corpus labels are, not model accuracy): `evaluation/metrics.py` → `compute_metrics` plus `compute_corpus_diagnostics` (meter-type histogram, lines with CMU gaps, poems that are all-unknown meter, enjambment counts, stanza-type counts). `evaluation/run_annotation_coverage.py` merges both into `evaluation/annotation_coverage.json` for the full corpus and each split file that exists. This supersedes the old `scripts/quality_checks.py` printout.
+**Annotation coverage metrics** (how complete the corpus labels are, not model accuracy): `evaluation/corpus/metrics.py` → `compute_metrics` plus `compute_corpus_diagnostics` (meter-type histogram, lines with CMU gaps, poems that are all-unknown meter, enjambment counts, stanza-type counts). `python evaluation/run_annotation_coverage.py` runs `evaluation/corpus/coverage.py` and merges both into `evaluation/annotation_coverage.json` for the full corpus and each split file that exists. This supersedes the old `scripts/quality_checks.py` printout.
 
 ---
 
@@ -99,7 +106,7 @@ Scoring uses saved JSON with **per-line** `gold_target` and `model_output` (as p
 
 ### 5.2 Natural text — form metrics (phonology-based)
 
-For natural_text outputs, CMU-based form checks compare the **gold line** to the **predicted line** (`evaluation/form_eval_generation.py`):
+For natural_text outputs, CMU-based form checks compare the **gold line** to the **predicted line** (`evaluation/scoring/form_eval.py`):
 
 - **`nt_form_stress_match_pct`**: stress pattern match (evaluable lines only).
 - **`nt_form_syllable_match_pct`**: syllable count match.
@@ -107,7 +114,7 @@ For natural_text outputs, CMU-based form checks compare the **gold line** to the
 
 ### 5.3 Rhyme-only — relaxed token match
 
-`evaluation/structured_baseline_metrics.py` → `st_rhyme_relaxed_match_pct`: case-insensitive, whitespace-normalized rhyme token agreement.
+`evaluation/scoring/struct_metrics.py` → `st_rhyme_relaxed_match_pct`: case-insensitive, whitespace-normalized rhyme token agreement.
 
 ### 5.4 Combined — per-field rates
 
@@ -117,7 +124,7 @@ Same module → `st_combined_*`: parse success, per-field match (meter with `+/-
 
 ## 6. Running prompt baselines on Bouchet (YCRC)
 
-Baseline jobs use **CPU** inference (`--device -1`) in `scripts/hpc/run_prompt_baseline_all_tasks.slurm`, matching your other poetry-baseline runs: **`partition=day`**, account **`span9810`**, **`--qos=normal`** when your association requires it. Submit from the repo root so paths and `evaluation/baselines/…` resolve. GPU SFT eval grids (`scripts/hpc/run_eval_ft_grid.slurm`) write JSON under `results/<short_slug>/` by default (see `evaluation/baseline_slug.py`).
+Baseline jobs use **CPU** inference (`--device -1`) in `scripts/hpc/run_prompt_baseline_all_tasks.slurm`, matching your other poetry-baseline runs: **`partition=day`**, account **`span9810`**, **`--qos=normal`** when your association requires it. Submit from the repo root so paths and `evaluation/baselines/…` resolve. GPU SFT eval grids (`scripts/hpc/run_eval_ft_grid.slurm`) write **eval JSON** under `results/<short_slug>/` by default (see `evaluation/scoring/slug.py`); that is separate from training checkpoints under your LoRA **`OUTPUT_ROOT`** (Slurm defaults to `sft/<task>_lora/`).
 
 **Environment**
 

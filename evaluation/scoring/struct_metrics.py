@@ -1,20 +1,14 @@
-"""Extra metrics for rhyme_only and combined prompt baselines.
-
-Exact match on the full string is strict; these add field-level scores where the target is
-structured (rhyme token, or combined meter|rhyme|end|caesura bundles).
-"""
+"""Partial metrics for rhyme_only / combined targets (field-level, not full-string exact)."""
 
 from __future__ import annotations
 
 import re
 from typing import Any
 
-# New: explicit stress pattern + meter label 
 _COMBINED_NEW_RE = re.compile(
     r"stress:([^|]+)\|meter_type:([^|]+)\|rhyme:([^|]+)\|end:([^|]+)\|caesura:([^|]+)",
     re.IGNORECASE | re.DOTALL,
 )
-# What I had before 
 _COMBINED_OLD_RE = re.compile(
     r"meter:([^|]+)\|rhyme:([^|]+)\|end:([^|]+)\|caesura:([^|]+)",
     re.IGNORECASE | re.DOTALL,
@@ -30,7 +24,6 @@ def _normalize_ws_case(s: str) -> str:
 
 
 def stress_normalize_for_compare(s: str) -> str:
-    """Align meter slot: +/- string or 01 string to canonical +/-."""
     s = _strip(s)
     if not s:
         return ""
@@ -46,7 +39,6 @@ def meters_equivalent(a: str, b: str) -> bool:
 
 
 def parse_combined_bundle(s: str) -> dict[str, str] | None:
-    """Extract fields from a combined target string ."""
     s = _strip(s)
     m = _COMBINED_NEW_RE.search(s)
     if m:
@@ -78,10 +70,6 @@ def rhyme_tokens_equivalent(gold: str, pred: str) -> bool:
 
 
 def aggregate_rhyme_only_structured(results: list[dict[str, Any]]) -> dict[str, float | int]:
-    """
-    Relaxed exact on rhyme token: case-insensitive, whitespace-normalized.
-    Skips rows with empty gold 
-    """
     n_scored = 0
     n_relaxed = 0
     for row in results:
@@ -103,11 +91,6 @@ def aggregate_rhyme_only_structured(results: list[dict[str, Any]]) -> dict[str, 
 
 
 def aggregate_combined_structured(results: list[dict[str, Any]]) -> dict[str, float | int]:
-    """
-    Per-field match rates for combined bundles. Gold must parse; pred may fail to parse (all fields miss).
-    Stress slot (reported as st_combined_meter_field_pct): +/- vs 01 normalized before compare.
-    New-format bundles also score meter_type 
-    """
     n_scored = 0
     n_pred_parse = 0
     n_meter = n_rhyme = n_end = n_caes = n_all_four = 0

@@ -1,9 +1,7 @@
 """
-Corpus and model-output metrics: meter, rhyme, CMU phonology coverage,
-end-stopping, and caesura.
+Corpus metrics: meter, rhyme, CMU coverage, end-stopping, caesura (from ``corpus.db``).
 
-Call `compute_metrics` to see how complete annotations are on a set of poems,
-or after model outputs are written back with the same pipeline into the database.
+Used by ``evaluation.corpus.coverage`` for ``annotation_coverage.json``.
 """
 
 import json
@@ -11,29 +9,11 @@ import sqlite3
 from pathlib import Path
 from typing import List, Optional
 
-# Project root 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 DB_PATH = ROOT / "output" / "corpus.db"
 
 
 def compute_metrics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = None) -> dict:
-    """
-    Compute evaluation metrics from corpus.db.
-
-    Args:
-        conn: SQLite connection to corpus.db.
-        poem_ids: Optional list of poem IDs. If not given, use the full corpus.
-
-    Returns:
-        A dictionary with the total number of lines and counts/percentages for:
-        - meter_coverage: lines with a known meter type
-        - stress_coverage: lines with a stress pattern
-        - rhyme_coverage: lines with a rhyme group
-        - cmu_coverage: lines where all words were found in CMU
-        - end_stopped: lines ending in sentence punctuation
-        - caesura: lines with punctuation in the middle of the line
-    """
-    # Build parameterized query for optional poem_id filter.
     if poem_ids:
         placeholders = ",".join("?" * len(poem_ids))
         params: tuple = tuple(poem_ids)
@@ -47,8 +27,6 @@ def compute_metrics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = No
     if n_lines == 0:
         return {"n_lines": 0, "error": "no lines in scope"}
 
-    # Meter coverage: lines where meter_type is populated and not "unknown".
-    # meter_type comes from Poesy/Prosodic or fallback stress-from-phonology logic.
     if poem_ids:
         meter_ok = conn.execute(
             f"SELECT COUNT(*) FROM lines WHERE poem_id IN ({placeholders}) "
@@ -61,7 +39,6 @@ def compute_metrics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = No
             WHERE (meter_type IS NOT NULL AND meter_type != '' AND meter_type != 'unknown')
         """).fetchone()[0]
 
-    # Stress coverage: lines with a non-empty stress pattern (from Poesy/Prosodic or fallback).
     if poem_ids:
         stress_ok = conn.execute(
             f"SELECT COUNT(*) FROM lines WHERE poem_id IN ({placeholders}) "
@@ -74,8 +51,6 @@ def compute_metrics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = No
             WHERE stress IS NOT NULL AND TRIM(stress) != ''
         """).fetchone()[0]
 
-    # Rhyme coverage: lines with a rhyme group label (a, b, c).
-    # rhyme_group comes from Poesy's rhyme_net; "-" and empty mean no rhyme.
     if poem_ids:
         rhymed = conn.execute(
             f"SELECT COUNT(*) FROM lines WHERE poem_id IN ({placeholders}) "
@@ -88,8 +63,6 @@ def compute_metrics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = No
             WHERE rhyme_group IS NOT NULL AND rhyme_group != '' AND rhyme_group != '-'
         """).fetchone()[0]
 
-    # CMU coverage: lines where no word in phonology has source "not_found".
-    # phonology is stored as JSON; "not_found" indicates the word was not in CMU.
     if poem_ids:
         cmu_ok = conn.execute(
             f"SELECT COUNT(*) FROM lines WHERE poem_id IN ({placeholders}) "
@@ -102,7 +75,6 @@ def compute_metrics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = No
             WHERE (phonology IS NULL OR phonology NOT LIKE '%not_found%')
         """).fetchone()[0]
 
-    # End-stopped: lines with end_stopped = 1 (sentence-ending punctuation at line end).
     if poem_ids:
         end_stopped = conn.execute(
             f"SELECT COUNT(*) FROM lines WHERE poem_id IN ({placeholders}) AND end_stopped = 1",
@@ -111,8 +83,6 @@ def compute_metrics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = No
     else:
         end_stopped = conn.execute("SELECT COUNT(*) FROM lines WHERE end_stopped = 1").fetchone()[0]
 
-    # Caesura: lines with mid-line punctuation 
-    # caesura stores the word index of the first strong pause; NULL means none.
     if poem_ids:
         with_caesura = conn.execute(
             f"SELECT COUNT(*) FROM lines WHERE poem_id IN ({placeholders}) AND caesura IS NOT NULL",
@@ -135,8 +105,6 @@ def compute_metrics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = No
 
 
 def compute_corpus_diagnostics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = None) -> dict:
-    """Extra corpus-wide stats (histograms, degraded poems) beyond :func:`compute_metrics`.
-    """
     if poem_ids:
         placeholders = ",".join("?" * len(poem_ids))
         params: tuple = tuple(poem_ids)
@@ -220,7 +188,6 @@ def compute_corpus_diagnostics(conn: sqlite3.Connection, poem_ids: Optional[List
 def merge_metrics_and_diagnostics(
     conn: sqlite3.Connection, poem_ids: Optional[List[str]] = None
 ) -> dict:
-    """Single dict for annotation_coverage.json rows (coverage + former quality_checks fields)."""
     out = compute_metrics(conn, poem_ids)
     diag = compute_corpus_diagnostics(conn, poem_ids)
     out.update(diag)
@@ -228,10 +195,6 @@ def merge_metrics_and_diagnostics(
 
 
 def main():
-    """
-    Compute coverage + corpus diagnostics on the full corpus and print as JSON.
-    Requires output/corpus.db; run python scripts/export_sqlite.py first.
-    """
     if not DB_PATH.exists():
         print(f"Database not found: {DB_PATH}")
         print("Run: python scripts/export_sqlite.py")

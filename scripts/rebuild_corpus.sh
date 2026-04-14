@@ -2,7 +2,8 @@
 # Re-annotate all normalized poems with Poesy (Prosodic, via sample.phonology_sample) and rebuild corpus.db.
 # Requires: poesy + pronouncing (see requirements.txt). No separate prosodic install needed.
 #
-# Optional: export PROSODIC_NOTEBOOK_STRESS=prefer  # or force — explicit Meter+parse like metricalgpt notebook (slow)
+# Optional: export PROSODIC_NOTEBOOK_STRESS=force  # 1|force|yes|prefer|true — stress field ONLY from
+#   stress_from_notebook_style_prosodic (Poesy/CMU not used for stress); meter & meter_type still Poesy (slow)
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"

@@ -2,6 +2,8 @@
 """
 Run prompt-only baseline: load test lines, build prompts, call models, save outputs.
 
+(Corpus label coverage without a model: `evaluation/run_annotation_coverage.py`.)
+
 Few-shot prompts use a full example stanza (quatrain): each line is paired with its label in the
 same format as training 
 
@@ -10,13 +12,17 @@ Usage:
   python scripts/run_prompt_baseline.py --model google/flan-t5-large --prompt few_shot --task meter_only
   python scripts/run_prompt_baseline.py --model gpt2-medium --model_type causal --prompt few_shot --task meter_only --n 100
 
-Output: evaluation/results/baselines/prompt_only/{model_slug}/{prompt_type}_{task}.json
+Output (default): evaluation/results/baselines/{model_slug}/{prompt_type}_{task}.json
+
+SFT / custom tree: set ``PROMPT_BASELINE_DIR`` to the parent of per-model dirs (e.g. ``results``)
+or pass ``--results-dir`` to that path.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -26,9 +32,72 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from evaluation.baseline_slug import baseline_save_slug
 from evaluation.structured_baseline_metrics import parse_combined_bundle
+
+
+def resolve_pretrained_model_id(model_id: str) -> str:
+    """Resolve local checkpoint dirs so Transformers loads from disk, not the Hub.
+
+    Relative paths like ``sft/.../final_model`` are only recognized as local if they
+    exist; otherwise ``from_pretrained`` treats the string as a repo id and fails validation.
+    We try the current working directory and the repo root (parent of ``scripts/``).
+    """
+    raw = model_id.strip()
+    p = Path(raw).expanduser()
+    candidates: list[Path] = []
+    if p.is_absolute():
+        candidates.append(p)
+    else:
+        candidates.append(Path.cwd() / p)
+        candidates.append(ROOT / p)
+    for c in candidates:
+        try:
+            if c.is_dir():
+                return str(c.resolve())
+        except OSError:
+            continue
+    # Hugging Face hub ids are typically "org/name" (single slash). Multi-segment paths that
+    # do not exist on disk should error here instead of opaque HFValidationError from the Hub.
+    looks_like_filesystem_path = raw.count("/") >= 2 or raw.startswith(("./", "../", "/", "~"))
+    if looks_like_filesystem_path:
+        tried = "\n".join(f"  - {c}" for c in candidates)
+        parent = candidates[-1].parent if candidates else None
+        hint = ""
+        if parent and parent.is_dir():
+            sub = sorted(parent.iterdir(), key=lambda x: x.name)[:20]
+            names = ", ".join(x.name for x in sub)
+            hint = f"\nContents of {parent} (first entries): {names}\n"
+            if not any(x.name == "final_model" for x in sub):
+                hint += (
+                    "No `final_model` folder here — use the latest `checkpoint-*` dir as "
+                    "`--model`, or save with `trainer.save_model(...)` after training.\n"
+                )
+        raise FileNotFoundError(
+            "Local --model path does not exist or is not a directory.\n"
+            f"Tried:\n{tried}\n"
+            f"Repo root (from this script): {ROOT}\n"
+            f"CWD: {Path.cwd()}\n" + hint
+        )
+    return raw
+
+
 DATA_DIR = ROOT / "output" / "training_data"
-RESULTS_DIR = ROOT / "evaluation" / "results" / "baselines" / "prompt_only"
+DEFAULT_BASELINE_RESULTS_DIR = ROOT / "evaluation" / "results" / "baselines"
+# Back-compat alias (old name pointed at …/baselines/prompt_only; layout is now …/baselines/<slug>/).
+RESULTS_DIR = DEFAULT_BASELINE_RESULTS_DIR
+
+
+def resolve_baseline_results_dir(cli_dir: str | None) -> Path:
+    """Directory whose immediate children are per-model slug folders (each holds *.json)."""
+    if cli_dir:
+        p = Path(cli_dir).expanduser()
+        return p.resolve() if p.is_absolute() else (ROOT / p).resolve()
+    env = (os.environ.get("PROMPT_BASELINE_DIR") or "").strip()
+    if env:
+        p = Path(env).expanduser()
+        return p.resolve() if p.is_absolute() else (ROOT / p).resolve()
+    return DEFAULT_BASELINE_RESULTS_DIR.resolve()
 
 # Few-shot: build an example quatrain from `output/corpus.db` so labels stress/rhyme/combined
 # match the same rules as `output/training_data/...`.
@@ -561,11 +630,6 @@ PROMPTS = {
 }
 
 
-def slug(model_id: str) -> str:
-    """Convert model ID to filesystem-safe slug."""
-    return re.sub(r"[^a-zA-Z0-9_-]", "_", model_id)
-
-
 def load_test_data(task: str, split: str = "test") -> list:
     """Load test data from output/training_data/{task}/{split}.json."""
     path = DATA_DIR / task / f"{split}.json"
@@ -621,9 +685,11 @@ def run_inference_seq2seq(
 
     outputs = []
     n = len(prompts)
+    print(
+        f"  Generating {n} sequences (CPU can be slow; progress every 100 after the first)...",
+        flush=True,
+    )
     for i, p in enumerate(prompts):
-        if i and i % 500 == 0:
-            print(f"  ... generated {i}/{n} prompts", flush=True)
         inputs = tokenizer(
             p, return_tensors="pt", truncation=True, max_length=max_input_length
         ).to(dev)
@@ -635,6 +701,10 @@ def run_inference_seq2seq(
             )
         text = tokenizer.decode(generated[0], skip_special_tokens=True).strip()
         outputs.append(text)
+        if i == 0:
+            print(f"  ... first prompt done (1/{n})", flush=True)
+        elif (i + 1) % 100 == 0:
+            print(f"  ... generated {i + 1}/{n} prompts", flush=True)
     return outputs
 
 
@@ -660,9 +730,11 @@ def run_inference_causal(
 
     outputs = []
     n = len(prompts)
+    print(
+        f"  Generating {n} sequences (CPU can be slow; progress every 100 after the first)...",
+        flush=True,
+    )
     for i, p in enumerate(prompts):
-        if i and i % 500 == 0:
-            print(f"  ... generated {i}/{n} prompts", flush=True)
         enc = tokenizer(
             p,
             return_tensors="pt",
@@ -681,6 +753,10 @@ def run_inference_causal(
         new_ids = generated[0][input_ids.shape[1] :]
         text = tokenizer.decode(new_ids, skip_special_tokens=True).strip()
         outputs.append(text)
+        if i == 0:
+            print(f"  ... first prompt done (1/{n})", flush=True)
+        elif (i + 1) % 100 == 0:
+            print(f"  ... generated {i + 1}/{n} prompts", flush=True)
     return outputs
 
 
@@ -719,7 +795,23 @@ def main():
         default=None,
         help="Tokenizer max length for input (default: 1024 for few_shot, else 512)",
     )
-    parser.add_argument("--device", type=int, default=0, help="GPU device (0, 1, ...); -1 for CPU")
+    parser.add_argument(
+        "--device",
+        type=int,
+        default=0,
+        help="GPU index (0, 1, …); -1 for CPU. If you request a GPU but CUDA is unavailable (typical on login nodes), the script falls back to CPU and prints a notice.",
+    )
+    parser.add_argument(
+        "--results-dir",
+        type=str,
+        default=None,
+        help=(
+            "Directory whose immediate subdirs are model slugs (each contains *.json). "
+            "Default: evaluation/results/baselines. "
+            "SFT eval grid default: results/ (see scripts/hpc/run_eval_ft_grid.slurm). "
+            "Overrides env PROMPT_BASELINE_DIR when set."
+        ),
+    )
     parser.add_argument("--output", type=str, default=None, help="Override output path")
     parser.add_argument(
         "--strict-eval",
@@ -741,6 +833,21 @@ def main():
         ),
     )
     args = parser.parse_args()
+    baseline_results_root = resolve_baseline_results_dir(args.results_dir)
+
+    if args.device >= 0:
+        try:
+            import torch
+
+            if not torch.cuda.is_available():
+                print(
+                    "No CUDA available (e.g. login node). Using CPU. "
+                    "For full-speed inference, run on a GPU compute node or via sbatch; use --n 100 to smoke-test.",
+                    flush=True,
+                )
+                args.device = -1
+        except ImportError:
+            args.device = -1
 
     corpus_db = ROOT / "output" / "corpus.db"
     data = load_test_data(args.task, args.split)
@@ -768,17 +875,21 @@ def main():
         )
     print(f"Loaded {len(data)} samples for task={args.task}, prompt={args.prompt}")
 
+    model_id = resolve_pretrained_model_id(args.model)
+    if model_id != args.model:
+        print(f"Resolved --model to local path: {model_id}")
+
     prompts = [build_prompt(item, args.task, args.prompt) for item in data]
     max_in = (
         args.max_prompt_length
         if args.max_prompt_length is not None
         else (1024 if args.prompt == "few_shot" else 512)
     )
-    print(f"Running {args.model} ({args.model_type}), max_prompt_length={max_in}...")
+    print(f"Running {model_id} ({args.model_type}), max_prompt_length={max_in}...")
     if args.model_type == "causal":
         outputs = run_inference_causal(
             prompts,
-            args.model,
+            model_id,
             max_new_tokens=args.max_tokens,
             device=args.device,
             max_input_length=max_in,
@@ -786,7 +897,7 @@ def main():
     else:
         outputs = run_inference_seq2seq(
             prompts,
-            args.model,
+            model_id,
             max_new_tokens=args.max_tokens,
             device=args.device,
             max_input_length=max_in,
@@ -824,11 +935,11 @@ def main():
             row["gold_form_ok"] = gsig["ok"]
         results.append(row)
 
-    out_dir = RESULTS_DIR / slug(args.model)
+    out_dir = baseline_results_root / baseline_save_slug(model_id)
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = args.output or (out_dir / f"{args.prompt}_{args.task}.json")
     payload = {
-        "model": args.model,
+        "model": model_id,
         "prompt_type": args.prompt,
         "task": args.task,
         "split": args.split,

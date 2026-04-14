@@ -1,2 +1,0 @@
-Wrote /Users/kemiomoniyi/Senior Thesis/evaluation/results/model_comparison.csv (121 rows)
-Wrote /Users/kemiomoniyi/Senior Thesis/evaluation/results/model_selection_notes.txt

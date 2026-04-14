@@ -300,9 +300,9 @@ def get_arpabet(word: str) -> tuple:
 def get_phonology_for_line(line_text: str) -> list:
     """Split a line into word tokens and attach CMU (or fallback) phones to each.
 
-    Output is a list of dicts: ``{"word": str, "arpabet": list of str, "source": str}``. This
-    is the backbone for rhyme keys and for the lexical stress string when Poesy does not
-    supply metrical stress.
+    Output is a list of dicts: ``{"word": str, "arpabet": list of str, "source": str}``. Those
+    ARPAbet strings carry **lexical** stress digits on vowels; later turn them into a stress
+    pattern with ``phones_to_stress`` / ``line_meter_from_phonology`` when need a fallback.
     """
     words = re.findall(r"[\w']+", line_text)
     out = []
@@ -329,10 +329,11 @@ def get_rhyme_word(phonology: list):
 
 
 def phones_to_stress(phones: list) -> list:
-    """Pull stress levels (0, 1, 2) off CMU-style phones.
+    """Read stress numbers from CMU dictionary phones (lexical stress only).
 
-    In ARPAbet, vowels end with 0 (unstressed), 1 (primary stress), or 2 (secondary). We keep
-    one integer per vowel token in order, and ignore consonants for this step.
+    CMU marks each vowel with a digit at the end of the phone: 0 = unstressed, 1 = main stress,
+    2 = secondary stress. Consonants have no stress digit, so skip them. This is *dictionary*
+    stress (how the word is usually said), not yet a full poetic scansion.
     """
     stresses = []
     for ph in (phones or []):
@@ -342,18 +343,25 @@ def phones_to_stress(phones: list) -> list:
     return stresses
 
 
-# Human-readable foot labelsguess meter from syllable count alone.
+# Human-readable foot names when  guess meter from syllable count alone.
 FEET_NAMES = {1: "monometer", 2: "dimeter", 3: "trimeter", 4: "tetrameter", 5: "pentameter",
               6: "hexameter", 7: "heptameter", 8: "octameter"}
 
 
 def line_meter_from_phonology(phonology: list) -> tuple:
-    """Get rough stress pattern and meter label from dictionary stress only 
+    """Build a stress string and a rough meter *label* using only CMU pronunciations.
 
-    This does **lexical** stress from CMU: it does not know about elision or promoted stresses
-    in poetry; it is a cheap fallback when Poesy/Prosodic does not return a line-level stress
-    string. Binary ``0``/``1`` for unstressed/stressed vowels, count syllables, and
-    label familiar patterns 
+    **What this evaluates:** For each word  already looked up in CMU,  collect stress on
+    every vowel in order (left to right through the line). That gives a simple unstressed/stressed
+    pattern for the whole line.
+
+    **What this is *not*:** It is not Prosodic’s metrical parse. It ignores poetry-specific
+    effects (elision, promoted beats, headless lines). Use this as a fallback when Poesy/Prosodic
+    did not give us a ``stress`` string.
+
+    Turn CMU’s 0/1/2 into a binary string: any stressed vowel (1 or 2) becomes ``1``,
+    unstressed (0) becomes ``0``. then guess a friendly label like “iambic pentameter” only
+    when the syllable count and the start of the pattern match simple templates.
 
     Returns:
         ``(syllable_count, stress_binary_string, meter_type_label)``. If there are no vowels,
@@ -369,7 +377,9 @@ def line_meter_from_phonology(phonology: list) -> tuple:
             pass
         else:
             continue
+        # Collect one stress level per vowel phone, in order, for this line.
         stresses.extend(phones_to_stress(pron))
+    # Collapse to 0/1 for downstream code that expects binary weak/strong.
     stress_binary = "".join("1" if s > 0 else "0" for s in stresses)
     n = len(stresses)
     if n == 0:
@@ -404,8 +414,8 @@ def get_end_stopped(line_text: str) -> bool:
 def get_caesura(line_text: str) -> dict:
     """Find the first plausible caesura: a comma-like pause between two words mid-line.
 
-    We tokenize into words and punctuation. The first mark in the set comma, semicolon, colon,
-    em-dash, or hyphen that sits between two real words counts as a hit. We store the word
+    tokenize into words and punctuation. The first mark in the set comma, semicolon, colon,
+    em-dash, or hyphen that sits between two real words counts as a hit. store the word
     index before the break and the words on either side. If nothing matches, every value in
     the returned dict is None.
 
@@ -566,6 +576,8 @@ def annotate_with_poesy(poem: dict) -> dict:
             m_raw = None
             stress = None
             if bp is not None:
+                # **Metrical stress (Prosodic):** the parser picks a best scan for the line.
+                # Try several attribute names across Prosodic versions; some are methods.
                 sget = (
                     getattr(bp, "stress_str", None)
                     or getattr(bp, "stress", None)
@@ -596,6 +608,8 @@ def annotate_with_poesy(poem: dict) -> dict:
                 if _m is not None and isinstance(_m, str) and not m_raw:
                     m_raw = _m
             meter = m_raw if (m_raw is not None and isinstance(m_raw, str) and m_raw.strip()) else parse_str
+            # still have no stress string, derive it from Prosodic’s pipe-separated scan:
+            # uppercase letters in a slot mean “stressed” for that metrical position.
             if not stress and parse_str and isinstance(parse_str, str) and "|" in parse_str:
                 stress = _parse_str_to_stress(parse_str)
             if not stress and meter and isinstance(meter, str) and "|" in meter:
@@ -613,6 +627,7 @@ def annotate_with_poesy(poem: dict) -> dict:
                     m_str = None if m is None else (m if isinstance(m, str) else str(m))
                     ann[(si, li)]["meter"] = m_str
                     s_str = None if s is None else (s if isinstance(s, str) else str(s))
+                    # Last chance: build +/− from the pipe scansion stored as ``meter`` text.
                     if not s_str and m_str and "|" in m_str:
                         s_str = _parse_str_to_stress(m_str)
                     ann[(si, li)]["stress"] = s_str or None
@@ -654,10 +669,12 @@ STANZA_NAMES = {2: "couplet", 4: "quatrain", 6: "sestet", 8: "octet", 3: "tercet
 
 
 def _parse_str_to_stress(parse_str: str) -> str:
-    """Turn Prosodic’s pipe-separated scansion string into + and - for each metrical slot.
+    """Turn Prosodic’s pipe-separated line into a simple strong/weak beat string.
 
-    Prosodic sometimes prints syllables like ``if|ERE|the|MO|ment`` where uppercase marks a
-    stressed syllable. We emit one ``+`` or ``-`` per chunk. Empty input returns an empty string.
+    **Rule:** Split on ``|``. For each piece, if any letter in that piece is uppercase, treat
+    that metrical position as stressed (``+``); otherwise weak (``-``). Example: ``a|B`` → ``-+``.
+    recover stress when Prosodic only gives us the scanned text, not a ready-made
+    ``stress_str``. Empty input returns ``""``.
     """
     if not parse_str or not isinstance(parse_str, str):
         return ""
@@ -666,10 +683,10 @@ def _parse_str_to_stress(parse_str: str) -> str:
 
 
 def normalize_stress_to_plus_minus(s: str) -> str:
-    """Store line-level stress like Prosodic/metricalgpt: only ``+`` / ``-`` per metrical syllable.
+    """Make sure stored ``stress`` uses only ``+`` and ``-`` so all tasks agree.
 
-    CMU lexical fallback uses ``0``/``1``; we convert that here so ``stress`` matches fields like
-    ``ayo19-w0010.json`` (``-+-+-+-+-+``) and the combined-task bundle.
+    Different steps above may produce ``+``/``-`` (Prosodic) or ``0``/``1`` (CMU-style binary).
+    convert the latter here so one line’s ``stress`` field always looks the same in JSON.
     """
     if not s or not isinstance(s, str):
         return ""
@@ -681,7 +698,7 @@ def normalize_stress_to_plus_minus(s: str) -> str:
     return s
 
 
-# ---  Recently added to get stress
+# ---  Single-line Prosodic stress (PROSODIC_NOTEBOOK_STRESS mode)
 _NOTEBOOK_STYLE_METER = None
 _PROSODIC_LOG_QUIET = False
 
@@ -694,6 +711,7 @@ def _quiet_prosodic_logging_once() -> None:
     try:
         import logging
         import prosodic
+
         if hasattr(prosodic, "logger"):
             prosodic.logger.setLevel(logging.ERROR)
         logging.getLogger("prosodic").setLevel(logging.ERROR)
@@ -703,38 +721,79 @@ def _quiet_prosodic_logging_once() -> None:
 
 
 def _metricalgpt_notebook_meter():
-    """Build and cache one Prosodic ``Meter`` object  
+    """Return the default bundled meter (Prosodic 1.x: ``prosodic.METER``, “Ryan’s Meter”).
+
+    Older code used ``Meter(constraints=...)`` (Prosodic 2.x-style); this environment expects
+    ``Meter(config)`` or the prebuilt ``prosodic.METER`` singleton.
     """
     global _NOTEBOOK_STYLE_METER
     if _NOTEBOOK_STYLE_METER is not None:
         return _NOTEBOOK_STYLE_METER
     import prosodic
+
     _quiet_prosodic_logging_once()
-    constraints = {
-        "w_peak": 3.0,
-        "w_stress": 1.0,
-        "s_unstress": 1.0,
-        "unres_across": 2.0,
-        "unres_within": 2.0,
-        "pentameter": 5.0,
-    }
-    _NOTEBOOK_STYLE_METER = prosodic.Meter(
-        constraints=constraints,
-        resolve_optionality=True,
-        max_s=1,
-        max_w=2,
-        parse_unit="line",
-    )
+    _NOTEBOOK_STYLE_METER = prosodic.METER
     return _NOTEBOOK_STYLE_METER
 
 
-def stress_from_notebook_style_prosodic(line_text: str) -> str:
-    """Scan one line with Prosodic using the explicit pentameter ``Meter`` got this idea from the notebook
-    this does not go through Poesy’s whole-poem object; it runs ``TextModel(txt).parse(meter=...)`` on the line alone. 
-    lines that are really tetrameter may still be forced through a pentameter lens.
+def _text_lines_list(text_obj) -> list:
+    """``Text.lines`` may be a method (this repo’s Prosodic) or a list in other versions."""
+    lines = getattr(text_obj, "lines", None)
+    if lines is None:
+        return []
+    return lines() if callable(lines) else (lines if isinstance(lines, list) else list(lines))
 
-    Returns a string of ``+`` and ``-``, or ``""`` if Prosodic fails or the line exceeds
-    PROSODIC_NOTEBOOK_MAX_CHARS.
+
+def _line_best_parse(line_obj):
+    """Best parse for one line: ``bestParse`` may be method or attribute."""
+    bp = getattr(line_obj, "bestParse", None)
+    if bp is None:
+        bp = getattr(line_obj, "best_parse", None)
+    if bp is None:
+        return None
+    return bp() if callable(bp) else bp
+
+
+def _parse_stress_from_prosodic_parse(bp) -> str:
+    """Derive ``+``/``-`` from a Prosodic ``Parse`` (pipe- or dot-separated scansion tokens)."""
+    if bp is None:
+        return ""
+    stress = getattr(bp, "stress_str", None) or getattr(bp, "parse_stress", None)
+    if callable(stress):
+        try:
+            stress = stress()
+        except TypeError:
+            stress = stress()
+    if isinstance(stress, str) and stress.strip() and all(c in "+-" for c in stress.strip()):
+        return stress.strip()
+    parse_str = getattr(bp, "parse_str", None)
+    if callable(parse_str):
+        try:
+            parse_str = parse_str(viols=False)
+        except TypeError:
+            parse_str = parse_str()
+    if not (parse_str and isinstance(parse_str, str)):
+        parse_str = getattr(bp, "posString", None)
+        if callable(parse_str):
+            parse_str = parse_str()
+    if not (parse_str and isinstance(parse_str, str) and parse_str.strip()):
+        parse_str = str(bp).strip()
+    if not parse_str:
+        return ""
+    return _parse_str_to_stress(parse_str)
+
+
+def stress_from_notebook_style_prosodic(line_text: str) -> str:
+    """Get metrical stress for one line using Prosodic alone (optional path).
+
+    Uses ``prosodic.Text`` + default ``prosodic.METER`` (matches the Prosodic build in this
+    project’s venv). Does not use Poesy’s rhyme graph. On failure, returns ``""``.
+
+    **Prosodic 2.x:** If ``prosodic.texts.texts.TextModel`` exists, it is tried as a fallback
+    after the ``Text`` path.
+
+    Returns ``+``/``-`` string, or ``""`` if Prosodic fails or the line exceeds
+    ``PROSODIC_NOTEBOOK_MAX_CHARS``.
     """
     s = (line_text or "").strip()
     if not s:
@@ -745,33 +804,44 @@ def stress_from_notebook_style_prosodic(line_text: str) -> str:
         max_chars = 2000
     if len(s) > max_chars:
         return ""
-    try:
-        from prosodic.texts.texts import TextModel
-    except Exception:
-        return ""
+
     _quiet_prosodic_logging_once()
-    try:
+
+    def _from_text_api() -> str:
+        import prosodic
+
         meter = _metricalgpt_notebook_meter()
-        t = TextModel(txt=s)
-        out = t.parse(meter=meter, lim=1)
+        t = prosodic.Text(s)
+        t.parse(meter=meter, line_lim=1)
+        lines = _text_lines_list(t)
+        if not lines:
+            return ""
+        bp = _line_best_parse(lines[0])
+        return _parse_stress_from_prosodic_parse(bp)
+
+    def _from_textmodel_api() -> str:
+        try:
+            from prosodic.texts.texts import TextModel
+        except Exception:
+            return ""
+        meter = _metricalgpt_notebook_meter()
+        out = TextModel(txt=s).parse(meter=meter, lim=1)
         if not out:
             return ""
         pl = out[0]
         bp = getattr(pl, "best_parse", None)
         if bp is None:
             return ""
-        stress = getattr(bp, "stress_str", None) or getattr(bp, "parse_stress", None)
-        if callable(stress):
-            stress = stress()
-        if isinstance(stress, str) and stress.strip():
-            return stress.strip()
-        parse_str = getattr(bp, "parse_str", None)
-        parse_str = parse_str(viols=False) if callable(parse_str) else parse_str
-        if parse_str and isinstance(parse_str, str) and "|" in parse_str:
-            return _parse_str_to_stress(parse_str)
+        return _parse_stress_from_prosodic_parse(bp)
+
+    try:
+        stress = _from_text_api()
+        if stress:
+            return stress
+        stress = _from_textmodel_api()
+        return stress if stress else ""
     except Exception:
         return ""
-    return ""
 
 
 def _rhyme_pairs(rhyme_groups: list) -> list:
@@ -795,19 +865,23 @@ def _rhyme_pairs(rhyme_groups: list) -> list:
 def annotate_poem(poem: dict) -> dict:
     """Main entry: take a normalized poem and return the same poem shape with labels filled in.
 
-    Steps in order: call ``annotate_with_poesy`` for rhyme + Prosodic stress/meter when possible;
-    for each line, attach CMU phonology, rhyme word, end-stopped and caesura flags, and
-    enjambment. If Poesy left ``stress`` blank, 
-    fill from dictionary stress. 
+    Steps in order: call ``annotate_with_poesy`` for rhyme + Prosodic **meter** (pipe scansion)
+    when possible; for each line, attach CMU phonology, rhyme word, end-stopped and caesura
+    flags, and enjambment.
 
-    Line-level ``meter_type`` uses Poesy’s poem-wide label if possible; otherwise use
-    the heuristic label from ``line_meter_from_phonology``.
+    **Stress (two modes):** If ``PROSODIC_NOTEBOOK_STRESS`` is set to ``1``, ``force``, ``yes``,
+    ``true``, or ``prefer``, the **only** source for line ``stress`` is
+    ``stress_from_notebook_style_prosodic`` (single-line Prosodic parse with the fixed notebook
+    ``Meter``). Poesy line stress and CMU lexical stress are **not** used for ``stress`` in
+    that mode. If the env var is unset, ``stress`` comes from Poesy first, then CMU fallback.
 
-    Field roles (avoid mixing them): ``meter`` = Prosodic pipe scansion (e.g. ``from|SHORT|…``);
-    ``stress`` = metrical ``+``/``-`` string (prefer ``PROSODIC_NOTEBOOK_STRESS=force`` to match
-    metricalgpt’s ``TextModel.parse(meter=…)`` path); ``meter_type`` = abstract label
-    (e.g. ``iambic Pentameter``). If Poesy gives no pipe scansion, ``meter`` is left empty—CMU
-    lexical stress is never copied into ``meter`` (it belongs only in ``stress`` when needed).
+    Line-level ``meter_type`` uses Poesy’s poem-wide label if possible; otherwise the heuristic
+    from ``line_meter_from_phonology`` (syllable-count / pattern label—still computed for the
+    label even in notebook-stress mode).
+
+    Field roles: ``meter`` = Poesy/Prosodic pipe scansion when available; ``stress`` = ``+``/``-``
+    beats; ``meter_type`` = abstract label. CMU lexical stress never fills ``meter``—only the
+    ``stress`` field in default mode when Poesy omits it.
 
     The counter dict ``annotation_sources`` is for checking, not rigorous stats.
 
@@ -858,30 +932,40 @@ def annotate_poem(poem: dict) -> dict:
             rec["rhyme_group"] = rg
             rhyme_groups.append(rg)
             rec["meter"] = pa.get("meter")
-            rec["stress"] = pa.get("stress")
+            # ``meter_type`` fallback label still needs syllable/heuristic info from phonology.
             syll, stress_pattern, meter_type_fallback = line_meter_from_phonology(phon)
-            if not (rec.get("stress") or "").strip():
-                rec["stress"] = stress_pattern or ""
+
             nb_mode = (os.environ.get("PROSODIC_NOTEBOOK_STRESS") or "").strip().lower()
-            if nb_mode in ("1", "force", "yes", "true"):
+            # Notebook mode: ONLY ``stress_from_notebook_style_prosodic`` may set ``stress`` (not
+            # Poesy line stress, not CMU). Export PROSODIC_NOTEBOOK_STRESS=1|force|yes|prefer|true.
+            notebook_only_stress = nb_mode in ("1", "force", "yes", "true", "prefer")
+
+            if notebook_only_stress:
                 nb = stress_from_notebook_style_prosodic(norm)
-                if nb:
-                    rec["stress"] = nb
-                    if track_sources:
+                rec["stress"] = nb or ""
+                if track_sources:
+                    if rec["stress"]:
                         src["stress_notebook"] += 1
-            elif nb_mode == "prefer":
+                    else:
+                        src["stress_empty"] += 1
+            else:
+                rec["stress"] = pa.get("stress")
                 if not (rec.get("stress") or "").strip():
-                    nb = stress_from_notebook_style_prosodic(norm)
-                    if nb:
-                        rec["stress"] = nb
-                        if track_sources:
-                            src["stress_notebook"] += 1
+                    rec["stress"] = stress_pattern or ""
+                if track_sources:
+                    if rec["stress"]:
+                        src["stress_poesy"] += 1
+                    else:
+                        src["stress_empty"] += 1
+
+            # Final shape for JSON: always ``+``/``-`` per beat (never mix with ``0``/``1``).
             rec["stress"] = normalize_stress_to_plus_minus(rec.get("stress") or "")
+
             if track_sources:
-                if rg: src["rhyme_poesy"] += 1
-                else: src["rhyme_empty"] += 1
-                if rec["stress"]: src["stress_poesy"] += 1
-                else: src["stress_empty"] += 1
+                if rg:
+                    src["rhyme_poesy"] += 1
+                else:
+                    src["rhyme_empty"] += 1
             if rec["meter"] is None or rec["meter"] == "":
                 rec["meter"] = ""
                 if track_sources:

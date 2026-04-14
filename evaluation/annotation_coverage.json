@@ -1,0 +1,908 @@
+{
+  "full_corpus": {
+    "n_lines": 320887,
+    "meter_coverage": {
+      "n_with_meter": 320871,
+      "pct": 99.99501382106473
+    },
+    "stress_coverage": {
+      "n_with_stress": 274352,
+      "pct": 85.49801020296864
+    },
+    "rhyme_coverage": {
+      "n_with_rhyme": 183346,
+      "pct": 57.13724769155497
+    },
+    "cmu_coverage": {
+      "n_full_cmu": 313936,
+      "pct": 97.83381688881133
+    },
+    "end_stopped": {
+      "n": 265510,
+      "pct": 82.74252306886848
+    },
+    "caesura": {
+      "n": 129766,
+      "pct": 40.43978098209027
+    },
+    "n_poems": 3634,
+    "n_stanzas": 30952,
+    "meter_type_distribution": [
+      {
+        "meter_type": "iambic Pentameter",
+        "n": 79243,
+        "pct": 24.69
+      },
+      {
+        "meter_type": "iambic Tetrameter",
+        "n": 51913,
+        "pct": 16.18
+      },
+      {
+        "meter_type": "pentameter",
+        "n": 42180,
+        "pct": 13.14
+      },
+      {
+        "meter_type": "tetrameter",
+        "n": 25208,
+        "pct": 7.86
+      },
+      {
+        "meter_type": "iambic pentameter",
+        "n": 19199,
+        "pct": 5.98
+      },
+      {
+        "meter_type": "iambic Complex (4-3-4-3)",
+        "n": 12448,
+        "pct": 3.88
+      },
+      {
+        "meter_type": "iambic tetrameter",
+        "n": 11119,
+        "pct": 3.47
+      },
+      {
+        "meter_type": "trimeter",
+        "n": 10373,
+        "pct": 3.23
+      },
+      {
+        "meter_type": "trochaic pentameter",
+        "n": 6349,
+        "pct": 1.98
+      },
+      {
+        "meter_type": "iambic Complex (4-4-3-4-4-3)",
+        "n": 4626,
+        "pct": 1.44
+      },
+      {
+        "meter_type": "trochaic tetrameter",
+        "n": 4426,
+        "pct": 1.38
+      },
+      {
+        "meter_type": "iambic trimeter",
+        "n": 4424,
+        "pct": 1.38
+      },
+      {
+        "meter_type": "trochaic Tetrameter",
+        "n": 3580,
+        "pct": 1.12
+      },
+      {
+        "meter_type": "trochaic trimeter",
+        "n": 2523,
+        "pct": 0.79
+      },
+      {
+        "meter_type": "dimeter",
+        "n": 2402,
+        "pct": 0.75
+      }
+    ],
+    "lines_with_phonology_not_found": 6951,
+    "n_poems_all_unknown_meter": 0,
+    "enjambment_lines": 55377,
+    "stanza_type_distribution": [
+      {
+        "stanza_type": "quatrain",
+        "n": 11673
+      },
+      {
+        "stanza_type": "sestet",
+        "n": 4145
+      },
+      {
+        "stanza_type": "octet",
+        "n": 2503
+      },
+      {
+        "stanza_type": "10_line",
+        "n": 1852
+      },
+      {
+        "stanza_type": "12_line",
+        "n": 1296
+      },
+      {
+        "stanza_type": "9_line",
+        "n": 1286
+      },
+      {
+        "stanza_type": "14_line",
+        "n": 1151
+      },
+      {
+        "stanza_type": "16_line",
+        "n": 756
+      },
+      {
+        "stanza_type": "18_line",
+        "n": 604
+      },
+      {
+        "stanza_type": "cinquain",
+        "n": 484
+      }
+    ]
+  },
+  "train": {
+    "n_lines": 206956,
+    "meter_coverage": {
+      "n_with_meter": 206942,
+      "pct": 99.99323527706372
+    },
+    "stress_coverage": {
+      "n_with_stress": 176937,
+      "pct": 85.49498444113725
+    },
+    "rhyme_coverage": {
+      "n_with_rhyme": 119589,
+      "pct": 57.78474651616769
+    },
+    "cmu_coverage": {
+      "n_full_cmu": 202637,
+      "pct": 97.91308297415875
+    },
+    "end_stopped": {
+      "n": 170879,
+      "pct": 82.5677921877114
+    },
+    "caesura": {
+      "n": 81652,
+      "pct": 39.453796942345235
+    },
+    "n_poems": 2332,
+    "n_stanzas": 20116,
+    "meter_type_distribution": [
+      {
+        "meter_type": "iambic Pentameter",
+        "n": 51077,
+        "pct": 24.68
+      },
+      {
+        "meter_type": "iambic Tetrameter",
+        "n": 33025,
+        "pct": 15.96
+      },
+      {
+        "meter_type": "pentameter",
+        "n": 26230,
+        "pct": 12.67
+      },
+      {
+        "meter_type": "tetrameter",
+        "n": 16302,
+        "pct": 7.88
+      },
+      {
+        "meter_type": "iambic pentameter",
+        "n": 12065,
+        "pct": 5.83
+      },
+      {
+        "meter_type": "iambic Complex (4-3-4-3)",
+        "n": 8680,
+        "pct": 4.19
+      },
+      {
+        "meter_type": "iambic tetrameter",
+        "n": 7307,
+        "pct": 3.53
+      },
+      {
+        "meter_type": "trimeter",
+        "n": 6765,
+        "pct": 3.27
+      },
+      {
+        "meter_type": "trochaic pentameter",
+        "n": 3799,
+        "pct": 1.84
+      },
+      {
+        "meter_type": "iambic Complex (4-4-3-4-4-3)",
+        "n": 3102,
+        "pct": 1.5
+      },
+      {
+        "meter_type": "iambic trimeter",
+        "n": 2968,
+        "pct": 1.43
+      },
+      {
+        "meter_type": "trochaic Tetrameter",
+        "n": 2752,
+        "pct": 1.33
+      },
+      {
+        "meter_type": "trochaic tetrameter",
+        "n": 2722,
+        "pct": 1.32
+      },
+      {
+        "meter_type": "dimeter",
+        "n": 1559,
+        "pct": 0.75
+      },
+      {
+        "meter_type": "trochaic trimeter",
+        "n": 1536,
+        "pct": 0.74
+      }
+    ],
+    "lines_with_phonology_not_found": 4319,
+    "n_poems_all_unknown_meter": 0,
+    "enjambment_lines": 36077,
+    "stanza_type_distribution": [
+      {
+        "stanza_type": "quatrain",
+        "n": 7645
+      },
+      {
+        "stanza_type": "sestet",
+        "n": 2547
+      },
+      {
+        "stanza_type": "octet",
+        "n": 1682
+      },
+      {
+        "stanza_type": "10_line",
+        "n": 1225
+      },
+      {
+        "stanza_type": "9_line",
+        "n": 1023
+      },
+      {
+        "stanza_type": "12_line",
+        "n": 806
+      },
+      {
+        "stanza_type": "14_line",
+        "n": 730
+      },
+      {
+        "stanza_type": "16_line",
+        "n": 446
+      },
+      {
+        "stanza_type": "cinquain",
+        "n": 366
+      },
+      {
+        "stanza_type": "18_line",
+        "n": 338
+      }
+    ]
+  },
+  "dev": {
+    "n_lines": 42831,
+    "meter_coverage": {
+      "n_with_meter": 42831,
+      "pct": 100.0
+    },
+    "stress_coverage": {
+      "n_with_stress": 36494,
+      "pct": 85.20464149798043
+    },
+    "rhyme_coverage": {
+      "n_with_rhyme": 24461,
+      "pct": 57.1105040741519
+    },
+    "cmu_coverage": {
+      "n_full_cmu": 41699,
+      "pct": 97.3570544698933
+    },
+    "end_stopped": {
+      "n": 35915,
+      "pct": 83.8528168849665
+    },
+    "caesura": {
+      "n": 17097,
+      "pct": 39.91734958324578
+    },
+    "n_poems": 502,
+    "n_stanzas": 4103,
+    "meter_type_distribution": [
+      {
+        "meter_type": "iambic Pentameter",
+        "n": 10037,
+        "pct": 23.43
+      },
+      {
+        "meter_type": "iambic Tetrameter",
+        "n": 7347,
+        "pct": 17.15
+      },
+      {
+        "meter_type": "pentameter",
+        "n": 5717,
+        "pct": 13.35
+      },
+      {
+        "meter_type": "tetrameter",
+        "n": 3222,
+        "pct": 7.52
+      },
+      {
+        "meter_type": "iambic pentameter",
+        "n": 2582,
+        "pct": 6.03
+      },
+      {
+        "meter_type": "iambic Complex (4-3-4-3)",
+        "n": 1872,
+        "pct": 4.37
+      },
+      {
+        "meter_type": "iambic tetrameter",
+        "n": 1420,
+        "pct": 3.32
+      },
+      {
+        "meter_type": "trimeter",
+        "n": 1291,
+        "pct": 3.01
+      },
+      {
+        "meter_type": "trochaic pentameter",
+        "n": 933,
+        "pct": 2.18
+      },
+      {
+        "meter_type": "trochaic tetrameter",
+        "n": 632,
+        "pct": 1.48
+      },
+      {
+        "meter_type": "iambic Complex (4-4-3-4-4-3)",
+        "n": 606,
+        "pct": 1.41
+      },
+      {
+        "meter_type": "iambic trimeter",
+        "n": 535,
+        "pct": 1.25
+      },
+      {
+        "meter_type": "trochaic Tetrameter",
+        "n": 498,
+        "pct": 1.16
+      },
+      {
+        "meter_type": "iambic Complex (4-3-4-3-4-3-4-3)",
+        "n": 472,
+        "pct": 1.1
+      },
+      {
+        "meter_type": "iambic Complex (5-5-5-5-5-5-5-5-6)",
+        "n": 459,
+        "pct": 1.07
+      }
+    ],
+    "lines_with_phonology_not_found": 1132,
+    "n_poems_all_unknown_meter": 0,
+    "enjambment_lines": 6916,
+    "stanza_type_distribution": [
+      {
+        "stanza_type": "quatrain",
+        "n": 1621
+      },
+      {
+        "stanza_type": "sestet",
+        "n": 624
+      },
+      {
+        "stanza_type": "octet",
+        "n": 300
+      },
+      {
+        "stanza_type": "10_line",
+        "n": 229
+      },
+      {
+        "stanza_type": "14_line",
+        "n": 166
+      },
+      {
+        "stanza_type": "12_line",
+        "n": 145
+      },
+      {
+        "stanza_type": "18_line",
+        "n": 98
+      },
+      {
+        "stanza_type": "16_line",
+        "n": 94
+      },
+      {
+        "stanza_type": "9_line",
+        "n": 91
+      },
+      {
+        "stanza_type": "couplet",
+        "n": 85
+      }
+    ]
+  },
+  "test": {
+    "n_lines": 43535,
+    "meter_coverage": {
+      "n_with_meter": 43533,
+      "pct": 99.9954059951763
+    },
+    "stress_coverage": {
+      "n_with_stress": 36468,
+      "pct": 83.76708395543815
+    },
+    "rhyme_coverage": {
+      "n_with_rhyme": 24037,
+      "pct": 55.21304697369932
+    },
+    "cmu_coverage": {
+      "n_full_cmu": 42539,
+      "pct": 97.71218559779487
+    },
+    "end_stopped": {
+      "n": 35735,
+      "pct": 82.08338118755024
+    },
+    "caesura": {
+      "n": 18228,
+      "pct": 41.86975996324796
+    },
+    "n_poems": 493,
+    "n_stanzas": 4054,
+    "meter_type_distribution": [
+      {
+        "meter_type": "iambic Pentameter",
+        "n": 11682,
+        "pct": 26.83
+      },
+      {
+        "meter_type": "pentameter",
+        "n": 6681,
+        "pct": 15.35
+      },
+      {
+        "meter_type": "iambic Tetrameter",
+        "n": 6196,
+        "pct": 14.23
+      },
+      {
+        "meter_type": "iambic pentameter",
+        "n": 3020,
+        "pct": 6.94
+      },
+      {
+        "meter_type": "tetrameter",
+        "n": 2913,
+        "pct": 6.69
+      },
+      {
+        "meter_type": "trimeter",
+        "n": 1351,
+        "pct": 3.1
+      },
+      {
+        "meter_type": "iambic Complex (4-3-4-3)",
+        "n": 1276,
+        "pct": 2.93
+      },
+      {
+        "meter_type": "iambic tetrameter",
+        "n": 1266,
+        "pct": 2.91
+      },
+      {
+        "meter_type": "trochaic pentameter",
+        "n": 991,
+        "pct": 2.28
+      },
+      {
+        "meter_type": "iambic Complex (4-4-3-4-4-3)",
+        "n": 792,
+        "pct": 1.82
+      },
+      {
+        "meter_type": "trochaic tetrameter",
+        "n": 564,
+        "pct": 1.3
+      },
+      {
+        "meter_type": "iambic trimeter",
+        "n": 549,
+        "pct": 1.26
+      },
+      {
+        "meter_type": "iambic Complex (4-4-4-2-4-2)",
+        "n": 510,
+        "pct": 1.17
+      },
+      {
+        "meter_type": "iambic Complex (5-5-5-5-5-5-5-5-6)",
+        "n": 486,
+        "pct": 1.12
+      },
+      {
+        "meter_type": "hexameter",
+        "n": 423,
+        "pct": 0.97
+      }
+    ],
+    "lines_with_phonology_not_found": 996,
+    "n_poems_all_unknown_meter": 0,
+    "enjambment_lines": 7800,
+    "stanza_type_distribution": [
+      {
+        "stanza_type": "quatrain",
+        "n": 1415
+      },
+      {
+        "stanza_type": "sestet",
+        "n": 695
+      },
+      {
+        "stanza_type": "octet",
+        "n": 305
+      },
+      {
+        "stanza_type": "10_line",
+        "n": 209
+      },
+      {
+        "stanza_type": "12_line",
+        "n": 167
+      },
+      {
+        "stanza_type": "14_line",
+        "n": 150
+      },
+      {
+        "stanza_type": "9_line",
+        "n": 142
+      },
+      {
+        "stanza_type": "16_line",
+        "n": 121
+      },
+      {
+        "stanza_type": "18_line",
+        "n": 90
+      },
+      {
+        "stanza_type": "couplet",
+        "n": 59
+      }
+    ]
+  },
+  "held_out_poets": {
+    "n_lines": 19504,
+    "meter_coverage": {
+      "n_with_meter": 19504,
+      "pct": 100.0
+    },
+    "stress_coverage": {
+      "n_with_stress": 16786,
+      "pct": 86.06439704675964
+    },
+    "rhyme_coverage": {
+      "n_with_rhyme": 10859,
+      "pct": 55.675758818703855
+    },
+    "cmu_coverage": {
+      "n_full_cmu": 19220,
+      "pct": 98.54388843314192
+    },
+    "end_stopped": {
+      "n": 16162,
+      "pct": 82.86505332239541
+    },
+    "caesura": {
+      "n": 9110,
+      "pct": 46.70836751435603
+    },
+    "n_poems": 208,
+    "n_stanzas": 1917,
+    "meter_type_distribution": [
+      {
+        "meter_type": "iambic Pentameter",
+        "n": 5100,
+        "pct": 26.15
+      },
+      {
+        "meter_type": "iambic Tetrameter",
+        "n": 3794,
+        "pct": 19.45
+      },
+      {
+        "meter_type": "tetrameter",
+        "n": 2367,
+        "pct": 12.14
+      },
+      {
+        "meter_type": "pentameter",
+        "n": 2123,
+        "pct": 10.88
+      },
+      {
+        "meter_type": "iambic tetrameter",
+        "n": 916,
+        "pct": 4.7
+      },
+      {
+        "meter_type": "iambic pentameter",
+        "n": 854,
+        "pct": 4.38
+      },
+      {
+        "meter_type": "trimeter",
+        "n": 803,
+        "pct": 4.12
+      },
+      {
+        "meter_type": "trochaic pentameter",
+        "n": 389,
+        "pct": 1.99
+      },
+      {
+        "meter_type": "trochaic tetrameter",
+        "n": 379,
+        "pct": 1.94
+      },
+      {
+        "meter_type": "iambic trimeter",
+        "n": 303,
+        "pct": 1.55
+      },
+      {
+        "meter_type": "iambic Complex (4-3-4-3)",
+        "n": 264,
+        "pct": 1.35
+      },
+      {
+        "meter_type": "dimeter",
+        "n": 176,
+        "pct": 0.9
+      },
+      {
+        "meter_type": "anapestic Complex (4-3-4-3)",
+        "n": 168,
+        "pct": 0.86
+      },
+      {
+        "meter_type": "trochaic trimeter",
+        "n": 154,
+        "pct": 0.79
+      },
+      {
+        "meter_type": "iambic Complex (4-4-5)",
+        "n": 87,
+        "pct": 0.45
+      }
+    ],
+    "lines_with_phonology_not_found": 284,
+    "n_poems_all_unknown_meter": 0,
+    "enjambment_lines": 3342,
+    "stanza_type_distribution": [
+      {
+        "stanza_type": "quatrain",
+        "n": 716
+      },
+      {
+        "stanza_type": "sestet",
+        "n": 178
+      },
+      {
+        "stanza_type": "octet",
+        "n": 161
+      },
+      {
+        "stanza_type": "12_line",
+        "n": 142
+      },
+      {
+        "stanza_type": "10_line",
+        "n": 122
+      },
+      {
+        "stanza_type": "14_line",
+        "n": 78
+      },
+      {
+        "stanza_type": "16_line",
+        "n": 77
+      },
+      {
+        "stanza_type": "18_line",
+        "n": 61
+      },
+      {
+        "stanza_type": "20_line",
+        "n": 39
+      },
+      {
+        "stanza_type": "22_line",
+        "n": 32
+      }
+    ]
+  },
+  "held_out_poems": {
+    "n_lines": 8061,
+    "meter_coverage": {
+      "n_with_meter": 8061,
+      "pct": 100.0
+    },
+    "stress_coverage": {
+      "n_with_stress": 7667,
+      "pct": 95.11226894926187
+    },
+    "rhyme_coverage": {
+      "n_with_rhyme": 4400,
+      "pct": 54.583798536161765
+    },
+    "cmu_coverage": {
+      "n_full_cmu": 7841,
+      "pct": 97.27081007319191
+    },
+    "end_stopped": {
+      "n": 6819,
+      "pct": 84.59248232229253
+    },
+    "caesura": {
+      "n": 3679,
+      "pct": 45.63949882148617
+    },
+    "n_poems": 99,
+    "n_stanzas": 762,
+    "meter_type_distribution": [
+      {
+        "meter_type": "iambic Tetrameter",
+        "n": 1551,
+        "pct": 19.24
+      },
+      {
+        "meter_type": "pentameter",
+        "n": 1429,
+        "pct": 17.73
+      },
+      {
+        "meter_type": "iambic Pentameter",
+        "n": 1347,
+        "pct": 16.71
+      },
+      {
+        "meter_type": "iambic pentameter",
+        "n": 678,
+        "pct": 8.41
+      },
+      {
+        "meter_type": "tetrameter",
+        "n": 404,
+        "pct": 5.01
+      },
+      {
+        "meter_type": "iambic Complex (4-3-4-3)",
+        "n": 356,
+        "pct": 4.42
+      },
+      {
+        "meter_type": "iambic Complex (5-5-5-5-5-5-5-5-5-6)",
+        "n": 350,
+        "pct": 4.34
+      },
+      {
+        "meter_type": "trochaic pentameter",
+        "n": 237,
+        "pct": 2.94
+      },
+      {
+        "meter_type": "iambic tetrameter",
+        "n": 210,
+        "pct": 2.61
+      },
+      {
+        "meter_type": "trimeter",
+        "n": 163,
+        "pct": 2.02
+      },
+      {
+        "meter_type": "trochaic tetrameter",
+        "n": 129,
+        "pct": 1.6
+      },
+      {
+        "meter_type": "iambic Complex (4-4-4-2-4-2)",
+        "n": 108,
+        "pct": 1.34
+      },
+      {
+        "meter_type": "iambic Trimeter",
+        "n": 102,
+        "pct": 1.27
+      },
+      {
+        "meter_type": "anapestic Tetrameter",
+        "n": 96,
+        "pct": 1.19
+      },
+      {
+        "meter_type": "iambic Complex (4-4-3-4-4-3)",
+        "n": 84,
+        "pct": 1.04
+      }
+    ],
+    "lines_with_phonology_not_found": 220,
+    "n_poems_all_unknown_meter": 0,
+    "enjambment_lines": 1242,
+    "stanza_type_distribution": [
+      {
+        "stanza_type": "quatrain",
+        "n": 276
+      },
+      {
+        "stanza_type": "sestet",
+        "n": 101
+      },
+      {
+        "stanza_type": "10_line",
+        "n": 67
+      },
+      {
+        "stanza_type": "octet",
+        "n": 55
+      },
+      {
+        "stanza_type": "12_line",
+        "n": 36
+      },
+      {
+        "stanza_type": "14_line",
+        "n": 27
+      },
+      {
+        "stanza_type": "16_line",
+        "n": 18
+      },
+      {
+        "stanza_type": "18_line",
+        "n": 17
+      },
+      {
+        "stanza_type": "13_line",
+        "n": 17
+      },
+      {
+        "stanza_type": "cinquain",
+        "n": 11
+      }
+    ]
+  }
+}

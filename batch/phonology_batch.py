@@ -9,8 +9,9 @@ Batch optimizations: parallelism, no espeak fallback, long-line truncation, prog
 import os
 os.environ["POESY_DEBUG"] = "0"
 os.environ["PHONOLOGY_BATCH"] = "1"   # disables espeak fallback
-os.environ["MAX_LINE_CHARS"] = "0"     # no truncation; full lines to Poesy long blocks may timeout
-os.environ["MAX_POEM_LINES"] = "500"  # skip Poesy for poems >500 lines (phonology-only)
+# Respect MAX_LINE_CHARS / MAX_POEM_LINES from the shell (Slurm); defaults only if unset.
+os.environ.setdefault("MAX_LINE_CHARS", "0")  # 0 = no truncation; set e.g. 2000 on clusters to limit RAM
+os.environ.setdefault("MAX_POEM_LINES", "500")  # skip Poesy for poems longer than this
 
 import sys
 import argparse
@@ -25,7 +26,12 @@ if str(ROOT) not in sys.path:
 
 INPUT_DIR = ROOT / "output/poems_normalized"
 OUTPUT_DIR = ROOT / "output/poems_annotated"
+# High-CPU login nodes have default worker count can OOM (BrokenProcessPool). Cap with:
+#   PHONOLOGY_MAX_WORKERS=8    or    PHONOLOGY_PARALLEL=0
 MAX_WORKERS = max(1, (os.cpu_count() or 4) - 1)
+_mw = os.environ.get("PHONOLOGY_MAX_WORKERS", "").strip()
+if _mw.isdigit():
+    MAX_WORKERS = max(1, int(_mw))
 USE_PARALLEL = os.environ.get("PHONOLOGY_PARALLEL", "1") == "1"
 
 

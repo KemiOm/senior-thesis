@@ -2,7 +2,7 @@
 Batch-extract 18th-c. poems from ECPA TEI XML.
 Finds all poem XMLs in ECPA/web/works/, extracts each, and saves to output/poems/.
 Uses the same extraction logic as sample/extract_sample.py.
-By default skips poems that already have output (use --force to reprocess).
+By default skips poems that already have output
 """
 
 import argparse

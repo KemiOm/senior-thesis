@@ -14,9 +14,19 @@ __pycache__/
 dist/
 build/
 
-# Fine-tuning checkpoints (under sft/)
+# Fine-tuning checkpoints (large; keep on disk / cluster; regenerate or rsync)
 sft/**/checkpoint-*/
 sft/**/final_model/
+sft/**/final_model_merged/
+sft_full/**/checkpoint-*/
+sft_full/**/final_model/
+sft_full/**/final_model_merged/
+
+# Rsync / HF temp partials next to merged weights
+**/.model.safetensors.*
+
+# Notebook-generated figures (regenerate with visualizations/plot_ft.py)
+visualizations/out/
 
 # Output: keep most artifacts local; version only prepared training JSON + corpus for advisor review.
 output/*

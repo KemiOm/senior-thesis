@@ -134,10 +134,106 @@ def compute_metrics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = No
     }
 
 
+def compute_corpus_diagnostics(conn: sqlite3.Connection, poem_ids: Optional[List[str]] = None) -> dict:
+    """Extra corpus-wide stats (histograms, degraded poems) beyond :func:`compute_metrics`.
+
+    Used by ``run_annotation_coverage.py`` so ``scripts/quality_checks.py`` is not needed.
+    """
+    if poem_ids:
+        placeholders = ",".join("?" * len(poem_ids))
+        params: tuple = tuple(poem_ids)
+        line_scope = f"poem_id IN ({placeholders})"
+        stanza_scope = f"poem_id IN ({placeholders})"
+    else:
+        params = ()
+        line_scope = "1=1"
+        stanza_scope = "1=1"
+
+    n_poems = conn.execute(
+        f"SELECT COUNT(DISTINCT poem_id) FROM lines WHERE {line_scope}", params
+    ).fetchone()[0]
+    n_stanzas = conn.execute(
+        f"SELECT COUNT(*) FROM stanzas WHERE {stanza_scope}", params
+    ).fetchone()[0]
+    n_lines = conn.execute(f"SELECT COUNT(*) FROM lines WHERE {line_scope}", params).fetchone()[0]
+
+    meter_rows = conn.execute(
+        f"""
+        SELECT meter_type, COUNT(*) AS n
+        FROM lines
+        WHERE {line_scope}
+        GROUP BY meter_type
+        ORDER BY n DESC
+        LIMIT 15
+        """,
+        params,
+    ).fetchall()
+    meter_type_distribution = []
+    for meter, n in meter_rows:
+        label = meter if meter else "(null/empty)"
+        pct = 100 * n / n_lines if n_lines else 0.0
+        meter_type_distribution.append({"meter_type": label, "n": n, "pct": round(pct, 2)})
+
+    lines_with_not_found = conn.execute(
+        f"SELECT COUNT(*) FROM lines WHERE {line_scope} AND phonology LIKE '%not_found%'", params
+    ).fetchone()[0]
+
+    degraded = conn.execute(
+        f"""
+        SELECT poem_id FROM lines
+        WHERE {line_scope}
+        GROUP BY poem_id
+        HAVING COUNT(*) = SUM(
+            CASE WHEN meter_type IS NULL OR meter_type = 'unknown' OR meter_type = '' THEN 1 ELSE 0 END
+        )
+        """,
+        params,
+    ).fetchall()
+    n_poems_all_unknown_meter = len(degraded)
+
+    enjambed = conn.execute(
+        f"SELECT COUNT(*) FROM lines WHERE {line_scope} AND enjambment = 1", params
+    ).fetchone()[0]
+
+    stanza_rows = conn.execute(
+        f"""
+        SELECT stanza_type, COUNT(*) AS n
+        FROM stanzas
+        WHERE stanza_type IS NOT NULL AND {stanza_scope}
+        GROUP BY stanza_type
+        ORDER BY n DESC
+        LIMIT 10
+        """,
+        params,
+    ).fetchall()
+    stanza_type_distribution = [{"stanza_type": st or "(null)", "n": n} for st, n in stanza_rows]
+
+    return {
+        "n_poems": n_poems,
+        "n_stanzas": n_stanzas,
+        "meter_type_distribution": meter_type_distribution,
+        "lines_with_phonology_not_found": lines_with_not_found,
+        "n_poems_all_unknown_meter": n_poems_all_unknown_meter,
+        "enjambment_lines": enjambed,
+        "stanza_type_distribution": stanza_type_distribution,
+    }
+
+
+def merge_metrics_and_diagnostics(
+    conn: sqlite3.Connection, poem_ids: Optional[List[str]] = None
+) -> dict:
+    """Single dict for annotation_coverage.json rows (coverage + former quality_checks fields)."""
+    out = compute_metrics(conn, poem_ids)
+    diag = compute_corpus_diagnostics(conn, poem_ids)
+    out.update(diag)
+    return out
+
+
 def main():
     """
-    Compute metrics on the full corpus and print as JSON.
+    Compute coverage + corpus diagnostics on the full corpus and print as JSON.
     Requires output/corpus.db; run python scripts/export_sqlite.py first.
+    Prefer: python evaluation/run_annotation_coverage.py (writes annotation_coverage.json).
     """
     if not DB_PATH.exists():
         print(f"Database not found: {DB_PATH}")
@@ -145,7 +241,7 @@ def main():
         return
 
     conn = sqlite3.connect(DB_PATH)
-    metrics = compute_metrics(conn)
+    metrics = merge_metrics_and_diagnostics(conn)
     conn.close()
 
     print(json.dumps(metrics, indent=2))

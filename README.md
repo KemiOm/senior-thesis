@@ -6,7 +6,7 @@ A pipeline for extracting, normalizing, and annotating English poetry from the E
 
 ## Documentation
 
-- **[OVERVIEW.MD](OVERVIEW.MD)** — Full project description: pipeline stages, terminology (meter, stress, rhyme, TEI), phonology tools (Poesy, Prosodic, CMU), evaluation workflow (splits → prepare data → run baselines → compute metrics → choose model), and HPC usage.
+- **[OVERVIEW.MD](OVERVIEW.MD)** — Full project description: pipeline stages, terminology (meter, stress, rhyme, TEI), phonology tools (Poesy, Prosodic, CMU), evaluation workflow (splits → training JSONs → baselines → metrics → **SFT** → checkpoint eval), structured metrics, and **HPC / Bouchet** usage (`day` vs `gpu_devel`, QoS, checkpoints vs `final_model`).
 - **Evaluation** — Splits, metrics, and prompt-only baselines: see [evaluation/EVALUATION_PROTOCOL.md](evaluation/EVALUATION_PROTOCOL.md) and the “Evaluation and choosing a model” section in OVERVIEW.MD.
 
 ---
@@ -31,7 +31,7 @@ The pipeline has four stages:
 1. **Extract** — Parse TEI XML into structured JSON (metadata, stanzas, lines).
 2. **Normalize** — Standardize quotes, dashes, apostrophes, and whitespace.
 3. **Annotate** — Add phonology (CMU/ARPAbet), meter, rhyme, end-stopping, caesura, enjambment.
-4. **Export** — Build SQLite database and run quality checks.
+4. **Export** — Build SQLite database and run annotation coverage (replaces a separate quality-check script).
 
 ---
 
@@ -86,9 +86,10 @@ pip install -r requirements.txt
 │   ├── normalize_batch.py
 │   └── phonology_batch.py
 ├── notebooks/               # Training data prep, evaluation metrics, SFT overview
-├── scripts/                 # export_sqlite, quality_checks, run_prompt_baseline, corpus_tools; scripts/hpc/ = cluster jobs
-├── evaluation/              # splits, metrics, summarize_prompt_baselines.py, baseline JSON + CSV outputs
-├── sft/                     # Fine-tuned model checkpoints (gitignored weights; see scripts/train_sft_seq2seq_sample.py)
+├── scripts/                 # export_sqlite, run_prompt_baseline, corpus_tools; scripts/sft/lora_train.py; scripts/hpc/ = Slurm
+├── evaluation/              # splits, metrics, structured_baseline_metrics, summarize_prompt_baselines, baseline JSON + CSV outputs
+├── sft/                     # LoRA runs (checkpoint-*, final_model*, final_model_merged/); gitignored heavy weights
+├── results/                 # SFT eval JSON per <short_slug>/ (optional roll-up via summarize --out-dir results)
 ├── data/                    # Optional local data (samples, metadata)
 ├── docs/                    # Data overview, debug transcripts
 ├── requirements.txt
@@ -147,7 +148,7 @@ Output: `output/corpus.db`
 ### Step 5: Quality checks
 
 ```bash
-python scripts/quality_checks.py
+python evaluation/run_annotation_coverage.py
 ```
 
 Reports: poem/line counts, meter distribution, rhyme coverage, phonology (CMU) coverage, degraded poems, end-stopping, caesura, stanza types.
@@ -156,18 +157,18 @@ Reports: poem/line counts, meter distribution, rhyme coverage, phonology (CMU) c
 
 ## Evaluation and baselines
 
-After the corpus is built  (1) create train/dev/test splits, (2) prepare task-specific test data (natural_text, meter_only, rhyme_only, combined), (3) run prompt-only baselines on candidate models (e.g. via Slurm on HPC), (4) compute metrics and compare to gold, (5) choose a model for fine-tuning. Details and code paths are in **OVERVIEW.MD** (“Evaluation and choosing a model” and “Running on HPC (summary)”).
+After the corpus is built: (1) splits, (2) task-specific train/dev/test JSONs, (3) prompt-only baselines, (4) metrics, (5) supervised fine-tuning per task and evaluation of checkpoints. Details and code paths are in **OVERVIEW.MD** (evaluation flow, **Supervised fine-tuning**, and **Running on HPC**).
 
 **Quick check** that each model has all four task outputs:
 
 ```bash
-for d in evaluation/results/baselines/prompt_only/*/; do
+for d in evaluation/results/baselines/*/; do
   n=$(ls "$d"zero_shot_*.json 2>/dev/null | wc -l)
   echo "$d: $n/4 files"
 done
 ```
 
-Results live under `evaluation/results/baselines/prompt_only/<model_slug>/` (e.g. `zero_shot_meter_only.json`). If one task is missing (e.g. 3/4), re-run that task for that model; see OVERVIEW.MD for the single-task command.
+Results live under `evaluation/results/baselines/<model_slug>/` for general baselines, and `results/<short_slug>/` for SFT GPU evals from `run_eval_ft_grid.slurm` (e.g. `few_shot_meter_only.json`). Short slugs come from `evaluation/baseline_slug.py`. If one task is missing (e.g. 3/4), re-run that task for that model; see OVERVIEW.MD for the single-task command.
 
 ---
 
@@ -181,7 +182,9 @@ Results live under `evaluation/results/baselines/prompt_only/<model_slug>/` (e.g
 | `output/corpus.db`        | SQLite database                                   |
 | `output/training_data/`   | Task-specific train/dev/test JSONs (from notebook)|
 | `evaluation/splits/`      | Train/dev/test and held-out poem ID lists         |
-| `evaluation/results/`     | Baseline run outputs (gitignored; see OVERVIEW.MD)|
+| `evaluation/results/`     | General baseline JSON + `model_comparison.csv` (see OVERVIEW.MD) |
+| `results/`                | SFT eval JSON per `<short_slug>/`; optional roll-up CSV/notes via `summarize_prompt_baselines.py --out-dir results` |
+| `sft/`                      | Training runs: checkpoints, adapters, merged weights (often gitignored) |
 | `data/nltk_data/`         | NLTK data (created automatically)                 |
 
 ---

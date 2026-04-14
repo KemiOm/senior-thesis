@@ -1,0 +1,52 @@
+"""Short, filesystem-safe directory names for baseline JSON output trees."""
+
+from __future__ import annotations
+
+import re
+from pathlib import Path
+
+
+def baseline_save_slug(model_id: str) -> str:
+    """Directory name under a baseline results root.
+
+    Hub-style ids (e.g. ``google/flan-t5-large``) become ``google_flan-t5-large``.
+
+    Local checkpoints avoid encoding a full absolute path. For
+    ``.../sft/combined_lora/flan-t5-large_lora_20260411_175033/final_model_merged`` (even
+    when that path only exists on another machine) the slug is
+    ``combined_lora_flan-t5-large_lora_20260411_175033`` — the parent task folder plus the
+    run id folder, not ``_home_user_..._final_model_merged``.
+    """
+    s = (model_id or "").strip()
+    if not s:
+        return "unknown_model"
+    norm = s.replace("\\", "/")
+    parts = [p for p in norm.split("/") if p]
+    if parts:
+        last = parts[-1]
+        if last in ("final_model_merged", "final_model") or (
+            last.startswith("checkpoint-") and last != "checkpoint"
+        ):
+            parent = parts[-2] if len(parts) >= 2 else ""
+            gp = parts[-3] if len(parts) >= 3 else ""
+            if parent:
+                raw = f"{gp}_{parent}" if gp else parent
+                return re.sub(r"[^a-zA-Z0-9_-]", "_", raw)
+
+    p = Path(s)
+    tail_special = (
+        p.name in ("final_model_merged", "final_model")
+        or (p.name.startswith("checkpoint-") and p.name != "checkpoint")
+    )
+    try:
+        if p.is_dir():
+            rp = p.resolve()
+            if tail_special and rp.parent.name:
+                parent = rp.parent
+                gp = parent.parent
+                raw = f"{gp.name}_{parent.name}" if gp.name else parent.name
+                return re.sub(r"[^a-zA-Z0-9_-]", "_", raw)
+            return re.sub(r"[^a-zA-Z0-9_-]", "_", rp.name)
+    except OSError:
+        pass
+    return re.sub(r"[^a-zA-Z0-9_-]", "_", s)

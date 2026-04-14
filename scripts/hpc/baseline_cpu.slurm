@@ -1,92 +1,103 @@
 #!/bin/bash
 #
-# Slurm batch script: run scripts/run_prompt_eval.py on a compute node.
-#
-# The login node is for editing and submitting jobs; heavy model runs go through
-# Slurm so work runs on compute nodes with a time limit and logged output.
-# Docs: https://slurm.schedmd.com/sbatch.html
-# Yale cluster overview: https://docs.ycrc.yale.edu/
+# Slurm batch script to run scripts/run_prompt_eval.py on a compute node.
+# Heavy jobs should run through Slurm (not the login node) to ensure proper
+# resource allocation, time limits, and logging.
 #
 #SBATCH --job-name=poetry-baseline-all
 #SBATCH --account=span9810
-# Override partition when submitting: sbatch --partition=week ... or SLURM_PARTITION=week
+# Default partition (can override at submit time)
 #SBATCH --partition=day
-# Default walltime; submit_baselines.sh passes --time
-# On Bouchet, week often needs walltime >= 24h; day is for shorter jobs
+# Default walltime (can override via sbatch)
 #SBATCH --time=12:00:00
 #SBATCH --mem=32G
 #SBATCH --cpus-per-task=4
 #SBATCH --output=poetry_baseline_all_%j.out
 #
-# Needs: output/training_data/{task}/test.json from notebooks/01_prepare_training_data.ipynb
-#
-# One job: sbatch --chdir=$(pwd) scripts/hpc/baseline_cpu.slurm
-# Many jobs: ./scripts/hpc/submit_baselines.sh
+# Requires: output/training_data/{task}/test.json
+# Run:
+#   sbatch --chdir=$(pwd) scripts/hpc/baseline_cpu.slurm
+#   ./scripts/hpc/submit_baselines.sh  (for batch submission)
 
-# Find project root: Slurm sets SLURM_SUBMIT_DIR; fallbacks cover common clone paths.
+# Locate project root (prioritize SLURM_SUBMIT_DIR, then common paths)
 for d in "${SLURM_SUBMIT_DIR}" "$HOME/Senior-Thesis" "$HOME/Senior Thesis" "."; do
   [ -n "$d" ] && [ -f "${d}/scripts/run_prompt_eval.py" ] && cd "$d" && break
 done
+
 if [ ! -f "scripts/run_prompt_eval.py" ]; then
-  echo "ERROR: Cannot find project root (scripts/run_prompt_eval.py). SLURM_SUBMIT_DIR=${SLURM_SUBMIT_DIR}"
+  echo "ERROR: Could not locate project root (missing scripts/run_prompt_eval.py)"
   exit 1
 fi
 
-# Prefer local venv; else conda base if available.
+# Activate environment: prefer venv, fallback to conda base
 if [ -d "venv" ]; then
   source venv/bin/activate
 elif command -v conda &>/dev/null; then
   conda activate base
 fi
-# Minimal deps on the compute node if the image lacks them; ignore failure if already present.
+
+# Ensure required packages (skip if already installed)
 pip install --quiet transformers torch accelerate sentencepiece tiktoken nltk 2>/dev/null || true
 
-# Shared Hugging Face cache on cluster storage (set on login node or in job prologue).
+# Optional: configure shared Hugging Face cache
 HF_CACHE_ROOT="${CLUSTER_HF_HOME:-${THESIS_HF_HOME:-}}"
 if [ -n "${HF_CACHE_ROOT:-}" ]; then
   export HF_HOME="$HF_CACHE_ROOT"
   export TRANSFORMERS_CACHE="${HF_CACHE_ROOT}/transformers"
   mkdir -p "$TRANSFORMERS_CACHE" 2>/dev/null || true
-  echo "Using HF_HOME=$HF_HOME"
-fi
-if [ -n "${HF_TOKEN:-}" ]; then
-  echo "HF_TOKEN is set (authenticated Hub requests)"
-else
-  echo "Note: export HF_TOKEN on the login node for higher Hub rate limits."
+  echo "Using HF cache: $HF_HOME"
 fi
 
-# Job env from sbatch --export (see submit_baselines.sh).
+# Optional: authentication for higher Hub rate limits
+if [ -n "${HF_TOKEN:-}" ]; then
+  echo "HF_TOKEN detected"
+else
+  echo "HF_TOKEN not set (may hit rate limits)"
+fi
+
+# Job parameters (can be overridden via sbatch --export)
 MODEL=${MODEL:-google/flan-t5-base}
 PROMPT=${PROMPT:-zero_shot}
 MODEL_TYPE=${MODEL_TYPE:-seq2seq}
 N=${N:-}
 STRICT_EVAL=${STRICT_EVAL:-1}
 
-# Flags for run_prompt_eval.py (prompt-based eval): causal vs seq2seq; strict eval when requested.
+# Build argument list
 EXTRA_ARGS=()
 [ "$MODEL_TYPE" = "causal" ] && EXTRA_ARGS+=(--model_type causal)
-if [ "${STRICT_EVAL:-0}" = "1" ]; then
-  EXTRA_ARGS+=(--strict-eval)
-fi
+[ "$STRICT_EVAL" = "1" ] && EXTRA_ARGS+=(--strict-eval)
 
-# BASELINE_TASK set => one task only; unset => loop all four (used when SPLIT_TASKS=0).
+# Task selection: single task if BASELINE_TASK set, else run all
 if [ -n "${BASELINE_TASK:-}" ]; then
   TASK_LIST=("$BASELINE_TASK")
 else
   TASK_LIST=(meter_only rhyme_only natural_text combined)
 fi
 
-# CPU inference (--device -1); optional --n caps test lines when N is non-empty.
+# Run evaluation (CPU mode; optional --n limit)
 for TASK in "${TASK_LIST[@]}"; do
   echo "=============================================="
-  echo "Running $MODEL | $PROMPT | $TASK | $MODEL_TYPE"
+  echo "Running: $MODEL | $PROMPT | $TASK | $MODEL_TYPE"
   echo "=============================================="
+
   if [ -n "$N" ]; then
-    python scripts/run_prompt_eval.py --model "$MODEL" --prompt "$PROMPT" --task "$TASK" --n "$N" --device -1 "${EXTRA_ARGS[@]}"
+    python scripts/run_prompt_eval.py \
+      --model "$MODEL" \
+      --prompt "$PROMPT" \
+      --task "$TASK" \
+      --n "$N" \
+      --device -1 \
+      "${EXTRA_ARGS[@]}"
   else
-    python scripts/run_prompt_eval.py --model "$MODEL" --prompt "$PROMPT" --task "$TASK" --device -1 "${EXTRA_ARGS[@]}"
+    python scripts/run_prompt_eval.py \
+      --model "$MODEL" \
+      --prompt "$PROMPT" \
+      --task "$TASK" \
+      --device -1 \
+      "${EXTRA_ARGS[@]}"
   fi
+
   echo ""
 done
 
-echo "Done. Results in evaluation/baselines/<model_slug>/"
+echo "Done. Results saved to evaluation/baselines/<model_slug>/"

@@ -164,10 +164,10 @@ flowchart LR
     S2["2. Training JSONs\n01_prepare_training_data.ipynb\n→ output/training_data/{task}/*.json"]
     S4["4. Metrics & tables\ncorpus/coverage, scoring/rollup\n+ struct_metrics"]
     S5["5. Base model + SFT plan\ncompare baselines, pick checkpoint"]
-    S6["6. Eval SFT checkpoints\nrun_prompt_baseline.py --model path/to/checkpoint"]
+    S6["6. Eval SFT checkpoints\nrun_prompt_eval.py --model path/to/checkpoint"]
   end
   subgraph hpc["HPC compute nodes"]
-    S3["3. Prompt baselines\nrun_prompt_baseline*.slurm →\nevaluation/baselines/..."]
+    S3["3. Prompt-based eval\nbaseline_cpu.slurm →\nevaluation/baselines/..."]
     SFT["5b. LoRA fine-tuning\nlora_train.py + Slurm\n→ OUTPUT_ROOT (default sft/)"]
   end
   S1 --> S2 --> S3 --> S4 --> S5 --> SFT --> S6
@@ -196,16 +196,16 @@ for name, ids in [("train", train_ids), ("dev", dev_ids), ("test", test_ids), ..
 
 *Where it runs:* Local or login node (no GPU). See **Running on HPC (summary)** below for the full workflow.
 
-**Step 2 — Prepare test data for each task.** The four training conditions (natural_text, meter_only, rhyme_only, combined) each need a test set: input prompts plus gold targets. The notebook `notebooks/01_prepare_training_data.ipynb` builds these from the corpus and writes JSONs to `output/training_data/{task}/test.json` (and train/dev). Those files are the input to the prompt-only baseline script.
+**Step 2 — Prepare test data for each task.** The four training conditions (natural_text, meter_only, rhyme_only, combined) each need a test set: input prompts plus gold targets. The notebook `notebooks/01_prepare_training_data.ipynb` builds these from the corpus and writes JSONs to `output/training_data/{task}/test.json` (and train/dev). Those files are the input to the prompt-based eval script (`scripts/run_prompt_eval.py`).
 
 *How they were built.* The notebook (1) loads poem IDs per split from `evaluation/splits/{train,dev,test}.json`, (2) connects to `output/corpus.db` and iterates over lines in those poems (normalized text, stress, meter_type, rhyme_group, phonology, end_stopped, caesura), (3) for each condition builds a list of `{"input": ..., "target": ...}` pairs, then (4) writes each list to `output/training_data/{condition}/{split}.json`. The pairing logic is:
 
 - **natural_text:** input = previous line(s) in the **same poem** (joined with ` | `) or `[start]`; target = **next line** surface text (continuation). Context does not cross poem boundaries.
 - **meter_only:** input = line text; target = stress pattern as `+`/`-` (only lines with valid stress, 5+ syllables).
 - **rhyme_only:** input = line text; target = rhyme key from phonology (last stressed syllable onward) or rhyme_group.
-- **combined:** **same input as natural_text** (continuation context); target = bundled string for the **next** line, e.g. `stress:+-+-+-+-+|meter_type:iambic Pentameter|rhyme:IY1 P|end:1|caesura:3` (pipe-separated fields). The metrics code also accepts an older four-field `meter:|rhyme:|end:|caesura:` layout for backward compatibility—see `evaluation/scoring/struct_metrics.py`. Rows may include `next_line` for strict-eval alignment in `run_prompt_baseline.py`.
+- **combined:** **same input as natural_text** (continuation context); target = bundled string for the **next** line, e.g. `stress:+-+-+-+-+|meter_type:iambic Pentameter|rhyme:IY1 P|end:1|caesura:3` (pipe-separated fields). The metrics code also accepts an older four-field `meter:|rhyme:|end:|caesura:` layout for backward compatibility—see `evaluation/scoring/struct_metrics.py`. Rows may include `next_line` for strict-eval alignment in `run_prompt_eval.py`.
 
-Example (meter_only): one row in `test.json` is `{"input": "Tired Nature's sweet restorer, balmy Sleep!", "target": "+-+-+-+-+-+"}`. Example (combined): `{"input": "…prior line…", "target": "meter:+-+-+-+-+-+|rhyme:IY1 P|end:1|caesura:4", "next_line": "…actual next line text…"}`. The baseline script reads these JSONs, turns each `input` into a prompt (using the task template), and sends the prompt to the model; the `target` is the gold used for metrics.
+Example (meter_only): one row in `test.json` is `{"input": "Tired Nature's sweet restorer, balmy Sleep!", "target": "+-+-+-+-+-+"}`. Example (combined): `{"input": "…prior line…", "target": "meter:+-+-+-+-+-+|rhyme:IY1 P|end:1|caesura:4", "next_line": "…actual next line text…"}`. The eval script reads these JSONs, turns each `input` into a prompt (using the task template), and sends the prompt to the model; the `target` is the gold used for metrics.
 
 Minimal code pattern (from the notebook):
 
@@ -231,9 +231,9 @@ with open(OUT_DIR / "meter_only" / "test.json", "w") as f:
     json.dump(meter_test, f, indent=2)
 ```
 
-**Step 3 — Run prompt-only baselines.** We run each candidate model on the *same* test prompts (with an optional `--n` cap for speed). Script: `scripts/run_prompt_baseline.py` (single task; supports `--strict-eval`, `--gold-filter`, seq2seq vs `--model_type causal`) or `scripts/hpc/run_prompt_baseline_all_tasks.slurm` (CPU on **`day`** by default: `--device -1`). **Local Hugging Face checkpoints** should be passed as paths that exist on disk (the script resolves relative paths against the repo root and the current working directory); use a **`checkpoint-*`** directory if training did not reach `final_model/`. **GPU:** run inside an interactive `srun` or a batch script on a GPU partition—do not rely on the login node for large seq2seq jobs. Outputs: `evaluation/baselines/<model_slug>/` by default; **`scripts/hpc/run_eval_ft_grid.slurm`** writes SFT eval JSONs under **`results/<short_slug>/`** (short names from `evaluation/scoring/slug.py`, not the full checkpoint path).
+**Step 3 — Prompt-based evaluation (baselines and checkpoints).** We run each candidate model on the *same* test prompts (with an optional `--n` cap for speed). Script: `scripts/run_prompt_eval.py` (single task; supports `--strict-eval`, `--gold-filter`, seq2seq vs `--model_type causal`) or `scripts/hpc/baseline_cpu.slurm` (CPU on **`day`** by default: `--device -1`). **Local Hugging Face checkpoints** should be passed as paths that exist on disk (the script resolves relative paths against the repo root and the current working directory); use a **`checkpoint-*`** directory if training did not reach `final_model/`. **GPU:** run inside an interactive `srun` or a batch script on a GPU partition—do not rely on the login node for large seq2seq jobs. Outputs: `evaluation/baselines/<model_slug>/` by default; **`scripts/hpc/sft_eval.slurm`** writes SFT eval JSONs under **`results/<short_slug>/`** (short names from `evaluation/scoring/slug.py`, not the full checkpoint path).
 
-*How a baseline run works.* The Python script (1) loads test data from `output/training_data/{task}/test.json`, (2) builds one prompt per row from the task’s template (e.g. meter_only zero_shot: “Given this line of poetry, output its metrical stress pattern… Line: {line}”). **Few-shot** prompts prepend a full example **quatrain** (four lines) with per-line labels in the same format as the task (from `corpus.db`), then a separator and the query line. (3) calls the model to generate an output for each prompt, (4) zips each `input`, `gold_target`, `prompt`, and `model_output` into a result dict, (5) writes a single JSON to the chosen results root (default `evaluation/baselines/`, or `results/` for the SFT eval grid) at `<short_slug>/{prompt_type}_{task}.json` containing metadata (model, prompt_type, task, n_samples) and the list of results. That JSON is what Step 4 uses to compute stress-match rate, rhyme match, etc.
+*How a prompt-eval run works.* The Python script (1) loads test data from `output/training_data/{task}/test.json`, (2) builds one prompt per row from the task’s template (e.g. meter_only zero_shot: “Given this line of poetry, output its metrical stress pattern… Line: {line}”). **Few-shot** prompts prepend a full example **quatrain** (four lines) with per-line labels in the same format as the task (from `corpus.db`), then a separator and the query line. (3) calls the model to generate an output for each prompt, (4) zips each `input`, `gold_target`, `prompt`, and `model_output` into a result dict, (5) writes a single JSON to the chosen results root (default `evaluation/baselines/`, or `results/` for the SFT eval grid) at `<short_slug>/{prompt_type}_{task}.json` containing metadata (model, prompt_type, task, n_samples) and the list of results. That JSON is what Step 4 uses to compute stress-match rate, rhyme match, etc.
 
 **Saved baseline JSON shape:**
 
@@ -273,7 +273,7 @@ Example (one result entry for meter_only):
 ```
 
 ```python
-# scripts/run_prompt_baseline.py (simplified)
+# scripts/run_prompt_eval.py (simplified)
 data = json.load(open(DATA_DIR / task / "test.json"))  # or data[:n]
 prompts = [build_prompt(item, task, prompt_type) for item in data]
 outputs = run_inference_seq2seq(prompts, model_id)  # or run_inference_causal
@@ -308,13 +308,13 @@ json.dump(results, open("evaluation/annotation_coverage.json", "w"))
 
 **What it’s for.** Prompt-only models see instructions and examples but are not trained on *your* labels. SFT asks: if we **actually train** the model on `train.json` / `dev.json` for each task (`meter_only`, `rhyme_only`, `combined`), does it **predict gold better** than the same backbone run with prompts only? Each task gets its **own** LoRA run so you can compare conditions fairly (meter-trained vs rhyme-trained vs combined-trained), not one mixed soup.
 
-**What happens.** You run **`scripts/sft/lora_train.py`** on a GPU (via **`scripts/hpc/run_lora_train.slurm`** on Bouchet). It reads the same rows the notebook built (`output/training_data/<task>/{train,dev}.json`), fits small LoRA adapters on top of the frozen base, and writes a new run folder under **`--output-root`** (Slurm defaults to **`sft/<task>_lora/`**). You only need **one** such tree on disk; a second top-level folder like **`sft_full/`** is optional—same mechanism, different **`OUTPUT_ROOT`** if you prefer a separate name for long runs. **`MERGE_AND_SAVE=1`** saves **`final_model_merged/`** so inference is a normal `from_pretrained` path—no extra PEFT wiring in **`run_prompt_baseline.py`**.
+**What happens.** You run **`scripts/sft/lora_train.py`** on a GPU (via **`scripts/hpc/lora_train.slurm`** on Bouchet). It reads the same rows the notebook built (`output/training_data/<task>/{train,dev}.json`), fits small LoRA adapters on top of the frozen base, and writes a new run folder under **`--output-root`** (Slurm defaults to **`sft/<task>_lora/`**). You only need **one** such tree on disk; a second top-level folder like **`sft_full/`** is optional—same mechanism, different **`OUTPUT_ROOT`** if you prefer a separate name for long runs. **`MERGE_AND_SAVE=1`** saves **`final_model_merged/`** so inference is a normal `from_pretrained` path—no extra PEFT wiring in **`run_prompt_eval.py`**.
 
-**How you evaluate it.** You do **not** need a different eval script. **`run_prompt_baseline.py`** is the same as for pretrained baselines: point **`--model`** at the merged folder, same **`--task`** and **`--prompt`**, save JSON under **`results/<short_slug>/`** (or pass **`--results-dir`**). That directory is **only** small eval JSON (same layout as `evaluation/baselines/`), not checkpoints—keep it separate from **`sft/…`** so rollups stay small and rsync-friendly. Use **`--max_tokens`** large enough to match what you used as **`max_target_len`** in training so you are not cutting off generations at eval. **`scripts/hpc/run_eval_ft_grid.slurm`** is a convenience batch: base model plus each merged adapter × three tasks. Roll up with **`evaluation/summarize_prompt_baselines.py --baseline-dir results --out-dir results`**.
+**How you evaluate it.** You do **not** need a different eval script. **`run_prompt_eval.py`** is the same as for pretrained baselines: point **`--model`** at the merged folder, same **`--task`** and **`--prompt`**, save JSON under **`results/<short_slug>/`** (or pass **`--results-dir`**). That directory is **only** small eval JSON (same layout as `evaluation/baselines/`), not checkpoints—keep it separate from **`sft/…`** so rollups stay small and rsync-friendly. Use **`--max_tokens`** large enough to match what you used as **`max_target_len`** in training so you are not cutting off generations at eval. **`scripts/hpc/sft_eval.slurm`** is a convenience batch: base model plus each merged adapter × three tasks. Roll up with **`evaluation/summarize_prompt_baselines.py --baseline-dir results --out-dir results`**.
 
 **Getting outputs home.** **`rsync`** your training root (whatever **`OUTPUT_ROOT`** you used, often **`sft/`**) and **`results/`** (SFT eval JSON). From your laptop, pull from **`~/Senior-Thesis/`** on Bouchet (VPN if off campus).
 
-**Other Slurm scripts (same folder):** `submit_lora_three_conditions.sh` submits three training jobs (one task each; default **`OUTPUT_ROOT=sft/<task>_lora`**). Override **`OUTPUT_ROOT`** only if you want weights somewhere else (e.g. **`sft_full/<task>_lora`**); then pass those merged paths into **`run_eval_ft_grid.slurm`** via **`METER_FT`**, **`RHYME_FT`**, **`COMBINED_FT`**. `run_prompt_baseline_all_tasks.slurm` / `submit_all_model_baselines.sh` are for **CPU** prompt baselines, not training.
+**Other Slurm scripts (same folder):** `submit_lora3.sh` submits three training jobs (one task each; default **`OUTPUT_ROOT=sft/<task>_lora`**). Override **`OUTPUT_ROOT`** only if you want weights somewhere else (e.g. **`sft_full/<task>_lora`**); then pass those merged paths into **`sft_eval.slurm`** via **`METER_FT`**, **`RHYME_FT`**, **`COMBINED_FT`**. `baseline_cpu.slurm` / `submit_baselines.sh` are for **CPU** prompt baselines, not training.
 
 YCRC: [job scheduling](https://docs.ycrc.yale.edu/clusters-at-yale/job-scheduling/), [Bouchet partitions](https://docs.ycrc.yale.edu/clusters/bouchet/).
 
@@ -325,14 +325,14 @@ YCRC: [job scheduling](https://docs.ycrc.yale.edu/clusters-at-yale/job-schedulin
 | Step | Where | Notes |
 |------|--------|--------|
 | Export DB, splits, notebook training JSONs | Laptop or **login node** | No GPU required. |
-| Prompt baselines (default slurm) | **`sbatch`** → **`partition=day`**, CPU | `run_prompt_baseline_all_tasks.slurm` uses `--device -1`; good for Hub models and long CPU inference. |
-| Prompt baselines or SFT with GPU | **Compute node** | Match **`run_lora_train.slurm`** / **`run_eval_ft_grid.slurm`**: e.g. **`gpu_devel`** + **`--gpus=rtx_5000_ada:1`** + **`--account=<your_account>`** + **`--qos=normal`**. On **Yale Bouchet**, interactive jobs often need **`--qos=normal`** (not `interactive`) for GPU partitions; the **`gpu`** partition’s allowed QoS set may differ from your **user** QoS list—follow the **`sacct`** line for successful jobs or use **`gpu_devel`** as in the repo scripts. |
+| Prompt baselines (default slurm) | **`sbatch`** → **`partition=day`**, CPU | `baseline_cpu.slurm` uses `--device -1`; good for Hub models and long CPU inference. |
+| Prompt baselines or SFT with GPU | **Compute node** | Match **`lora_train.slurm`** / **`sft_eval.slurm`**: e.g. **`gpu_devel`** + **`--gpus=rtx_5000_ada:1`** + **`--account=<your_account>`** + **`--qos=normal`**. On **Yale Bouchet**, interactive jobs often need **`--qos=normal`** (not `interactive`) for GPU partitions; the **`gpu`** partition’s allowed QoS set may differ from your **user** QoS list—follow the **`sacct`** line for successful jobs or use **`gpu_devel`** as in the repo scripts. |
 | Logs | User-managed | Use `tee`, **`tmux`**, or `sbatch` stdout files; login-node SSH drops kill bare foreground jobs. |
 
 **Typical commands (Bouchet-style):**
 
 - **CPU baseline batch (matches successful `poetry-baseline` jobs on `day`):**  
-  `MODEL=google/flan-t5-base N=500 sbatch --chdir=$(pwd) scripts/hpc/run_prompt_baseline_all_tasks.slurm`  
+  `MODEL=google/flan-t5-base N=500 sbatch --chdir=$(pwd) scripts/hpc/baseline_cpu.slurm`  
   (Override `MODEL`, `PROMPT`, `N` as needed.)
 
 - **Interactive GPU shell for inference or debugging:**  
@@ -341,7 +341,7 @@ YCRC: [job scheduling](https://docs.ycrc.yale.edu/clusters-at-yale/job-schedulin
 
 - **Sync:** Keep `output/corpus.db`, `output/training_data/`, and `evaluation/splits/` consistent between laptop and cluster when running eval.
 
-Further options (`HF_TOKEN`, `STAGGER_SEC`, `SPLIT_TASKS`, walltime): see **`scripts/hpc/submit_all_model_baselines.sh`** and **`scripts/hpc/run_prompt_baseline_all_tasks.slurm`**.
+Further options (`HF_TOKEN`, `STAGGER_SEC`, `SPLIT_TASKS`, walltime): see **`scripts/hpc/submit_baselines.sh`** and **`scripts/hpc/baseline_cpu.slurm`**.
 
 
 

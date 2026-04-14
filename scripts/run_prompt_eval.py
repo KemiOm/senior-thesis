@@ -1,21 +1,25 @@
 #!/usr/bin/env python3
 """
-Run prompt-only baseline: load test lines, build prompts, call models, save outputs.
+Prompt-based evaluation on test JSON: load lines, build prompts, generate, save per-line JSON.
 
-(Corpus label coverage without a model: `evaluation/run_annotation_coverage.py`.)
+Use for **pretrained Hub baselines** (default output under ``evaluation/baselines/``) or **merged
+SFT checkpoints** (same script; point ``--model`` at the merged folder and usually
+``--results-dir results`` or set ``PROMPT_EVAL_DIR``).
+
+(Corpus label coverage without a model: ``evaluation/run_annotation_coverage.py``.)
 
 Few-shot prompts use a full example stanza (quatrain): each line is paired with its label in the
-same format as training 
+same format as training.
 
 Usage:
-  python scripts/run_prompt_baseline.py --model google/flan-t5-large --prompt zero_shot --task meter_only
-  python scripts/run_prompt_baseline.py --model google/flan-t5-large --prompt few_shot --task meter_only
-  python scripts/run_prompt_baseline.py --model gpt2-medium --model_type causal --prompt few_shot --task meter_only --n 100
+  python scripts/run_prompt_eval.py --model google/flan-t5-large --prompt zero_shot --task meter_only
+  python scripts/run_prompt_eval.py --model google/flan-t5-large --prompt few_shot --task meter_only
+  python scripts/run_prompt_eval.py --model gpt2-medium --model_type causal --prompt few_shot --task meter_only --n 100
 
 Output (default): evaluation/baselines/{model_slug}/{prompt_type}_{task}.json
 
-SFT / custom tree: set ``PROMPT_BASELINE_DIR`` to the parent of per-model dirs (e.g. ``results``)
-or pass ``--results-dir`` to that path.
+SFT / custom tree: set ``PROMPT_EVAL_DIR`` (or legacy ``PROMPT_BASELINE_DIR``) to the parent of
+per-model dirs (e.g. ``results``) or pass ``--results-dir`` to that path.
 """
 
 from __future__ import annotations
@@ -93,7 +97,7 @@ def resolve_baseline_results_dir(cli_dir: str | None) -> Path:
     if cli_dir:
         p = Path(cli_dir).expanduser()
         return p.resolve() if p.is_absolute() else (ROOT / p).resolve()
-    env = (os.environ.get("PROMPT_BASELINE_DIR") or "").strip()
+    env = (os.environ.get("PROMPT_EVAL_DIR") or os.environ.get("PROMPT_BASELINE_DIR") or "").strip()
     if env:
         p = Path(env).expanduser()
         return p.resolve() if p.is_absolute() else (ROOT / p).resolve()
@@ -761,7 +765,9 @@ def run_inference_causal(
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run prompt-only baseline on test data")
+    parser = argparse.ArgumentParser(
+        description="Prompt-based eval on test JSON (pretrained Hub models or local merged checkpoints)."
+    )
     parser.add_argument("--model", default="google/flan-t5-large", help="Hugging Face model ID")
     parser.add_argument(
         "--model_type",
@@ -808,8 +814,8 @@ def main():
         help=(
             "Directory whose immediate subdirs are model slugs (each contains *.json). "
             "Default: evaluation/baselines. "
-            "SFT eval grid default: results/ (see scripts/hpc/run_eval_ft_grid.slurm). "
-            "Overrides env PROMPT_BASELINE_DIR when set."
+            "SFT eval grid default: results/ (see scripts/hpc/sft_eval.slurm). "
+            "Overrides env PROMPT_EVAL_DIR / PROMPT_BASELINE_DIR when set."
         ),
     )
     parser.add_argument("--output", type=str, default=None, help="Override output path")

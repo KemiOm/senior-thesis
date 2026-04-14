@@ -30,7 +30,7 @@
 #   #SBATCH --cpus-per-gpu=8
 #   #SBATCH --time=48:00:00
 #   #SBATCH --mem=64G
-#   #  TRAIN_BS=32 EVAL_BS=16 sbatch scripts/hpc/run_lora_train.slurm
+#   #  TRAIN_BS=32 EVAL_BS=16 sbatch scripts/hpc/lora_train.slurm
 #
 # RTX PRO 6000 Blackwell (CUDA 12.8+ in your env; ~3x VRAM — try batches ~3x):
 #   #SBATCH --partition=gpu_rtx6000

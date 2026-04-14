@@ -1,4 +1,4 @@
-"""CLI shim: ``python evaluation/summarize_prompt_baselines.py`` → ``evaluation.scoring.rollup``."""
+"""CLI shim: python evaluation/summarize_prompt_baselines.py to evaluation.scoring.rollup."""
 
 from evaluation.scoring.rollup import collect_rows, main
 

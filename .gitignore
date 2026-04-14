@@ -38,7 +38,7 @@ output/*
 data/nltk_data/
 
 # Prompt baseline JSON outputs are large but versioned for thesis / advisor review.
-# (Regenerate with scripts/run_prompt_baseline.py + evaluation/summarize_prompt_baselines.py.)
+# (Regenerate with scripts/run_prompt_eval.py + evaluation/summarize_prompt_baselines.py.)
 
 # ECPA source corpus (external dataset; obtain separately)
 ECPA/

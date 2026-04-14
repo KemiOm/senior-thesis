@@ -2,15 +2,15 @@
 """LoRA / QLoRA fine-tuning for seq2seq models on structured tasks (meter_only, rhyme_only, combined, …).
 
 Uses the same `input` / `target` JSON lines as ``output/training_data/<task>/*.json``.
-Set ``--train_file`` / ``--dev_file`` / ``--output_root`` per task; Slurm: ``scripts/hpc/run_lora_train.slurm``
-or ``scripts/hpc/submit_lora_three_conditions.sh``.
+Set ``--train_file`` / ``--dev_file`` / ``--output_root`` per task; Slurm: ``scripts/hpc/lora_train.slurm``
+or ``scripts/hpc/submit_lora3.sh``.
 
 QLoRA (--qlora) needs CUDA + bitsandbytes. On CPU/MPS use LoRA only (no --qlora).
 
 Install: pip install peft  (+ bitsandbytes on CUDA for --qlora)
 
 Inference / next task (prompt baseline, metrics):
-  - ``scripts/run_prompt_baseline.py`` loads models with plain ``from_pretrained`` only. Raw LoRA
+  - ``scripts/run_prompt_eval.py`` loads models with plain ``from_pretrained`` only. Raw LoRA
     output is under ``final_model/`` (adapter weights); that path alone is not enough for plain
     ``from_pretrained`` without the base model + PEFT glue.
   - For the simplest path: train with ``--merge_and_save`` and point ``--model`` at the merged

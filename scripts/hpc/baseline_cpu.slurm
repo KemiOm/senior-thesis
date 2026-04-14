@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Slurm batch script: run scripts/run_prompt_baseline.py on a compute node.
+# Slurm batch script: run scripts/run_prompt_eval.py on a compute node.
 #
 # The login node is for editing and submitting jobs; heavy model runs go through
 # Slurm so work runs on compute nodes with a time limit and logged output.
@@ -11,7 +11,7 @@
 #SBATCH --account=span9810
 # Override partition when submitting: sbatch --partition=week ... or SLURM_PARTITION=week
 #SBATCH --partition=day
-# Default walltime; submit_all_model_baselines.sh passes --time
+# Default walltime; submit_baselines.sh passes --time
 # On Bouchet, week often needs walltime >= 24h; day is for shorter jobs
 #SBATCH --time=12:00:00
 #SBATCH --mem=32G
@@ -20,15 +20,15 @@
 #
 # Needs: output/training_data/{task}/test.json from notebooks/01_prepare_training_data.ipynb
 #
-# One job: sbatch --chdir=$(pwd) scripts/hpc/run_prompt_baseline_all_tasks.slurm
-# Many jobs: ./scripts/hpc/submit_all_model_baselines.sh
+# One job: sbatch --chdir=$(pwd) scripts/hpc/baseline_cpu.slurm
+# Many jobs: ./scripts/hpc/submit_baselines.sh
 
 # Find project root: Slurm sets SLURM_SUBMIT_DIR; fallbacks cover common clone paths.
 for d in "${SLURM_SUBMIT_DIR}" "$HOME/Senior-Thesis" "$HOME/Senior Thesis" "."; do
-  [ -n "$d" ] && [ -f "${d}/scripts/run_prompt_baseline.py" ] && cd "$d" && break
+  [ -n "$d" ] && [ -f "${d}/scripts/run_prompt_eval.py" ] && cd "$d" && break
 done
-if [ ! -f "scripts/run_prompt_baseline.py" ]; then
-  echo "ERROR: Cannot find project root (scripts/run_prompt_baseline.py). SLURM_SUBMIT_DIR=${SLURM_SUBMIT_DIR}"
+if [ ! -f "scripts/run_prompt_eval.py" ]; then
+  echo "ERROR: Cannot find project root (scripts/run_prompt_eval.py). SLURM_SUBMIT_DIR=${SLURM_SUBMIT_DIR}"
   exit 1
 fi
 
@@ -55,14 +55,14 @@ else
   echo "Note: export HF_TOKEN on the login node for higher Hub rate limits."
 fi
 
-# Job env from sbatch --export (see submit_all_model_baselines.sh).
+# Job env from sbatch --export (see submit_baselines.sh).
 MODEL=${MODEL:-google/flan-t5-base}
 PROMPT=${PROMPT:-zero_shot}
 MODEL_TYPE=${MODEL_TYPE:-seq2seq}
 N=${N:-}
 STRICT_EVAL=${STRICT_EVAL:-1}
 
-# Flags for run_prompt_baseline.py: causal vs seq2seq; strict eval when requested.
+# Flags for run_prompt_eval.py (prompt-based eval): causal vs seq2seq; strict eval when requested.
 EXTRA_ARGS=()
 [ "$MODEL_TYPE" = "causal" ] && EXTRA_ARGS+=(--model_type causal)
 if [ "${STRICT_EVAL:-0}" = "1" ]; then
@@ -82,9 +82,9 @@ for TASK in "${TASK_LIST[@]}"; do
   echo "Running $MODEL | $PROMPT | $TASK | $MODEL_TYPE"
   echo "=============================================="
   if [ -n "$N" ]; then
-    python scripts/run_prompt_baseline.py --model "$MODEL" --prompt "$PROMPT" --task "$TASK" --n "$N" --device -1 "${EXTRA_ARGS[@]}"
+    python scripts/run_prompt_eval.py --model "$MODEL" --prompt "$PROMPT" --task "$TASK" --n "$N" --device -1 "${EXTRA_ARGS[@]}"
   else
-    python scripts/run_prompt_baseline.py --model "$MODEL" --prompt "$PROMPT" --task "$TASK" --device -1 "${EXTRA_ARGS[@]}"
+    python scripts/run_prompt_eval.py --model "$MODEL" --prompt "$PROMPT" --task "$TASK" --device -1 "${EXTRA_ARGS[@]}"
   fi
   echo ""
 done

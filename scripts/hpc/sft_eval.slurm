@@ -2,23 +2,23 @@
 #SBATCH --job-name=eval-ft-grid
 #SBATCH --account=span9810
 #
-# GPU eval: 4 models × 3 tasks = 12 runs of scripts/run_prompt_baseline.py
+# GPU eval: 4 models × 3 tasks = 12 runs of scripts/run_prompt_eval.py
 #   (base flan-t5-large + 3 merged LoRA dirs: meter_only, rhyme_only, combined).
 #
 # Submit from repo root:
-#   cd ~/Senior-Thesis && sbatch scripts/hpc/run_eval_ft_grid.slurm
+#   cd ~/Senior-Thesis && sbatch scripts/hpc/sft_eval.slurm
 #
 # If Slurm reports "Invalid qos specification", try:
-#   sbatch --qos=normal scripts/hpc/run_eval_ft_grid.slurm
+#   sbatch --qos=normal scripts/hpc/sft_eval.slurm
 #
 # Override merged paths:
-#   METER_FT=... RHYME_FT=... COMBINED_FT=... sbatch scripts/hpc/run_eval_ft_grid.slurm
+#   METER_FT=... RHYME_FT=... COMBINED_FT=... sbatch scripts/hpc/sft_eval.slurm
 #
 # Shorter smoke test:
-#   N=50 sbatch scripts/hpc/run_eval_ft_grid.slurm
+#   N=50 sbatch scripts/hpc/sft_eval.slurm
 #
 # JSON output root (default: results/) — eval generations only, not training weights.
-#   SFT_RESULTS=/path/to/dir sbatch scripts/hpc/run_eval_ft_grid.slurm
+#   SFT_RESULTS=/path/to/dir sbatch scripts/hpc/sft_eval.slurm
 #
 # Merged weights below default to sft/...;
 #
@@ -36,13 +36,13 @@ export PYTHONUNBUFFERED=1
 THESIS_ROOT="${THESIS_ROOT:-}"
 if [ -z "$THESIS_ROOT" ]; then
   for d in "${SLURM_SUBMIT_DIR:-}" "$HOME/Senior-Thesis" "$HOME/Senior Thesis" "."; do
-    [ -n "$d" ] && [ -f "${d}/scripts/run_prompt_baseline.py" ] && THESIS_ROOT="$d" && break
+    [ -n "$d" ] && [ -f "${d}/scripts/run_prompt_eval.py" ] && THESIS_ROOT="$d" && break
   done
 fi
 [ -z "$THESIS_ROOT" ] && THESIS_ROOT="${SLURM_SUBMIT_DIR:-.}"
 cd "$THESIS_ROOT" || { echo "ERROR: cd $THESIS_ROOT"; exit 1; }
-if [ ! -f scripts/run_prompt_baseline.py ]; then
-  echo "ERROR: Cannot find project root (scripts/run_prompt_baseline.py). Set THESIS_ROOT=... pwd=$(pwd)"
+if [ ! -f scripts/run_prompt_eval.py ]; then
+  echo "ERROR: Cannot find project root (scripts/run_prompt_eval.py). Set THESIS_ROOT=... pwd=$(pwd)"
   exit 1
 fi
 
@@ -103,7 +103,7 @@ for MODEL in "$BASE" "$METER_FT" "$RHYME_FT" "$COMBINED_FT"; do
     RUN=$((RUN + 1))
     echo ""
     echo "========== [$RUN/12] MODEL=$MODEL TASK=$TASK =========="
-    "$PYTHON" -u scripts/run_prompt_baseline.py \
+    "$PYTHON" -u scripts/run_prompt_eval.py \
       --results-dir "$SFT_RESULTS" \
       --model "$MODEL" \
       --prompt "$PROMPT" \

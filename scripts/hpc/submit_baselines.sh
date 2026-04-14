@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Calls sbatch once per baseline run. Each job runs scripts/hpc/run_prompt_baseline_all_tasks.slurm
+# Calls sbatch once per baseline run. Each job runs scripts/hpc/baseline_cpu.slurm
 # with MODEL, PROMPT, BASELINE_TASK, N, STRICT_EVAL, etc. passed via --export.
 #
 # SPLIT_TASKS=1 (default): one job per (model x prompt x task). Easier retries and parallel runs.
@@ -17,12 +17,12 @@
 # Cluster: https://docs.ycrc.yale.edu/clusters-at-yale/job-scheduling/
 # Cluster: https://docs.ycrc.yale.edu/clusters/bouchet/
 # Examples:
-#   ./scripts/hpc/submit_all_model_baselines.sh
-#   N=500 SLURM_PARTITION=day ./scripts/hpc/submit_all_model_baselines.sh
-#   SLURM_PARTITION=week ./scripts/hpc/submit_all_model_baselines.sh
-#   SLURM_TIME=12:00:00 SLURM_PARTITION=day ./scripts/hpc/submit_all_model_baselines.sh
-#   N=500 ONLY_TASKS="natural_text combined" SLURM_PARTITION=day ./scripts/hpc/submit_all_model_baselines.sh
-#   ONLY_MODEL_SPEC='meta-llama/Meta-Llama-3-8B-Instruct|causal' N=500 ./scripts/hpc/submit_all_model_baselines.sh
+#   ./scripts/hpc/submit_baselines.sh
+#   N=500 SLURM_PARTITION=day ./scripts/hpc/submit_baselines.sh
+#   SLURM_PARTITION=week ./scripts/hpc/submit_baselines.sh
+#   SLURM_TIME=12:00:00 SLURM_PARTITION=day ./scripts/hpc/submit_baselines.sh
+#   N=500 ONLY_TASKS="natural_text combined" SLURM_PARTITION=day ./scripts/hpc/submit_baselines.sh
+#   ONLY_MODEL_SPEC='meta-llama/Meta-Llama-3-8B-Instruct|causal' N=500 ./scripts/hpc/submit_baselines.sh
 #
 # Exit on first error, unset variables, or pipe failure.
 set -euo pipefail
@@ -38,13 +38,13 @@ SLURM_TIME="${SLURM_TIME:-12:00:00}"
 if [ "${SLURM_PARTITION}" = "week" ]; then
   case "${SLURM_TIME}" in
   12:00:00|04:00:00|4:00:00|08:00:00|8:00:00|06:00:00|6:00:00)
-    echo "submit_all_model_baselines: partition week needs walltime >= 24h. Using SLURM_TIME=24:00:00 (was ${SLURM_TIME})." >&2
+    echo "submit_baselines: partition week needs walltime >= 24h. Using SLURM_TIME=24:00:00 (was ${SLURM_TIME})." >&2
     SLURM_TIME=24:00:00
     ;;
   esac
 fi
 
-SLURM_SCRIPT="$ROOT/scripts/hpc/run_prompt_baseline_all_tasks.slurm"
+SLURM_SCRIPT="$ROOT/scripts/hpc/baseline_cpu.slurm"
 if [ ! -f "$SLURM_SCRIPT" ]; then
   echo "ERROR: Missing $SLURM_SCRIPT"
   exit 1

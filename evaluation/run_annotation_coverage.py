@@ -1,18 +1,32 @@
 """
-Annotation coverage: run corpus metrics on ground-truth labels (no models).
+Annotation coverage (no models).
 
-Computes meter, rhyme, CMU coverage, end-stopping, and caesura for the full corpus
-and for each split (train, dev, test, held_out_poets, held_out_poems) when those files exist.
+Checks how complete the ground-truth annotations are.
 
-Writes `evaluation/annotation_coverage.json`. Those numbers describe how complete the
-annotations are—not prompt-baseline or fine-tuned model accuracy.
+Computes:
+- meter coverage
+- rhyme coverage
+- CMU coverage
+- end-stopping
+- caesura
 
-Run from project root: python evaluation/run_annotation_coverage.py
+Runs on:
+- full corpus
+- each split (train, dev, test, held_out_poets, held_out_poems) if available
 
-Needs `output/corpus.db` (from `python scripts/export_sqlite.py`) and
-`evaluation/splits/*.json` (from `evaluation/splits.py`).
+Saves results to:
+evaluation/annotation_coverage.json
 
-For Hugging Face prompt-only baselines, use `scripts/run_prompt_baseline.py`.
+Run from project root:
+python evaluation/run_annotation_coverage.py
+
+Requires:
+- output/corpus.db (from scripts/export_sqlite.py)
+- evaluation/splits/*.json (from evaluation/splits.py)
+
+Note:
+This does NOT measure model performance.
+For baselines, use scripts/run_prompt_baseline.py.
 """
 
 import sys

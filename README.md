@@ -71,6 +71,8 @@ source venv/bin/activate   # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+That file includes corpus / extraction pins and **SFT** stack (`transformers`, `peft`, etc.). Install a matching **PyTorch** build for your machine or cluster separately if `pip` does not pull one you want.
+
 ---
 
 ## Project Structure

@@ -100,7 +100,7 @@ else
 fi
 echo "Using: $PYTHON"
 $PYTHON -c "import datasets, transformers, peft" 2>/dev/null || {
-  echo "ERROR: pip install -r requirements_sft.txt (needs peft)"
+  echo "ERROR: pip install -r requirements.txt (needs peft, transformers, etc.)"
   exit 1
 }
 if [ "${QLORA:-0}" = "1" ]; then

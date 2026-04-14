@@ -195,7 +195,7 @@ def write_selection_notes(rows: list[dict], prompt_type: str, out_notes: Path):
     lines = []
     lines.append("# Model comparison notes\n")
     lines.append("Exact match = model_output must exactly equal gold_target.\n")
-    lines.append(f"Focus: `{prompt_type}` results\n")
+    lines.append(f"Focus: {prompt_type} results\n")
 
     max_rate = max((r["exact_match_pct"] for r in rows), default=0.0)
 

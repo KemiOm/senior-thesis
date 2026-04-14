@@ -6,8 +6,8 @@ A pipeline for extracting, normalizing, and annotating English poetry from the E
 
 ## Documentation
 
-- **[OVERVIEW.MD](OVERVIEW.MD)** — Full project description: pipeline stages, terminology (meter, stress, rhyme, TEI), phonology tools (Poesy, Prosodic, CMU), evaluation workflow (splits → training JSONs → baselines → metrics → **SFT** → checkpoint eval), structured metrics, and **HPC / Bouchet** usage (`day` vs `gpu_devel`, QoS, checkpoints vs `final_model`).
-- **Evaluation** — Splits, metrics, and prompt-only baselines: see [evaluation/EVALUATION_PROTOCOL.md](evaluation/EVALUATION_PROTOCOL.md) and the “Evaluation and choosing a model” section in OVERVIEW.MD.
+- **[OVERVIEW.MD](OVERVIEW.MD)** — Full project description: pipeline stages, terminology (meter, stress, rhyme, TEI), phonology tools (Poesy, Prosodic, CMU), evaluation workflow (splits → training JSONs → baselines → metrics → **SFT** → checkpoint eval), structured metrics, and **HPC / Bouchet** usage (partitions, QoS, checkpoints vs final merged weights).
+- **Evaluation** — Splits, annotation coverage, scoring, and baselines: code under **evaluation/** (see layout below). Roll-up tables and model-selection notes live in **evaluation/baseline_report/** (**model_comparison.csv**, **MODEL_SELECTION.MD**). Stable CLI entry points at the **evaluation/** package root (**splits.py**, **run_annotation_coverage.py**, **summarize_prompt_baselines.py**) are thin shims; implementations are in **evaluation/corpus/** and **evaluation/scoring/**. Step-by-step narrative: “Evaluation and choosing a model” and **Running on HPC** in OVERVIEW.MD.
 
 ---
 
@@ -77,26 +77,38 @@ That file includes corpus / extraction pins and **SFT** stack (`transformers`, `
 
 ## Project Structure
 
+High-level layout. Large or machine-local artifacts are often **gitignored** (check **.gitignore**): e.g. most of **output/** except **corpus.db** and **training_data/**, **ECPA/**, **venv/**, **sft/** and **sft_full/** checkpoint and weight trees, **visualizations/out/**.
+
 ```
 .
-├── sample/                  # Single-poem scripts (for testing)
-│   ├── extract_sample.py
-│   ├── normalize_sample.py
-│   └── phonology_sample.py
-├── batch/                   # Full-corpus scripts
-│   ├── extract_batch.py
-│   ├── normalize_batch.py
-│   └── phonology_batch.py
-├── notebooks/               # Training data prep, evaluation metrics, SFT overview
-├── scripts/                 # export_sqlite, run_prompt_eval, corpus_tools; scripts/sft/lora_train.py; scripts/hpc/ = Slurm
-├── evaluation/              # corpus/ (splits, coverage), scoring/ (rollup, slugs, metrics-on-JSON), baselines/, baseline_report/
-├── sft/                     # Default LoRA training root (--output-root); heavy dirs gitignored
-├── results/                 # SFT **eval** JSON only (`run_prompt_eval.py` on merged weights); not checkpoints
-├── data/                    # Optional local data (samples, metadata)
-├── docs/                    # Data overview, debug transcripts
+├── OVERVIEW.MD              # Long-form pipeline + evaluation + HPC narrative
+├── README.md
 ├── requirements.txt
-└── ECPA/                    # Source data (clone separately, not in repo)
-    └── web/works/           # Poem XMLs
+├── sample/                  # Single-poem: extract_sample, normalize_sample, phonology_sample
+├── batch/                   # Full corpus: extract_batch, normalize_batch, phonology_batch
+├── notebooks/               # 01_prepare_training_data.ipynb → output/training_data/{task}/{split}.json
+├── scripts/
+│   ├── export_sqlite.py     # Annotated poem JSON → output/corpus.db
+│   ├── run_prompt_eval.py   # Prompt-based eval on task JSON (Hub or merged checkpoints)
+│   ├── eval_cli.py          # Baseline CSV filters, corpus.db alignment checks, natural-text form tools
+│   ├── sft/lora_train.py    # LoRA / QLoRA fine-tuning
+│   └── hpc/                 # Slurm + shell helpers (baseline_cpu, sft_eval, lora_train, submit_*.sh)
+├── evaluation/
+│   ├── corpus/              # Splits, annotation coverage, SQLite metrics (implementation)
+│   ├── scoring/             # Rollup, slugs, form_eval, struct_metrics (implementation)
+│   ├── splits/              # Poem ID lists: train.json, test.json, held-out sets, meta.json
+│   ├── baselines/           # Per-model slug dirs of prompt-eval JSON (when versioned)
+│   ├── baseline_report/     # model_comparison.csv, MODEL_SELECTION.MD, filtered CSVs
+│   ├── splits.py            # CLI: python evaluation/splits.py
+│   ├── run_annotation_coverage.py
+│   └── summarize_prompt_baselines.py
+├── output/                  # corpus.db, training_data/; intermediate poem JSON trees usually not in git
+├── results/                 # SFT eval JSON per short slug (local or cluster; not training weights)
+├── sft/, sft_full/          # LoRA output roots (--output-root); heavy subtrees gitignored
+├── visualizations/          # plot_ft.py, ft_figures.ipynb → visualizations/out/ (figures gitignored)
+├── data/, docs/             # Optional local data; notes / figure sources
+└── ECPA/                    # Source TEI corpus (clone separately; not tracked by default)
+    └── web/works/<id>/<id>.xml
 ```
 
 ---
@@ -159,7 +171,7 @@ Reports: poem/line counts, meter distribution, rhyme coverage, phonology (CMU) c
 
 ## Evaluation and baselines
 
-After the corpus is built: (1) splits, (2) task-specific train/dev/test JSONs, (3) prompt-only baselines, (4) metrics, (5) supervised fine-tuning per task and evaluation of checkpoints. Details and code paths are in **OVERVIEW.MD** (evaluation flow, **Supervised fine-tuning**, and **Running on HPC**).
+After the corpus is built: (1) splits, (2) task-specific train/dev/test JSONs, (3) prompt-based evaluation (pretrained or merged checkpoints), (4) metrics and rollups, (5) supervised fine-tuning per task and checkpoint eval. Details and code paths are in **OVERVIEW.MD** (evaluation flow, **Supervised fine-tuning**, and **Running on HPC**).
 
 **Quick check** that each model has all four task outputs:
 
@@ -176,19 +188,21 @@ Results live under `evaluation/baselines/<model_slug>/` for pretrained prompt ba
 
 ## Output Structure
 
-| Directory                  | Contents                                          |
-|---------------------------|---------------------------------------------------|
-| `output/poems/`           | Extracted JSON (raw text)                         |
-| `output/poems_normalized/`| Normalized JSON                                   |
-| `output/poems_annotated/` | JSON with phonology, meter, rhyme                 |
-| `output/corpus.db`        | SQLite database                                   |
-| `output/training_data/`   | Task-specific train/dev/test JSONs (from notebook)|
-| `evaluation/splits/`      | Train/dev/test and held-out poem ID lists         |
-| `evaluation/baselines/`   | Prompt-eval JSON per `<model_slug>/` (see `run_prompt_eval.py`) |
-| `evaluation/baseline_report/` | Roll-up tables: `model_comparison.csv`, selection notes (`summarize_prompt_baselines.py`) |
-| `results/`                | SFT **eval** JSON per `<short_slug>/` (not weights); roll-up with `summarize_prompt_baselines.py --baseline-dir results --out-dir results` |
-| `sft/`                      | Default **`OUTPUT_ROOT`** for LoRA: checkpoints, adapters, merged weights (often gitignored). Same role as any other output root (e.g. `sft_full/`), not a separate pipeline. |
-| `data/nltk_data/`         | NLTK data (created automatically)                 |
+| Location | Contents |
+|----------|----------|
+| output/poems/ | Extracted JSON (raw text); often local-only |
+| output/poems_normalized/ | Normalized JSON |
+| output/poems_annotated/ | JSON with phonology, meter, rhyme |
+| output/corpus.db | SQLite database (tracked when committed for review) |
+| output/training_data/ | Per-task train.json, dev.json, test.json (from notebook) |
+| evaluation/splits/ | Train/dev/test and held-out poem ID lists |
+| evaluation/annotation_coverage.json | Gold-label coverage report (run_annotation_coverage.py) |
+| evaluation/baselines/ | Prompt-eval JSON per model_slug/ (run_prompt_eval.py default --results-dir) |
+| evaluation/baseline_report/ | model_comparison.csv, MODEL_SELECTION.MD, filtered exports |
+| results/ | SFT eval JSON per short_slug/ (not weights); roll up with summarize_prompt_baselines.py --baseline-dir results --out-dir results |
+| sft/, sft_full/ | LoRA training roots: checkpoints, adapters, merged weights (typical subtrees gitignored) |
+| visualizations/out/ | Figures from plot_ft.py / ft_figures.ipynb (gitignored) |
+| data/nltk_data/ | NLTK data (created automatically; gitignored) |
 
 ---
 

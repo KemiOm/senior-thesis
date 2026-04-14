@@ -74,8 +74,8 @@ def resolve_pretrained_model_id(model_id: str) -> str:
             hint = f"\nContents of {parent} (first entries): {names}\n"
             if not any(x.name == "final_model" for x in sub):
                 hint += (
-                    "No `final_model` folder here — use the latest `checkpoint-*` dir as "
-                    "`--model`, or save with `trainer.save_model(...)` after training.\n"
+                    "No final_model folder here — use the latest checkpoint-* dir as "
+                    "--model, or save with trainer.save_model(...) after training.\n"
                 )
         raise FileNotFoundError(
             "Local --model path does not exist or is not a directory.\n"
@@ -103,8 +103,8 @@ def resolve_baseline_results_dir(cli_dir: str | None) -> Path:
         return p.resolve() if p.is_absolute() else (ROOT / p).resolve()
     return DEFAULT_BASELINE_RESULTS_DIR.resolve()
 
-# Few-shot: build an example quatrain from `output/corpus.db` so labels stress/rhyme/combined
-# match the same rules as `output/training_data/...`.
+# Few-shot: build an example quatrain from output/corpus.db so labels stress/rhyme/combined
+# match the same rules as output/training_data/....
 FEW_SHOT_SEPARATOR = "\n\n---\n\n"
 _EXAMPLE_QUATRAIN = None
 
@@ -126,7 +126,7 @@ def stress_to_plus_minus(s: str) -> str:
 def rhyme_key_from_phonology(phonology_json: str) -> str:
     """
     Get rhyme key from phonology using the same logic as
-    `notebooks/01_prepare_training_data.ipynb`.
+    notebooks/01_prepare_training_data.ipynb.
     Returns '' if unavailable.
     """
     if not phonology_json:
@@ -157,7 +157,7 @@ def _caesura_tok(caesura) -> str:
 
 
 def input_normalize_key(s: str) -> str:
-    """Match training JSON `input` to corpus.db `normalized` (whitespace-normalized)."""
+    """Match training JSON input to corpus.db normalized (whitespace-normalized)."""
     return " ".join((s or "").strip().split())
 
 
@@ -958,7 +958,7 @@ def main():
     if args.task == "natural_text":
         payload["gold_form_note"] = (
             "gold_stress_pm, gold_rhyme_key, gold_form_ok: CMU-based signature of gold_target "
-            "(evaluation.scoring.form_eval.line_form_signature); same path as scripts/corpus_tools.py nt-form."
+            "(evaluation.scoring.form_eval.line_form_signature); same path as scripts/eval_cli.py nt-form."
         )
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(

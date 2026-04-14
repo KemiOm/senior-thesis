@@ -748,7 +748,7 @@ def _text_lines_list(text_obj) -> list:
 
 
 def _line_best_parse(line_obj):
-  """Get the best parse for a line (bestParse may be a method or attribute)."""
+    """Get the best parse for a line (bestParse may be a method or attribute)."""
     bp = getattr(line_obj, "bestParse", None)
     if bp is None:
         bp = getattr(line_obj, "best_parse", None)
@@ -790,15 +790,15 @@ def _parse_stress_from_prosodic_parse(bp) -> str:
 
 
 def stress_from_notebook_style_prosodic(line_text: str) -> str:
-  """
-  Get stress pattern for a single line using Prosodic only.
-  uses prosodic.Text with the default meter
-  does not use Poesy
-  If that fails, tries the Prosodic 2.x TextModel (if available).
-  Returns:
-    "+" / "-" stress string
-    "" if parsing fails or the line is too long
-  """
+    """
+    Get stress pattern for a single line using Prosodic only.
+    uses prosodic.Text with the default meter
+    does not use Poesy
+    If that fails, tries the Prosodic 2.x TextModel (if available).
+    Returns:
+      "+" / "-" stress string
+      "" if parsing fails or the line is too long
+    """
     s = (line_text or "").strip()
     if not s:
         return ""
@@ -849,12 +849,12 @@ def stress_from_notebook_style_prosodic(line_text: str) -> str:
 
 
 def _rhyme_pairs(rhyme_groups: list) -> list:
-   """
-   Return pairs of line indices that share the same rhyme label.
-   Input: list of rhyme group IDs one per line in a stanza
-   Only includes pairs where the rhyme label is not empty.
-   Used to store `rhyme_pairs` in the stanza.
-   """
+    """
+    Return pairs of line indices that share the same rhyme label.
+    Input: list of rhyme group IDs one per line in a stanza
+    Only includes pairs where the rhyme label is not empty.
+    Used to store rhyme_pairs in the stanza.
+    """
     groups = {}
     for i, rg in enumerate(rhyme_groups):
         if rg and str(rg).strip() and str(rg).strip() != "?" and str(rg) != "-":

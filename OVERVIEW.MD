@@ -10,7 +10,7 @@ Modern transformer language models often generate fluent text, but they struggle
 
 ## Approach (overview)
 
-The approach is defined by the pipeline in this repository: extract and normalize source texts, annotate them with formal structure (meter, stress, rhyme, lineation), export to SQLite, then build train/dev/test splits and **four parallel task conditions** (natural_text, meter_only, rhyme_only, combined) so the same backbone model can be evaluated and trained under different target formats. Nothing in the *engineering* assumes a single literary genre beyond what the corpus contains—the same machinery applies to any line-level annotations stored in `corpus.db`. The workflow is: **prompt-only baselines** (zero/one/few-shot) → **metrics / comparison** → **supervised fine-tuning (SFT)** per task with matched hyperparameters → **evaluation** of base vs fine-tuned checkpoints on the same test JSONs. Gold labels always come from the annotation pipeline. The rest of this document walks through each stage and the code paths that implement it.
+The approach is defined by the pipeline in this repository: extract and normalize source texts, annotate them with formal structure (meter, stress, rhyme, lineation), export to SQLite, then build train/dev/test splits and **four parallel task conditions** (natural_text, meter_only, rhyme_only, combined) so the same backbone model can be evaluated and trained under different target formats. Nothing in the *engineering* assumes a single literary genre beyond what the corpus contains—the same machinery applies to any line-level annotations stored in `corpus.db`. The workflow is: **prompt-based evaluation** on shared test JSONs (zero/one/few-shot; **scripts/run_prompt_eval.py** for both Hub models and merged SFT checkpoints) → **metrics / comparison** → **supervised fine-tuning (SFT)** per task with matched hyperparameters → **re-eval** checkpoints on the same test JSONs. Gold labels always come from the annotation pipeline. The rest of this document walks through each stage and the code paths that implement it.
 
 
 ### Data Source
@@ -24,7 +24,7 @@ TEI(Text Encoding Initiative) ECPA encodes poems in TEI P5. TEI is a standard fo
 - <l> line—a single verse line, some of the line text may be wrapped in elements like <w> (word) or <pc> (punctuation), or appear as a direct text. 
 
 For processing the standard TEI P5 namespace in Python: the [lxml XPath and namespaces](https://lxml.de/4.4/xpathxslt.html) docs (see “Namespaces and prefixes”) show how to use `find()`/`findall()` with `{http://www.tei-c.org/ns/1.0}localname` or `xpath()` with a `namespaces` dict. A tutorial with examples is [Parsing TEI XML documents with Python](https://komax.github.io/blog/text/python/xml/parsing_tei_xml_python/). TEI structure means that the archive's lines and stanza structure is already noted, so we don't have to infer. 
-The data was extracted in sample/extract_sample.py (single-poem logic) and batch/extract_batch.py (full corpus). For each XML file under CPA/web/works/*/*.xml (excluding non-poem files like tei_all.rnc):
+The data was extracted in sample/extract_sample.py (single-poem logic) and batch/extract_batch.py (full corpus). For each XML file under ECPA/web/works/*/*.xml (excluding non-poem files like tei_all.rnc):
 1. Parse the XML with lxml (etree.parse())
 2. Read title and author from the first matching  <title> and <author>
 3. Find the <body> element; from it, find all <lg> elements (stanzas)
@@ -109,7 +109,7 @@ After normalization, each poem is annotated with **phonology** (the sound form o
 
 **Parsing in the upstream tools.** To see the parsing output that our pipeline draws on: **[Poesy README](https://github.com/quadrismegistus/poesy/blob/master/README.md)** shows `poem.summary()` — a table of parse string, rhyme, #feet, #syll per line — and `poem.statd` (meter type, rhyme scheme). **[Prosodic README.ipynb](https://github.com/quadrismegistus/prosodic/blob/master/README.ipynb)** has runnable examples of the metrical parser. Our code uses Prosodic under the hood (with compatibility patches in phonology_sample.py) and maps parse/rhyme into our JSON (`stress`, `meter`, `rhyme_group` per line).
 
-**Why these metrics?** We need to know whether the model got meter and rhyme right. Our pipeline (Poesy + CMU) gives us stress pattern, meter type, and rhyme labels per line—so we use those. We score a line as correct only when the *entire* stress or rhyme string matches the gold; one wrong syllable means the whole line is wrong. Researchers have shown that LLMs tend to be overly regular more strictly iambic and more often rhyming than human poets. Our metrics let us measure that and compare baseline vs fine-tuned models: we run each model on the same test prompts, get its output lines, and compare them to the gold stress/rhyme from our pipeline (e.g. stress-match rate, rhyme rate); we do this for prompt-only baselines and for fine-tuned models so we can see whether training improves adherence or changes how regular the output is. Other studies of poetry and LLMs use the same kind of measures (stress, rhyme rate), so we can compare our results to theirs. End_stopped, enjambment, and caesura capture how lines break and pause, for optional analysis.
+**Why these metrics?** We need to know whether the model got meter and rhyme right. Our pipeline (Poesy + CMU) gives us stress pattern, meter type, and rhyme labels per line—so we use those. We score a line as correct only when the *entire* stress or rhyme string matches the gold; one wrong syllable means the whole line is wrong. Researchers have shown that LLMs tend to be overly regular more strictly iambic and more often rhyming than human poets. Our metrics let us measure that and compare baseline vs fine-tuned models: we run each model on the same test prompts, get its output lines, and compare them to the gold stress/rhyme from our pipeline (e.g. stress-match rate, rhyme rate); we do this for **pretrained** prompt baselines and for **fine-tuned** checkpoints so we can see whether training improves adherence or changes how regular the output is. Other studies of poetry and LLMs use the same kind of measures (stress, rhyme rate), so we can compare our results to theirs. End_stopped, enjambment, and caesura capture how lines break and pause, for optional analysis.
 
 **Output structure:** Implemented in sample/phonology_sample.py (single poem) and batch/phonology_batch.py (full corpus). Reads output/poems_normalized/<id>.json, writes output/poems_annotated/<id>.json. Shape:
 ```
@@ -147,13 +147,13 @@ annotated poem (dict)
 }
 ```
 #### Final Checks
-Export to SQLite (`python scripts/export_sqlite.py`), then run `python evaluation/run_annotation_coverage.py` on the corpus. That writes `evaluation/annotation_coverage.json` (coverage percentages plus meter histogram, degraded-poem counts, stanza types, etc.—the former role of `scripts/quality_checks.py`) before building training data and evaluation splits.
+Export to SQLite (`python scripts/export_sqlite.py`), then run `python evaluation/run_annotation_coverage.py` on the corpus. That writes `evaluation/annotation_coverage.json` (coverage percentages plus meter histogram, degraded-poem counts, stanza types, etc.) before building training data and evaluation splits. Extra CSV filters and corpus/training alignment checks live in **scripts/eval_cli.py** (e.g. `verify-data`, `filter-csv`).
 
 ---
 
 ### Evaluation and choosing a model
 
-After the corpus is built and annotated, we (1) define evaluation splits and metrics, (2) prepare train/dev/test data for each task, (3) run prompt-only baselines, (4) compute metrics and compare, (5) choose a base model and run **supervised fine-tuning** per task, (6) evaluate fine-tuned checkpoints with the same scripts. The `evaluation/` and `scripts/` directories implement this.
+After the corpus is built and annotated, we (1) define evaluation splits and metrics, (2) prepare train/dev/test data for each task, (3) run **prompt-based evaluation** (pretrained baselines on the GPU or CPU Slurm grid), (4) compute metrics and compare, (5) choose a base model and run **supervised fine-tuning** per task, (6) evaluate merged checkpoints with the same **scripts/run_prompt_eval.py** path as step (3). The **evaluation/** and **scripts/** directories implement this; **requirements.txt** bundles corpus dependencies and the SFT stack (install PyTorch separately to match your hardware).
 
 **Flow (high level):**
 
@@ -164,7 +164,7 @@ flowchart LR
     S2["2. Training JSONs\n01_prepare_training_data.ipynb\n→ output/training_data/{task}/*.json"]
     S4["4. Metrics & tables\ncorpus/coverage, scoring/rollup\n+ struct_metrics"]
     S5["5. Base model + SFT plan\ncompare baselines, pick checkpoint"]
-    S6["6. Eval SFT checkpoints\nrun_prompt_eval.py --model path/to/checkpoint"]
+    S6["6. Eval SFT checkpoints\nscripts/run_prompt_eval.py --model path/to/checkpoint"]
   end
   subgraph hpc["HPC compute nodes"]
     S3["3. Prompt-based eval\nbaseline_cpu.slurm →\nevaluation/baselines/..."]
@@ -175,7 +175,7 @@ flowchart LR
 
 **Step 1 — Splits and metrics.** We split the corpus into train, dev, and test (and optionally held-out poets/poems) so we can measure generalization. Run `python evaluation/splits.py` (implementation: `evaluation/corpus/splits.py`); outputs live in `evaluation/splits/` (e.g. `train.json`, `test.json`, `held_out_poems.json`). SQLite **annotation coverage** counts are in `evaluation/corpus/metrics.py`.
 
-*How splits are built.* The script (1) connects to `output/corpus.db`, (2) gets all poem IDs and groups them by author, (3) reserves *held-out poets* (e.g. 10 authors with ≥3 poems—all their poems go to `held_out_poets.json`), (4) from the rest, randomly selects *held-out poems* (e.g. 100 poems → `held_out_poems.json`), (5) splits the remaining poems by fractions (e.g. 70% train, 15% dev, 15% test) with a fixed random seed (42) for reproducibility, (6) writes each list of poem IDs to `evaluation/splits/{train,dev,test,held_out_poets,held_out_poems}.json` and a `meta.json` with counts. The prepare-training-data notebook and baseline script then use these IDs to decide which lines belong to which split.
+*How splits are built.* The script (1) connects to `output/corpus.db`, (2) gets all poem IDs and groups them by author, (3) reserves *held-out poets* (e.g. 10 authors with ≥3 poems—all their poems go to `held_out_poets.json`), (4) from the rest, randomly selects *held-out poems* (e.g. 100 poems → `held_out_poems.json`), (5) splits the remaining poems by fractions (e.g. 70% train, 15% dev, 15% test) with a fixed random seed (42) for reproducibility, (6) writes each list of poem IDs to `evaluation/splits/{train,dev,test,held_out_poets,held_out_poems}.json` and a `meta.json` with counts. The prepare-training-data notebook and **run_prompt_eval.py** then use these IDs to decide which lines belong to which split.
 
 ```python
 # evaluation/corpus/splits.py (simplified)
@@ -235,7 +235,7 @@ with open(OUT_DIR / "meter_only" / "test.json", "w") as f:
 
 *How a prompt-eval run works.* The Python script (1) loads test data from `output/training_data/{task}/test.json`, (2) builds one prompt per row from the task’s template (e.g. meter_only zero_shot: “Given this line of poetry, output its metrical stress pattern… Line: {line}”). **Few-shot** prompts prepend a full example **quatrain** (four lines) with per-line labels in the same format as the task (from `corpus.db`), then a separator and the query line. (3) calls the model to generate an output for each prompt, (4) zips each `input`, `gold_target`, `prompt`, and `model_output` into a result dict, (5) writes a single JSON to the chosen results root (default `evaluation/baselines/`, or `results/` for the SFT eval grid) at `<short_slug>/{prompt_type}_{task}.json` containing metadata (model, prompt_type, task, n_samples) and the list of results. That JSON is what Step 4 uses to compute stress-match rate, rhyme match, etc.
 
-**Saved baseline JSON shape:**
+**Saved eval JSON shape** (same layout under `evaluation/baselines/` or `results/`):
 
 ```
 <prompt_type>_<task>.json (e.g. zero_shot_meter_only.json)
@@ -285,9 +285,9 @@ json.dump({"model": model_id, "prompt_type": ..., "task": ..., "results": result
 
 *Where it runs:* HPC compute nodes (one Slurm job per model). See **Running on HPC (summary)** below.
 
-**Step 4 — Compute metrics and compare.** Model outputs are compared to gold (same pipeline as in “Why these metrics?”). We compute exact-match and, where useful, **field-level** scores for structured targets via `evaluation/scoring/struct_metrics.py` (rhyme tokens, combined bundles). Natural-text generations can be checked with `evaluation/scoring/form_eval.py` (form signatures). Aggregate tables (e.g. `evaluation/baseline_report/model_comparison.csv` or exports from `scripts/export_model_comparison_slide.py`) support cross-model comparison.
+**Step 4 — Compute metrics and compare.** Model outputs are compared to gold (same pipeline as in “Why these metrics?”). We compute exact-match and, where useful, **field-level** scores for structured targets via `evaluation/scoring/struct_metrics.py` (rhyme tokens, combined bundles). Natural-text generations can be checked with `evaluation/scoring/form_eval.py` (form signatures). Aggregate tables (e.g. `evaluation/baseline_report/model_comparison.csv` from **`evaluation/summarize_prompt_baselines.py`**, plus optional CSV narrowing via **`scripts/eval_cli.py`** subcommand **`filter-csv`**) support cross-model comparison.
 
-*How metrics are computed.* (A) **Annotation coverage (gold labels):** `python evaluation/run_annotation_coverage.py` runs `evaluation/corpus/coverage.py`, which connects to `corpus.db`, loads poem IDs per split from `evaluation/splits/`, and calls `evaluation.corpus.metrics.merge_metrics_and_diagnostics` for the full corpus and each split. Results go to `evaluation/annotation_coverage.json`. (B) **Model outputs:** JSON trees are rolled up with `python evaluation/summarize_prompt_baselines.py` → `evaluation/scoring/rollup.py` (exact match; structured metrics where configured). **Use the same `--n` cap per task across models** when comparing percentages. *Where it runs:* Local or login node after baseline jobs finish. See **Running on HPC (summary)** below.
+*How metrics are computed.* (A) **Annotation coverage (gold labels):** `python evaluation/run_annotation_coverage.py` runs `evaluation/corpus/coverage.py`, which connects to `corpus.db`, loads poem IDs per split from `evaluation/splits/`, and calls `evaluation.corpus.metrics.merge_metrics_and_diagnostics` for the full corpus and each split. Results go to `evaluation/annotation_coverage.json`. (B) **Model outputs:** JSON trees are rolled up with `python evaluation/summarize_prompt_baselines.py` → `evaluation/scoring/rollup.py` (exact match; structured metrics where configured). **Use the same `--n` cap per task across models** when comparing percentages. *Where it runs:* Local or login node after eval JSON is on disk. See **Running on HPC (summary)** below.
 
 ```python
 # evaluation/corpus/coverage.py (corpus label coverage; no HF model)
@@ -300,13 +300,13 @@ json.dump(results, open("evaluation/annotation_coverage.json", "w"))
 ```
 
 
-**Step 5 — Choose a base model and fine-tune.** After you have prompt-only numbers, pick a backbone (e.g. FLAN-T5) and fine-tune it on the same `input`/`target` JSON as training—see **Supervised fine-tuning** below.
+**Step 5 — Choose a base model and fine-tune.** After you have prompt-eval numbers for candidate backbones, pick one (e.g. FLAN-T5) and fine-tune it on the same `input`/`target` JSON as training—see **Supervised fine-tuning** below.
 
 ---
 
 ### Supervised fine-tuning (SFT)
 
-**What it’s for.** Prompt-only models see instructions and examples but are not trained on *your* labels. SFT asks: if we **actually train** the model on `train.json` / `dev.json` for each task (`meter_only`, `rhyme_only`, `combined`), does it **predict gold better** than the same backbone run with prompts only? Each task gets its **own** LoRA run so you can compare conditions fairly (meter-trained vs rhyme-trained vs combined-trained), not one mixed soup.
+**What it’s for.** Models used **only** with prompting (no task-specific weight updates) see instructions and examples but are not trained on *your* labels. SFT asks: if we **actually train** the model on `train.json` / `dev.json` for each task (`meter_only`, `rhyme_only`, `combined`), does it **predict gold better** than the same backbone run with prompts only? Each task gets its **own** LoRA run so you can compare conditions fairly (meter-trained vs rhyme-trained vs combined-trained), not one mixed soup.
 
 **What happens.** You run **`scripts/sft/lora_train.py`** on a GPU (via **`scripts/hpc/lora_train.slurm`** on Bouchet). It reads the same rows the notebook built (`output/training_data/<task>/{train,dev}.json`), fits small LoRA adapters on top of the frozen base, and writes a new run folder under **`--output-root`** (Slurm defaults to **`sft/<task>_lora/`**). You only need **one** such tree on disk; a second top-level folder like **`sft_full/`** is optional—same mechanism, different **`OUTPUT_ROOT`** if you prefer a separate name for long runs. **`MERGE_AND_SAVE=1`** saves **`final_model_merged/`** so inference is a normal `from_pretrained` path—no extra PEFT wiring in **`run_prompt_eval.py`**.
 
@@ -314,7 +314,7 @@ json.dump(results, open("evaluation/annotation_coverage.json", "w"))
 
 **Getting outputs home.** **`rsync`** your training root (whatever **`OUTPUT_ROOT`** you used, often **`sft/`**) and **`results/`** (SFT eval JSON). From your laptop, pull from **`~/Senior-Thesis/`** on Bouchet (VPN if off campus).
 
-**Other Slurm scripts (same folder):** `submit_lora3.sh` submits three training jobs (one task each; default **`OUTPUT_ROOT=sft/<task>_lora`**). Override **`OUTPUT_ROOT`** only if you want weights somewhere else (e.g. **`sft_full/<task>_lora`**); then pass those merged paths into **`sft_eval.slurm`** via **`METER_FT`**, **`RHYME_FT`**, **`COMBINED_FT`**. `baseline_cpu.slurm` / `submit_baselines.sh` are for **CPU** prompt baselines, not training.
+**Other Slurm scripts (same folder):** `submit_lora3.sh` submits three training jobs (one task each; default **`OUTPUT_ROOT=sft/<task>_lora`**). Override **`OUTPUT_ROOT`** only if you want weights somewhere else (e.g. **`sft_full/<task>_lora`**); then pass those merged paths into **`sft_eval.slurm`** via **`METER_FT`**, **`RHYME_FT`**, **`COMBINED_FT`**. **`baseline_cpu.slurm`** / **`submit_baselines.sh`** run **CPU** **run_prompt_eval.py** jobs (pretrained prompt eval), not training.
 
 YCRC: [job scheduling](https://docs.ycrc.yale.edu/clusters-at-yale/job-scheduling/), [Bouchet partitions](https://docs.ycrc.yale.edu/clusters/bouchet/).
 
@@ -325,13 +325,13 @@ YCRC: [job scheduling](https://docs.ycrc.yale.edu/clusters-at-yale/job-schedulin
 | Step | Where | Notes |
 |------|--------|--------|
 | Export DB, splits, notebook training JSONs | Laptop or **login node** | No GPU required. |
-| Prompt baselines (default slurm) | **`sbatch`** → **`partition=day`**, CPU | `baseline_cpu.slurm` uses `--device -1`; good for Hub models and long CPU inference. |
-| Prompt baselines or SFT with GPU | **Compute node** | Match **`lora_train.slurm`** / **`sft_eval.slurm`**: e.g. **`gpu_devel`** + **`--gpus=rtx_5000_ada:1`** + **`--account=<your_account>`** + **`--qos=normal`**. On **Yale Bouchet**, interactive jobs often need **`--qos=normal`** (not `interactive`) for GPU partitions; the **`gpu`** partition’s allowed QoS set may differ from your **user** QoS list—follow the **`sacct`** line for successful jobs or use **`gpu_devel`** as in the repo scripts. |
+| Prompt eval on CPU (default Slurm) | **`sbatch`** → **`partition=day`**, CPU | **`baseline_cpu.slurm`** calls **`run_prompt_eval.py`** with **`--device -1`**; good for Hub models and long CPU inference. |
+| Prompt eval or SFT with GPU | **Compute node** | Match **`lora_train.slurm`** / **`sft_eval.slurm`**: e.g. **`gpu_devel`** + **`--gpus=rtx_5000_ada:1`** + **`--account=<your_account>`** + **`--qos=normal`**. On **Yale Bouchet**, interactive jobs often need **`--qos=normal`** (not `interactive`) for GPU partitions; the **`gpu`** partition’s allowed QoS set may differ from your **user** QoS list—follow the **`sacct`** line for successful jobs or use **`gpu_devel`** as in the repo scripts. |
 | Logs | User-managed | Use `tee`, **`tmux`**, or `sbatch` stdout files; login-node SSH drops kill bare foreground jobs. |
 
 **Typical commands (Bouchet-style):**
 
-- **CPU baseline batch (matches successful `poetry-baseline` jobs on `day`):**  
+- **CPU prompt-eval batch (matches successful `poetry-baseline` jobs on `day`):**  
   `MODEL=google/flan-t5-base N=500 sbatch --chdir=$(pwd) scripts/hpc/baseline_cpu.slurm`  
   (Override `MODEL`, `PROMPT`, `N` as needed.)
 
@@ -343,7 +343,7 @@ YCRC: [job scheduling](https://docs.ycrc.yale.edu/clusters-at-yale/job-schedulin
 
 Further options (`HF_TOKEN`, `STAGGER_SEC`, `SPLIT_TASKS`, walltime): see **`scripts/hpc/submit_baselines.sh`** and **`scripts/hpc/baseline_cpu.slurm`**.
 
+### Related work (external)
 
-
-- **[generative-formalism](https://github.com/quadrismegistus/generative-formalism)** (Heuser 2025, “Generative Aesthetics: On the formal stuckness of AI verse”): Samples historical poetry from a large corpus (e.g. 8K poems by period, 2K by rhyme), generates AI verse via prompts and completions, then runs rhyme and rhythm analysis (Prosodic) on both human and AI outputs and compares. Notebooks in `notebooks/` do data sampling, generation, measurement (rhyme/rhythm), and aggregation. Same idea: fixed/sampled data → run models → measure form (stress, rhyme) → compare.
+- **[generative-formalism](https://github.com/quadrismegistus/generative-formalism)** (Heuser 2025, “Generative Aesthetics: On the formal stuckness of AI verse”): Samples historical poetry from a large corpus (e.g. 8K poems by period, 2K by rhyme), generates AI verse via prompts and completions, then runs rhyme and rhythm analysis (Prosodic) on both human and AI outputs and compares. That project uses notebooks for sampling, generation, measurement, and aggregation. **This repository** tracks **`notebooks/01_prepare_training_data.ipynb`** for corpus → task JSON; figures and extra plots can live under **`visualizations/`** (`plot_ft.py`, `ft_figures.ipynb`). Same high-level idea: fixed/sampled data → run models → measure form (stress, rhyme) → compare.
 - **[poetry-eval](https://github.com/maria-antoniak/poetry-eval)** (“Sonnet or Not, Bot?”, Walsh et al., EMNLP Findings 2024): Benchmark of 1.4k+ poems with expert form annotations; scripts in `llm-poetic-form-tagging-scripts/` and `analysis/` run LLMs on the data and evaluate (e.g. form identification accuracy). Different task (form tagging vs generation) but same workflow: test set → run baseline models → compute metrics → compare.

@@ -4516,5 +4516,5 @@
       "gold_form_ok": false
     }
   ],
-  "gold_form_note": "gold_stress_pm, gold_rhyme_key, gold_form_ok: CMU-based signature of gold_target (evaluation.form_eval_generation.line_form_signature); same path as scripts/corpus_tools.py nt-form."
+  "gold_form_note": "gold_stress_pm, gold_rhyme_key, gold_form_ok: CMU-based signature of gold_target (evaluation.form_eval_generation.line_form_signature); same path as scripts/eval_cli.py nt-form."
 }

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Small CLI for CSV filters, data checks, natural-text form metrics, and extra diagnostics.
+"""CLI for evaluation helpers: baseline CSV filters, corpus.db checks, natural-text form metrics.
 
-  python scripts/corpus_tools.py filter-csv --n-scored 500 -o evaluation/baseline_report/out.csv
-  python scripts/corpus_tools.py filter-csv --n-scored 500 --require-strict-eval -o evaluation/baseline_report/comparison_strict.csv
-  python scripts/corpus_tools.py verify-data [--check-poem-ids]
-  python scripts/corpus_tools.py nt-form path/to/natural_text.json [--n 500] [--relax-oov]
+  python scripts/eval_cli.py filter-csv --n-scored 500 -o evaluation/baseline_report/out.csv
+  python scripts/eval_cli.py filter-csv --n-scored 500 --require-strict-eval -o evaluation/baseline_report/comparison_strict.csv
+  python scripts/eval_cli.py verify-data [--check-poem-ids]
+  python scripts/eval_cli.py nt-form path/to/natural_text.json [--n 500] [--relax-oov]
 """
 
 from __future__ import annotations

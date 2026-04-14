@@ -11,7 +11,7 @@
 # If Slurm reports "Invalid qos specification", try:
 #   sbatch --qos=normal scripts/hpc/run_eval_ft_grid.slurm
 #
-# Override merged paths (defaults match flan-t5-large_lora runs from 2026-04-11):
+# Override merged paths:
 #   METER_FT=... RHYME_FT=... COMBINED_FT=... sbatch scripts/hpc/run_eval_ft_grid.slurm
 #
 # Shorter smoke test:
@@ -20,8 +20,7 @@
 # JSON output root (default: results/) — eval generations only, not training weights.
 #   SFT_RESULTS=/path/to/dir sbatch scripts/hpc/run_eval_ft_grid.slurm
 #
-# Merged weights below default to sft/...; if you trained with OUTPUT_ROOT=sft_full/..., set e.g.
-#   METER_FT=.../sft_full/meter_only_lora/.../final_model_merged sbatch ...
+# Merged weights below default to sft/...;
 #
 #SBATCH --partition=gpu
 #SBATCH --gpus=rtx_5000_ada:1

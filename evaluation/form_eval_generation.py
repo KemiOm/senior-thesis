@@ -1,7 +1,9 @@
-"""Form metrics for natural_text generations.
+"""
+Compute form-based metrics for natural_text outputs.
 
-Compares gold vs model output with one phonology path.
-Set FORM_EVAL_RELAX_OOV=1 to allow partial CMU coverage.
+Compares model output to the correct line using phonology features.
+Set FORM_EVAL_RELAX_OOV=1 to allow lines with missing word data
+as long as some stress pattern is found.
 """
 
 from __future__ import annotations
@@ -15,7 +17,7 @@ from sample.phonology_sample import get_phonology_for_line, line_meter_from_phon
 
 
 def rhyme_key_from_phonology(phonology_json: str) -> str:
-    """Same rule as training / run_prompt_baseline"""
+    """Extract a rhyme key from phonology data (same rule as training)."""
     if not phonology_json:
         return ""
     try:
@@ -52,12 +54,10 @@ def phonology_has_not_found(phon: list[dict]) -> bool:
 
 
 def line_form_signature(line: str, *, relax_oov: bool = False) -> dict[str, Any]:
-    """
-    Extract comparable form features from arbitrary line text.
-    Uses CMU + optional espeak 
-
-    If relax_oov is True, a line counts as ok when there is a non-empty stress string even if some
-    words are CMU not_found 
+    """ 
+    Get form features from a line of text. Returns stress pattern, syllable count, rhyme key, and phonology.
+    If relax_oov is True: allow lines with missing words as long as stress exists
+    If False: require all words to be found
     """
     text = (line or "").strip()
     if not text:
@@ -133,11 +133,22 @@ def aggregate_natural_text_form_results(
     *,
     relax_oov: bool | None = None,
 ) -> dict[str, float | int]:
-    """
-    Batch metrics for natural_text baseline JSON results[] (gold_target vs model_output).
-    Same counting rules as scripts/corpus_tools.py nt-form.
-    relax_oov: if True, allow lines with partial CMU coverage (see line_form_signature).
-               If None, read FORM_EVAL_RELAX_OOV=1 from the environment.
+     """
+    Compute overall metrics for a batch of results.
+
+    Each result should have:
+    - gold_target (correct line)
+    - model_output (generated line)
+
+    Metrics:
+    - stress match %
+    - syllable match %
+    - rhyme match %
+
+    relax_oov:
+    - True: allow partial word coverage
+    - False: require full coverage
+    - None: read from environment variable
     """
     if relax_oov is None:
         relax_oov = _env_relax_oov()

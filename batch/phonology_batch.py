@@ -8,8 +8,11 @@ Batch optimizations: parallelism, no espeak fallback, long-line truncation, prog
 
 import os
 os.environ["POESY_DEBUG"] = "0"
-os.environ["PHONOLOGY_BATCH"] = "1"   # disables espeak fallback
-# Respect MAX_LINE_CHARS / MAX_POEM_LINES from the shell (Slurm); defaults only if unset.
+os.environ["PHONOLOGY_BATCH"] = "1"   # skip extra word processing to run faster
+
+# Only set these if they aren’t already set (like from Slurm)
+# MAX_LINE_CHARS: shorten very long lines if needed (0 = keep full line)
+# MAX_POEM_LINES: skip very long files to avoid slowdowns
 os.environ.setdefault("MAX_LINE_CHARS", "0")  # 0 = no truncation; set e.g. 2000 on clusters to limit RAM
 os.environ.setdefault("MAX_POEM_LINES", "500")  # skip Poesy for poems longer than this
 
@@ -18,16 +21,18 @@ import argparse
 import json
 from pathlib import Path
 
-# Project root 
-# subprocesses (ProcessPoolExecutor) as well as the main process.
+# Add the project folder so imports work in this script and worker processes
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 INPUT_DIR = ROOT / "output/poems_normalized"
 OUTPUT_DIR = ROOT / "output/poems_annotated"
-# High-CPU login nodes have default worker count can OOM (BrokenProcessPool). Cap with:
-#   PHONOLOGY_MAX_WORKERS=8    or    PHONOLOGY_PARALLEL=0
+# If the script crashes with BrokenProcessPool, lower the number of workers
+# Example:
+#   export PHONOLOGY_MAX_WORKERS=8
+# Or turn off parallel processing:
+#   export PHONOLOGY_PARALLEL=0
 MAX_WORKERS = max(1, (os.cpu_count() or 4) - 1)
 _mw = os.environ.get("PHONOLOGY_MAX_WORKERS", "").strip()
 if _mw.isdigit():

@@ -1,4 +1,4 @@
-"""Short, filesystem-safe directory names for baseline JSON output trees."""
+"""short python file for naming conventions during fine-tuning"""
 
 from __future__ import annotations
 
@@ -7,15 +7,14 @@ from pathlib import Path
 
 
 def baseline_save_slug(model_id: str) -> str:
-    """Directory name under a baseline results root.
-
-    Hub-style ids (e.g. ``google/flan-t5-large``) become ``google_flan-t5-large``.
-
-    Local checkpoints avoid encoding a full absolute path. For
-    ``.../sft/combined_lora/flan-t5-large_lora_20260411_175033/final_model_merged`` (even
-    when that path only exists on another machine) the slug is
-    ``combined_lora_flan-t5-large_lora_20260411_175033`` — the parent task folder plus the
-    run id folder, not ``_home_user_..._final_model_merged``.
+    """
+    Creates a folder name for storing model results.
+    Model names from Hugging Face (like "google/flan-t5-large") are converted to "google_flan-t5-large".
+    For local checkpoints, it doesn't use the full file path. Instead, use a short name based on the task folder and run folder.
+    Example:
+    ".../sft/combined_lora/flan-t5-large_lora_20260411_175033/final_model_merged"
+    becomes:
+    "combined_lora_flan-t5-large_lora_20260411_175033"
     """
     s = (model_id or "").strip()
     if not s:

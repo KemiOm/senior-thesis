@@ -1,34 +1,20 @@
 #!/usr/bin/env python3
-"""LoRA / QLoRA fine-tuning for seq2seq models on structured tasks (meter_only, rhyme_only, combined, …).
+"""LoRA / QLoRA fine-tuning for seq2seq models on structured tasks (meter_only, rhyme_only, combined).
 
-Uses the same `input` / `target` JSON lines as ``output/training_data/<task>/*.json``.
-Set ``--train_file`` / ``--dev_file`` / ``--output_root`` per task; Slurm: ``scripts/hpc/lora_train.slurm``
-or ``scripts/hpc/submit_lora3.sh``.
+Uses JSONL with `input` / `target` from output/training_data/<task>/*.json.
+Set --train_file, --dev_file, --output_root. Slurm: scripts/hpc/lora_train.slurm.
 
-QLoRA (--qlora) needs CUDA + bitsandbytes. On CPU/MPS use LoRA only (no --qlora).
+QLoRA (--qlora) requires CUDA + bitsandbytes; otherwise use LoRA only.
 
-Install: pip install peft  (+ bitsandbytes on CUDA for --qlora)
+Inference:
+- Raw adapters in final_model/ are not directly usable with from_pretrained.
+- Prefer --merge_and_save and load final_model_merged/.
+- Otherwise, load base model (e.g., google/flan-t5-large) and attach adapters.
 
-Inference / next task (prompt baseline, metrics):
-  - ``scripts/run_prompt_eval.py`` loads models with plain ``from_pretrained`` only. Raw LoRA
-    output is under ``final_model/`` (adapter weights); that path alone is not enough for plain
-    ``from_pretrained`` without the base model + PEFT glue.
-  - For the simplest path: train with ``--merge_and_save`` and point ``--model`` at the merged
-    folder: ``.../run_dir/final_model_merged/`` (full weights, no PEFT at inference).
-  - Without merging: load base ``google/flan-t5-large`` and attach the adapter in custom code
-    (``PeftModel.from_pretrained``), or merge once offline.
-
-Cluster efficiency (Bouchet / similar):
-  - Defaults use eval/save every 1000 steps to reduce GPU stalls from frequent validation.
-  - Train batch 8 / eval batch 4 targets ~32 GB RTX 5000 Ada; if OOM, try train 6 and eval 2.
-  - Slurm scripts default BF16=1 (``--bf16``) on CUDA when not using QLoRA; set NO_BF16=1 for fp16.
-  - On H200 (~4x VRAM vs RTX 5000 Ada), try scaling per-device batch sizes ~4x; on RTX Pro 6000
-    (~3x), try ~3x — then tune if OOM.
-  - Timeouts: checkpoints every --save_steps (``save_total_limit``); resume with
-    ``--resume_from_checkpoint`` → latest ``checkpoint-XXXX`` under the run directory.
-  - If ``grad_norm: nan`` / logged ``loss: 0``: Bouchet often needs **full fp32** — use ``NO_FP16=1 NO_BF16=1``
-    (Slurm env → ``--no_fp16``; disables fp16 *and* bf16). ``NO_BF16=1`` alone still uses **fp16**, which can NaN on T5+LoRA.
-  - Pull latest script for ``enable_input_require_grads``, QLoRA mixed precision, ``use_cache=False``.
+Cluster notes:
+- Defaults: eval/save every 1000 steps; train=8, eval=4 (~32GB GPU).
+- Reduce batch size if OOM; scale up on larger GPUs.
+- If NaNs or loss=0: use full FP32 (NO_FP16=1 NO_BF16=1).
 """
 
 from __future__ import annotations

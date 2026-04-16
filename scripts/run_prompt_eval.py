@@ -554,18 +554,21 @@ PROMPTS = {
         "zero_shot": (
             "Given this line of poetry, output only its metrical stress label: a string of + (stressed) and "
             "- (unstressed), one character per metrical position, exactly as in the training data. "
-            "No words, no explanation.\n\n"
+            "Output exactly {target_len} characters, using only + and - (no words, no explanation).\n\n"
             "Line: {line}\n"
+            "Target length: {target_len}\n"
         ),
         "one_shot": (
-            "Task: metrical stress. Output only + and - (one per metrical position), matching the style of the example.\n\n"
+            "Task: metrical stress. Output only + and - (one per metrical position), "
+            "matching the style of the example, and output exactly the requested target length.\n\n"
             "Example (two labeled lines):\n"
             "{EXAMPLE}\n\n"
-            "Line: {line}\nPattern:\n"
+            "Line: {line}\nTarget length: {target_len}\nPattern:\n"
         ),
         "few_shot": (
-            "Output only the stress pattern for the line below: + and - only, one per metrical position, same as the examples.\n\n"
-            "Line: {line}\nPattern:\n"
+            "Output only the stress pattern for the line below: + and - only, one per metrical position, same as the examples. "
+            "Output exactly the requested target length.\n\n"
+            "Line: {line}\nTarget length: {target_len}\nPattern:\n"
         ),
     },
     "rhyme_only": {
@@ -620,14 +623,15 @@ PROMPTS = {
         ),
         "one_shot": (
             "Task: after the context, output only the next line's bundled string "
-            "stress:X|meter_type:Y|rhyme:Z|end:E|caesura:C (same meaning as the example).\n\n"
+            "stress:X|meter_type:Y|rhyme:Z|end:E|caesura:C (same meaning as the example).\n"
+            "Keep exactly this field order and separators (| and :), with no extra text.\n\n"
             "Example:\n"
             "{EXAMPLE}\n\n"
             "Context: {line}\n"
         ),
         "few_shot": (
             "Output only stress:X|meter_type:Y|rhyme:Z|end:E|caesura:C for the next line after the context, "
-            "same format as the examples.\n\n"
+            "same format as the examples. Keep exactly this field order and separators.\n\n"
             "Context: {line}\n"
         ),
     },
@@ -648,6 +652,13 @@ def load_test_data(task: str, split: str = "test") -> list:
 def build_prompt(item: dict, task: str, prompt_type: str) -> str:
     """Build prompt from item. Uses 'input' or 'line' key for the line text."""
     line = item.get("input", item.get("line", ""))
+    # For meter task, provide explicit target length to reduce collapse into overlong +/- strings.
+    target_len = item.get("target_len")
+    if target_len is None and task == "meter_only":
+        target = str(item.get("target", ""))
+        target_len = len("".join(ch for ch in target if ch in "+-"))
+    if target_len is None:
+        target_len = 0
     template = PROMPTS.get(task, {}).get(prompt_type, PROMPTS["meter_only"]["zero_shot"])
     if prompt_type in ("one_shot", "few_shot"):
         example_lines = get_example_quatrain_lines()
@@ -656,15 +667,15 @@ def build_prompt(item: dict, task: str, prompt_type: str) -> str:
 
     if prompt_type == "one_shot":
         example_text = render_one_shot_example(task, example_lines)
-        return template.format(line=line, input=line, EXAMPLE=example_text)
+        return template.format(line=line, input=line, EXAMPLE=example_text, target_len=target_len)
 
     if prompt_type == "few_shot":
         prefix = render_few_shot_example_prefix(task, example_lines)
-        body = template.format(line=line, input=line)
+        body = template.format(line=line, input=line, target_len=target_len)
         return prefix.rstrip() + FEW_SHOT_SEPARATOR + body
 
     # zero_shot
-    return template.format(line=line, input=line)
+    return template.format(line=line, input=line, target_len=target_len)
 
 
 def run_inference_seq2seq(
@@ -794,7 +805,15 @@ def main():
         default=None,
         help="Limit samples (default: all). Use 0 to mean no limit (same as omitting).",
     )
-    parser.add_argument("--max_tokens", type=int, default=64, help="Max output tokens")
+    parser.add_argument(
+        "--max_tokens",
+        type=int,
+        default=None,
+        help=(
+            "Max output tokens. If omitted, task-aware defaults are used: "
+            "meter_only=16, combined=64, others=64."
+        ),
+    )
     parser.add_argument(
         "--max_prompt_length",
         type=int,
@@ -840,6 +859,14 @@ def main():
     )
     args = parser.parse_args()
     baseline_results_root = resolve_baseline_results_dir(args.results_dir)
+
+    if args.max_tokens is None:
+        if args.task == "meter_only":
+            args.max_tokens = 16
+        elif args.task == "combined":
+            args.max_tokens = 64
+        else:
+            args.max_tokens = 64
 
     if args.device >= 0:
         try:

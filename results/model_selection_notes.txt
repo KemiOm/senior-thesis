@@ -1,0 +1,9 @@
+# Model comparison notes
+
+Exact match = model_output must exactly equal gold_target.
+
+Focus: few_shot results
+
+Next steps:
+- choose one seq2seq model for fine-tuning
+- optionally compare with one causal model

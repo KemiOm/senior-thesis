@@ -23,9 +23,9 @@ fi
 for TASK in meter_only rhyme_only combined; do
   echo "========== Submitting LoRA: $TASK =========="
   sbatch --job-name="lora-${TASK}" \
-    --export=ALL,"TRAIN_FILE=output/training_data/${TASK}/train.json","DEV_FILE=output/training_data/${TASK}/dev.json","OUTPUT_ROOT=sft/${TASK}_lora" \
+    --export=ALL,"TRAIN_FILE=output/training_data/${TASK}/train.json","DEV_FILE=output/training_data/${TASK}/dev.json","OUTPUT_ROOT=sft_runs/${TASK}_lora" \
     "$SLURM"
 done
 
 echo "Done. Three jobs submitted: meter_only, rhyme_only, combined."
-echo "Outputs: sft/<task>_lora/ under the repo."
+echo "Outputs: sft_runs/<task>_lora/ under the repo."

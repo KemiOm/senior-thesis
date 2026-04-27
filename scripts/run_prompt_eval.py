@@ -11,10 +11,20 @@ SFT checkpoints** (same script; point --model at the merged folder and usually
 Few-shot prompts use a full example stanza (quatrain): each line is paired with its label in the
 same format as training.
 
+--prompt-style minimal matches training JSON inputs (raw line or [start] / joined context for
+combined), plus compact ICL for one/few-shot. Prefer it for merged LoRA; verbose default helps
+cold Hub baselines.
+
+--prompt-style line_only uses only each row's input string (no instructions, no ICL). Matches
+SFT training exactly for zero-shot-style eval; --prompt one_shot/few_shot are ignored.
+
 Usage:
   python scripts/run_prompt_eval.py --model google/flan-t5-large --prompt zero_shot --task meter_only
   python scripts/run_prompt_eval.py --model google/flan-t5-large --prompt few_shot --task meter_only
   python scripts/run_prompt_eval.py --model gpt2-medium --model_type causal --prompt few_shot --task meter_only --n 100
+  python scripts/run_prompt_eval.py --model google/flan-t5-large --prompt zero_shot --task meter_only --quiet
+  python scripts/run_prompt_eval.py --model path/to/final_model_merged --prompt zero_shot --task combined --prompt-style minimal
+  python scripts/run_prompt_eval.py --model path/to/final_model_merged --prompt zero_shot --task combined --prompt-style line_only
 
 Output (default): evaluation/baselines/{model_slug}/{prompt_type}_{task}.json
 
@@ -43,7 +53,7 @@ from evaluation.scoring.struct_metrics import parse_combined_bundle
 def resolve_pretrained_model_id(model_id: str) -> str:
     """Resolve local checkpoint dirs so Transformers loads from disk, not the Hub.
 
-    Relative paths like sft/.../final_model are only recognized as local if they
+    Relative paths like sft_runs/.../final_model_merged are only recognized as local if they
     exist; otherwise from_pretrained treats the string as a repo id and fails validation.
     We try the current working directory and the repo root (parent of scripts/).
     """
@@ -480,11 +490,54 @@ def get_example_quatrain_lines():
     return _EXAMPLE_QUATRAIN
 
 
-def render_few_shot_example_prefix(task: str, example_lines: list[dict]) -> str:
+def _meter_pattern_display(line_dict: dict) -> str:
+    """Match gold meter_only targets: +/- string from stress_to_plus_minus."""
+    return line_dict["stress_pm"] or line_dict["stress"]
+
+
+def render_few_shot_example_prefix_minimal(task: str, example_lines: list[dict]) -> str:
+    """Compact ICL: line / label pairs only (no instructional prose)."""
+    if task == "meter_only":
+        blocks = [f"{l['normalized']}\n{_meter_pattern_display(l)}" for l in example_lines]
+        return "\n\n".join(blocks)
+    if task == "rhyme_only":
+        blocks = [f"{l['normalized']}\n{l['rhyme_only_target']}" for l in example_lines]
+        return "\n\n".join(blocks)
+    if task == "natural_text":
+        l1, l2, l3, l4 = example_lines[0], example_lines[1], example_lines[2], example_lines[3]
+        return (
+            f"{l1['normalized']}\n{l2['normalized']}\n\n"
+            f"{l2['normalized']}\n{l3['normalized']}\n\n"
+            f"{l3['normalized']}\n{l4['normalized']}\n"
+        )
+    if task == "combined":
+        blocks = [f"{l['normalized']}\n{l['combined_target']}" for l in example_lines]
+        return "\n\n".join(blocks)
+    raise ValueError(f"Unsupported task for few-shot prefix: {task}")
+
+
+def render_one_shot_example_minimal(task: str, example_lines: list[dict]) -> str:
+    l1, l2 = example_lines[0], example_lines[1]
+    if task == "meter_only":
+        return (
+            f"{l1['normalized']}\n{_meter_pattern_display(l1)}\n\n"
+            f"{l2['normalized']}\n{_meter_pattern_display(l2)}"
+        )
+    if task == "rhyme_only":
+        return f"{l1['normalized']}\n{l1['rhyme_only_target']}\n\n{l2['normalized']}\n{l2['rhyme_only_target']}"
+    if task == "natural_text":
+        return f"{l1['normalized']}\n{l2['normalized']}"
+    if task == "combined":
+        return f"{l1['normalized']}\n{l1['combined_target']}\n\n{l2['normalized']}\n{l2['combined_target']}"
+    raise ValueError(f"Unsupported task for one_shot example: {task}")
+
+
+def render_few_shot_example_prefix(
+    task: str, example_lines: list[dict], *, prompt_style: str = "default"
+) -> str:
     """Render a quatrain example prefix (full stanza) for the given task."""
-    def _meter_pattern_display(line_dict: dict) -> str:
-        """Match gold meter_only targets: +/- string from stress_to_plus_minus."""
-        return line_dict["stress_pm"] or line_dict["stress"]
+    if prompt_style == "minimal":
+        return render_few_shot_example_prefix_minimal(task, example_lines)
 
     if task == "meter_only":
         out = [
@@ -533,8 +586,12 @@ def render_few_shot_example_prefix(task: str, example_lines: list[dict]) -> str:
     raise ValueError(f"Unsupported task for few-shot prefix: {task}")
 
 
-def render_one_shot_example(task: str, example_lines: list[dict]) -> str:
+def render_one_shot_example(
+    task: str, example_lines: list[dict], *, prompt_style: str = "default"
+) -> str:
     """Render the labeled example used for one_shot prompts (2 lines)."""
+    if prompt_style == "minimal":
+        return render_one_shot_example_minimal(task, example_lines)
     l1, l2 = example_lines[0], example_lines[1]
     if task == "meter_only":
         p1 = l1["stress_pm"] or l1["stress"]
@@ -637,6 +694,30 @@ PROMPTS = {
     },
 }
 
+# Matches output/training_data/*/train.json: encoder input is raw line or continuation context.
+PROMPTS_MINIMAL = {
+    "meter_only": {
+        "zero_shot": "{line}",
+        "one_shot": "{EXAMPLE}\n\n---\n\n{line}",
+        "few_shot": "{line}",
+    },
+    "rhyme_only": {
+        "zero_shot": "{line}",
+        "one_shot": "{EXAMPLE}\n\n---\n\n{line}",
+        "few_shot": "{line}",
+    },
+    "natural_text": {
+        "zero_shot": "{line}",
+        "one_shot": "{EXAMPLE}\n\n---\n\n{line}",
+        "few_shot": "{line}",
+    },
+    "combined": {
+        "zero_shot": "{line}",
+        "one_shot": "{EXAMPLE}\n\n---\n\n{line}",
+        "few_shot": "{line}",
+    },
+}
+
 
 def load_test_data(task: str, split: str = "test") -> list:
     """Load test data from output/training_data/{task}/{split}.json."""
@@ -649,9 +730,13 @@ def load_test_data(task: str, split: str = "test") -> list:
         return json.load(f)
 
 
-def build_prompt(item: dict, task: str, prompt_type: str) -> str:
+def build_prompt(
+    item: dict, task: str, prompt_type: str, *, prompt_style: str = "default"
+) -> str:
     """Build prompt from item. Uses 'input' or 'line' key for the line text."""
     line = item.get("input", item.get("line", ""))
+    if prompt_style == "line_only":
+        return line
     # For meter task, provide explicit target length to reduce collapse into overlong +/- strings.
     target_len = item.get("target_len")
     if target_len is None and task == "meter_only":
@@ -659,23 +744,38 @@ def build_prompt(item: dict, task: str, prompt_type: str) -> str:
         target_len = len("".join(ch for ch in target if ch in "+-"))
     if target_len is None:
         target_len = 0
-    template = PROMPTS.get(task, {}).get(prompt_type, PROMPTS["meter_only"]["zero_shot"])
+    table = PROMPTS_MINIMAL if prompt_style == "minimal" else PROMPTS
+    template = table.get(task, {}).get(prompt_type, table["meter_only"]["zero_shot"])
     if prompt_type in ("one_shot", "few_shot"):
         example_lines = get_example_quatrain_lines()
     else:
         example_lines = None
 
     if prompt_type == "one_shot":
-        example_text = render_one_shot_example(task, example_lines)
+        example_text = render_one_shot_example(task, example_lines, prompt_style=prompt_style)
         return template.format(line=line, input=line, EXAMPLE=example_text, target_len=target_len)
 
     if prompt_type == "few_shot":
-        prefix = render_few_shot_example_prefix(task, example_lines)
+        prefix = render_few_shot_example_prefix(task, example_lines, prompt_style=prompt_style)
         body = template.format(line=line, input=line, target_len=target_len)
         return prefix.rstrip() + FEW_SHOT_SEPARATOR + body
 
     # zero_shot
     return template.format(line=line, input=line, target_len=target_len)
+
+
+def _set_eval_quiet(quiet: bool) -> None:
+    """Reduce Transformers / hub chatter during eval (progress bars, info logs)."""
+    if not quiet:
+        return
+    os.environ.setdefault("HF_HUB_DISABLE_PROGRESS_BARS", "1")
+    os.environ.setdefault("TRANSFORMERS_VERBOSITY", "error")
+    try:
+        from transformers import logging as hf_logging
+
+        hf_logging.set_verbosity_error()
+    except ImportError:
+        pass
 
 
 def run_inference_seq2seq(
@@ -684,6 +784,8 @@ def run_inference_seq2seq(
     max_new_tokens: int = 64,
     device: int = -1,
     max_input_length: int = 512,
+    *,
+    quiet: bool = False,
 ) -> list:
     """Encoder-decoder (T5, BART, PEGASUS, etc.): prompt as encoder input, decode output."""
     try:
@@ -692,6 +794,7 @@ def run_inference_seq2seq(
     except ImportError:
         raise ImportError("Install transformers: pip install transformers torch")
 
+    _set_eval_quiet(quiet)
     dev = torch.device("cuda", device) if device >= 0 else torch.device("cpu")
     tokenizer = AutoTokenizer.from_pretrained(model_id)
     model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
@@ -700,10 +803,11 @@ def run_inference_seq2seq(
 
     outputs = []
     n = len(prompts)
-    print(
-        f"  Generating {n} sequences (CPU can be slow; progress every 100 after the first)...",
-        flush=True,
-    )
+    if not quiet:
+        print(
+            f"  Generating {n} sequences (device={dev}; progress every 100 after the first)...",
+            flush=True,
+        )
     for i, p in enumerate(prompts):
         inputs = tokenizer(
             p, return_tensors="pt", truncation=True, max_length=max_input_length
@@ -716,15 +820,22 @@ def run_inference_seq2seq(
             )
         text = tokenizer.decode(generated[0], skip_special_tokens=True).strip()
         outputs.append(text)
-        if i == 0:
-            print(f"  ... first prompt done (1/{n})", flush=True)
-        elif (i + 1) % 100 == 0:
-            print(f"  ... generated {i + 1}/{n} prompts", flush=True)
+        if not quiet:
+            if i == 0:
+                print(f"  ... first prompt done (1/{n})", flush=True)
+            elif (i + 1) % 100 == 0:
+                print(f"  ... generated {i + 1}/{n} prompts", flush=True)
     return outputs
 
 
 def run_inference_causal(
-    prompts: list, model_id: str, max_new_tokens: int = 64, device: int = -1, max_input_length: int = 512
+    prompts: list,
+    model_id: str,
+    max_new_tokens: int = 64,
+    device: int = -1,
+    max_input_length: int = 512,
+    *,
+    quiet: bool = False,
 ) -> list:
     """Decoder-only (GPT-2, Pythia, LLaMA, etc.): prompt as context, return only the generated continuation."""
     try:
@@ -733,6 +844,7 @@ def run_inference_causal(
     except ImportError:
         raise ImportError("Install transformers: pip install transformers torch")
 
+    _set_eval_quiet(quiet)
     dev = torch.device("cuda", device) if device >= 0 else torch.device("cpu")
     tokenizer = AutoTokenizer.from_pretrained(model_id)
     model = AutoModelForCausalLM.from_pretrained(model_id)
@@ -745,10 +857,11 @@ def run_inference_causal(
 
     outputs = []
     n = len(prompts)
-    print(
-        f"  Generating {n} sequences (CPU can be slow; progress every 100 after the first)...",
-        flush=True,
-    )
+    if not quiet:
+        print(
+            f"  Generating {n} sequences (device={dev}; progress every 100 after the first)...",
+            flush=True,
+        )
     for i, p in enumerate(prompts):
         enc = tokenizer(
             p,
@@ -768,10 +881,11 @@ def run_inference_causal(
         new_ids = generated[0][input_ids.shape[1] :]
         text = tokenizer.decode(new_ids, skip_special_tokens=True).strip()
         outputs.append(text)
-        if i == 0:
-            print(f"  ... first prompt done (1/{n})", flush=True)
-        elif (i + 1) % 100 == 0:
-            print(f"  ... generated {i + 1}/{n} prompts", flush=True)
+        if not quiet:
+            if i == 0:
+                print(f"  ... first prompt done (1/{n})", flush=True)
+            elif (i + 1) % 100 == 0:
+                print(f"  ... generated {i + 1}/{n} prompts", flush=True)
     return outputs
 
 
@@ -791,6 +905,16 @@ def main():
         choices=["zero_shot", "one_shot", "few_shot"],
         default="zero_shot",
         help="Prompt variant",
+    )
+    parser.add_argument(
+        "--prompt-style",
+        choices=("default", "minimal", "line_only"),
+        default="default",
+        help=(
+            "default: long instructions + ICL (Hub baselines). Merged LoRA was trained on raw "
+            "input/target JSON only—use line_only or minimal so eval matches training; verbose "
+            "few-shot text is not in the SFT objective. line_only: input column only; ICL ignored."
+        ),
     )
     parser.add_argument(
         "--task",
@@ -839,6 +963,12 @@ def main():
     )
     parser.add_argument("--output", type=str, default=None, help="Override output path")
     parser.add_argument(
+        "--quiet",
+        "-q",
+        action="store_true",
+        help="Less console output: no per-100 generation progress, quieter Transformers hub/logs.",
+    )
+    parser.add_argument(
         "--strict-eval",
         action="store_true",
         help=(
@@ -873,11 +1003,12 @@ def main():
             import torch
 
             if not torch.cuda.is_available():
-                print(
-                    "No CUDA available (e.g. login node). Using CPU. "
-                    "For full-speed inference, run on a GPU compute node or via sbatch; use --n 100 to smoke-test.",
-                    flush=True,
-                )
+                if not args.quiet:
+                    print(
+                        "No CUDA available (e.g. login node). Using CPU. "
+                        "For full-speed inference, run on a GPU compute node or via sbatch; use --n 100 to smoke-test.",
+                        flush=True,
+                    )
                 args.device = -1
         except ImportError:
             args.device = -1
@@ -892,7 +1023,7 @@ def main():
         gold_filter=args.gold_filter,
         corpus_db=corpus_db,
     )
-    if filter_meta["n_input"] != filter_meta["n_after"]:
+    if filter_meta["n_input"] != filter_meta["n_after"] and not args.quiet:
         print(
             f"Gold filter: {filter_meta['n_input']} -> {filter_meta['n_after']} lines "
             f"(dropped not-in-strict-quatrain={filter_meta['n_dropped_no_key']}, "
@@ -906,19 +1037,33 @@ def main():
             "test lines overlap reliable 4-line stanzas (export_sqlite + training_data from same corpus). "
             "Try STRICT_EVAL=0 or --gold-filter reliable without --strict-eval for a larger (noisier) set."
         )
-    print(f"Loaded {len(data)} samples for task={args.task}, prompt={args.prompt}")
+    if not args.quiet:
+        print(
+            f"Loaded {len(data)} samples for task={args.task}, prompt={args.prompt}, "
+            f"prompt_style={args.prompt_style}"
+        )
+    if not args.quiet and args.prompt_style == "line_only" and args.prompt != "zero_shot":
+        print(
+            "Note: line_only uses only each row's input; --prompt one_shot/few_shot add no examples.",
+            flush=True,
+        )
 
     model_id = resolve_pretrained_model_id(args.model)
-    if model_id != args.model:
+    if model_id != args.model and not args.quiet:
         print(f"Resolved --model to local path: {model_id}")
 
-    prompts = [build_prompt(item, args.task, args.prompt) for item in data]
-    max_in = (
-        args.max_prompt_length
-        if args.max_prompt_length is not None
-        else (1024 if args.prompt == "few_shot" else 512)
-    )
-    print(f"Running {model_id} ({args.model_type}), max_prompt_length={max_in}...")
+    prompts = [
+        build_prompt(item, args.task, args.prompt, prompt_style=args.prompt_style)
+        for item in data
+    ]
+    if args.max_prompt_length is not None:
+        max_in = args.max_prompt_length
+    elif args.prompt_style == "line_only":
+        max_in = 512
+    else:
+        max_in = 1024 if args.prompt == "few_shot" else 512
+    if not args.quiet:
+        print(f"Running {model_id} ({args.model_type}), max_prompt_length={max_in}...")
     if args.model_type == "causal":
         outputs = run_inference_causal(
             prompts,
@@ -926,6 +1071,7 @@ def main():
             max_new_tokens=args.max_tokens,
             device=args.device,
             max_input_length=max_in,
+            quiet=args.quiet,
         )
     else:
         outputs = run_inference_seq2seq(
@@ -934,6 +1080,7 @@ def main():
             max_new_tokens=args.max_tokens,
             device=args.device,
             max_input_length=max_in,
+            quiet=args.quiet,
         )
 
     def strip_prompt_echo(raw_out: str, prompt_used: str) -> str:
@@ -970,10 +1117,16 @@ def main():
 
     out_dir = baseline_results_root / baseline_save_slug(model_id)
     out_dir.mkdir(parents=True, exist_ok=True)
-    out_path = args.output or (out_dir / f"{args.prompt}_{args.task}.json")
+    out_stem = f"{args.prompt}_{args.task}"
+    if args.prompt_style == "minimal":
+        out_stem = f"{out_stem}_minimal"
+    elif args.prompt_style == "line_only":
+        out_stem = f"{out_stem}_line_only"
+    out_path = args.output or (out_dir / f"{out_stem}.json")
     payload = {
         "model": model_id,
         "prompt_type": args.prompt,
+        "prompt_style": args.prompt_style,
         "task": args.task,
         "split": args.split,
         "n_samples": len(results),

@@ -20,7 +20,7 @@
 # JSON output root (default: results/) — eval generations only, not training weights.
 #   SFT_RESULTS=/path/to/dir sbatch scripts/hpc/sft_eval.slurm
 #
-# Merged weights below default to sft/...;
+# Merged weights default to this thesis layout: sft_runs/round2/<task>/final_model_merged
 #
 #SBATCH --partition=gpu
 #SBATCH --gpus=rtx_5000_ada:1
@@ -66,11 +66,14 @@ if [ -n "${HF_CACHE_ROOT:-}" ]; then
 fi
 
 BASE="${BASE_MODEL:-google/flan-t5-large}"
-METER_FT="${METER_FT:-$THESIS_ROOT/sft/meter_only_lora/flan-t5-large_lora_20260411_174009/final_model_merged}"
-RHYME_FT="${RHYME_FT:-$THESIS_ROOT/sft/rhyme_only_lora/flan-t5-large_lora_20260411_174908/final_model_merged}"
-COMBINED_FT="${COMBINED_FT:-$THESIS_ROOT/sft/combined_lora/flan-t5-large_lora_20260411_175033/final_model_merged}"
+METER_FT="${METER_FT:-$THESIS_ROOT/sft_runs/round2/meter_only/final_model_merged}"
+RHYME_FT="${RHYME_FT:-$THESIS_ROOT/sft_runs/round2/rhyme_only/final_model_merged}"
+COMBINED_FT="${COMBINED_FT:-$THESIS_ROOT/sft_runs/round2/combined/final_model_merged}"
 
-PROMPT="${PROMPT:-few_shot}"
+# zero_shot + line_only matches lora_train.py (raw input only). Use PROMPT=few_shot PROMPT_STYLE=default for Hub-style ICL.
+PROMPT="${PROMPT:-zero_shot}"
+# Empty PROMPT_STYLE = auto: local checkpoint dirs → line_only; Hub model id → default (needs instructions).
+PROMPT_STYLE="${PROMPT_STYLE:-}"
 N="${N:-500}"
 DEVICE="${DEVICE:-0}"
 SPLIT="${SPLIT:-test}"
@@ -103,10 +106,19 @@ for MODEL in "$BASE" "$METER_FT" "$RHYME_FT" "$COMBINED_FT"; do
     RUN=$((RUN + 1))
     echo ""
     echo "========== [$RUN/12] MODEL=$MODEL TASK=$TASK =========="
+    extra_ps=()
+    if [ -n "${PROMPT_STYLE}" ]; then
+      extra_ps=(--prompt-style "$PROMPT_STYLE")
+    elif [ -d "$MODEL" ]; then
+      extra_ps=(--prompt-style line_only)
+    else
+      extra_ps=(--prompt-style default)
+    fi
     "$PYTHON" -u scripts/run_prompt_eval.py \
       --results-dir "$SFT_RESULTS" \
       --model "$MODEL" \
       --prompt "$PROMPT" \
+      "${extra_ps[@]}" \
       --task "$TASK" \
       --split "$SPLIT" \
       --n "$N" \
@@ -115,4 +127,4 @@ for MODEL in "$BASE" "$METER_FT" "$RHYME_FT" "$COMBINED_FT"; do
 done
 
 echo ""
-echo "=== Done $(date -Is). Results: ${SFT_RESULTS}/<slug>/${PROMPT}_<task>.json ==="
+echo "=== Done $(date -Is). Results under ${SFT_RESULTS}/<slug>/ (e.g. zero_shot_*_line_only.json when auto style) ==="

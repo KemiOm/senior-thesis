@@ -167,7 +167,7 @@ def main():
     parser.add_argument("--model", type=str, default="google/flan-t5-large")
     parser.add_argument("--train_file", type=str, default="output/training_data/rhyme_only/train.json")
     parser.add_argument("--dev_file", type=str, default="output/training_data/rhyme_only/dev.json")
-    parser.add_argument("--output_root", type=str, default="sft/rhyme_only_lora")
+    parser.add_argument("--output_root", type=str, default="sft_runs/rhyme_only_lora")
     parser.add_argument("--num_train_epochs", type=float, default=3.0)
     parser.add_argument("--learning_rate", type=float, default=1e-4)
     parser.add_argument("--weight_decay", type=float, default=0.01)

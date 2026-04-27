@@ -91,7 +91,7 @@ EXTRA_ARGS=()
   --model "${MODEL:-google/flan-t5-large}" \
   --train_file "${TRAIN_FILE:-output/training_data/rhyme_only/train.json}" \
   --dev_file "${DEV_FILE:-output/training_data/rhyme_only/dev.json}" \
-  --output_root "${OUTPUT_ROOT:-sft/rhyme_only_lora}" \
+  --output_root "${OUTPUT_ROOT:-sft_runs/rhyme_only_lora}" \
   --num_train_epochs "${EPOCHS:-3}" \
   --learning_rate "${LR:-1e-4}" \
   --per_device_train_batch_size "${TRAIN_BS:-8}" \

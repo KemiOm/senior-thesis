@@ -1,9 +1,10 @@
-"""Character-level Levenshtein (edit) distance for eval rollups.
+"""Character-level Levenshtein distance=
 
-Complements exact match: structured outputs often differ by casing, spacing, or one
-field while remaining close in edit space. For structured tasks, strings are
-canonicalized first (same ideas as ``struct_metrics``): meter 0/1 vs +/-, rhyme
-whitespace/case, combined fields in fixed order with loose key:value parsing.
+This complements exact match. Structured outputs can differ slightly  but still be very close overall.
+
+Before comparing, normalize strings:
+meter formats (0/1 vs +/-), rhyme casing/whitespace, and combined outputs
+reordered into a consistent key:value format.
 """
 
 from __future__ import annotations

@@ -1,5 +1,5 @@
 """
-Train/dev/test + held-out poem ID lists → evaluation/splits/*.json.
+Train/dev/test + held-out poem ID lists to evaluation/splits/*.json.
 
 Run: python evaluation/splits.py (shim) or python -m evaluation.corpus.splits.
 """

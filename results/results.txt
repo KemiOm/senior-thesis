@@ -72,7 +72,7 @@ recipe and output length budget and varies primarily LR.
 How: Slurm/env (LR=1e-4 vs LR=5e-5) and distinct --output_root paths; each run
 writes run_params.json for reproducibility.
 
-Downstream: results/model_comparison.csv shows higher exact match for meter/rhyme
+results/model_comparison.csv shows higher exact match for meter/rhyme
 specialists at lr=1e-4 than at lr=5e-5 for these runs → 5e-5 tended to under-update
 relative to 1e-4 under the same epoch budget.
 
@@ -86,8 +86,3 @@ token caps) in Round 2 to better fit long structured targets; we then restored a
 default-like adapter configuration and varied only learning rate (1e-4 vs 5e-5)
 in Rounds 3–4 to obtain an interpretable hyperparameter conclusion supported by
 the held-out eval rollup (results/model_comparison.csv).
-
---------------------------------------------------------------------------------
-FULL RESULTS NARRATIVE (SCORING, ROUNDS, FIGURES)
---------------------------------------------------------------------------------
-See: docs/results_section_detailed.txt

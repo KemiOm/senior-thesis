@@ -3,7 +3,8 @@ Fine-tuning figures for the thesis.
 
 1. **Training** — train/eval loss (optional learning-rate panel) from trainer_state.json.
 2. **Data** — input/target length histograms; **split counts** (train/dev/test sizes).
-3. **Eval** — grouped exact-match bars; **heatmap** (model × eval task); **prompt-style**
+3. **Eval** — grouped exact-match bars; **heatmap** (model × eval task); **Levenshtein**
+   similarity heatmap (same layout, ``levenshtein_similarity_pct`` from rollup); **prompt-style**
    heatmap (zero/one/few × task) for one slug; **combined** structured field bars.
 4. **Research narrative** (same rollup JSONs):
    - **SFT vs prompt delta** — Δ exact match (merged SFT − base prompt) per task.
@@ -11,6 +12,11 @@ Fine-tuning figures for the thesis.
    - **Compositionality gap** — combined vs single-task SFT on meter/rhyme.
 
 Uses the same JSON layout as evaluation.scoring.rollup.collect_rows.
+
+**Canonical thesis outputs** (zero-shot on ``results/``): ``exact_match_bars_zero_shot.png``,
+``eval_em_heatmap_zero_shot.png``, ``levenshtein_similarity_heatmap_zero_shot(_poster).png``,
+``transfer_matrix_zero_shot.png``, ``compositionality_gap_zero_shot.png``,
+``combined_structured_fields_zero_shot.png``. Regenerate after rollup changes.
 
 Requires: matplotlib. Token lengths: transformers + tokenizer cache.
 """
@@ -21,6 +27,7 @@ import argparse
 import fnmatch
 import json
 import math
+import re
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -86,6 +93,119 @@ def _short_slug(slug: str, max_len: int = 28) -> str:
     if len(slug) <= max_len:
         return slug
     return slug[: max_len - 1] + "…"
+
+
+_HUB_FLAN_SLUG = "hub/google_flan-t5-large"
+
+# Optional copy for your hand-written caption / results paragraph (not drawn on the figure by default).
+LEV_HEATMAP_CAPTION_NOTES = (
+    "Rows: pretrained FLAN-T5-large (top), then LoRA adapters by round (R1–R4) and training objective "
+    "(combined / meter_only / rhyme_only). Columns: the same held-out lines, three gold formats (meter, rhyme, joint). "
+    "Cells: mean per-line string similarity after canonicalization (0–100%; softer than exact match). "
+    "Bright on the column that matches training = specialization; dim elsewhere = limited transfer."
+)
+
+# Short thesis figure caption (copy into paper; Fig. 4).
+LEV_HEATMAP_THESIS_CAPTION = (
+    "Figure 4. Zero-shot Levenshtein similarity (%) between model outputs and gold structured labels on a "
+    "shared poetry test split. Each row is a model: the pretrained FLAN-T5-large baseline followed by task-specific "
+    "LoRA fine-tunes (four rounds × three training objectives). Each column evaluates all models on the same lines "
+    "but with a different supervision schema (meter-only, rhyme-only, or joint combined targets). Scores aggregate "
+    "per-line edit distance after task-specific string canonicalization, expressed as similarity so that higher is "
+    "closer to gold. Strong values along the diagonal block (training objective aligned with evaluation column) "
+    "show that adapters specialize to their training format; low values away from that column show limited "
+    "cross-task generalization."
+)
+
+
+def _norm_slug(s: str) -> str:
+    return s.replace("\\", "/").strip()
+
+
+def _slug_path_style(slug: str) -> str:
+    """Normalize ``round2_combined`` → ``round2/combined`` for consistent parsing."""
+    s = _norm_slug(slug)
+    m = re.match(r"^(?i)(round\d+)_(combined|meter_only|rhyme_only)$", s)
+    if m:
+        return f"{m.group(1).lower()}/{m.group(2).lower()}"
+    return s
+
+
+def _dedupe_flan_t5_round_baselines(slugs: list[str]) -> list[str]:
+    """Drop ``round#/google_flan-t5-large`` when ``hub/google_flan-t5-large`` exists (same scores)."""
+    norm_set = {_norm_slug(s) for s in slugs}
+    if _HUB_FLAN_SLUG not in norm_set:
+        return slugs
+    out: list[str] = []
+    for s in slugs:
+        sn = _norm_slug(s)
+        if sn != _HUB_FLAN_SLUG and re.fullmatch(r"round\d+/google_flan-t5-large", sn, re.I):
+            continue
+        out.append(s)
+    return out
+
+
+def humanize_model_slug(slug: str, *, max_len: int = 36) -> str:
+    """
+    Short label: ``R{n}/<task_trained_on>`` (``combined`` / ``meter_only`` / ``rhyme_only``).
+
+    Pretrained FLAN-T5-large (hub or ``round#/google_flan-t5-large``) is shown as **Flan T5**.
+    """
+    slug = _slug_path_style(slug)
+    if not slug:
+        return ""
+
+    if slug.startswith("hub/"):
+        tail = slug.split("/")[-1].lower()
+        if "flan-t5-large" in tail or tail == "google_flan-t5-large":
+            return "Flan T5"
+        out = f"Hub/{slug.split('/')[-1][:26]}"
+        return out if len(out) <= max_len else out[: max_len - 1] + "…"
+
+    m = re.match(r"^(round\d+)/(.*?)$", slug, re.I)
+    if not m:
+        return _short_slug(slug, max_len)
+
+    digits = re.sub(r"^round", "", m.group(1), flags=re.I)
+    rn = f"R{digits}"
+    rest = m.group(2)
+
+    train_tasks = ("combined", "meter_only", "rhyme_only")
+    if rest in train_tasks:
+        out = f"{rn}/{rest}"
+        return out if len(out) <= max_len else out[: max_len - 1] + "…"
+
+    if rest == "google_flan-t5-large" or rest.lower().startswith("google_flan"):
+        return "Flan T5"
+
+    m2 = re.match(r"^(combined|meter_only|rhyme_only)_lora_", rest, re.I)
+    if m2:
+        trained = m2.group(1).lower()
+        out = f"{rn}/{trained}"
+        return out if len(out) <= max_len else out[: max_len - 1] + "…"
+
+    return _short_slug(slug, max_len)
+
+
+def _sort_slugs_transfer_heatmap(slugs: list[str]) -> list[str]:
+    """Pretrained hub row first; then round1..roundN with combined < meter_only < rhyme_only per round; then others."""
+
+    def key(s: str) -> tuple:
+        sn = _slug_path_style(s)
+        if sn.startswith("hub/"):
+            return (0, 0, 0, sn)
+        m = re.match(r"^(?i)(round\d+)/(combined|meter_only|rhyme_only)$", sn)
+        if m:
+            ri = int(re.sub(r"\D", "", m.group(1)))
+            order = {"combined": 0, "meter_only": 1, "rhyme_only": 2}[m.group(2).lower()]
+            return (1, ri, order, sn)
+        m2 = re.match(r"^(?i)(round\d+)/(.+)$", sn)
+        if m2:
+            ri = int(re.sub(r"\D", "", m2.group(1)))
+            return (2, ri, 99, sn)
+        return (9, 9999, 99, sn)
+
+    return sorted(slugs, key=key)
 
 
 def plot_train_val_loss(
@@ -580,9 +700,9 @@ def plot_eval_em_heatmap(
     ax.set_xticks(range(len(tasks)))
     ax.set_xticklabels(list(tasks))
     ax.set_yticks(range(len(slugs)))
-    ax.set_yticklabels([_short_slug(s, 36) for s in slugs], fontsize=8)
+    ax.set_yticklabels([humanize_model_slug(s) for s in slugs], fontsize=9)
     ax.set_xlabel("eval task")
-    ax.set_ylabel("model (slug)")
+    ax.set_ylabel("model")
     ax.set_title(title or f"Exact match % — {prompt_type}")
     for i in range(len(slugs)):
         for j in range(len(tasks)):
@@ -596,6 +716,138 @@ def plot_eval_em_heatmap(
         outp = Path(out_path)
         outp.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(outp, dpi=150, bbox_inches="tight")
+        plt.close(fig)
+        return outp
+    plt.show()
+    return None
+
+
+def plot_levenshtein_similarity_heatmap(
+    baseline_dir: Path | str,
+    *,
+    prompt_type: str = "few_shot",
+    out_path: Path | str | None = None,
+    tasks: tuple[str, ...] = ("meter_only", "rhyme_only", "combined"),
+    slug_globs: list[str] | None = None,
+    title: str | None = None,
+    dpi: int = 200,
+    subtitle: str | None = None,
+    sort_rows: bool = True,
+    eval_column_labels: tuple[str, ...] | None = None,
+) -> Path | None:
+    """
+    Heatmap: rows = model slug, columns = eval task, cell = ``levenshtein_similarity_pct``
+    (100 × (1 − mean normalized edit distance); higher = closer to gold after task canonicalization).
+
+    Poster defaults are minimal (short labels, no footer). Pass ``subtitle=`` only if you want
+    text inside the figure. For caption prose, see ``LEV_HEATMAP_THESIS_CAPTION`` and
+    ``LEV_HEATMAP_CAPTION_NOTES`` in this module.
+
+    ``sort_rows`` groups pretrained hub first, then each ``round*/`` block in
+    combined → meter_only → rhyme_only order.
+    """
+    plt = _mpl()
+    rows = _collect_filtered_rows(
+        baseline_dir,
+        prompt_type=prompt_type,
+        tasks=tasks,
+        slug_globs=slug_globs,
+        include_structured_partial=False,
+    )
+    if not rows:
+        raise ValueError(f"No rows for Levenshtein heatmap under {baseline_dir}")
+
+    by_slug: dict[str, dict[str, float]] = {}
+    for r in rows:
+        slug = r["model_slug"]
+        sim = float(r.get("levenshtein_similarity_pct", 0.0) or 0.0)
+        by_slug.setdefault(slug, {})[r["task"]] = sim
+
+    raw_slugs = sorted(by_slug.keys())
+    slugs = _dedupe_flan_t5_round_baselines(raw_slugs)
+    if sort_rows:
+        slugs = _sort_slugs_transfer_heatmap(slugs)
+    mat = [[by_slug[s].get(t, float("nan")) for t in tasks] for s in slugs]
+
+    if eval_column_labels is not None:
+        col_labels = list(eval_column_labels)
+    elif tasks == ("meter_only", "rhyme_only", "combined"):
+        col_labels = ["Meter", "Rhyme", "Combined"]
+    else:
+        col_labels = [t.replace("_", " ") for t in tasks]
+    if len(col_labels) != len(tasks):
+        col_labels = [t.replace("_", " ") for t in tasks]
+
+    nrows = len(slugs)
+    fig_h = max(4.5, nrows * 0.5)
+    fig, ax = plt.subplots(
+        figsize=(max(6.2, len(tasks) * 2.0), fig_h),
+        dpi=dpi,
+    )
+    flat = [v for row in mat for v in row if v == v]
+    vmax = max(100.0, max(flat) if flat else 0.0)
+    im = ax.imshow(mat, aspect="auto", cmap="YlGnBu", vmin=0, vmax=vmax)
+    ax.set_xticks(range(len(tasks)))
+    ax.set_xticklabels(col_labels, fontsize=10)
+    ax.set_yticks(range(len(slugs)))
+    y_fs = 10 if dpi >= 250 else 9
+    ax.set_yticklabels([humanize_model_slug(s) for s in slugs], fontsize=y_fs)
+    ax.set_xlabel("Eval task", fontsize=10)
+    ax.set_ylabel("Model", fontsize=10)
+    ax.set_title(
+        title or f"Levenshtein similarity — {prompt_type}",
+        fontsize=11,
+    )
+    for i in range(len(slugs)):
+        for j in range(len(tasks)):
+            v = mat[i][j]
+            if v != v:
+                continue
+            ax.text(
+                j,
+                i,
+                f"{v:.1f}",
+                ha="center",
+                va="center",
+                color="white" if v > 55 else "black",
+                fontsize=8 if dpi < 250 else 8.5,
+            )
+
+    def _round_idx(slug: str) -> int | None:
+        m = re.match(r"^(?i)(round\d+)/", _slug_path_style(slug))
+        if not m:
+            return None
+        return int(re.sub(r"\D", "", m.group(1)))
+
+    for i in range(1, nrows):
+        ri_prev = _round_idx(slugs[i - 1])
+        ri = _round_idx(slugs[i])
+        draw = (ri_prev is None and ri is not None) or (
+            ri_prev is not None and ri is not None and ri_prev != ri
+        )
+        if draw:
+            ax.axhline(i - 0.5, color="#ffffff", lw=2.0, clip_on=False)
+
+    cbar = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+    cbar.set_label("Similarity (%)", fontsize=10)
+
+    if subtitle:
+        fig.text(
+            0.5,
+            0.02,
+            subtitle,
+            ha="center",
+            va="bottom",
+            fontsize=8.5 if dpi < 250 else 9,
+            transform=fig.transFigure,
+        )
+        fig.tight_layout(rect=[0, 0.18, 1, 0.96])
+    else:
+        fig.tight_layout()
+    if out_path:
+        outp = Path(out_path)
+        outp.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(outp, dpi=dpi, bbox_inches="tight")
         plt.close(fig)
         return outp
     plt.show()
@@ -711,7 +963,7 @@ def plot_combined_structured_by_slug(
             continue
         offs = [xi - shift + i * width for xi in x]
         vals = [float(row.get(k, 0) or 0) for k, _ in fields]
-        ax.bar(offs, vals, width, label=_short_slug(slug, 32))
+        ax.bar(offs, vals, width, label=humanize_model_slug(slug, max_len=34))
 
     ax.set_xticks(x)
     ax.set_xticklabels([lbl for _, lbl in fields], rotation=25, ha="right")
@@ -758,6 +1010,27 @@ def main() -> None:
     p_hm.add_argument("--prompt-type", default="few_shot")
     p_hm.add_argument("--out", type=Path, default=None)
     p_hm.add_argument("--slug-glob", action="append", default=None)
+
+    p_lh = sub.add_parser(
+        "lev-heatmap",
+        help="Model × task heatmap using levenshtein_similarity_pct (poster-friendly)",
+    )
+    p_lh.add_argument("--baseline-dir", type=Path, required=True)
+    p_lh.add_argument("--prompt-type", default="few_shot")
+    p_lh.add_argument("--out", type=Path, default=None)
+    p_lh.add_argument("--slug-glob", action="append", default=None)
+    p_lh.add_argument("--dpi", type=int, default=200, help="Figure DPI (e.g. 300 for print)")
+    p_lh.add_argument(
+        "--subtitle",
+        default=None,
+        metavar="TEXT",
+        help="Rare: draw footer text under the heatmap (posters omit this; use caption instead).",
+    )
+    p_lh.add_argument(
+        "--no-sort-rows",
+        action="store_true",
+        help="Keep alphabetical slug order instead of hub-first / round / training-objective order.",
+    )
 
     p_ph = sub.add_parser("prompt-heatmap", help="Prompt style × task for one slug glob")
     p_ph.add_argument("--baseline-dir", type=Path, required=True)
@@ -833,6 +1106,19 @@ def main() -> None:
             prompt_type=args.prompt_type,
             out_path=args.out,
             slug_globs=args.slug_glob,
+        )
+    elif args.cmd == "lev-heatmap":
+        lh_kw: dict[str, Any] = {"dpi": args.dpi}
+        if args.subtitle is not None:
+            lh_kw["subtitle"] = args.subtitle
+        if args.no_sort_rows:
+            lh_kw["sort_rows"] = False
+        plot_levenshtein_similarity_heatmap(
+            args.baseline_dir,
+            prompt_type=args.prompt_type,
+            out_path=args.out,
+            slug_globs=args.slug_glob,
+            **lh_kw,
         )
     elif args.cmd == "prompt-heatmap":
         plot_prompt_style_heatmap(

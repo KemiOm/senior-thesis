@@ -1,0 +1,80 @@
+% Requires in preamble: \usepackage{booktabs}
+% Optional: \usepackage{array} for column formatting
+
+\section{Effects of Hyperparameter Variation}
+
+Across training rounds (R1--R4), the overall structure of results remains remarkably stable.
+The heatmap shows nearly identical patterns across all rounds, with only small improvements in magnitude.
+
+The primary quantitative difference arises from learning-rate variation.
+Models trained with a learning rate of $1 \times 10^{-4}$ consistently outperform those trained with $5 \times 10^{-5}$ on task-specific exact match (Table~\ref{tab:lora-hyperparams-rounds}).
+This suggests that the lower learning rate leads to underfitting, while the higher rate allows more effective adaptation of the LoRA parameters within the same training budget.
+
+Other changes, including increased LoRA rank, additional attention modules, and longer sequence lengths, produce only marginal effects once supervision and eval are held fixed.
+This indicates that model behavior is driven primarily by the supervision objective, not by fine-grained hyperparameter tuning.
+
+\begin{table}[t]
+  \centering
+  \small
+  \caption{LoRA fine-tuning hyperparameters by round (FLAN-T5-Large backbone).
+    Values are taken from \texttt{run\_params.json} under \texttt{sft\_runs/} for representative runs:
+    R1---\texttt{round1/combined};
+    R2---\texttt{round2/meter\_only} (identical for \texttt{rhyme\_only} and \texttt{combined} in that round);
+    R3---\texttt{round3/meter\_only\_lr1e4};
+    R4---\texttt{round3/meter\_only\_lr5e5} (same recipe as other R4 lr-$5{\times}10^{-5}$ specialists).
+    Fixed across rounds unless noted: \texttt{per\_device\_train\_batch\_size}${}=8$, \texttt{per\_device\_eval\_batch\_size}${}=4$,
+    \texttt{weight\_decay}${}=0.01$, \texttt{warmup\_ratio}${}=0.1$, \texttt{lora\_dropout}${}=0.05$, \texttt{seed}${}=42$.}
+  \label{tab:lora-hyperparams-rounds}
+  \begin{tabular}{@{}lccccccc@{}}
+    \toprule
+    Round
+      & $\eta$
+      & Epochs
+      & $r$ / $\alpha$
+      & Targets
+      & $L_{\mathrm{in}}$ / $L_{\mathrm{tgt}}$
+      & Grad.\ acc.\
+      & Eval / save \\
+    \midrule
+    R1
+      & $10^{-4}$
+      & $3$
+      & $16$ / $32$
+      & \texttt{q,v}
+      & $256$ / $64$
+      & $1$
+      & $1000$ \\
+    R2
+      & $5 \times 10^{-5}$
+      & $5$
+      & $32$ / $64$
+      & \texttt{q,k,v,o}
+      & $384$ / $128$
+      & $2$
+      & $300$ \\
+    R3
+      & $10^{-4}$
+      & $5$
+      & $16$ / $32$
+      & \texttt{q,v}
+      & $256$ / $64$
+      & $1$
+      & $1000$ \\
+    R4
+      & $5 \times 10^{-5}$
+      & $5$
+      & $16$ / $32$
+      & \texttt{q,v}
+      & $256$ / $64$
+      & $1$
+      & $1000$ \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{0.5em}
+  \begin{tabular}{@{}ll@{}}
+    \multicolumn{2}{@{}l@{}}{\textit{Training precision (from \texttt{run\_params.json})}} \\
+    R1--R2 & FP32 on GPU (\texttt{no\_fp16=true}, \texttt{bf16=false}). \\
+    R3--R4 & BF16 (\texttt{bf16=true}). \\
+  \end{tabular}
+\end{table}

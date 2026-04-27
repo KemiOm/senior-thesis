@@ -1,5 +1,5 @@
 """
-Annotation coverage (no models) → evaluation/annotation_coverage.json.
+Annotation coverage (no models) to evaluation/annotation_coverage.json.
 
 Run: python evaluation/run_annotation_coverage.py (shim) or python -m evaluation.corpus.coverage.
 """

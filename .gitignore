@@ -22,9 +22,19 @@ sft/**/final_model_merged/
 sft_full/**/checkpoint-*/
 sft_full/**/final_model/
 sft_full/**/final_model_merged/
+# sft_runs/ = experiment registry; keep lightweight metadata, ignore heavy weight artifacts.
+sft_runs/**/checkpoint-*/
+sft_runs/**/final_model/
+sft_runs/**/final_model_merged/
+sft_runs/**/*.safetensors
+sft_runs/**/training_args.bin
+sft_runs/**/optimizer.pt
+sft_runs/**/scheduler.pt
+sft_runs/**/rng_state*.pth
 
 # Rsync / HF temp partials next to merged weights
 **/.model.safetensors.*
+**/.cache/huggingface/
 
 # Notebook-generated figures (regenerate with visualizations/plot_ft.py)
 visualizations/out/

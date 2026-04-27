@@ -77,7 +77,7 @@ That file includes corpus / extraction pins and **SFT** stack (`transformers`, `
 
 ## Project Structure
 
-High-level layout. Large or machine-local artifacts are often **gitignored** (check **.gitignore**): e.g. most of **output/** except **corpus.db** and **training_data/**, **ECPA/**, **venv/**, **sft/** and **sft_full/** checkpoint and weight trees, **visualizations/out/**.
+High-level layout. Large or machine-local artifacts are often **gitignored** (check **.gitignore**): e.g. most of **output/** except **corpus.db** and **training_data/**, **ECPA/**, **venv/**, checkpoint/weight trees under **sft/**, **sft_full/**, and **sft_runs/**, plus **visualizations/out/**.
 
 ```
 .
@@ -104,7 +104,8 @@ High-level layout. Large or machine-local artifacts are often **gitignored** (ch
 │   └── summarize_prompt_baselines.py
 ├── output/                  # corpus.db, training_data/; intermediate poem JSON trees usually not in git
 ├── results/                 # SFT eval JSON per short slug (local or cluster; not training weights)
-├── sft/, sft_full/          # LoRA output roots (--output-root); heavy subtrees gitignored
+├── sft/, sft_full/          # Alternate LoRA output roots from training jobs (choose one convention)
+├── sft_runs/                # Experiment registry (round-based runs, params/metrics, selected merged models)
 ├── visualizations/          # plot_ft.py, ft_figures.ipynb → visualizations/out/ (figures gitignored)
 ├── data/, docs/             # Optional local data; notes / figure sources
 └── ECPA/                    # Source TEI corpus (clone separately; not tracked by default)
@@ -186,6 +187,68 @@ Results live under `evaluation/baselines/<model_slug>/` for pretrained prompt ba
 
 ---
 
+### `sft_full` vs `sft_runs` (do you need both?)
+
+Short answer: **no, you do not need both**.
+
+- Keep `sft_runs/` if you want the round-based experiment history used for model selection (`run_params.json`, `final_eval_metrics.json`, and selected merged checkpoints).
+- Keep `results/` for evaluation JSON used in rollups/tables/figures.
+- `sft_full/` is only an alternate training output root used by some older runs. If equivalent checkpoints are already represented in `sft_runs/` (or uploaded to Hugging Face), `sft_full/` can be archived or removed.
+
+Recommended thesis setup:
+- Keep: `results/` + lightweight metadata in `sft_runs/`.
+- Optional local-only: heavyweight checkpoints/adapters.
+- Do not maintain duplicate weight trees in both `sft_full/` and `sft_runs/` unless you need redundancy.
+
+---
+
+## Publishing best checkpoints to Hugging Face
+
+Use merged checkpoints (`final_model_merged/`) for Hub upload so each repo loads directly with `AutoModelForSeq2SeqLM.from_pretrained(...)`.
+
+Recommended paths currently used for the three task repos:
+
+- `combined`: `sft_runs/round1/combined/final_model_merged`
+- `meter_only`: `sft_runs/round3/meter_only_lr1e4/final_model_merged`
+- `rhyme_only`: `sft_runs/round2/rhyme_only/final_model_merged`
+
+### One-time auth setup
+
+```bash
+source venv/bin/activate
+python -m pip install "huggingface-hub>=0.34,<1.0"
+hf auth login
+```
+
+Token scope should include write/create permissions for model repos under the `KemiOm` user namespace.
+
+### Create repos (once)
+
+```bash
+hf repo create KemiOm/poetry-combined-best --repo-type model --exist-ok
+hf repo create KemiOm/poetry-meter-best --repo-type model --exist-ok
+hf repo create KemiOm/poetry-rhyme-best --repo-type model --exist-ok
+```
+
+### Upload merged folders
+
+```bash
+hf upload-large-folder KemiOm/poetry-combined-best "sft_runs/round1/combined/final_model_merged" --repo-type=model
+hf upload-large-folder KemiOm/poetry-meter-best "sft_runs/round3/meter_only_lr1e4/final_model_merged" --repo-type=model
+hf upload-large-folder KemiOm/poetry-rhyme-best "sft_runs/round2/rhyme_only/final_model_merged" --repo-type=model
+```
+
+Notes:
+- Some `hf` versions require `--repo-type=model` for `upload-large-folder` or the command fails.
+- Run uploads sequentially (not in parallel) and rerun the same command to resume interrupted uploads.
+- If your `hf repo` subcommand does not support `files`, verify via the Hub web UI or Python:
+
+```bash
+python -c "from huggingface_hub import list_repo_files; print(list_repo_files('KemiOm/poetry-rhyme-best', repo_type='model'))"
+```
+
+---
+
 ## Output Structure
 
 | Location | Contents |
@@ -200,7 +263,8 @@ Results live under `evaluation/baselines/<model_slug>/` for pretrained prompt ba
 | evaluation/baselines/ | Prompt-eval JSON per model_slug/ (run_prompt_eval.py default --results-dir) |
 | evaluation/baseline_report/ | model_comparison.csv, MODEL_SELECTION.MD, filtered exports |
 | results/ | SFT eval JSON per short_slug/ (not weights); roll up with summarize_prompt_baselines.py --baseline-dir results --out-dir results |
-| sft/, sft_full/ | LoRA training roots: checkpoints, adapters, merged weights (typical subtrees gitignored) |
+| sft/, sft_full/ | Alternate LoRA training roots (`--output-root`); mostly large local artifacts |
+| sft_runs/ | Round-based run registry used for model selection; keep params/metrics, avoid duplicate weight trees |
 | visualizations/out/ | Figures from plot_ft.py / ft_figures.ipynb (gitignored) |
 | data/nltk_data/ | NLTK data (created automatically; gitignored) |
 

@@ -364,6 +364,37 @@ YCRC: [job scheduling](https://docs.ycrc.yale.edu/clusters-at-yale/job-schedulin
 
 ---
 
+### Publish merged checkpoints to the Hugging Face Hub
+
+After selecting final SFT checkpoints, publish `final_model_merged/` directories (not adapter-only folders) so downstream loading is one line with `from_pretrained`.
+
+Reference paths currently used for task repos:
+
+- combined: `sft_runs/round1/combined/final_model_merged`
+- meter_only: `sft_runs/round3/meter_only_lr1e4/final_model_merged`
+- rhyme_only: `sft_runs/round2/rhyme_only/final_model_merged`
+
+1. Authenticate:
+   - `hf auth login`
+   - Use a token with model repo write/create rights under user namespace `KemiOm`.
+2. Create repos:
+   - `hf repo create KemiOm/poetry-combined-best --repo-type model --exist-ok`
+   - `hf repo create KemiOm/poetry-meter-best --repo-type model --exist-ok`
+   - `hf repo create KemiOm/poetry-rhyme-best --repo-type model --exist-ok`
+3. Upload each merged folder:
+   - `hf upload-large-folder KemiOm/poetry-combined-best "sft_runs/round1/combined/final_model_merged" --repo-type=model`
+   - `hf upload-large-folder KemiOm/poetry-meter-best "sft_runs/round3/meter_only_lr1e4/final_model_merged" --repo-type=model`
+   - `hf upload-large-folder KemiOm/poetry-rhyme-best "sft_runs/round2/rhyme_only/final_model_merged" --repo-type=model`
+
+Important CLI compatibility notes:
+- Some `hf` versions reject `--type model` and require `--repo-type model` for repo creation.
+- `upload-large-folder` may fail unless `--repo-type=model` is explicitly passed.
+- Older `hf repo` installs may not expose `hf repo files`; in that case verify in browser or with `huggingface_hub.list_repo_files`.
+
+Prompting note for post-upload smoke tests: rhyme-only and meter-only SFT checkpoints were trained on raw line text as `input`, so quick inference checks should pass line-only inputs (instructions are optional and can shift behavior).
+
+---
+
 ### Running on HPC (summary)
 
 | Step | Where | Notes |

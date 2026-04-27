@@ -10,10 +10,10 @@ import os
 os.environ["POESY_DEBUG"] = "0"
 os.environ["PHONOLOGY_BATCH"] = "1"   # skip extra word processing to run faster
 
-# Only set these if they aren’t already set (like from Slurm)
+# Only set these if they aren’t already set 
 # MAX_LINE_CHARS: shorten very long lines if needed (0 = keep full line)
 # MAX_POEM_LINES: skip very long files to avoid slowdowns
-os.environ.setdefault("MAX_LINE_CHARS", "0")  # 0 = no truncation; set e.g. 2000 on clusters to limit RAM
+os.environ.setdefault("MAX_LINE_CHARS", "0")  # 0 = no truncation; I set 2000 on clusters to limit RAM
 os.environ.setdefault("MAX_POEM_LINES", "500")  # skip Poesy for poems longer than this
 
 import sys

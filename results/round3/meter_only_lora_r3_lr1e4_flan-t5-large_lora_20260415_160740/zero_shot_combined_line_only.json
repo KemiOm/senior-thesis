@@ -1,0 +1,3020 @@
+{
+  "model": "/home/span9810_ato22/scratch/Senior-Thesis/sft_full/meter_only_lora_r3_lr1e4/flan-t5-large_lora_20260415_160740/final_model_merged",
+  "prompt_type": "zero_shot",
+  "prompt_style": "line_only",
+  "task": "combined",
+  "split": "test",
+  "n_samples": 500,
+  "strict_eval": false,
+  "gold_filter": "none",
+  "gold_filter_meta": {
+    "strict_eval": false,
+    "gold_filter": "none",
+    "n_input": 43535,
+    "n_after": 43535,
+    "n_dropped_no_key": 0,
+    "n_dropped_ambiguous_regold": 0
+  },
+  "results": [
+    {
+      "input": "[start]",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic tetrameter|rhyme:AY1|end:1|caesura:3",
+      "prompt": "[start]",
+      "model_output": "+-+-+"
+    },
+    {
+      "input": "\" When the cock crew, he wept, \" - smote by that eye,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IH1 D Z|end:0|caesura:3",
+      "prompt": "\" When the cock crew, he wept, \" - smote by that eye,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Which looks on me, on all: that Power who bids",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IH1 L|end:1|caesura:2",
+      "prompt": "Which looks on me, on all: that Power who bids",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "This midnight sentinel, with clarion shrill,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:EH1 D|end:1|caesura:-",
+      "prompt": "This midnight sentinel, with clarion shrill,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "( Emblem of that which shall awake the dead, )",
+      "gold_target": "stress:+-+-+-+-+-|meter_type:pentameter|rhyme:EH1 V AH0 N|end:1|caesura:3",
+      "prompt": "( Emblem of that which shall awake the dead, )",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Rouse souls from slumber, into thoughts of heaven.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:UW2 D|end:1|caesura:-",
+      "prompt": "Rouse souls from slumber, into thoughts of heaven.",
+      "model_output": "+-+-+-+-+-"
+    },
+    {
+      "input": "Shall I too weep? Where then is fortitude?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic trimeter|rhyme:AE1 N|end:1|caesura:0",
+      "prompt": "Shall I too weep? Where then is fortitude?",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "And, fortitude abandon'd, where is man?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 T|end:1|caesura:-",
+      "prompt": "And, fortitude abandon'd, where is man?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "I know the terms on which he sees the light:",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AO1 R|end:1|caesura:5",
+      "prompt": "I know the terms on which he sees the light:",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "He that is born is listed; life is war,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EH1 S T|end:1|caesura:-",
+      "prompt": "He that is born is listed; life is war,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Eternal war with woe. Who bears it best,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EH1 L|end:1|caesura:2",
+      "prompt": "Eternal war with woe. Who bears it best,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Deserves it least. - On other themes I'll dwell.",
+      "gold_target": "stress:-+-+-+-+-|meter_type:iambic pentameter|rhyme:IY1|end:1|caesura:-",
+      "prompt": "Deserves it least. - On other themes I'll dwell.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Lorenzo! let me turn my thoughts on thee,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:iambic pentameter|rhyme:EH1 R|end:0|caesura:5",
+      "prompt": "Lorenzo! let me turn my thoughts on thee,",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "And thine on themes may profit; profit there",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:OW1 TH|end:0|caesura:3",
+      "prompt": "And thine on themes may profit; profit there",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Where most thy need: themes, too, the genuine growth",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:EH1 D|end:1|caesura:5",
+      "prompt": "Where most thy need: themes, too, the genuine growth",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Of dear Philander's dust. He thus, though dead,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 S|end:1|caesura:2",
+      "prompt": "Of dear Philander's dust. He thus, though dead,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "May still befriend. - What themes? Time's wondrous price,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trimeter|rhyme:IY1 N|end:1|caesura:0",
+      "prompt": "May still befriend. - What themes? Time's wondrous price,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Death, friendship, and Philander's final scene.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EY1 N|end:0|caesura:-",
+      "prompt": "Death, friendship, and Philander's final scene.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "So could I touch these themes as might obtain",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EY1 JH D|end:1|caesura:1",
+      "prompt": "So could I touch these themes as might obtain",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Thine ear, nor leave thy heart quite disengaged,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EH1 S|end:0|caesura:5",
+      "prompt": "Thine ear, nor leave thy heart quite disengaged,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "The good deed would delight me; half-impress",
+      "gold_target": "stress:-+-+-+-+|meter_type:pentameter|rhyme:IY1 F|end:0|caesura:5",
+      "prompt": "The good deed would delight me; half-impress",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "On my dark cloud an Iris; and from grief",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trimeter|rhyme:EY1 T|end:1|caesura:1",
+      "prompt": "On my dark cloud an Iris; and from grief",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "Call glory. - Dost thou mourn Philander's fate?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:EY1 M|end:1|caesura:4",
+      "prompt": "Call glory. - Dost thou mourn Philander's fate?",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "I know thou say'st it: says thy life the same?",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:pentameter|rhyme:AY1 ER0|end:1|caesura:-",
+      "prompt": "I know thou say'st it: says thy life the same?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "- He mourns the dead who lives as they desire.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AY1 M|end:1|caesura:3",
+      "prompt": "- He mourns the dead who lives as they desire.",
+      "model_output": "+-+-+-+-+-"
+    },
+    {
+      "input": "Where is that thrift, that avarice of TIME,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:hexameter|rhyme:AY1 R Z|end:1|caesura:-",
+      "prompt": "Where is that thrift, that avarice of TIME,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "( O glorious avarice! ) thought of death inspires,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:OW1 L D|end:1|caesura:-",
+      "prompt": "( O glorious avarice! ) thought of death inspires,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "As rumour'd robberies endear our gold?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:OW1 D|end:0|caesura:5",
+      "prompt": "As rumour'd robberies endear our gold?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "O Time! than gold more sacred; more a load",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 Z|end:1|caesura:3",
+      "prompt": "O Time! than gold more sacred; more a load",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Than lead to fools; and fools reputed wise.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AW1 N T|end:1|caesura:-",
+      "prompt": "Than lead to fools; and fools reputed wise.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "What moment granted man without account?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:EY1 D|end:1|caesura:3",
+      "prompt": "What moment granted man without account?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "What years are squander'd, Wisdom's debt unpaid!",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trochaic pentameter|rhyme:AA1 R JH|end:1|caesura:-",
+      "prompt": "What years are squander'd, Wisdom's debt unpaid!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Our wealth in days all due to that discharge.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AO1 R|end:1|caesura:0",
+      "prompt": "Our wealth in days all due to that discharge.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Haste, haste, he lies in wait, he's at the door,",
+      "gold_target": "stress:-+-+-+-+|meter_type:pentameter|rhyme:EH1 S T|end:1|caesura:-",
+      "prompt": "Haste, haste, he lies in wait, he's at the door,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Insidious Death! should his strong hand arrest,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:IY1|end:1|caesura:-",
+      "prompt": "Insidious Death! should his strong hand arrest,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "No composition sets the prisoner free.",
+      "gold_target": "stress:-+-+-+-+|meter_type:trimeter|rhyme:EY1 N|end:0|caesura:-",
+      "prompt": "No composition sets the prisoner free.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Eternity's inexorable chain",
+      "gold_target": "stress:+-+-+-+-+-|meter_type:tetrameter|rhyme:UH1 L R|end:1|caesura:1",
+      "prompt": "Eternity's inexorable chain",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Fast binds; and vengeance claims the full arrear.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:EY1 T|end:0|caesura:-",
+      "prompt": "Fast binds; and vengeance claims the full arrear.",
+      "model_output": "+-+-+-+-+-"
+    },
+    {
+      "input": "How late I shudder'd on the brink! how late",
+      "gold_target": "stress:+-+-+-+|meter_type:tetrameter|rhyme:EH1 R|end:1|caesura:-",
+      "prompt": "How late I shudder'd on the brink! how late",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Life call'd for her last refuge in despair!",
+      "gold_target": "stress:+-+-+-+-|meter_type:pentameter|rhyme:OW1|end:1|caesura:3",
+      "prompt": "Life call'd for her last refuge in despair!",
+      "model_output": "+-+-+-+"
+    },
+    {
+      "input": "That time is mine, O Mead, to thee I owe;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:ER1 N AH0 T IY0|end:1|caesura:-",
+      "prompt": "That time is mine, O Mead, to thee I owe;",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "Fain would I pay thee with eternity.",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:pentameter|rhyme:AY1 ER0|end:1|caesura:-",
+      "prompt": "Fain would I pay thee with eternity.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "But ill my genius answers my desire;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:UH1 R|end:1|caesura:4",
+      "prompt": "But ill my genius answers my desire;",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "My sickly song is mortal, past thy cure.",
+      "gold_target": "stress:-+-+-+-+|meter_type:iambic pentameter|rhyme:EY1 N|end:1|caesura:2",
+      "prompt": "My sickly song is mortal, past thy cure.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Accept the will; - it dies not with my strain.",
+      "gold_target": "stress:-+-+-+-+|meter_type:pentameter|rhyme:AA1 T|end:0|caesura:4",
+      "prompt": "Accept the will; - it dies not with my strain.",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "For what calls thy disease, Lorenzo? Not",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:EY1 D|end:1|caesura:1",
+      "prompt": "For what calls thy disease, Lorenzo? Not",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "For Aesculapian, but for moral aid.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:UW1 N|end:1|caesura:-",
+      "prompt": "For Aesculapian, but for moral aid.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Thou think'st it folly to be wise too soon.",
+      "gold_target": "stress:+-+-+-+|meter_type:pentameter|rhyme:UW1 R|end:1|caesura:5",
+      "prompt": "Thou think'st it folly to be wise too soon.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Youth is not rich in time, it may be poor;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EY1|end:0|caesura:5",
+      "prompt": "Youth is not rich in time, it may be poor;",
+      "model_output": "+-+-+-+"
+    },
+    {
+      "input": "Part with it as with money, sparing; pay",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:ER1 TH|end:1|caesura:-",
+      "prompt": "Part with it as with money, sparing; pay",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "No moment but in purchase of its worth;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EH1 L|end:1|caesura:3",
+      "prompt": "No moment but in purchase of its worth;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "And what its worth, ask death-beds; they can tell.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:IH1 G|end:0|caesura:5",
+      "prompt": "And what its worth, ask death-beds; they can tell.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Part with it as with life, reluctant; big",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AH1 M|end:1|caesura:-",
+      "prompt": "Part with it as with life, reluctant; big",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "With holy hope of nobler time to come;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:AA1 R K|end:0|caesura:1",
+      "prompt": "With holy hope of nobler time to come;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Time higher-aim'd, still nearer the great mark",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 N|end:1|caesura:3",
+      "prompt": "Time higher-aim'd, still nearer the great mark",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Of men and angels, virtue more divine.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EY1 N|end:1|caesura:3",
+      "prompt": "Of men and angels, virtue more divine.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Is this our duty, wisdom, glory, gain?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 N D Z|end:1|caesura:-",
+      "prompt": "Is this our duty, wisdom, glory, gain?",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "( These Heaven benign in vital union binds: )",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AW1|end:1|caesura:-",
+      "prompt": "( These Heaven benign in vital union binds: )",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And sport we like the natives of the bough,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EY1 N Z|end:0|caesura:-",
+      "prompt": "And sport we like the natives of the bough,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "When vernal suns inspire? Amusement reigns",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AY1 V|end:1|caesura:2",
+      "prompt": "When vernal suns inspire? Amusement reigns",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Man's great demand: to trifle is to live:",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AY1|end:1|caesura:5",
+      "prompt": "Man's great demand: to trifle is to live:",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "And is it then a trifle, too, to die?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:IH1 Z K|end:1|caesura:3",
+      "prompt": "And is it then a trifle, too, to die?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Thou say'st I preach, Lorenzo! 'T is confess'd.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EY1 K|end:1|caesura:0",
+      "prompt": "Thou say'st I preach, Lorenzo! 'T is confess'd.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "What, if, for once, I preach thee quite awake?",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:pentameter|rhyme:AE1 T AH0 L|end:1|caesura:-",
+      "prompt": "What, if, for once, I preach thee quite awake?",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Who wants amusement in the flame of battle?",
+      "gold_target": "stress:+-+-+-+-+-|meter_type:pentameter|rhyme:AO1 R T AH0 L|end:1|caesura:-",
+      "prompt": "Who wants amusement in the flame of battle?",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "Is it not treason to the soul immortal,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 Z|end:1|caesura:3",
+      "prompt": "Is it not treason to the soul immortal,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Her foes in arms, eternity the prize?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:UH1 R|end:1|caesura:-",
+      "prompt": "Her foes in arms, eternity the prize?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Will toys amuse when medicines cannot cure?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 N Z|end:0|caesura:2",
+      "prompt": "Will toys amuse when medicines cannot cure?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "When spirits ebb, when life's enchanting scenes",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 T|end:1|caesura:2",
+      "prompt": "When spirits ebb, when life's enchanting scenes",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Their lustre lose, and lessen in our sight,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 R Z|end:1|caesura:-",
+      "prompt": "Their lustre lose, and lessen in our sight,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "( As lands and cities with their glittering spires,",
+      "gold_target": "stress:-+-+-+-+|meter_type:trochaic tetrameter|rhyme:AO1 R M|end:0|caesura:4",
+      "prompt": "( As lands and cities with their glittering spires,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "To the poor shatter'd bark, by sudden storm",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EH1 R|end:1|caesura:3",
+      "prompt": "To the poor shatter'd bark, by sudden storm",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "- Thrown off to sea, and soon to perish there, )",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:OY1 Z|end:1|caesura:3",
+      "prompt": "- Thrown off to sea, and soon to perish there, )",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Will toys amuse? No; thrones will then be toys,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EY1 L|end:1|caesura:-",
+      "prompt": "Will toys amuse? No; thrones will then be toys,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And earth and skies seem dust upon the scale.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AY1|end:1|caesura:2",
+      "prompt": "And earth and skies seem dust upon the scale.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Redeem we time? - Its loss we dearly buy.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AO1 R T S|end:1|caesura:5",
+      "prompt": "Redeem we time? - Its loss we dearly buy.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "What pleads Lorenzo for his high-prized sports?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 D Z|end:0|caesura:4",
+      "prompt": "What pleads Lorenzo for his high-prized sports?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "He pleads time's numerous blanks; he loudly pleads",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:IY1 M|end:1|caesura:1",
+      "prompt": "He pleads time's numerous blanks; he loudly pleads",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "The straw-like trifles on life's common stream.",
+      "gold_target": "stress:-+-+-+-+-|meter_type:pentameter|rhyme:IY1|end:1|caesura:-",
+      "prompt": "The straw-like trifles on life's common stream.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "From whom those blanks and trifles but from thee?",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EH1 N T|end:1|caesura:1",
+      "prompt": "From whom those blanks and trifles but from thee?",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "No blank, no trifle, Nature made, or meant.",
+      "gold_target": "stress:+-+-+-+-|meter_type:trochaic tetrameter|rhyme:AY1 N|end:1|caesura:0",
+      "prompt": "No blank, no trifle, Nature made, or meant.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Virtue, or purposed virtue, still be thine;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 V Z|end:0|caesura:5",
+      "prompt": "Virtue, or purposed virtue, still be thine;",
+      "model_output": "+-+-+-+-"
+    },
+    {
+      "input": "This cancels thy complaint at once; this leaves",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AY1 M|end:1|caesura:3",
+      "prompt": "This cancels thy complaint at once; this leaves",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "In act no trifle, and no blank in time.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:AO1 L|end:1|caesura:1",
+      "prompt": "In act no trifle, and no blank in time.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "This greatens, fills, immortalizes all;",
+      "gold_target": "stress:-+-+-+-+|meter_type:trochaic pentameter|rhyme:OW1 L D|end:1|caesura:-",
+      "prompt": "This greatens, fills, immortalizes all;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "This the blest art of turning all to gold;",
+      "gold_target": "stress:-+-+-+-+|meter_type:trochaic pentameter|rhyme:EY1 Z|end:0|caesura:-",
+      "prompt": "This the blest art of turning all to gold;",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "This the good heart's prerogative to raise",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:iambic pentameter|rhyme:AW1 ER0 Z|end:1|caesura:-",
+      "prompt": "This the good heart's prerogative to raise",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "A royal tribute from the poorest hours;",
+      "gold_target": "stress:-+-+-+-+|meter_type:pentameter|rhyme:EY1 Z|end:1|caesura:-",
+      "prompt": "A royal tribute from the poorest hours;",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "Immense revenue! every moment pays.",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:pentameter|rhyme:AW1 ER0|end:1|caesura:-",
+      "prompt": "Immense revenue! every moment pays.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "If nothing more than purpose in thy power,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 D|end:1|caesura:-",
+      "prompt": "If nothing more than purpose in thy power,",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "Thy purpose firm is equal to the deed:",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AW1 Z|end:1|caesura:-",
+      "prompt": "Thy purpose firm is equal to the deed:",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Who does the best his circumstance allows,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AO1 R|end:1|caesura:1",
+      "prompt": "Who does the best his circumstance allows,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Does well, acts nobly; angels could no more.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trochaic pentameter|rhyme:EY1 N T|end:1|caesura:2",
+      "prompt": "Does well, acts nobly; angels could no more.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Our outward act, indeed, admits restraint;",
+      "gold_target": "stress:+-+-+-+-+-+|meter_type:pentameter|rhyme:IH1 R|end:1|caesura:-",
+      "prompt": "Our outward act, indeed, admits restraint;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "'T is not in things o'er thought to domineer.",
+      "gold_target": "stress:+-+-+-+-+-|meter_type:hexameter|rhyme:EH1 V AH0 N|end:1|caesura:3",
+      "prompt": "'T is not in things o'er thought to domineer.",
+      "model_output": "+-+-+-+-+-"
+    },
+    {
+      "input": "Guard well thy thought; our thoughts are heard in heaven.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EY1 JH|end:1|caesura:1",
+      "prompt": "Guard well thy thought; our thoughts are heard in heaven.",
+      "model_output": "+-+-+-+-+-"
+    },
+    {
+      "input": "On all-important time, through every age,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AE1 N|end:0|caesura:1",
+      "prompt": "On all-important time, through every age,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Though much, and warm, the wise have urged, the man",
+      "gold_target": "stress:+-+-+-+-+-|meter_type:pentameter|rhyme:AW1 ER0|end:1|caesura:-",
+      "prompt": "Though much, and warm, the wise have urged, the man",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Is yet unborn who duly weighs an hour.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 D|end:1|caesura:3",
+      "prompt": "Is yet unborn who duly weighs an hour.",
+      "model_output": "+-+-+-+-+-"
+    },
+    {
+      "input": "\" I've lost a day \" - the prince who nobly cried,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AW1 N|end:1|caesura:-",
+      "prompt": "\" I've lost a day \" - the prince who nobly cried,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Had been an emperor without his crown;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EY1 S|end:1|caesura:2",
+      "prompt": "Had been an emperor without his crown;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "\" Of Rome? \" say, rather, lord of human race:",
+      "gold_target": "stress:-+-+-+-+-|meter_type:trimeter|rhyme:AY1 N D|end:1|caesura:-",
+      "prompt": "\" Of Rome? \" say, rather, lord of human race:",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "He spoke as if deputed by mankind.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AO1 L|end:1|caesura:3",
+      "prompt": "He spoke as if deputed by mankind.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "So should all speak: so Reason speaks in all.",
+      "gold_target": "stress:-+-+-+-+|meter_type:trochaic pentameter|rhyme:AE1 N|end:1|caesura:-",
+      "prompt": "So should all speak: so Reason speaks in all.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "From the soft whispers of that god in man,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1|end:1|caesura:3",
+      "prompt": "From the soft whispers of that god in man,",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "Why fly to Folly, why to Frenzy fly,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EH1 S|end:1|caesura:-",
+      "prompt": "Why fly to Folly, why to Frenzy fly,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "For rescue from the blessing we possess?",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:ER1 N AH0 T IY0|end:1|caesura:0",
+      "prompt": "For rescue from the blessing we possess?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Time, the supreme! - time is eternity;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:IH1 V|end:1|caesura:-",
+      "prompt": "Time, the supreme! - time is eternity;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Pregnant with all eternity can give;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:AY1 L|end:1|caesura:-",
+      "prompt": "Pregnant with all eternity can give;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Pregnant with all that makes archangels smile.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:ER1 TH|end:0|caesura:2",
+      "prompt": "Pregnant with all that makes archangels smile.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Who murders time, he crushes in the birth",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic hexameter|rhyme:AO1 R D|end:1|caesura:2",
+      "prompt": "Who murders time, he crushes in the birth",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "A power ethereal, only not adored.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EH1 L F|end:0|caesura:-",
+      "prompt": "A power ethereal, only not adored.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Ah! how unjust to Nature and himself",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AE1 N|end:1|caesura:1",
+      "prompt": "Ah! how unjust to Nature and himself",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Is thoughtless, thankless, inconsistent man!",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AO1 R T S|end:1|caesura:-",
+      "prompt": "Is thoughtless, thankless, inconsistent man!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Like children babbling nonsense in their sports,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AO1 R T|end:1|caesura:-",
+      "prompt": "Like children babbling nonsense in their sports,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "We censure Nature for a span too short;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:UW1|end:1|caesura:-",
+      "prompt": "We censure Nature for a span too short;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "That span too short we tax as tedious too;",
+      "gold_target": "stress:+-+-+-+-+-|meter_type:trochaic tetrameter|rhyme:AY1 ER0|end:1|caesura:1",
+      "prompt": "That span too short we tax as tedious too;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Torture invention, all expedients tire,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 D|end:1|caesura:-",
+      "prompt": "Torture invention, all expedients tire,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "To lash the lingering moments into speed,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EH1 L V Z|end:1|caesura:-",
+      "prompt": "To lash the lingering moments into speed,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And whirl us ( happy riddance! ) from ourselves.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:UH1 R IY0 AH0 S T|end:1|caesura:0",
+      "prompt": "And whirl us ( happy riddance! ) from ourselves.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Art, brainless Art! our furious charioteer,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:AO2 L|end:1|caesura:-",
+      "prompt": "Art, brainless Art! our furious charioteer,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "( For Nature's voice unstifled would recall, )",
+      "gold_target": "stress:+-+-+-+-+-+|meter_type:pentameter|rhyme:EH1 TH|end:1|caesura:-",
+      "prompt": "( For Nature's voice unstifled would recall, )",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Drives headlong towards the precipice of death;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EY1 D|end:1|caesura:0",
+      "prompt": "Drives headlong towards the precipice of death;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Death, most our dread; death thus more dreadful made.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:ER1 D AH0 T IY0|end:1|caesura:-",
+      "prompt": "Death, most our dread; death thus more dreadful made.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "O what a riddle of absurdity!",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic hexameter|rhyme:IY1 L Z|end:1|caesura:2",
+      "prompt": "O what a riddle of absurdity!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Leisure is pain; takes off our chariot-wheels;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 F|end:1|caesura:-",
+      "prompt": "Leisure is pain; takes off our chariot-wheels;",
+      "model_output": "+-+-+-+"
+    },
+    {
+      "input": "How heavily we drag the load of life!",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EY1 N|end:1|caesura:4",
+      "prompt": "How heavily we drag the load of life!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Blest leisure is our curse; like that of Cain,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AW1 N D|end:0|caesura:3",
+      "prompt": "Blest leisure is our curse; like that of Cain,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "It makes us wander; wander earth around",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:AE1 T L AH0 S G|end:0|caesura:3",
+      "prompt": "It makes us wander; wander earth around",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "To fly that tyrant, Thought. As Atlas groan'd",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:iambic pentameter|rhyme:AW1 ER0|end:1|caesura:2",
+      "prompt": "To fly that tyrant, Thought. As Atlas groan'd",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "The world beneath, we groan beneath an hour.",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:pentameter|rhyme:UW1 Z M AH0 N T|end:1|caesura:-",
+      "prompt": "The world beneath, we groan beneath an hour.",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "We cry for mercy to the next amusement;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:IY1 L D Z|end:1|caesura:-",
+      "prompt": "We cry for mercy to the next amusement;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "The next amusement mortgages our fields;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AW1 N|end:1|caesura:-",
+      "prompt": "The next amusement mortgages our fields;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Slight inconvenience! Prisons hardly frown,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1|end:1|caesura:-",
+      "prompt": "Slight inconvenience! Prisons hardly frown,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "From hateful time if prisons set us free.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:IY1 F|end:1|caesura:-",
+      "prompt": "From hateful time if prisons set us free.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Yet when Death kindly tenders us relief,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IH1 NG K|end:1|caesura:3",
+      "prompt": "Yet when Death kindly tenders us relief,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "We call him cruel: years to moments shrink,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic tetrameter|rhyme:IH1 Z T|end:1|caesura:-",
+      "prompt": "We call him cruel: years to moments shrink,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Ages to years. The telescope is turn'd.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AO1 L S|end:1|caesura:-",
+      "prompt": "Ages to years. The telescope is turn'd.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "To man's false optics ( from his folly false )",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:IH1 NG Z|end:1|caesura:0",
+      "prompt": "To man's false optics ( from his folly false )",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Time, in advance, behind him hides his wings,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EY1 JH|end:1|caesura:3",
+      "prompt": "Time, in advance, behind him hides his wings,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "And seems to creep, decrepit with his age.",
+      "gold_target": "stress:-+-+-+-+|meter_type:iambic tetrameter|rhyme:IY1 N|end:0|caesura:1",
+      "prompt": "And seems to creep, decrepit with his age.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Behold him, when pass'd by; what then is seen",
+      "gold_target": "stress:-+-+-+-+|meter_type:tetrameter|rhyme:IH1 N D Z|end:1|caesura:3",
+      "prompt": "Behold him, when pass'd by; what then is seen",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "But his broad pinions, swifter than the winds?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AO1 NG|end:1|caesura:2",
+      "prompt": "But his broad pinions, swifter than the winds?",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "And all mankind, in contradiction strong,",
+      "gold_target": "stress:+-+-+-+|meter_type:trochaic pentameter|rhyme:IH1 R|end:1|caesura:0",
+      "prompt": "And all mankind, in contradiction strong,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Rueful, aghast, cry out on his career.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:IH1 L Z|end:1|caesura:5",
+      "prompt": "Rueful, aghast, cry out on his career.",
+      "model_output": "+-+-+-+-+-"
+    },
+    {
+      "input": "Leave to thy foes these errors, and these ills;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AO1 R|end:1|caesura:2",
+      "prompt": "Leave to thy foes these errors, and these ills;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "To Nature just, their cause and cure explore.",
+      "gold_target": "stress:+-+-+-+-+-+|meter_type:hexameter|rhyme:EH1 N S|end:1|caesura:3",
+      "prompt": "To Nature just, their cause and cure explore.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Not short Heaven's bounty, boundless our expense;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trimeter|rhyme:AA1 R P|end:1|caesura:1",
+      "prompt": "Not short Heaven's bounty, boundless our expense;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "No niggard, Nature; men are prodigals.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 V|end:1|caesura:1",
+      "prompt": "No niggard, Nature; men are prodigals.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "We waste, not use, our time; we breathe, not live.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AY1 F|end:1|caesura:3",
+      "prompt": "We waste, not use, our time; we breathe, not live.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Time wasted is existence, used is life.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic tetrameter|rhyme:AY1 V D|end:1|caesura:3",
+      "prompt": "Time wasted is existence, used is life.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "And bare existence man, to live ordain'd,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:EY1 T|end:1|caesura:-",
+      "prompt": "And bare existence man, to live ordain'd,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Wrings and oppresses with enormous weight.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EY1 S T|end:1|caesura:7",
+      "prompt": "Wrings and oppresses with enormous weight.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "And why? Since time was given for use, not waste,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:AA1 R Z|end:1|caesura:2",
+      "prompt": "And why? Since time was given for use, not waste,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Enjoin'd to fly, with tempest, tide, and stars,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AE1 N|end:1|caesura:3",
+      "prompt": "Enjoin'd to fly, with tempest, tide, and stars,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "To keep his speed, nor ever wait for man;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:EY1 N|end:1|caesura:5",
+      "prompt": "To keep his speed, nor ever wait for man;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Time's use was doom'd a pleasure; waste, a pain;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 N|end:1|caesura:5",
+      "prompt": "Time's use was doom'd a pleasure; waste, a pain;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "That man might feel his error, if unseen;",
+      "gold_target": "stress:-+-+-+-+|meter_type:iambic pentameter|rhyme:UH1 R|end:1|caesura:0",
+      "prompt": "That man might feel his error, if unseen;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And, feeling, fly to labour for his cure;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 Z|end:1|caesura:0",
+      "prompt": "And, feeling, fly to labour for his cure;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Not, blundering, split on idleness for ease.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:EH1 V AH0 N D|end:1|caesura:3",
+      "prompt": "Not, blundering, split on idleness for ease.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Life's cares are comforts; such by Heaven design'd;",
+      "gold_target": "stress:+-+-+-+-|meter_type:pentameter|rhyme:EH1 CH IH0 D|end:1|caesura:3",
+      "prompt": "Life's cares are comforts; such by Heaven design'd;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "He that has none, must make them, or be wretched.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:OY1|end:0|caesura:2",
+      "prompt": "He that has none, must make them, or be wretched.",
+      "model_output": "+-+-+-+-"
+    },
+    {
+      "input": "Cares are employments; and without employ",
+      "gold_target": "stress:-+-+-+-+|meter_type:iambic pentameter|rhyme:EH1 S T|end:1|caesura:5",
+      "prompt": "Cares are employments; and without employ",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "The soul is on a rack; the rack of rest,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:OY1|end:1|caesura:3",
+      "prompt": "The soul is on a rack; the rack of rest,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "To souls most adverse; action all their joy.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:OW1 L D Z|end:1|caesura:0",
+      "prompt": "To souls most adverse; action all their joy.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Here, then, the riddle, mark'd above, unfolds:",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:UW1 L|end:1|caesura:3",
+      "prompt": "Here, then, the riddle, mark'd above, unfolds:",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Then time turns torment, when man turns a fool.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AE1 N|end:1|caesura:1",
+      "prompt": "Then time turns torment, when man turns a fool.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "We rave, we wrestle with great Nature's plan;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 D|end:1|caesura:3",
+      "prompt": "We rave, we wrestle with great Nature's plan;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "We thwart the Deity; and 't is decreed,",
+      "gold_target": "stress:-+-+-+-+|meter_type:pentameter|rhyme:OW1 N|end:1|caesura:-",
+      "prompt": "We thwart the Deity; and 't is decreed,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Who thwart His will shall contradict their own.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:hexameter|rhyme:EH1 L V Z|end:1|caesura:-",
+      "prompt": "Who thwart His will shall contradict their own.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Hence our unnatural quarrel with ourselves;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trochaic hexameter|rhyme:OY1 L|end:1|caesura:3",
+      "prompt": "Hence our unnatural quarrel with ourselves;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Our thoughts at enmity; our bosom-broil:",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AE1 K|end:1|caesura:4",
+      "prompt": "Our thoughts at enmity; our bosom-broil:",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "We push Time from us, and we wish him back;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic tetrameter|rhyme:AY1 F|end:1|caesura:2",
+      "prompt": "We push Time from us, and we wish him back;",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "Lavish of lustrums, and yet fond of life;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AH1 N|end:1|caesura:5",
+      "prompt": "Lavish of lustrums, and yet fond of life;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Life we think long and short; Death seek and shun;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:AY1 F|end:1|caesura:2",
+      "prompt": "Life we think long and short; Death seek and shun;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Body and soul, like peevish man and wife,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AA1 R T|end:1|caesura:1",
+      "prompt": "Body and soul, like peevish man and wife,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "United jar, and yet are loath to part.",
+      "gold_target": "stress:-+-+-+-|meter_type:trochaic pentameter|rhyme:IY1 R|end:0|caesura:-",
+      "prompt": "United jar, and yet are loath to part.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "O the dark days of vanity! while here",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AO1 N|end:1|caesura:1",
+      "prompt": "O the dark days of vanity! while here",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "How tasteless, and how terrible when gone!",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:IH1 L|end:1|caesura:3",
+      "prompt": "How tasteless, and how terrible when gone!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Gone! they ne'er go; when past, they haunt us still;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:IY1 S T|end:1|caesura:-",
+      "prompt": "Gone! they ne'er go; when past, they haunt us still;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "The spirit walks of every day deceased,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AW1 N Z|end:1|caesura:3",
+      "prompt": "The spirit walks of every day deceased,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And smiles an angel, or a fury frowns.",
+      "gold_target": "stress:-+-+-+-+-|meter_type:pentameter|rhyme:AE1 S T|end:1|caesura:-",
+      "prompt": "And smiles an angel, or a fury frowns.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Nor death nor life delight us. If time past,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic tetrameter|rhyme:IY1 Z|end:1|caesura:2",
+      "prompt": "Nor death nor life delight us. If time past,",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "And time possess'd, both pain us, what can please?",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:IY1 Z D|end:0|caesura:-",
+      "prompt": "And time possess'd, both pain us, what can please?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "That which the Deity to please ordain'd, -",
+      "gold_target": "stress:+-+-+-+-+-|meter_type:tetrameter|rhyme:AW1 ER0 Z|end:0|caesura:-",
+      "prompt": "That which the Deity to please ordain'd, -",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Time used. The man who consecrates his hours",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EY1 M|end:1|caesura:2",
+      "prompt": "Time used. The man who consecrates his hours",
+      "model_output": "+-+-+-+-+-"
+    },
+    {
+      "input": "By vigorous effort, and an honest aim,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EH1 TH|end:1|caesura:-",
+      "prompt": "By vigorous effort, and an honest aim,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "At once he draws the sting of life and death;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 S|end:1|caesura:3",
+      "prompt": "At once he draws the sting of life and death;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "He walks with Nature, and her paths are peace.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trochaic pentameter|rhyme:EH1 K S T|end:0|caesura:6",
+      "prompt": "He walks with Nature, and her paths are peace.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Our error's cause and cure are seen: see next",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:IY1 D|end:1|caesura:1",
+      "prompt": "Our error's cause and cure are seen: see next",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Time's nature, origin, importance, speed;",
+      "gold_target": "stress:-+-+-+-+|meter_type:iambic pentameter|rhyme:IH1 R|end:0|caesura:-",
+      "prompt": "Time's nature, origin, importance, speed;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "And thy great gain from urging his career. -",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:IY1 N|end:1|caesura:0",
+      "prompt": "And thy great gain from urging his career. -",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "All-sensual man, because untouch'd, unseen,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EH1 L S|end:0|caesura:-",
+      "prompt": "All-sensual man, because untouch'd, unseen,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "He looks on time as nothing. Nothing else",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AA1 D|end:1|caesura:2",
+      "prompt": "He looks on time as nothing. Nothing else",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Is truly man's: 't is Fortune's. - Time's a god.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:IH1 P AH0 T AH0 N S|end:1|caesura:-",
+      "prompt": "Is truly man's: 't is Fortune's. - Time's a god.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Hast thou ne'er heard of Time's omnipotence?",
+      "gold_target": "stress:-+-+-+-+-|meter_type:pentameter|rhyme:UW1|end:1|caesura:0",
+      "prompt": "Hast thou ne'er heard of Time's omnipotence?",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "For, or against, what wonders can he do!",
+      "gold_target": "stress:+-+-+-+-+|meter_type:iambic pentameter|rhyme:EY1 N Z|end:1|caesura:1",
+      "prompt": "For, or against, what wonders can he do!",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "And will: to stand blank neuter he disdains.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EH1 N T|end:0|caesura:-",
+      "prompt": "And will: to stand blank neuter he disdains.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Not on those terms was Time ( Heaven's stranger! ) sent",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AE1 N|end:1|caesura:-",
+      "prompt": "Not on those terms was Time ( Heaven's stranger! ) sent",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "On his important embassy to man.",
+      "gold_target": "stress:-+-+-+-+-|meter_type:iambic pentameter|rhyme:AW1 ER0|end:1|caesura:1",
+      "prompt": "On his important embassy to man.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Lorenzo! no; on the long-destined hour,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 P|end:1|caesura:-",
+      "prompt": "Lorenzo! no; on the long-destined hour,",
+      "model_output": "-+-+-+---+-"
+    },
+    {
+      "input": "From everlasting ages growing ripe,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:ER1 TH|end:1|caesura:-",
+      "prompt": "From everlasting ages growing ripe,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "That memorable hour of wondrous birth,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:EH1 N T|end:1|caesura:3",
+      "prompt": "That memorable hour of wondrous birth,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "When the dread Sire, on emanation bent,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AY1 T|end:1|caesura:3",
+      "prompt": "When the dread Sire, on emanation bent,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "And big with Nature, rising in his might,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic tetrameter|rhyme:AO1 R N|end:1|caesura:2",
+      "prompt": "And big with Nature, rising in his might,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Call'd forth Creation, ( for then Time was born, )",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:ER1 L D Z|end:1|caesura:-",
+      "prompt": "Call'd forth Creation, ( for then Time was born, )",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "By Godhead streaming through a thousand worlds:",
+      "gold_target": "stress:+-+-+-+-|meter_type:pentameter|rhyme:EH1 V AH0 N|end:1|caesura:3",
+      "prompt": "By Godhead streaming through a thousand worlds:",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Not on those terms, from the great days of heaven,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:AO1 R B|end:1|caesura:-",
+      "prompt": "Not on those terms, from the great days of heaven,",
+      "model_output": "+-+-+-+-+-"
+    },
+    {
+      "input": "From old Eternity's mysterious orb,",
+      "gold_target": "stress:-+-+-+-+|meter_type:pentameter|rhyme:AY1 Z|end:1|caesura:3",
+      "prompt": "From old Eternity's mysterious orb,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Was Time cut off, and cast beneath the skies;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:OW1 D|end:1|caesura:1",
+      "prompt": "Was Time cut off, and cast beneath the skies;",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "The Skies, which watch him in his new abode,",
+      "gold_target": "stress:+-+-+-+-+-+|meter_type:trochaic pentameter|rhyme:IH1 R Z|end:1|caesura:-",
+      "prompt": "The Skies, which watch him in his new abode,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Measuring his motions by revolving spheres;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trochaic trimeter|rhyme:AY1 N|end:1|caesura:-",
+      "prompt": "Measuring his motions by revolving spheres;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "That horologe machinery divine.",
+      "gold_target": "stress:+-+-+-+-+-+|meter_type:trochaic pentameter|rhyme:EY1|end:0|caesura:0",
+      "prompt": "That horologe machinery divine.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Hours, Days, and Months, and Years, his children, play",
+      "gold_target": "stress:-+-+-+-+-|meter_type:pentameter|rhyme:AY1 Z|end:1|caesura:4",
+      "prompt": "Hours, Days, and Months, and Years, his children, play",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Like numerous wings around him, as he flies:",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EY1 P|end:0|caesura:0",
+      "prompt": "Like numerous wings around him, as he flies:",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "Or, rather, as unequal plumes, they shape",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:EY1 M|end:1|caesura:2",
+      "prompt": "Or, rather, as unequal plumes, they shape",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "His ample pinions, swift as darted flame,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EH1 S T|end:1|caesura:3",
+      "prompt": "His ample pinions, swift as darted flame,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "To gain his goal, to reach his ancient rest,",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:iambic pentameter|rhyme:AY1 ER0|end:1|caesura:-",
+      "prompt": "To gain his goal, to reach his ancient rest,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And join anew Eternity his sire;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic dimeter|rhyme:EH1 S T|end:1|caesura:-",
+      "prompt": "And join anew Eternity his sire;",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "In his immutability to nest,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IH1 N JH D|end:1|caesura:1",
+      "prompt": "In his immutability to nest,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "When worlds, that count his circles now, unhinged,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:AH1 SH|end:0|caesura:4",
+      "prompt": "When worlds, that count his circles now, unhinged,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "( Fate the loud signal sounding, ) headlong rush",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:OW1 Z|end:1|caesura:4",
+      "prompt": "( Fate the loud signal sounding, ) headlong rush",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "To timeless Night and Chaos, whence they rose.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:IH1 DH L|end:0|caesura:-",
+      "prompt": "To timeless Night and Chaos, whence they rose.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Why spur the speedy? Why with levities",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AY1 T|end:1|caesura:0",
+      "prompt": "Why spur the speedy? Why with levities",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "New-wing thy short, short day's too rapid flight?",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:AH1 N|end:1|caesura:5",
+      "prompt": "New-wing thy short, short day's too rapid flight?",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Know'st thou or what thou dost, or what is done?",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:UW1 N|end:0|caesura:3",
+      "prompt": "Know'st thou or what thou dost, or what is done?",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Man flies from time, and time from man; too soon",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EH1 N D|end:1|caesura:-",
+      "prompt": "Man flies from time, and time from man; too soon",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "In sad divorce this double flight must end;",
+      "gold_target": "stress:-+-+-+-+|meter_type:iambic pentameter|rhyme:EH1 N|end:0|caesura:1",
+      "prompt": "In sad divorce this double flight must end;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And then, where are we? where, Lorenzo, then",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:EY1 T|end:0|caesura:3",
+      "prompt": "And then, where are we? where, Lorenzo, then",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Thy sports? thy pomps? - I grant thee, in a state",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic trimeter|rhyme:AW1 D|end:1|caesura:1",
+      "prompt": "Thy sports? thy pomps? - I grant thee, in a state",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Not unambitious; in the ruffled shroud,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:IY1 TH|end:1|caesura:-",
+      "prompt": "Not unambitious; in the ruffled shroud,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Thy Parian tomb's triumphant arch beneath.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:AY1 F|end:0|caesura:-",
+      "prompt": "Thy Parian tomb's triumphant arch beneath.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Has Death his fopperies? Then well may life",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AY1 N|end:1|caesura:3",
+      "prompt": "Has Death his fopperies? Then well may life",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Put on her plume, and in her rainbow shine.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:AE1 N D|end:1|caesura:1",
+      "prompt": "Put on her plume, and in her rainbow shine.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Ye well-array'd! ye lilies of our land!",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IH1 N|end:1|caesura:2",
+      "prompt": "Ye well-array'd! ye lilies of our land!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Ye lilies male, who neither toil, nor spin,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 Z|end:0|caesura:3",
+      "prompt": "Ye lilies male, who neither toil, nor spin,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "( As sister lilies might, ) if not so wise",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 T|end:1|caesura:1",
+      "prompt": "( As sister lilies might, ) if not so wise",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "As Solomon, more sumptuous to the sight!",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AO1 R T|end:1|caesura:-",
+      "prompt": "As Solomon, more sumptuous to the sight!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Ye delicate! who nothing can support,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:UW1 M|end:0|caesura:-",
+      "prompt": "Ye delicate! who nothing can support,",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "Yourselves most insupportable! for whom",
+      "gold_target": "stress:-+-+-+-+-|meter_type:iambic pentameter|rhyme:AA1 N|end:0|caesura:4",
+      "prompt": "Yourselves most insupportable! for whom",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "The winter rose must blow, the Sun put on",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AA1 F T|end:0|caesura:4",
+      "prompt": "The winter rose must blow, the Sun put on",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "A brighter beam in Leo; silky-soft",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:IY1 T|end:1|caesura:3",
+      "prompt": "A brighter beam in Leo; silky-soft",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Favonius breathe still softer, or be chid;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AO1 NG|end:1|caesura:4",
+      "prompt": "Favonius breathe still softer, or be chid;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And other worlds send odours, sauce, and song,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:UW1 M Z|end:1|caesura:1",
+      "prompt": "And other worlds send odours, sauce, and song,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And robes, and notions, framed in foreign looms!",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:IY1 M|end:0|caesura:-",
+      "prompt": "And robes, and notions, framed in foreign looms!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "O ye Lorenzos of our age! who deem",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:IH1 Z ER0 IY0|end:0|caesura:-",
+      "prompt": "O ye Lorenzos of our age! who deem",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "One moment unamused a misery",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AW1 D|end:0|caesura:4",
+      "prompt": "One moment unamused a misery",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Not made for feeble man; who call aloud",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:EH1 N S|end:1|caesura:-",
+      "prompt": "Not made for feeble man; who call aloud",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "For every bauble drivell'd o'er by sense;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:AE1 S T|end:1|caesura:1",
+      "prompt": "For every bauble drivell'd o'er by sense;",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "For rattles, and conceits of every cast,",
+      "gold_target": "stress:-+-+-+-+|meter_type:pentameter|rhyme:OY1|end:1|caesura:3",
+      "prompt": "For rattles, and conceits of every cast,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "For change of follies, and relays of joy,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EH1 NG K TH|end:0|caesura:-",
+      "prompt": "For change of follies, and relays of joy,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "To drag your patient through the tedious length",
+      "gold_target": "stress:-+-+-+-+|meter_type:trochaic pentameter|rhyme:EY1|end:1|caesura:4",
+      "prompt": "To drag your patient through the tedious length",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Of a short winter's day; - say, sages; say,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:IY1 M Z|end:1|caesura:1",
+      "prompt": "Of a short winter's day; - say, sages; say,",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "Wit's oracles; say, dreamers of gay dreams!",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AY1 T|end:1|caesura:-",
+      "prompt": "Wit's oracles; say, dreamers of gay dreams!",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "How will you weather an eternal night,",
+      "gold_target": "stress:+-+-+|meter_type:monometer|rhyme:EY1 L|end:1|caesura:-",
+      "prompt": "How will you weather an eternal night,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Where such expedients fail?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 P|end:0|caesura:-",
+      "prompt": "Where such expedients fail?",
+      "model_output": "+-+-+"
+    },
+    {
+      "input": "O treacherous Conscience! while she seems to sleep",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:AO1 NG|end:1|caesura:3",
+      "prompt": "O treacherous Conscience! while she seems to sleep",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "On rose and myrtle, lull'd with siren song;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:AA1 P|end:0|caesura:2",
+      "prompt": "On rose and myrtle, lull'd with siren song;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "While she seems, nodding o'er her charge, to drop",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:EY1 N|end:1|caesura:-",
+      "prompt": "While she seems, nodding o'er her charge, to drop",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "On headlong appetite the slacken'd rein,",
+      "gold_target": "stress:-+-+-+-+-|meter_type:iambic trimeter|rhyme:AY1 S AH0 N S N|end:1|caesura:5",
+      "prompt": "On headlong appetite the slacken'd rein,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And give us up to licence, unrecall'd,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:AE1 N D|end:1|caesura:0",
+      "prompt": "And give us up to licence, unrecall'd,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Unmark'd, - see, from behind her secret stand,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AO1 L T|end:1|caesura:-",
+      "prompt": "Unmark'd, - see, from behind her secret stand,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "The sly informer minutes every fault,",
+      "gold_target": "stress:-+-+-+-+|meter_type:iambic pentameter|rhyme:IH1 L Z|end:1|caesura:-",
+      "prompt": "The sly informer minutes every fault,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And her dread diary with horror fills.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:EH1 N|end:1|caesura:-",
+      "prompt": "And her dread diary with horror fills.",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "Not the gross act alone employs her pen;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:dimeter|rhyme:AE1 N D|end:1|caesura:-",
+      "prompt": "Not the gross act alone employs her pen;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "She reconnoitres Fancy's airy band,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AY1|end:1|caesura:-",
+      "prompt": "She reconnoitres Fancy's airy band,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "A watchful foe! the formidable spy,",
+      "gold_target": "stress:+-+-+-+-+-+|meter_type:trochaic pentameter|rhyme:AE1 M P|end:1|caesura:0",
+      "prompt": "A watchful foe! the formidable spy,",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "Listening, o'erhears the whispers of our camp;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trochaic pentameter|rhyme:AO1 R Z|end:1|caesura:-",
+      "prompt": "Listening, o'erhears the whispers of our camp;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Our dawning purposes of heart explores,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic hexameter|rhyme:IH1 K W IH0 T IY0|end:1|caesura:-",
+      "prompt": "Our dawning purposes of heart explores,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And steals our embryos of iniquity.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:IY1 L|end:0|caesura:1",
+      "prompt": "And steals our embryos of iniquity.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "As all-rapacious usurers conceal",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EH1 R Z|end:1|caesura:1",
+      "prompt": "As all-rapacious usurers conceal",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Their Doomsday-book from all-consuming heirs;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:IY1 T S|end:0|caesura:0",
+      "prompt": "Their Doomsday-book from all-consuming heirs;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Thus, with indulgence most severe, she treats",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:monometer|rhyme:AY1 M|end:1|caesura:-",
+      "prompt": "Thus, with indulgence most severe, she treats",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Us spendthrifts of inestimable time;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:AY1 D|end:1|caesura:0",
+      "prompt": "Us spendthrifts of inestimable time;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Unnoted, notes each moment misapplied;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AE1 S|end:1|caesura:-",
+      "prompt": "Unnoted, notes each moment misapplied;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "In leaves more durable than leaves of brass,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EH1 D|end:0|caesura:3",
+      "prompt": "In leaves more durable than leaves of brass,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Writes our whole history; which Death shall read",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:IY1 R|end:1|caesura:-",
+      "prompt": "Writes our whole history; which Death shall read",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "In every pale delinquent's private ear;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:ER1 L D Z|end:0|caesura:2",
+      "prompt": "In every pale delinquent's private ear;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And Judgment publish; publish to more worlds",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AW1 N D|end:1|caesura:1",
+      "prompt": "And Judgment publish; publish to more worlds",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Than this; and endless Age in groans resound.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EH1 S T|end:1|caesura:0",
+      "prompt": "Than this; and endless Age in groans resound.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Lorenzo, such that sleeper in thy breast!",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AH1 CH|end:0|caesura:3",
+      "prompt": "Lorenzo, such that sleeper in thy breast!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Such is her slumber; and her vengeance such",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 S|end:1|caesura:2",
+      "prompt": "Such is her slumber; and her vengeance such",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "For slighted counsel; such thy future peace!",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic tetrameter|rhyme:UW1 N|end:1|caesura:-",
+      "prompt": "For slighted counsel; such thy future peace!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And think'st thou still thou canst be wise too soon?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AO1 NG|end:1|caesura:-",
+      "prompt": "And think'st thou still thou canst be wise too soon?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "But why on Time so lavish is my song?",
+      "gold_target": "stress:-+-+-+-+|meter_type:pentameter|rhyme:UW1 L|end:1|caesura:-",
+      "prompt": "But why on Time so lavish is my song?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "On this great theme kind Nature keeps a school,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1|end:1|caesura:-",
+      "prompt": "On this great theme kind Nature keeps a school,",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "To teach her sons herself. Each night we die;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 F|end:1|caesura:4",
+      "prompt": "To teach her sons herself. Each night we die;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Each morn are born anew: each day a life!",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:IH1 L Z|end:1|caesura:-",
+      "prompt": "Each morn are born anew: each day a life!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And shall we kill each day? If trifling kills,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EY1 N|end:0|caesura:-",
+      "prompt": "And shall we kill each day? If trifling kills,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Sure vice must butcher. O what heaps of slain",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:AY1 M D|end:0|caesura:-",
+      "prompt": "Sure vice must butcher. O what heaps of slain",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Cry out for vengeance on us! Time destroy'd",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IH1 L T|end:1|caesura:1",
+      "prompt": "Cry out for vengeance on us! Time destroy'd",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Is suicide, where more than blood is spilt.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AY1 T S|end:1|caesura:1",
+      "prompt": "Is suicide, where more than blood is spilt.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Time flies, Death urges, knells call, Heaven invites,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AO1 L|end:1|caesura:1",
+      "prompt": "Time flies, Death urges, knells call, Heaven invites,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Hell threatens: all exerts; in effort, all;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trimeter|rhyme:AO1 R|end:1|caesura:3",
+      "prompt": "Hell threatens: all exerts; in effort, all;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "More than creation labours! - labours more!",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:IH1 D S T|end:0|caesura:5",
+      "prompt": "More than creation labours! - labours more!",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "And is there in creation what, amidst",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:ER1 S AH0 L W D|end:1|caesura:2",
+      "prompt": "And is there in creation what, amidst",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "This tumult universal, wing'd despatch,",
+      "gold_target": "stress:-+-+-+-+|meter_type:iambic trimeter|rhyme:AO1 N Z|end:0|caesura:2",
+      "prompt": "This tumult universal, wing'd despatch,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And ardent energy, supinely yawns? -",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EY1 T|end:1|caesura:1",
+      "prompt": "And ardent energy, supinely yawns? -",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Man sleeps, and man alone; and man, whose fate,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:IY1 M|end:1|caesura:1",
+      "prompt": "Man sleeps, and man alone; and man, whose fate,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Fate irreversible, entire, extreme,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic tetrameter|rhyme:AH1 L F|end:0|caesura:0",
+      "prompt": "Fate irreversible, entire, extreme,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Endless, hair-hung, breeze-shaken, o'er the gulf",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic tetrameter|rhyme:UW1 M|end:0|caesura:2",
+      "prompt": "Endless, hair-hung, breeze-shaken, o'er the gulf",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "A moment trembles; drops! and man, for whom",
+      "gold_target": "stress:-+-+-+-+-|meter_type:pentameter|rhyme:AA1 Z|end:0|caesura:4",
+      "prompt": "A moment trembles; drops! and man, for whom",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "All else is in alarm; man, the sole cause",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 P S|end:1|caesura:3",
+      "prompt": "All else is in alarm; man, the sole cause",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Of this surrounding storm! - and yet he sleeps,",
+      "gold_target": "stress:-+-+-+-+|meter_type:trochaic tetrameter|rhyme:EY1|end:0|caesura:-",
+      "prompt": "Of this surrounding storm! - and yet he sleeps,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "As the storm rock'd to rest. \" Throw years away? \"",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:IY1 Z|end:1|caesura:1",
+      "prompt": "As the storm rock'd to rest. \" Throw years away? \"",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "Throw empires, and be blameless. Moments seize;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:IH1 SH|end:0|caesura:3",
+      "prompt": "Throw empires, and be blameless. Moments seize;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Heaven's on their wing: a moment we may wish",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IH1 L|end:1|caesura:-",
+      "prompt": "Heaven's on their wing: a moment we may wish",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "When worlds want wealth to buy. Bid Day stand still,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AO1 R T|end:0|caesura:5",
+      "prompt": "When worlds want wealth to buy. Bid Day stand still,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Bid him drive back his car, and re-import",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:iambic hexameter|rhyme:AW1 ER0|end:1|caesura:2",
+      "prompt": "Bid him drive back his car, and re-import",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "The period past, re-give the given hour.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AA1 N T|end:1|caesura:0",
+      "prompt": "The period past, re-give the given hour.",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "Lorenzo, more than miracles we want:",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AH1 M|end:1|caesura:0",
+      "prompt": "Lorenzo, more than miracles we want:",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Lorenzo - O for yesterdays to come!",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EY1 K|end:1|caesura:-",
+      "prompt": "Lorenzo - O for yesterdays to come!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Such is the language of the man awake;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:IY1|end:1|caesura:-",
+      "prompt": "Such is the language of the man awake;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "His ardour such for what oppresses thee.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic tetrameter|rhyme:OW1|end:1|caesura:4",
+      "prompt": "His ardour such for what oppresses thee.",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "And is his ardour vain, Lorenzo? No;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AH1 L JH|end:1|caesura:-",
+      "prompt": "And is his ardour vain, Lorenzo? No;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "That more than miracle the gods indulge:",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:EY2 R R|end:0|caesura:0",
+      "prompt": "That more than miracle the gods indulge:",
+      "model_output": "+-+-+-+"
+    },
+    {
+      "input": "To-day is yesterday return'd; return'd",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AO1 R N|end:1|caesura:0",
+      "prompt": "To-day is yesterday return'd; return'd",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Full-power'd to cancel, expiate, raise, adorn,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:IY1 S|end:1|caesura:-",
+      "prompt": "Full-power'd to cancel, expiate, raise, adorn,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "And reinstate us on the rock of peace.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EY1 T|end:1|caesura:-",
+      "prompt": "And reinstate us on the rock of peace.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Let it not share its predecessor's fate;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:UW1 L|end:1|caesura:0",
+      "prompt": "Let it not share its predecessor's fate;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Nor, like its elder sisters, die a fool.",
+      "gold_target": "stress:-+-+-+-+-|meter_type:pentameter|rhyme:AO1 F|end:0|caesura:-",
+      "prompt": "Nor, like its elder sisters, die a fool.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Shall it evaporate in fume? fly off",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic trimeter|rhyme:IH1 L|end:1|caesura:0",
+      "prompt": "Shall it evaporate in fume? fly off",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "Fuliginous, and stain us deeper still?",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:EH1 N T IY0 P|end:1|caesura:-",
+      "prompt": "Fuliginous, and stain us deeper still?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Shall we be poorer for the plenty pour'd?",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:tetrameter|rhyme:EH1 V AH0 N|end:1|caesura:-",
+      "prompt": "Shall we be poorer for the plenty pour'd?",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "More wretched for the clemencies of Heaven?",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EH1 R|end:1|caesura:-",
+      "prompt": "More wretched for the clemencies of Heaven?",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "Where shall I find him? Angels! tell me where.",
+      "gold_target": "stress:-+-+-+-+-|meter_type:pentameter|rhyme:AW1 T|end:1|caesura:2",
+      "prompt": "Where shall I find him? Angels! tell me where.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "You know him: he is near you: point him out:",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AW1|end:1|caesura:-",
+      "prompt": "You know him: he is near you: point him out:",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "Shall I see glories beaming from his brow,",
+      "gold_target": "stress:-+-+-+-+-|meter_type:pentameter|rhyme:AW1 ER0 Z|end:1|caesura:-",
+      "prompt": "Shall I see glories beaming from his brow,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Or trace his footsteps by the rising flowers?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EH1 D|end:0|caesura:2",
+      "prompt": "Or trace his footsteps by the rising flowers?",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "Your golden wings, now hovering o'er him, shed",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AO1 Z|end:0|caesura:0",
+      "prompt": "Your golden wings, now hovering o'er him, shed",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Protection; now are waving in applause",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EY1 T|end:1|caesura:-",
+      "prompt": "Protection; now are waving in applause",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "To that blest Son of Foresight! Lord of Fate!",
+      "gold_target": "stress:-+-+-+-+---|meter_type:pentameter|rhyme:AA1 R OW0|end:1|caesura:4",
+      "prompt": "To that blest Son of Foresight! Lord of Fate!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "That awful Independent on To-morrow!",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AE1 S T|end:1|caesura:3",
+      "prompt": "That awful Independent on To-morrow!",
+      "model_output": "-+-+-+---"
+    },
+    {
+      "input": "Whose work is done; who triumphs in the past;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 L|end:1|caesura:-",
+      "prompt": "Whose work is done; who triumphs in the past;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Whose yesterdays look backward with a smile;",
+      "gold_target": "stress:-+-+-+-+-|meter_type:pentameter|rhyme:AY1|end:1|caesura:0",
+      "prompt": "Whose yesterdays look backward with a smile;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Nor, like the Parthian, wound him as they fly;",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:tetrameter|rhyme:AW1 ER0 Z|end:1|caesura:1",
+      "prompt": "Nor, like the Parthian, wound him as they fly;",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "That common, but opprobrious lot! Past hours,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 T|end:1|caesura:3",
+      "prompt": "That common, but opprobrious lot! Past hours,",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "If not by guilt, yet wound us by their flight,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EY1 V|end:1|caesura:-",
+      "prompt": "If not by guilt, yet wound us by their flight,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "If folly bounds our prospect by the grave,",
+      "gold_target": "stress:-+-+-+-+|meter_type:dimeter|rhyme:AH1 V F B|end:1|caesura:-",
+      "prompt": "If folly bounds our prospect by the grave,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "All feeling of futurity benumb'd;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:AO1 R T K|end:1|caesura:1",
+      "prompt": "All feeling of futurity benumb'd;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "All god-like passion for eternals quench'd;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 R D|end:1|caesura:-",
+      "prompt": "All god-like passion for eternals quench'd;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "All relish of realities expired;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AY1 Z|end:1|caesura:-",
+      "prompt": "All relish of realities expired;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Renounced all correspondence with the skies;",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:trochaic pentameter|rhyme:AY1 ER0|end:1|caesura:2",
+      "prompt": "Renounced all correspondence with the skies;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Our freedom chain'd; quite wingless our desire;",
+      "gold_target": "stress:-+---+-+-+|meter_type:iambic tetrameter|rhyme:AO1 R|end:1|caesura:2",
+      "prompt": "Our freedom chain'd; quite wingless our desire;",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "In sense dark-prison'd all that ought to soar;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AH1 S T|end:1|caesura:3",
+      "prompt": "In sense dark-prison'd all that ought to soar;",
+      "model_output": "-+---+-+-+"
+    },
+    {
+      "input": "Prone to the centre; crawling in the dust;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trochaic tetrameter|rhyme:EY1 M|end:1|caesura:-",
+      "prompt": "Prone to the centre; crawling in the dust;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Dismounted every great and glorious aim;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trochaic tetrameter|rhyme:AY1 N|end:1|caesura:-",
+      "prompt": "Dismounted every great and glorious aim;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Embruted every faculty divine;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:ER1 L D|end:1|caesura:0",
+      "prompt": "Embruted every faculty divine;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Heart-buried in the rubbish of the world:",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:OW1 L Z|end:1|caesura:1",
+      "prompt": "Heart-buried in the rubbish of the world:",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "The world, that gulf of souls, immortal souls,",
+      "gold_target": "stress:+-+-+-+-+-|meter_type:pentameter|rhyme:AY1 ER0|end:0|caesura:1",
+      "prompt": "The world, that gulf of souls, immortal souls,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Souls elevate, angelic, wing'd with fire",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EH1 R|end:0|caesura:4",
+      "prompt": "Souls elevate, angelic, wing'd with fire",
+      "model_output": "+-+-+-+-+-"
+    },
+    {
+      "input": "To reach the distant skies, and triumph there",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:EY1 N JH D|end:1|caesura:1",
+      "prompt": "To reach the distant skies, and triumph there",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "On thrones, which shall not mourn their masters changed;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EH1 L|end:1|caesura:3",
+      "prompt": "On thrones, which shall not mourn their masters changed;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Though we from earth, ethereal they that fell.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AE1 N|end:1|caesura:2",
+      "prompt": "Though we from earth, ethereal they that fell.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Such veneration due, O man, to man.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 Z|end:1|caesura:2",
+      "prompt": "Such veneration due, O man, to man.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Who venerate themselves, the world despise.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:ER1 L D|end:1|caesura:1",
+      "prompt": "Who venerate themselves, the world despise.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "For what, gay friend, is this escutcheon'd world,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 T|end:1|caesura:-",
+      "prompt": "For what, gay friend, is this escutcheon'd world,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Which hangs out DEATH in one eternal night?",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic tetrameter|rhyme:EY1|end:1|caesura:7",
+      "prompt": "Which hangs out DEATH in one eternal night?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "A night that glooms us in the noon-tide ray,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AW1 D|end:1|caesura:3",
+      "prompt": "A night that glooms us in the noon-tide ray,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And wraps our thought, at banquets, in the shroud.",
+      "gold_target": "stress:+-+-+-+|meter_type:pentameter|rhyme:EH1 M AH0 N AH0 N S|end:1|caesura:-",
+      "prompt": "And wraps our thought, at banquets, in the shroud.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Life's little stage is a small eminence,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AE1 N|end:1|caesura:0",
+      "prompt": "Life's little stage is a small eminence,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Inch-high the grave above; that home of man,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AW1 N D|end:1|caesura:3",
+      "prompt": "Inch-high the grave above; that home of man,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Where dwells the multitude: we gaze around;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 L|end:0|caesura:3",
+      "prompt": "Where dwells the multitude: we gaze around;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "We read their monuments; we sigh; and while",
+      "gold_target": "stress:-+-+-+-+|meter_type:pentameter|rhyme:AO1 R D|end:1|caesura:1",
+      "prompt": "We read their monuments; we sigh; and while",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "We sigh, we sink, and are what we deplored:",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AA1 T|end:1|caesura:0",
+      "prompt": "We sigh, we sink, and are what we deplored:",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Lamenting, or lamented, all our lot!",
+      "gold_target": "stress:-+-+-+-+-|meter_type:pentameter|rhyme:IY1|end:1|caesura:4",
+      "prompt": "Lamenting, or lamented, all our lot!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Is Death at distance? No: he has been on thee;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:OW1|end:1|caesura:-",
+      "prompt": "Is Death at distance? No: he has been on thee;",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "And given sure earnest of his final blow.",
+      "gold_target": "stress:-+-+-+-+|meter_type:pentameter|rhyme:AW1|end:1|caesura:4",
+      "prompt": "And given sure earnest of his final blow.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Those hours that lately smiled, where are they now?",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic tetrameter|rhyme:AO1 L D|end:0|caesura:2",
+      "prompt": "Those hours that lately smiled, where are they now?",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "Pallid to thought, and ghastly! drown'd, all drown'd",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic trimeter|rhyme:AH1 TH IH0 NG D|end:1|caesura:3",
+      "prompt": "Pallid to thought, and ghastly! drown'd, all drown'd",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "In that great deep, which nothing disembogues!",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic tetrameter|rhyme:AW1 N|end:1|caesura:0",
+      "prompt": "In that great deep, which nothing disembogues!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And, dying, they bequeath'd thee small renown.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AY1 T|end:1|caesura:5",
+      "prompt": "And, dying, they bequeath'd thee small renown.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "The rest are on the wing: how fleet their flight!",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:iambic pentameter|rhyme:AY1 ER0|end:1|caesura:-",
+      "prompt": "The rest are on the wing: how fleet their flight!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Already has the fatal train took fire;",
+      "gold_target": "stress:-+-+-+-+-|meter_type:iambic pentameter|rhyme:IY1|end:1|caesura:1",
+      "prompt": "Already has the fatal train took fire;",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "A moment, and the world's blown up to thee,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AH1 S T|end:1|caesura:3",
+      "prompt": "A moment, and the world's blown up to thee,",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "The sun is darkness, and the stars are dust.",
+      "gold_target": "stress:+-+-+-+-+-|meter_type:hexameter|rhyme:AW1 ER0 Z|end:1|caesura:-",
+      "prompt": "The sun is darkness, and the stars are dust.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "'T is greatly wise to talk with our past hours;",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:iambic pentameter|rhyme:EH1 V AH0 N|end:1|caesura:2",
+      "prompt": "'T is greatly wise to talk with our past hours;",
+      "model_output": "+-+-+-+-+-"
+    },
+    {
+      "input": "And ask them, what report they bore to Heaven;",
+      "gold_target": "stress:-+-+-+-+|meter_type:iambic pentameter|rhyme:UW1 Z|end:1|caesura:-",
+      "prompt": "And ask them, what report they bore to Heaven;",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "And how they might have borne more welcome news.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AO1 L|end:1|caesura:-",
+      "prompt": "And how they might have borne more welcome news.",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "Their answers form what men Experience call;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:OW1|end:1|caesura:2",
+      "prompt": "Their answers form what men Experience call;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "If Wisdom's friend, her best; if not, worst foe.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 Z|end:1|caesura:-",
+      "prompt": "If Wisdom's friend, her best; if not, worst foe.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "O reconcile them! Kind Experience cries,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EY1 Z|end:1|caesura:2",
+      "prompt": "O reconcile them! Kind Experience cries,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "\" There's nothing here, but what as nothing weighs;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EY1 N|end:1|caesura:3",
+      "prompt": "\" There's nothing here, but what as nothing weighs;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "The more our joy, the more we know it vain,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic tetrameter|rhyme:EH1 R|end:0|caesura:-",
+      "prompt": "The more our joy, the more we know it vain,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And by success are tutor'd to despair. \"",
+      "gold_target": "stress:-+-+-+-+-|meter_type:pentameter|rhyme:OW1|end:1|caesura:4",
+      "prompt": "And by success are tutor'd to despair. \"",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Nor is it only thus, but must be so.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AY1 L D|end:1|caesura:3",
+      "prompt": "Nor is it only thus, but must be so.",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "Who knows not this, though grey, is still a child.",
+      "gold_target": "stress:+-+-+-+-+-|meter_type:pentameter|rhyme:AY1 ER0|end:1|caesura:-",
+      "prompt": "Who knows not this, though grey, is still a child.",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "Loose then from earth the grasp of fond desire,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AO1 R|end:1|caesura:1",
+      "prompt": "Loose then from earth the grasp of fond desire,",
+      "model_output": "+-+-+-+-+-"
+    },
+    {
+      "input": "Weigh anchor, and some happier clime explore.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:EY1 JH|end:1|caesura:-",
+      "prompt": "Weigh anchor, and some happier clime explore.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Art thou so moor'd thou canst not disengage,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 N Z|end:1|caesura:-",
+      "prompt": "Art thou so moor'd thou canst not disengage,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Nor give thy thoughts a ply to future scenes?",
+      "gold_target": "stress:+-+-+-+|meter_type:pentameter|rhyme:ER1 TH|end:0|caesura:0",
+      "prompt": "Nor give thy thoughts a ply to future scenes?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Since, by life's passing breath, blown up from earth",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EH1 R|end:0|caesura:0",
+      "prompt": "Since, by life's passing breath, blown up from earth",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Light, as the summer's dust, we take in air",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EH1 N|end:1|caesura:3",
+      "prompt": "Light, as the summer's dust, we take in air",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "A moment's giddy flight, and fall again;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:OY1 L|end:1|caesura:3",
+      "prompt": "A moment's giddy flight, and fall again;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Join the dull mass, increase the trodden soil,",
+      "gold_target": "stress:-+-+-+-+-|meter_type:iambic pentameter|rhyme:AO1 R|end:1|caesura:-",
+      "prompt": "Join the dull mass, increase the trodden soil,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "And sleep till Earth herself shall be no more;",
+      "gold_target": "stress:+-+-+-+-|meter_type:trimeter|rhyme:ER1 L D R|end:1|caesura:0",
+      "prompt": "And sleep till Earth herself shall be no more;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Since, then, ( as emmets, their small world o'erthrown, )",
+      "gold_target": "stress:-+-+-+-+|meter_type:pentameter|rhyme:AO1 L|end:1|caesura:0",
+      "prompt": "Since, then, ( as emmets, their small world o'erthrown, )",
+      "model_output": "+-+-+-+-"
+    },
+    {
+      "input": "We, sore amazed, from out earth's ruins crawl,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EH1 R|end:1|caesura:-",
+      "prompt": "We, sore amazed, from out earth's ruins crawl,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And rise to fate extreme of foul or fair,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 Z|end:1|caesura:3",
+      "prompt": "And rise to fate extreme of foul or fair,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "As man's own choice, ( controller of the skies! )",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:pentameter|rhyme:AW1 ER0|end:1|caesura:3",
+      "prompt": "As man's own choice, ( controller of the skies! )",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "As man's despotic will, perhaps one hour,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 Z|end:1|caesura:-",
+      "prompt": "As man's despotic will, perhaps one hour,",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "( O how omnipotent is time! ) decrees;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AA1 R M|end:1|caesura:-",
+      "prompt": "( O how omnipotent is time! ) decrees;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Should not each warning give a strong alarm?",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:AO1 R N|end:0|caesura:0",
+      "prompt": "Should not each warning give a strong alarm?",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Warning, far less than that of bosom torn",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:EH1 D|end:1|caesura:1",
+      "prompt": "Warning, far less than that of bosom torn",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "From bosom, bleeding o'er the sacred dead!",
+      "gold_target": "stress:+-+-+-+-|meter_type:pentameter|rhyme:AE1 S|end:1|caesura:-",
+      "prompt": "From bosom, bleeding o'er the sacred dead!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Should not each dial strike us as we pass,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AH1 K|end:1|caesura:0",
+      "prompt": "Should not each dial strike us as we pass,",
+      "model_output": "+-+-+-+-"
+    },
+    {
+      "input": "Portentous, as the written wall, which struck,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EY1 L|end:1|caesura:2",
+      "prompt": "Portentous, as the written wall, which struck,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "O'er midnight bowls, the proud Assyrian pale,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:AY1 N|end:1|caesura:1",
+      "prompt": "O'er midnight bowls, the proud Assyrian pale,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Erewhile high-flush'd with insolence and wine?",
+      "gold_target": "stress:+-+-+-+-|meter_type:pentameter|rhyme:IY1|end:1|caesura:4",
+      "prompt": "Erewhile high-flush'd with insolence and wine?",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Like that the dial speaks; and points to thee,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AH1 P|end:1|caesura:-",
+      "prompt": "Like that the dial speaks; and points to thee,",
+      "model_output": "+-+-+-+-"
+    },
+    {
+      "input": "Lorenzo! loath to break thy banquet up:",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:pentameter|rhyme:IY1|end:1|caesura:1",
+      "prompt": "Lorenzo! loath to break thy banquet up:",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "\" O man, thy kingdom is departing from thee;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EY1 D|end:0|caesura:0",
+      "prompt": "\" O man, thy kingdom is departing from thee;",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "And, while it lasts, is emptier than my shade. \"",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:AO1 L|end:0|caesura:3",
+      "prompt": "And, while it lasts, is emptier than my shade. \"",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Its silent language such: nor need'st thou call",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IY1 N Z|end:1|caesura:-",
+      "prompt": "Its silent language such: nor need'st thou call",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Thy Magi to decipher what it means.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AO1 L Z|end:1|caesura:0",
+      "prompt": "Thy Magi to decipher what it means.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Know, like the Median, Fate is in thy walls:",
+      "gold_target": "stress:-+-+-+-+|meter_type:trimeter|rhyme:EY1 Z D|end:1|caesura:1",
+      "prompt": "Know, like the Median, Fate is in thy walls:",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Dost ask, \" How? \" \" Whence? \" Belshazzar-like, amazed?",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trimeter|rhyme:EH1 TH|end:1|caesura:-",
+      "prompt": "Dost ask, \" How? \" \" Whence? \" Belshazzar-like, amazed?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Man's make encloses the sure seeds of death;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:AY1 V Z|end:0|caesura:-",
+      "prompt": "Man's make encloses the sure seeds of death;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Life feeds the murderer. Ingrate! he thrives",
+      "gold_target": "stress:-+-+-+-+-|meter_type:pentameter|rhyme:AW1 ER0 Z|end:1|caesura:3",
+      "prompt": "Life feeds the murderer. Ingrate! he thrives",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "On her own meal, and then his nurse devours.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 Z|end:1|caesura:1",
+      "prompt": "On her own meal, and then his nurse devours.",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "But here, Lorenzo, the delusion lies;",
+      "gold_target": "stress:-+-+-+-+|meter_type:pentameter|rhyme:AY1 F|end:1|caesura:2",
+      "prompt": "But here, Lorenzo, the delusion lies;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "That solar shadow, as it measures life,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EY1|end:0|caesura:3",
+      "prompt": "That solar shadow, as it measures life,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "It life resembles too: life speeds away",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IH1 L|end:1|caesura:3",
+      "prompt": "It life resembles too: life speeds away",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "From point to point, though seeming to stand still.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EH1 L TH|end:1|caesura:-",
+      "prompt": "From point to point, though seeming to stand still.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "The cunning fugitive is swift by stealth:",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:IY1 N|end:1|caesura:-",
+      "prompt": "The cunning fugitive is swift by stealth:",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Too subtle is the movement to be seen;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AO1 N|end:1|caesura:5",
+      "prompt": "Too subtle is the movement to be seen;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Yet soon man's hour is up, and we are gone.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic tetrameter|rhyme:AY1 M|end:1|caesura:4",
+      "prompt": "Yet soon man's hour is up, and we are gone.",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "Warnings point out our danger; gnomons, time:",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EH1 T|end:1|caesura:-",
+      "prompt": "Warnings point out our danger; gnomons, time:",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "As these are useless when the sun is set;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AY1 N Z|end:1|caesura:1",
+      "prompt": "As these are useless when the sun is set;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "So those, but when more glorious Reason shines.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:AY1|end:1|caesura:4",
+      "prompt": "So those, but when more glorious Reason shines.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Reason should judge in all; in Reason's eye,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AA1 R D|end:1|caesura:-",
+      "prompt": "Reason should judge in all; in Reason's eye,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "That sedentary shadow travels hard.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AO1 NG|end:1|caesura:-",
+      "prompt": "That sedentary shadow travels hard.",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "But such our gravitation to the wrong,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IH1 SH|end:1|caesura:-",
+      "prompt": "But such our gravitation to the wrong,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "So prone our hearts to whisper what we wish,",
+      "gold_target": "stress:+-+-+-+-+-+|meter_type:pentameter|rhyme:EH1 R|end:1|caesura:-",
+      "prompt": "So prone our hearts to whisper what we wish,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "'T is later with the wise than he's aware;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AH1 N|end:1|caesura:-",
+      "prompt": "'T is later with the wise than he's aware;",
+      "model_output": "+-+-+-+-+-+"
+    },
+    {
+      "input": "A Wilmington goes slower than the sun:",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EY1|end:1|caesura:-",
+      "prompt": "A Wilmington goes slower than the sun:",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And all mankind mistake their time of day;",
+      "gold_target": "stress:+-+-+-+-+-+|meter_type:pentameter|rhyme:OW1 N|end:0|caesura:-",
+      "prompt": "And all mankind mistake their time of day;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "E'en age itself. Fresh hopes are hourly sown",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic tetrameter|rhyme:EH1 N T|end:1|caesura:-",
+      "prompt": "E'en age itself. Fresh hopes are hourly sown",
+      "model_output": "+-+-+-+-+-+"
+    },
+    {
+      "input": "In furrow'd brows. So gentle life's descent,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EY1 N|end:1|caesura:3",
+      "prompt": "In furrow'd brows. So gentle life's descent,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "We shut our eyes, and think it is a plain.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IH1 NG|end:1|caesura:-",
+      "prompt": "We shut our eyes, and think it is a plain.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "We take fair days in Winter for the Spring;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AO1 F T|end:0|caesura:-",
+      "prompt": "We take fair days in Winter for the Spring;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And turn our blessings into bane. Since oft",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:IY1 L|end:1|caesura:-",
+      "prompt": "And turn our blessings into bane. Since oft",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Man must compute that age he cannot feel,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:IH1 R Z|end:1|caesura:-",
+      "prompt": "Man must compute that age he cannot feel,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "He scarce believes he's older for his years.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AO1 R|end:0|caesura:0",
+      "prompt": "He scarce believes he's older for his years.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Thus, at life's latest eve, we keep in store",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EH1 S T|end:0|caesura:2",
+      "prompt": "Thus, at life's latest eve, we keep in store",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "One disappointment sure, to crown the rest, -",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:iambic pentameter|rhyme:AW1 ER0|end:1|caesura:-",
+      "prompt": "One disappointment sure, to crown the rest, -",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "The disappointment of a promised hour.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AW1|end:0|caesura:1",
+      "prompt": "The disappointment of a promised hour.",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "On this, or similar, Philander! - thou",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AH1 NG|end:1|caesura:-",
+      "prompt": "On this, or similar, Philander! - thou",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Whose mind was moral as the Preacher's tongue,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EY1 M|end:0|caesura:-",
+      "prompt": "Whose mind was moral as the Preacher's tongue,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And strong to wield all science worth the name; -",
+      "gold_target": "stress:-+-+-+-+|meter_type:tetrameter|rhyme:AH1 N|end:1|caesura:-",
+      "prompt": "And strong to wield all science worth the name; -",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "How often we talk'd down the summer's sun,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:IY1 M|end:1|caesura:-",
+      "prompt": "How often we talk'd down the summer's sun,",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "And cool'd our passions by the breezy stream!",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:IY1 V|end:1|caesura:-",
+      "prompt": "And cool'd our passions by the breezy stream!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "How often thaw'd and shorten'd winter's eve,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:UW1 TH|end:1|caesura:2",
+      "prompt": "How often thaw'd and shorten'd winter's eve,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "By conflict kind, that struck out latent truth,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:OY1|end:1|caesura:1",
+      "prompt": "By conflict kind, that struck out latent truth,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Best found, so sought; to the recluse more coy!",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:IH1 P|end:1|caesura:1",
+      "prompt": "Best found, so sought; to the recluse more coy!",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Thoughts disentangle, passing o'er the lip;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EY1|end:0|caesura:3",
+      "prompt": "Thoughts disentangle, passing o'er the lip;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Clean runs the thread; if not, 't is thrown away",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AO1 NG|end:1|caesura:-",
+      "prompt": "Clean runs the thread; if not, 't is thrown away",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Or kept to tie up nonsense for a song;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:EY1 N Z|end:0|caesura:0",
+      "prompt": "Or kept to tie up nonsense for a song;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Song, fashionably fruitless; such as stains",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:iambic tetrameter|rhyme:AY1 ER0 Z|end:1|caesura:1",
+      "prompt": "Song, fashionably fruitless; such as stains",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "The fancy, and unhallow'd passion fires;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:dimeter|rhyme:EY1 N|end:1|caesura:-",
+      "prompt": "The fancy, and unhallow'd passion fires;",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "Chiming her saints to Cytherea's fane.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic tetrameter|rhyme:EY1 N Z|end:1|caesura:1",
+      "prompt": "Chiming her saints to Cytherea's fane.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Know'st thou, Lorenzo, what a friend contains?",
+      "gold_target": "stress:-+-+-+-+-+-|meter_type:pentameter|rhyme:AW1 ER0 Z|end:1|caesura:-",
+      "prompt": "Know'st thou, Lorenzo, what a friend contains?",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "As bees mix'd nectar draw from fragrant flowers,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 T|end:1|caesura:1",
+      "prompt": "As bees mix'd nectar draw from fragrant flowers,",
+      "model_output": "-+-+-+-+-+-"
+    },
+    {
+      "input": "So men, from FRIENDSHIP, wisdom and delight;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AY1|end:1|caesura:3",
+      "prompt": "So men, from FRIENDSHIP, wisdom and delight;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Twins tied by Nature, if they part, they die.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:AY1 N D B|end:1|caesura:-",
+      "prompt": "Twins tied by Nature, if they part, they die.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Hast thou no friend to set thy mind abroach?",
+      "gold_target": "stress:-+-+-+-+-|meter_type:pentameter|rhyme:EH1 R|end:1|caesura:-",
+      "prompt": "Hast thou no friend to set thy mind abroach?",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Good sense will stagnate. Thoughts shut up want air,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic trimeter|rhyme:AH1 N|end:1|caesura:1",
+      "prompt": "Good sense will stagnate. Thoughts shut up want air,",
+      "model_output": "-+-+-+-+-"
+    },
+    {
+      "input": "And spoil, like bales unopen'd to the sun.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1 D|end:1|caesura:3",
+      "prompt": "And spoil, like bales unopen'd to the sun.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Had thought been all, sweet speech had been denied;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:UW1|end:1|caesura:0",
+      "prompt": "Had thought been all, sweet speech had been denied;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Speech, thought's canal! speech, thought's criterion too!",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:AO1 S|end:1|caesura:-",
+      "prompt": "Speech, thought's canal! speech, thought's criterion too!",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Thought in the mine may come forth gold or dross;",
+      "gold_target": "stress:-+-+-+-+-|meter_type:trochaic tetrameter|rhyme:ER1 TH|end:1|caesura:3",
+      "prompt": "Thought in the mine may come forth gold or dross;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "When coin'd in word, we know its real worth.",
+      "gold_target": "stress:-+-+-+-+|meter_type:pentameter|rhyme:UW1 S|end:1|caesura:1",
+      "prompt": "When coin'd in word, we know its real worth.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "If sterling, store it for thy future use;",
+      "gold_target": "stress:+-+-+-+-+-+|meter_type:pentameter|rhyme:AW1 N|end:1|caesura:4",
+      "prompt": "If sterling, store it for thy future use;",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "'T will buy thee benefit; perhaps, renown.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:dimeter|rhyme:AO1 R P|end:1|caesura:0",
+      "prompt": "'T will buy thee benefit; perhaps, renown.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Thought, too, deliver'd, is the more possess'd:",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:EY1 N|end:0|caesura:2",
+      "prompt": "Thought, too, deliver'd, is the more possess'd:",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Teaching we learn; and giving we retain",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AA1 T|end:1|caesura:3",
+      "prompt": "Teaching we learn; and giving we retain",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "The births of intellect; when dumb, forgot.",
+      "gold_target": "stress:+-+-+-+-+-|meter_type:pentameter|rhyme:AY1 ER0|end:1|caesura:-",
+      "prompt": "The births of intellect; when dumb, forgot.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Speech ventilates our intellectual fire;",
+      "gold_target": "stress:+-+-+-+-+|meter_type:tetrameter|rhyme:IY2 N|end:1|caesura:-",
+      "prompt": "Speech ventilates our intellectual fire;",
+      "model_output": "+-+-+-+-+-"
+    },
+    {
+      "input": "Speech burnishes our mental magazine,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic tetrameter|rhyme:UW1 S|end:1|caesura:2",
+      "prompt": "Speech burnishes our mental magazine,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Brightens for ornament, and whets for use.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AY1|end:1|caesura:1",
+      "prompt": "Brightens for ornament, and whets for use.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "What numbers, sheath'd in erudition, lie,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:OW1 M Z|end:1|caesura:-",
+      "prompt": "What numbers, sheath'd in erudition, lie,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Plunged to the hilts in venerable tomes,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:EH1 JH|end:1|caesura:2",
+      "prompt": "Plunged to the hilts in venerable tomes,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "And rusted in; who might have borne an edge,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:IY1 CH|end:1|caesura:4",
+      "prompt": "And rusted in; who might have borne an edge,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And play'd a sprightly beam, if born to speech;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:AH1 NG|end:1|caesura:-",
+      "prompt": "And play'd a sprightly beam, if born to speech;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "If born blest heirs of half their mother's tongue!",
+      "gold_target": "stress:+-+-+-+-+-+|meter_type:hexameter|rhyme:UH1 SH|end:0|caesura:4",
+      "prompt": "If born blest heirs of half their mother's tongue!",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "'T is thought's exchange which, like the' alternate push",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:tetrameter|rhyme:AH1 M|end:1|caesura:2",
+      "prompt": "'T is thought's exchange which, like the' alternate push",
+      "model_output": "+-+-+-+-+-+"
+    },
+    {
+      "input": "Of waves conflicting, breaks the learned scum,",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trimeter|rhyme:UW1 L|end:1|caesura:-",
+      "prompt": "Of waves conflicting, breaks the learned scum,",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And defecates the student's standing pool.",
+      "gold_target": "stress:-+-+-+-+-|meter_type:iambic pentameter|rhyme:IY1 S AO0 R S|end:1|caesura:-",
+      "prompt": "And defecates the student's standing pool.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "In contemplation is his proud resource?",
+      "gold_target": "stress:+-+-+-+-+-+|meter_type:tetrameter|rhyme:AA1 N V ER0 S N|end:1|caesura:4",
+      "prompt": "In contemplation is his proud resource?",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "'T is poor as proud, by converse unsustain'd.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trimeter|rhyme:IY1 L D|end:1|caesura:-",
+      "prompt": "'T is poor as proud, by converse unsustain'd.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Rude thought runs wild in contemplation's field;",
+      "gold_target": "stress:-+-+-+-+|meter_type:trochaic tetrameter|rhyme:IH1 T|end:0|caesura:0",
+      "prompt": "Rude thought runs wild in contemplation's field;",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "Converse, the menage, breaks it to the bit",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:ER1|end:0|caesura:2",
+      "prompt": "Converse, the menage, breaks it to the bit",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "Of due restraint; and emulation's spur",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AO1 D|end:1|caesura:2",
+      "prompt": "Of due restraint; and emulation's spur",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Gives graceful energy, by rivals awed.",
+      "gold_target": "stress:+-+-+-+-+-+|meter_type:pentameter|rhyme:UW2 D|end:1|caesura:-",
+      "prompt": "Gives graceful energy, by rivals awed.",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "'T is converse qualifies for solitude,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:pentameter|rhyme:EH1 S T|end:1|caesura:-",
+      "prompt": "'T is converse qualifies for solitude,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "As exercise for salutary rest.",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:trimeter|rhyme:EY1 V Z|end:1|caesura:2",
+      "prompt": "As exercise for salutary rest.",
+      "model_output": "-+-+-+-+"
+    },
+    {
+      "input": "By that untutor'd, Contemplation raves;",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic tetrameter|rhyme:AH1 N|end:1|caesura:-",
+      "prompt": "By that untutor'd, Contemplation raves;",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "And Nature's fool by Wisdom's is outdone.",
+      "gold_target": "stress:+-+-+-+-+|meter_type:trochaic pentameter|rhyme:AY1 N Z|end:1|caesura:0",
+      "prompt": "And Nature's fool by Wisdom's is outdone.",
+      "model_output": "-+-+-+-+-+"
+    },
+    {
+      "input": "Wisdom, though richer than Peruvian mines,",
+      "gold_target": "stress:-+-+-+-+-+|meter_type:iambic pentameter|rhyme:AY1 V|end:0|caesura:-",
+      "prompt": "Wisdom, though richer than Peruvian mines,",
+      "model_output": "+-+-+-+-+"
+    },
+    {
+      "input": "And sweeter than the sweet ambrosial hive, -",
+      "gold_target": "stress:+-+-+-+-+|meter_type:pentameter|rhyme:AE1 P IY0 N AH0 S|end:1|caesura:-",
+      "prompt": "And sweeter than the sweet ambrosial hive, -",
+      "model_output": "-+-+-+-+-+"
+    }
+  ]
+}

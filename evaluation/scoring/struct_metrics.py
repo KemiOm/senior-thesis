@@ -65,6 +65,50 @@ def parse_combined_bundle(s: str) -> dict[str, str] | None:
     }
 
 
+def parse_combined_bundle_loose(s: str) -> dict[str, str] | None:
+    """Extract combined fields in any order (pipe-delimited key:value segments).
+
+    Use when models shuffle fields or spacing differs from the strict regex in
+    ``parse_combined_bundle``. Returns the same key shape as that function.
+    """
+    s = _strip(s)
+    if not s:
+        return None
+
+    def grab(pat: str) -> str:
+        m = re.search(pat, s, re.IGNORECASE | re.DOTALL)
+        return m.group(1).strip() if m else ""
+
+    stress_part = grab(r"stress:([^|]+)")
+    meter_part = grab(r"meter:([^|]+)")
+    mt = grab(r"meter_type:([^|]+)")
+    rhyme = grab(r"rhyme:([^|]+)")
+    end = grab(r"end:([^|]+)")
+    caes = grab(r"caesura:([^|]+)")
+    meter_body = stress_part or meter_part
+    if not meter_body and not mt and not rhyme and not end and not caes:
+        return None
+    return {
+        "stress": stress_part,
+        "meter_type": mt,
+        "meter": meter_body,
+        "rhyme": rhyme,
+        "end": end,
+        "caesura": caes,
+    }
+
+
+def canonical_combined_for_compare(g: dict[str, str]) -> str:
+    """Single fixed-order string from parsed combined fields (for edit distance, etc.)."""
+    meter_str = _strip(g.get("meter") or g.get("stress") or "")
+    stress_norm = stress_normalize_for_compare(meter_str)
+    mt = _normalize_ws_case(g.get("meter_type", ""))
+    rh = _normalize_ws_case(g.get("rhyme", ""))
+    end = _strip(g.get("end", ""))
+    caes = _strip(g.get("caesura", ""))
+    return f"stress:{stress_norm}|meter_type:{mt}|rhyme:{rh}|end:{end}|caesura:{caes}"
+
+
 def rhyme_tokens_equivalent(gold: str, pred: str) -> bool:
     return _normalize_ws_case(gold) == _normalize_ws_case(pred)
 

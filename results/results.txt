@@ -1,0 +1,93 @@
+================================================================================
+FINE-TUNING HYPERPARAMETERS — WHAT CHANGED, WHY, AND HOW
+================================================================================
+Ground truth: scripts/sft/lora_train.py, scripts/hpc/lora_train.slurm, and
+run_params.json under sft_runs/ (cluster jobs pass LR, EPOCHS, etc. via env).
+
+--------------------------------------------------------------------------------
+WHAT STAYED MOSTLY FIXED (CONTROLLED COMPARISON)
+--------------------------------------------------------------------------------
+Same backbone: google/flan-t5-large.
+Same task JSON: output/training_data/<task>/{train,dev}.json.
+Optimizer shape: weight_decay=0.01, warmup_ratio=0.1 (Trainer defaults via script).
+LoRA dropout: 0.05. Seed: 42.
+Per-device batch: train 8, eval 4 (unless reduced for OOM).
+merge_and_save: true → final_model_merged/ for eval with run_prompt_eval.py.
+
+Goal: the scientific lever is supervision target (meter_only / rhyme_only / combined),
+not a new architecture every run.
+
+--------------------------------------------------------------------------------
+ROUND 1 → ROUND 2: CHANGES AND RATIONALE
+--------------------------------------------------------------------------------
+Round 1 (exemplar on disk: sft_runs/round1/combined/run_params.json, 2026-04-11):
+  - num_train_epochs: 3
+  - learning_rate: 1e-4
+  - lora_r / lora_alpha: 16 / 32
+  - lora_target_modules: q,v
+  - max_input_len / max_target_len: 256 / 64
+  - gradient_accumulation_steps: 1
+  - eval_steps / save_steps: 1000
+  - Precision: no_fp16 true, bf16 false → FP32 training on GPU (conservative).
+
+Round 2 (sft_runs/round2/{meter_only,rhyme_only,combined}/run_params.json, 2026-04-13):
+  - num_train_epochs: 3 → 5  (more passes for tight symbol mappings and bundles)
+  - learning_rate: 1e-4 → 5e-5  (lower LR with more epochs; stabilizer when capacity/length increase)
+  - lora_r / lora_alpha: 16/32 → 32/64  (more adapter capacity)
+  - lora_target_modules: q,v → q,k,v,o  (adapt more attention projections)
+  - max_input_len / max_target_len: 256/64 → 384/128  (longer context for combined;
+      longer targets for rhyme tails and pipe-bundles)
+  - gradient_accumulation_steps: 1 → 2  (effective batch 8×2 without higher peak VRAM)
+  - eval_steps / save_steps: 1000 → 300  (finer checkpoints over longer runs)
+  - Precision: still no_fp16 true (FP32), comparable numerics to R1 style.
+
+How changed: CLI / Slurm environment overrides to lora_train.slurm (LR, EPOCHS,
+LORA_R, GRAD_ACC, --max_input_len, --max_target_len, --lora_target_modules), not
+by rewriting defaults in lora_train.py alone.
+
+Why: first production recipe (R1) was conservative; R2 stressed capacity and
+length for structured decoding, with more frequent saves.
+
+--------------------------------------------------------------------------------
+ROUND 3 (AND ROUND 4 IN results/): LR SWEEP — CHANGES AND RATIONALE
+--------------------------------------------------------------------------------
+Round 3 exemplars: sft_runs/round3/meter_only_lr1e4/run_params.json vs
+meter_only_lr5e5/run_params.json (2026-04-15).
+
+Relative to Round 2, Round 3 rolled back several knobs and isolated learning rate:
+
+  - lora_r / lora_alpha: back to 16 / 32
+  - lora_target_modules: back to q,v
+  - max_input_len / max_target_len: back to 256 / 64
+  - gradient_accumulation_steps: back to 1
+  - eval_steps / save_steps: back to 1000
+  - num_train_epochs: kept at 5 (more than R1)
+  - learning_rate: swept 1e-4 vs 5e-5 (folder names: *_lr1e4 / *_lr5e5)
+  - Precision: bf16 true, no_fp16 false  (speed/memory on supported GPUs)
+
+Why: Round 2 changed many hyperparameters at once (rank, modules, LR, length,
+accum, epochs), which confounds attribution. Round 3–4 holds a near-default adapter
+recipe and output length budget and varies primarily LR.
+
+How: Slurm/env (LR=1e-4 vs LR=5e-5) and distinct --output_root paths; each run
+writes run_params.json for reproducibility.
+
+Downstream: results/model_comparison.csv shows higher exact match for meter/rhyme
+specialists at lr=1e-4 than at lr=5e-5 for these runs → 5e-5 tended to under-update
+relative to 1e-4 under the same epoch budget.
+
+--------------------------------------------------------------------------------
+ONE-PARAGRAPH THESIS SNIPPET (COPY-EDIT AS NEEDED)
+--------------------------------------------------------------------------------
+We kept FLAN-T5-Large and the JSON supervision fixed, used PEFT LoRA with fixed
+seed and standard weight decay / warmup, and first explored a stronger schedule
+(more epochs, lower LR, higher LoRA rank, additional target modules, and longer
+token caps) in Round 2 to better fit long structured targets; we then restored a
+default-like adapter configuration and varied only learning rate (1e-4 vs 5e-5)
+in Rounds 3–4 to obtain an interpretable hyperparameter conclusion supported by
+the held-out eval rollup (results/model_comparison.csv).
+
+--------------------------------------------------------------------------------
+FULL RESULTS NARRATIVE (SCORING, ROUNDS, FIGURES)
+--------------------------------------------------------------------------------
+See: docs/results_section_detailed.txt

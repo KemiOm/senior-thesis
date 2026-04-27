@@ -48,5 +48,6 @@ For longer or structured outputs, it hides differences between models.
 
 ## Data Source
 
-Results come from:
-`docs/model_comparison.csv`
+Aggregated exact-match / Levenshtein / structured columns come from rolling up per-line JSON under `evaluation/baselines/` into `evaluation/baseline_report/model_comparison.csv` (see `evaluation/summarize_prompt_baselines.py` → `evaluation/scoring/rollup.py`).
+
+For **natural_text**, CMU-style form diagnostics (stress/rhyme-key style checks) live in **`evaluation/scoring/form_eval.py`** (same as [GitHub](https://github.com/KemiOm/senior-thesis/blob/main/evaluation/scoring/form_eval.py)). Use `python scripts/eval_cli.py nt-form …` for per-file form metrics.

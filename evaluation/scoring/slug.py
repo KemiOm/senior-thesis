@@ -11,9 +11,8 @@ def baseline_save_slug(model_id: str) -> str:
 
     Hub-style ids (e.g. google/flan-t5-large) become google_flan-t5-large.
 
-    Local checkpoints: use task folder + run id (e.g.
-    .../sft/combined_lora/flan-t5-large_lora_20260411_175033/final_model_merged →
-    combined_lora_flan-t5-large_lora_20260411_175033).
+    Local checkpoints: use parent folders before final_model_merged (e.g.
+    .../sft_runs/round2/combined/final_model_merged → round2_combined).
     """
     s = (model_id or "").strip()
     if not s:

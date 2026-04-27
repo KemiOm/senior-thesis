@@ -9,10 +9,9 @@ from pathlib import Path
 def baseline_save_slug(model_id: str) -> str:
     """Directory name under a baseline results root.
 
-    Hub-style ids (e.g. google/flan-t5-large) become google_flan-t5-large.
+    Hub-style ids become google_flan-t5-large.
 
-    Local checkpoints: use parent folders before final_model_merged (e.g.
-    .../sft_runs/round2/combined/final_model_merged → round2_combined).
+    Local checkpoints: use parent folders before final_model_merged.
     """
     s = (model_id or "").strip()
     if not s:

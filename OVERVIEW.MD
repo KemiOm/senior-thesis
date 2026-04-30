@@ -27,7 +27,7 @@ These are different questions; the thesis design needs both styles of supervisio
 
 - Attribution / isolability. If we trained only on the combined bundle, a failure on rhyme could be a failure of rhyme modeling, meter modeling, formatting, or interaction effects between fields. Training rhyme-only and meter-only gives clean counterfactuals: given the same architecture and budget, does optimizing one formal objective improve that objective’s eval?
 - Detecting negative transfer and objective mismatch. A model optimized for one structure may not improve (or may hurt) another metric; that is easier to see when each run has a single training loss aligned with a single primary eval. This mirrors the MTL literature’s emphasis on which tasks should share parameters (see below).
-- Fairness to the baseline story. Pretrained models already show asymmetric behavior (e.g. stronger few-shot cues for meter-like patterns than for strict rhyme keys in our capped evals). Single-task SFT tells us whether adding narrow supervision fixes the weak axis without conflating it with joint formatting.
+- Fairness to the baseline story. Pretrained models already show asymmetric behavior. Single-task SFT tells us whether adding narrow supervision fixes the weak axis without conflating it with joint formatting.
 
 #### Why joint “combined” supervision is still essential
 
@@ -37,7 +37,7 @@ These are different questions; the thesis design needs both styles of supervisio
 
 #### Caveat the literature insists on
 
-Multitask learning is not universally beneficial: negative transfer—where adding a task hurts another—arises when objectives compete for limited capacity or incompatible gradients. Standley et al. (ICML 2020) study which tasks should be learned together and show that grouping all tasks into one network can underperform task grouping or separate models when tasks interfere. That is exactly why this repository keeps separate LoRA runs per condition and reports per-task eval (meter-only eval on meter-trained vs rhyme-trained vs combined-trained, etc.), instead of collapsing everything to a single “multitask wins” headline.
+Multitask learning is not universally beneficial: negative transfer—where adding a task hurts another—arises when objectives compete for limited capacity or incompatible gradients. Standley et al. (ICML 2020) study which tasks should be learned together and show that grouping all tasks into one network can underperform task grouping or separate models when tasks interfere. That is exactly why this repository keeps separate LoRA runs per condition and reports per-task eval, instead of collapsing everything to a single “multitask wins” headline.
 
 ### References supporting “multiple objectives / joint training” (and when to separate them)
 

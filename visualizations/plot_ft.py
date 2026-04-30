@@ -1,7 +1,7 @@
 """
 Fine-tuning figures for the thesis.
 
-1. **Training** — train/eval loss (optional learning-rate panel) from trainer_state.json.
+1. **Training** — train/eval loss  from trainer_state.json.
 2. **Data** — input/target length histograms; **split counts** (train/dev/test sizes).
 3. **Eval** — grouped exact-match bars; **heatmap** (model × eval task); **Levenshtein**
    similarity heatmap (same layout, ``levenshtein_similarity_pct`` from rollup); **prompt-style**
@@ -97,7 +97,7 @@ def _short_slug(slug: str, max_len: int = 28) -> str:
 
 _HUB_FLAN_SLUG = "hub/google_flan-t5-large"
 
-# Optional copy for your hand-written caption / results paragraph (not drawn on the figure by default).
+
 LEV_HEATMAP_CAPTION_NOTES = (
     "Rows: pretrained FLAN-T5-large (top), then LoRA adapters by round (R1–R4) and training objective "
     "(combined / meter_only / rhyme_only). Columns: the same held-out lines, three gold formats (meter, rhyme, joint). "
@@ -105,7 +105,7 @@ LEV_HEATMAP_CAPTION_NOTES = (
     "Bright on the column that matches training = specialization; dim elsewhere = limited transfer."
 )
 
-# Short thesis figure caption (copy into paper; Fig. 4).
+
 LEV_HEATMAP_THESIS_CAPTION = (
     "Figure 4. Zero-shot Levenshtein similarity (%) between model outputs and gold structured labels on a "
     "shared poetry test split. Each row is a model: the pretrained FLAN-T5-large baseline followed by task-specific "

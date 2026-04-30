@@ -9,35 +9,35 @@ Modern transformer language models often generate fluent text, but they struggle
 
 ---
 
-## Research goals and experimental design (deeper view)
+## Research goals and experimental design
 
-### What this work is doing
+### What this work does
 
-At a high level, the project is a controlled comparison of how a fixed seq2seq backbone (FLAN-T5) behaves when supervision changes, while evaluation stays as comparable as possible (same splits, same prompt templates, same strict scoring on gold structured labels). Concretely:
+At a high level, this project compares how a fixed seq2seq backbone (FLAN-T5) behaves when supervision changes, while evaluation stays constant (same splits, prompt templates, and strict scoring on gold structured labels). Concretely:
 
-1. Structured targets, not only surface continuations. We turn each line into a prediction problem with a verifiable target: stress strings (meter_only), rhyme keys (rhyme_only), or a multi-field bundle that mirrors how annotations co-occur in the corpus (combined). That lets us separate “sounds fluent” from “matches the formal label the pipeline assigned.”
-2. Prompt baselines first, then SFT. We measure how far in-context learning gets on each task, then ask whether LoRA fine-tuning on task-specific JSON improves exact match and field-level structure—so improvements are attributable to training signal, not a different eval harness.
-3. Parallel training conditions. We keep one backbone and vary what the model is trained to predict (meter-only vs rhyme-only vs combined). That is the core scientific lever: it tells us whether competence is factorized (each objective helps its own eval) or interfering (joint training helps or hurts relative to specialists).
+1. Structured targets, not only continuations. Each line is a prediction task with a verifiable target: stress strings (`meter_only`), rhyme keys (`rhyme_only`), or a multi-field bundle (`combined`).
+2. Prompt baselines first, then SFT. We measure in-context performance, then test whether LoRA fine-tuning on task JSON improves exact match and field-level structure under the same evaluation setup.
+3. Parallel training conditions. We keep one backbone and vary only the training target (`meter_only`, `rhyme_only`, `combined`) to test specialization versus interference.
 
-### Why we do not rely on “only one task” or “only everything at once”
+### Why we use both single-task and joint training
 
-These are different questions; the thesis design needs both styles of supervision.
+These are different scientific questions, so the thesis includes both supervision styles.
 
-#### Why single-task runs (meter_only, rhyme_only) are necessary
+#### Why single-task runs (`meter_only`, `rhyme_only`) are necessary
 
-- Attribution / isolability. If we trained only on the combined bundle, a failure on rhyme could be a failure of rhyme modeling, meter modeling, formatting, or interaction effects between fields. Training rhyme-only and meter-only gives clean counterfactuals: given the same architecture and budget, does optimizing one formal objective improve that objective’s eval?
-- Detecting negative transfer and objective mismatch. A model optimized for one structure may not improve (or may hurt) another metric; that is easier to see when each run has a single training loss aligned with a single primary eval. This mirrors the MTL literature’s emphasis on which tasks should share parameters (see below).
-- Fairness to the baseline story. Pretrained models already show asymmetric behavior. Single-task SFT tells us whether adding narrow supervision fixes the weak axis without conflating it with joint formatting.
+- Attribution. If we trained only on the combined bundle, a failure on rhyme could come from rhyme modeling, meter modeling, output formatting, or cross-field interactions. Single-task runs provide cleaner counterfactuals.
+- Detecting negative transfer. A model optimized for one structure may not improve (or may hurt) another metric. This is easiest to observe when one loss is aligned to one primary evaluation target.
+- Baseline comparability. Pretrained models already show asymmetric performance. Single-task SFT shows whether narrow supervision improves that weak axis without conflating effects from joint formatting.
 
-#### Why joint “combined” supervision is still essential
+#### Why joint `combined` supervision is still essential
 
-- Ecological validity. In real verse, meter, rhyme, and line breaks are not independent draws; annotators and readers judge them together. A combined target matches the correlational structure of gold labels in ECPA-derived data and tests whether the model can learn a single policy for “next line’s formal description” when multiple constraints must cohere.
-- Compositionality and multi-field decoding. The combined task is strictly harder in the sense that the model must emit a longer, structured string with several fields correct under strict parsing. That is a direct probe of whether the network treats constraints as composable or as a memorized template.
-- Multitask-style motivation from NLP. Training on related objectives with shared representations is a standard way to improve generalization and sample efficiency: related tasks act as inductive biases and implicit regularizers when they share underlying structure (classic multitask learning; see Caruana and Ruder below). For language understanding, jointly training on multiple NLU tasks (e.g. MT-DNN) has been shown to learn more general representations that adapt better to held-out tasks than single-task training alone (Liu et al., ACL 2019). That provides principled support for including a combined condition alongside specialists—not as a replacement for ablations, but as a third hypothesis: joint supervision may help joint eval (or may trade off per-field accuracy; we measure rather than assume).
+- Ecological validity. In real verse, meter, rhyme, and line breaks co-occur. A combined target reflects that structure and tests whether the model can coordinate multiple constraints.
+- Compositionality. The combined task is harder: the model must emit a longer structured string with several fields correct under strict parsing.
+- Multitask motivation. Prior NLP work shows that related objectives can improve generalization when they share structure. This justifies including a combined condition alongside single-task specialists.
 
-#### Caveat the literature insists on
+#### Caveat from prior work
 
-Multitask learning is not universally beneficial: negative transfer—where adding a task hurts another—arises when objectives compete for limited capacity or incompatible gradients. Standley et al. (ICML 2020) study which tasks should be learned together and show that grouping all tasks into one network can underperform task grouping or separate models when tasks interfere. That is exactly why this repository keeps separate LoRA runs per condition and reports per-task eval, instead of collapsing everything to a single “multitask wins” headline.
+Multitask learning is not always beneficial. Negative transfer can occur when objectives compete for capacity or gradients. Standley et al. (ICML 2020) show that grouping all tasks into one model can underperform task grouping or separate models when tasks interfere. That is why this repository keeps separate LoRA runs per condition and reports per-task evaluation.
 
 ### References supporting “multiple objectives / joint training” (and when to separate them)
 
@@ -48,7 +48,7 @@ Multitask learning is not universally beneficial: negative transfer—where addi
 | Liu, X., He, P., Chen, W., & Gao, J. (2019). “Multi-Task Deep Neural Networks for Natural Language Understanding.” ACL. [https://aclanthology.org/P19-1441/](https://aclanthology.org/P19-1441/) | Empirical NLP precedent: multi-task pretraining/fine-tuning over several GLUE-style tasks improves robustness and transfer vs single-task BERT-style training—analogous motivation for a combined poetic-form objective in addition to single-task specialists. |
 | Standley, T., Zamir, A., Chen, W., Guibas, L., Malik, J., & Savarese, S. (2020). “Which Tasks Should Be Learned Together in Multi-task Learning?” ICML, PMLR 119:9120–9131. [https://proceedings.mlr.press/v119/standley20a.html](https://proceedings.mlr.press/v119/standley20a.html) (arXiv:1905.07553) | Supports the experimental opposite of “always train everything together”: task grouping matters; negative transfer is real. Justifies parallel single-task baselines and per-task evaluation tables rather than only a joint model. |
 
-Together, these sources motivate the thesis layout: Caruana, Ruder, and Liu justify including a joint combined training condition as a standard way to exploit related structure; Standley et al. justify also running meter-only and rhyme-only specialists and evaluating each checkpoint on each task to see alignment vs interference.
+Together, these sources motivate the thesis layout: include a joint combined condition, keep single-task specialists, and evaluate each checkpoint on each task to measure alignment versus interference.
 
 ---
 

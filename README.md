@@ -77,7 +77,7 @@ That file includes corpus / extraction pins and **SFT** stack (`transformers`, `
 
 ## Project Structure
 
-High-level layout. Most of **output/** except **corpus.db** and **training_data/**, **ECPA/**, **venv/**, checkpoint/weight trees under **sft/**, **sft_full/**, and **sft_runs/**, plus **visualizations/out/**.
+High-level layout. Large or machine-local artifacts are usually gitignored: most of **output/** except **corpus.db** and **training_data/**, **ECPA/**, **venv/**, checkpoint/weight trees under **sft/** and **sft_runs/**, and **visualizations/out/**.
 
 ```
 .

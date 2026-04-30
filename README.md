@@ -7,7 +7,7 @@ A pipeline for extracting, normalizing, and annotating English poetry from the E
 ## Documentation
 
 - **[OVERVIEW.MD](OVERVIEW.MD)** — Full project description: pipeline stages, terminology (meter, stress, rhyme, TEI), phonology tools (Poesy, Prosodic, CMU), evaluation workflow (splits → training JSONs → baselines → metrics → **SFT** → checkpoint eval), structured metrics, and **HPC / Bouchet** usage (partitions, QoS, checkpoints vs final merged weights).
-- **Evaluation** — Splits, annotation coverage, scoring, and baselines: code under **evaluation/** (see layout below). Roll-up tables and model-selection notes live in **evaluation/baseline_report/** (**model_comparison.csv**, **MODEL_SELECTION.MD**). Stable CLI entry points at the **evaluation/** package root (**splits.py**, **run_annotation_coverage.py**, **summarize_prompt_baselines.py**) are thin shims; implementations are in **evaluation/corpus/** and **evaluation/scoring/**. Step-by-step narrative: “Evaluation and choosing a model” and **Running on HPC** in OVERVIEW.MD.
+- **Evaluation** — Splits, annotation coverage, scoring, and baselines: code under **evaluation/** (see layout below). Roll-up tables and model-selection notes live in **evaluation/baseline_report/** (**model_comparison.csv**). Stable CLI entry points at the **evaluation/** package root (**splits.py**, **run_annotation_coverage.py**, **summarize_prompt_baselines.py**) are thin shims; implementations are in **evaluation/corpus/** and **evaluation/scoring/**. Step-by-step narrative: “Evaluation and choosing a model” and **Running on HPC** in OVERVIEW.MD.
 
 ---
 
@@ -77,7 +77,7 @@ That file includes corpus / extraction pins and **SFT** stack (`transformers`, `
 
 ## Project Structure
 
-High-level layout. Large or machine-local artifacts are often **gitignored** (check **.gitignore**): e.g. most of **output/** except **corpus.db** and **training_data/**, **ECPA/**, **venv/**, checkpoint/weight trees under **sft/**, **sft_full/**, and **sft_runs/**, plus **visualizations/out/**.
+High-level layout. Most of **output/** except **corpus.db** and **training_data/**, **ECPA/**, **venv/**, checkpoint/weight trees under **sft/**, **sft_full/**, and **sft_runs/**, plus **visualizations/out/**.
 
 ```
 .
@@ -184,21 +184,6 @@ done
 ```
 
 Results live under `evaluation/baselines/<model_slug>/` for pretrained prompt baselines, and `results/<short_slug>/` for **SFT eval** JSON from `scripts/hpc/sft_eval.slurm` (e.g. `few_shot_meter_only.json`). Training **weights** live under whatever `--output-root` you used (Slurm defaults to `sft/<task>_lora/`); you do not need both `sft/` and `sft_full/`—the latter is only an alternate folder name some runs used. Short slugs come from `evaluation/scoring/slug.py`. If one task is missing (e.g. 3/4), re-run that task for that model; see OVERVIEW.MD for the single-task command.
-
----
-
-### `sft_full` vs `sft_runs` (do you need both?)
-
-Short answer: **no, you do not need both**.
-
-- Keep `sft_runs/` if you want the round-based experiment history used for model selection (`run_params.json`, `final_eval_metrics.json`, and selected merged checkpoints).
-- Keep `results/` for evaluation JSON used in rollups/tables/figures.
-- `sft_full/` is only an alternate training output root used by some older runs. If equivalent checkpoints are already represented in `sft_runs/` (or uploaded to Hugging Face), `sft_full/` can be archived or removed.
-
-Recommended thesis setup:
-- Keep: `results/` + lightweight metadata in `sft_runs/`.
-- Optional local-only: heavyweight checkpoints/adapters.
-- Do not maintain duplicate weight trees in both `sft_full/` and `sft_runs/` unless you need redundancy.
 
 ---
 
